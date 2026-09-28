@@ -92,20 +92,25 @@ Calculator/data tests cover rounding, half-level boundaries, ties, percentile co
 
 Independent validation uses the **unmodified PvPIVs.com calculator and its own base-stat records**, pinned to commit `8e580166c8a4bbe1995a55a673d930265ef0321b`. It compares CP, level, Attack, Defense and HP for **28,888 spreads across eight configurations**. Downloaded reference code stays in ignored `.work/`; only results and hashes are included. See [validation notes](docs/validation.md) and [machine-readable results](docs/independent-validation.json).
 
-## Cloudflare Pages
+## Cloudflare Workers Static Assets
 
-Deployment has **not** been performed. When you decide to publish, use Cloudflare Pages with:
+Use Workers Static Assets for a new Cloudflare deployment. Connect the GitHub repository and configure:
 
 | Setting                       | Value                                                            |
 | ----------------------------- | ---------------------------------------------------------------- |
-| Framework                     | React (Vite)                                                     |
+| Worker name                   | `pkm-eva`                                                        |
 | Root directory                | This project’s root; `PKM-EVA` if publishing a parent repository |
 | Build command                 | `npm run build`                                                  |
-| Output directory              | `dist`                                                           |
+| Deploy command                | `npx wrangler deploy`                                            |
+| Asset directory               | `dist`, configured in `wrangler.json`                            |
 | Node version                  | 24, set using `NODE_VERSION` or `.node-version`                  |
 | Runtime environment variables | None                                                             |
 
-These build/output settings follow [Cloudflare’s build configuration documentation](https://developers.cloudflare.com/pages/configuration/build-configuration/). Alternatively, build locally and upload the **contents of `dist/`** through Pages Direct Upload. The deployed app is static; users need no Cloudflare account. `public/_headers` supplies cache and security headers, and is intentionally excluded from service-worker precaching because it is hosting configuration.
+Commit and push `wrangler.json` with the app. It defines the Worker name, static asset directory and required compatibility date. The date pins Cloudflare runtime behavior; it is independent of the Pokémon data snapshot date. Keep Cloudflare's automatically created deployment token option; the app itself needs no API keys. Preview builds can remain disabled for the initial setup, and Cloudflare Access should be off if the site is intended for public access.
+
+If deploying a commit without `wrangler.json`, use the explicit deploy command `npx wrangler deploy --name pkm-eva --assets ./dist --compatibility-date 2026-09-26`.
+
+See [Cloudflare build configuration](https://developers.cloudflare.com/workers/ci-cd/builds/configuration/) and [compatibility dates](https://developers.cloudflare.com/workers/configuration/compatibility-dates/). The deployed app is static; no server-side Worker script is required. `public/_headers` supplies cache and security headers, and is intentionally excluded from service-worker precaching because it is hosting configuration. Existing Cloudflare Pages projects can still build with `npm run build` and publish `dist`.
 
 After loading on HTTPS, wait for **“Ready for offline use”**, then use the browser’s install/Add to Home Screen option where supported. New releases install their full asset set before becoming eligible for activation. An open app offers **Update & reload**; it does not silently switch data. Previous immutable caches are retained for old open tabs. Clearing site data removes caches and personal saved notes; browsers may also evict storage.
 
