@@ -1,0 +1,90 @@
+{
+  "warnings": [
+    "Unmapped raid listing: Shadow Overqwil (poison).",
+    "Unmapped raid listing: Shadow Zekrom (electric).",
+    "Unmapped raid listing: Shadow Thundurus (Therian Forme) (electric).",
+    "Unmapped raid listing: Deoxys (Normal Forme) (psychic).",
+    "All CSV forms are retained. A simulator released flag does not independently verify GO availability.",
+    "Budget raid candidates come from the input CSV and remain unverified. Missing raid evidence never means no raid value.",
+    "Known non-tradable research Pokémon use manually reviewed minimum levels. The default IV comparison remains all 4,096 combinations, even when some IVs are unobtainable.",
+    "GO game-master templates do not establish live release status or event overrides. Costumes and special form changes require in-game confirmation."
+  ],
+  "missingStats": [],
+  "missingEvolutionRules": [
+    "golisopodsh",
+    "pikachu_5th_anniversary",
+    "pikachu_flying",
+    "pikachu_libre",
+    "pikachu_shaymin"
+  ],
+  "rejectedEdges": [
+    {
+      "from": "camerupt",
+      "to": "camerupt_mega",
+      "reason": "Target is not in the supported catalog."
+    },
+    {
+      "from": "dunsparce",
+      "to": "dudunsparce_two",
+      "reason": "Target is not in the supported catalog."
+    },
+    {
+      "from": "dunsparce",
+      "to": "dudunsparce_three",
+      "reason": "Target is not in the supported catalog."
+    },
+    {
+      "from": "flabebe",
+      "to": "floette_red",
+      "reason": "Target is not in the supported catalog."
+    },
+    {
+      "from": "floette",
+      "to": "florges_red",
+      "reason": "Target is not in the supported catalog."
+    },
+    {
+      "from": "litleo",
+      "to": "pyroar_female",
+      "reason": "Target is not in the supported catalog."
+    },
+    {
+      "from": "poltchageist",
+      "to": "sinistcha_unremarkable",
+      "reason": "Target is not in the supported catalog."
+    },
+    {
+      "from": "scatterbug",
+      "to": "spewpa",
+      "reason": "Target is not in the supported catalog."
+    },
+    {
+      "from": "shellos",
+      "to": "gastrodon_east_sea",
+      "reason": "Target is not in the supported catalog."
+    },
+    {
+      "from": "tandemaus",
+      "to": "maushold_family_of_four",
+      "reason": "Target is not in the supported catalog."
+    },
+    {
+      "from": "tandemaus",
+      "to": "maushold_family_of_three",
+      "reason": "Target is not in the supported catalog."
+    },
+    {
+      "from": "toxel",
+      "to": "toxtricity_low_key",
+      "reason": "Target is not in the supported catalog."
+    },
+    {
+      "from": "toxel",
+      "to": "toxtricity_amped",
+      "reason": "Target is not in the supported catalog."
+    }
+  ],
+  "csvRankChanges": 6,
+  "csvRaidClaims": 387,
+  "unknownRelease": 1608
+}

@@ -1,0 +1,37 @@
+# Dependencies and generated builds
+node_modules/
+dist/
+coverage/
+.vite/
+*.tsbuildinfo
+
+# Local research, temporary validation, and test output
+.work/
+test-results/
+playwright-report/
+blob-report/
+*.log
+
+# Local credentials and hosting state
+.env
+.env.*
+!.env.example
+!.env.*.example
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+.wrangler/
+.vercel/
+.netlify/
+
+# Personal editor and operating-system files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Keep package-lock.json, source CSVs, versioned data, audits, source pointers,
+# manual rules, licenses, and documentation: they make builds reproducible.

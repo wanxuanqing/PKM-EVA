@@ -1,0 +1,155 @@
+{
+  "version": "2026-09-28.2",
+  "goAliases": {
+    "tauros_aqua": "tauros_paldea_aqua",
+    "tauros_blaze": "tauros_paldea_blaze",
+    "tauros_combat": "tauros_paldea_combat",
+    "mewtwo_armored": "mewtwo_a",
+    "wooper_paldean": "wooper_paldea",
+    "zygarde_10": "zygarde_ten_percent",
+    "zygarde": "zygarde_fifty_percent",
+    "zygarde_complete": "zygarde_complete",
+    "oricorio_pom_pom": "oricorio_pompom"
+  },
+  "minimumLevels": {
+    "mew": 15,
+    "celebi": 15,
+    "jirachi": 15,
+    "victini": 15,
+    "meloetta_aria": 15,
+    "shaymin_land": 15,
+    "shaymin_sky": 15,
+    "hoopa_confined": 15,
+    "hoopa_unbound": 15,
+    "zarude": 15,
+    "diancie": 15,
+    "marshadow": 15,
+    "manaphy": 15,
+    "deoxys": 20,
+    "deoxys_attack": 20,
+    "deoxys_defense": 20,
+    "deoxys_speed": 20
+  },
+  "evolutionAliases": {
+    "dudunsparce_two": "dudunsparce",
+    "dudunsparce_three": "dudunsparce",
+    "floette_red": "floette",
+    "florges_red": "florges",
+    "pyroar_female": "pyroar",
+    "sinistcha_unremarkable": "sinistcha",
+    "gastrodon_east_sea": "gastrodon",
+    "maushold_family_of_four": "maushold",
+    "maushold_family_of_three": "maushold",
+    "toxtricity_low_key": "toxtricity",
+    "toxtricity_amped": "toxtricity",
+    "vivillon_meadow": "vivillon"
+  },
+  "raidAliases": {
+    "Deoxys (Normal Forme)": "deoxys"
+  },
+  "notes": {
+    "golisopodsh": "Upstream simulator-specific form ID. Relationship and availability not independently verified.",
+    "ditto": "Ditto is excluded from open GO Battle League; simulator release flags are not GO release evidence.",
+    "shedinja": "Shedinja is excluded from open GO Battle League. Nincada does not evolve into Shedinja in GO.",
+    "rockruff": "Ordinary Rockruff cannot evolve into Dusk Lycanroc. A Dusk-capable Rockruff is a separate form.",
+    "aegislash_shield": "Battle-triggered form changes are not ordinary evolution; rankings include the upstream battle model.",
+    "pikachu_libre": "Costume-specific evolution restrictions apply; no evolution is inferred from ordinary Pikachu.",
+    "zygarde_10": "Uses the GO form-change route and Zygarde Cells, not ordinary evolution."
+  },
+  "extraEdges": [
+    {
+      "from": "zygarde_10",
+      "to": "zygarde",
+      "kind": "form",
+      "requirements": ["50 Zygarde Cells; form change preserves this Zygarde’s IVs."],
+      "source": "https://pokemongo.com/routes"
+    },
+    {
+      "from": "zygarde",
+      "to": "zygarde_complete",
+      "kind": "form",
+      "requirements": ["200 additional Zygarde Cells; form change preserves this Zygarde’s IVs."],
+      "source": "https://pokemongo.com/routes"
+    },
+    {
+      "from": "kyurem",
+      "to": "kyurem_black",
+      "kind": "fusion",
+      "requirements": [
+        "Fusion requires Zekrom, Volt Fusion Energy and Candy. The resulting IVs come from Kyurem, not Zekrom. Verify required moves in the game."
+      ],
+      "source": "https://pokemongo.com/news/kyurem-fusion-raid-day-2026?hl=en"
+    },
+    {
+      "from": "kyurem",
+      "to": "kyurem_white",
+      "kind": "fusion",
+      "requirements": [
+        "Fusion requires Reshiram, Blaze Fusion Energy and Candy. The resulting IVs come from Kyurem, not Reshiram. Verify required moves in the game."
+      ],
+      "source": "https://pokemongo.com/news/kyurem-fusion-raid-day-2026?hl=en"
+    },
+    {
+      "from": "necrozma",
+      "to": "necrozma_dawn_wings",
+      "kind": "fusion",
+      "requirements": [
+        "Fusion with Lunala requires Lunar Fusion Energy and Candy; IVs come from Necrozma."
+      ],
+      "source": "https://pokemongo.com/news/dusk-mane-dawn-wings-necrozma-fusion"
+    },
+    {
+      "from": "necrozma",
+      "to": "necrozma_dusk_mane",
+      "kind": "fusion",
+      "requirements": [
+        "Fusion with Solgaleo requires Solar Fusion Energy and Candy; IVs come from Necrozma."
+      ],
+      "source": "https://pokemongo.com/news/dusk-mane-dawn-wings-necrozma-fusion"
+    },
+    {
+      "from": "zacian_hero",
+      "to": "zacian_crowned_sword",
+      "kind": "form",
+      "requirements": [
+        "Crowned Sword Energy and Candy; Zacian must know Iron Head. IVs are preserved."
+      ],
+      "source": "https://pokemongo.com/news/crowned-energy-resource-zacian-zamazenta"
+    },
+    {
+      "from": "zamazenta_hero",
+      "to": "zamazenta_crowned_shield",
+      "kind": "form",
+      "requirements": [
+        "Crowned Shield Energy and Candy; Zamazenta must know Iron Head. IVs are preserved."
+      ],
+      "source": "https://pokemongo.com/news/crowned-energy-resource-zacian-zamazenta"
+    },
+    {
+      "from": "hoopa_confined",
+      "to": "hoopa_unbound",
+      "kind": "form",
+      "requirements": [
+        "Form change must be unlocked through Mischief Unbound research; requires 50 Candy and 10,000 Stardust."
+      ],
+      "source": "https://pokemongo.com/news/mischief-unbound-2021"
+    }
+  ],
+  "eventEdges": [
+    ["cubone", "marowak_alolan"],
+    ["cubone_shadow", "marowak_alolan_shadow"],
+    ["exeggcute", "exeggutor_alolan"],
+    ["exeggcute_shadow", "exeggutor_alolan_shadow"],
+    ["pikachu", "raichu_alolan"],
+    ["koffing", "weezing_galarian"],
+    ["koffing_shadow", "weezing_galarian_shadow"]
+  ],
+  "minimumLevelEvidence": [
+    {
+      "ids": ["deoxys", "deoxys_attack", "deoxys_defense", "deoxys_speed"],
+      "level": 20,
+      "source": "https://github.com/DeathbyToast/PvP_IVs/blob/8e580166c8a4bbe1995a55a673d930265ef0321b/includes/pokeListObj.js",
+      "note": "The independent reference categorizes Deoxys forms as raid mythicals with minimum level 20; GO templates mark them non-tradable. The comparison IV floor remains explicitly user selected."
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+node_modules
+dist
+.work
+test-results
+public/data
+data/raw
+data/audit-*.json
+prompt.md
+*.csv
+package-lock.json
+docs/independent-validation.json

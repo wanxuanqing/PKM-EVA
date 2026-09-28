@@ -1,0 +1,257 @@
+{
+  "date": "2026-09-28T19:31:30.128Z",
+  "snapshot": "2026-09-28-14ee3d2abb19",
+  "reference": {
+    "name": "PvPIVs.com",
+    "url": "https://pvpivs.com",
+    "commit": "8e580166c8a4bbe1995a55a673d930265ef0321b",
+    "repository": "https://github.com/DeathbyToast/PvP_IVs/tree/8e580166c8a4bbe1995a55a673d930265ef0321b",
+    "files": [
+      {
+        "name": "calculate.js",
+        "sha256": "04e5d8c9ce0102fc06d51240ae41cd020cdbd212d382940d6a5b73c3fde53ea5"
+      },
+      {
+        "name": "pokeListObj.js",
+        "sha256": "220fa01ce4143b0b2dbfe129285c9d590ba8891f352cdf9836f254eef3ad8424"
+      }
+    ]
+  },
+  "spreadsChecked": 28888,
+  "results": [
+    {
+      "id": "dusclops",
+      "league": "GL",
+      "maxLevel": 50,
+      "minLevel": 1,
+      "floor": 0,
+      "ivs": [
+        1,
+        12,
+        13
+      ],
+      "poolSize": 4096,
+      "rank": 61,
+      "referenceNativeRank": 62,
+      "percentile": 98.53479853479854,
+      "cp": 1493,
+      "level": 44.5,
+      "idealIVs": [
+        [
+          0,
+          11,
+          15
+        ]
+      ],
+      "allBattleStatsMatch": true
+    },
+    {
+      "id": "dusknoir",
+      "league": "UL",
+      "maxLevel": 50,
+      "minLevel": 1,
+      "floor": 0,
+      "ivs": [
+        1,
+        12,
+        13
+      ],
+      "poolSize": 4096,
+      "rank": 154,
+      "referenceNativeRank": 154,
+      "percentile": 96.26373626373626,
+      "cp": 2475,
+      "level": 50,
+      "idealIVs": [
+        [
+          0,
+          15,
+          15
+        ]
+      ],
+      "allBattleStatsMatch": true
+    },
+    {
+      "id": "dusknoir",
+      "league": "UL",
+      "maxLevel": 51,
+      "minLevel": 1,
+      "floor": 0,
+      "ivs": [
+        1,
+        12,
+        13
+      ],
+      "poolSize": 4096,
+      "rank": 123,
+      "referenceNativeRank": 123,
+      "percentile": 97.02075702075702,
+      "cp": 2489,
+      "level": 50.5,
+      "idealIVs": [
+        [
+          0,
+          12,
+          14
+        ]
+      ],
+      "allBattleStatsMatch": true
+    },
+    {
+      "id": "azumarill",
+      "league": "GL",
+      "maxLevel": 50,
+      "minLevel": 1,
+      "floor": 0,
+      "ivs": [
+        0,
+        15,
+        15
+      ],
+      "poolSize": 4096,
+      "rank": 1,
+      "referenceNativeRank": 1,
+      "percentile": 100,
+      "cp": 1499,
+      "level": 45.5,
+      "idealIVs": [
+        [
+          0,
+          15,
+          15
+        ]
+      ],
+      "allBattleStatsMatch": true
+    },
+    {
+      "id": "medicham",
+      "league": "GL",
+      "maxLevel": 50,
+      "minLevel": 1,
+      "floor": 0,
+      "ivs": [
+        5,
+        15,
+        15
+      ],
+      "poolSize": 4096,
+      "rank": 1,
+      "referenceNativeRank": 1,
+      "percentile": 100,
+      "cp": 1499,
+      "level": 50,
+      "idealIVs": [
+        [
+          5,
+          15,
+          14
+        ],
+        [
+          5,
+          15,
+          15
+        ]
+      ],
+      "allBattleStatsMatch": true
+    },
+    {
+      "id": "charizard",
+      "league": "UL",
+      "maxLevel": 50,
+      "minLevel": 1,
+      "floor": 10,
+      "ivs": [
+        10,
+        14,
+        15
+      ],
+      "poolSize": 216,
+      "rank": 1,
+      "referenceNativeRank": 1,
+      "percentile": 100,
+      "cp": 2499,
+      "level": 32,
+      "idealIVs": [
+        [
+          10,
+          14,
+          15
+        ]
+      ],
+      "allBattleStatsMatch": true
+    },
+    {
+      "id": "mewtwo",
+      "league": "ML",
+      "maxLevel": 50,
+      "minLevel": 1,
+      "floor": 0,
+      "ivs": [
+        15,
+        15,
+        14
+      ],
+      "poolSize": 4096,
+      "rank": 4,
+      "referenceNativeRank": 4,
+      "percentile": 99.92673992673993,
+      "cp": 4713,
+      "level": 50,
+      "idealIVs": [
+        [
+          15,
+          15,
+          15
+        ]
+      ],
+      "allBattleStatsMatch": true
+    },
+    {
+      "id": "bulbasaur",
+      "league": "GL",
+      "maxLevel": 1,
+      "minLevel": 1,
+      "floor": 0,
+      "ivs": [
+        0,
+        0,
+        0
+      ],
+      "poolSize": 4096,
+      "rank": 4086,
+      "referenceNativeRank": 4096,
+      "percentile": 0.2442002442002442,
+      "cp": 12,
+      "level": 1,
+      "idealIVs": [
+        [
+          15,
+          15,
+          11
+        ],
+        [
+          15,
+          15,
+          12
+        ],
+        [
+          15,
+          15,
+          13
+        ],
+        [
+          15,
+          15,
+          14
+        ],
+        [
+          15,
+          15,
+          15
+        ]
+      ],
+      "allBattleStatsMatch": true
+    }
+  ],
+  "caveat": "PvPIVs rounds stat product to integers and breaks ties using Attack/HP/CP. PKM-EVA uses unrounded products (stable 1e-6 comparison) and shared competition ranks. Native reference rank can therefore differ on ties. CP, level, Attack, Defense and HP are checked for every spread in all listed cases. This validates calculations, not current release status or battle outcomes."
+}
