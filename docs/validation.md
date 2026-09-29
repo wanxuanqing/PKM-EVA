@@ -2,7 +2,7 @@
 
 The initial implementation was checked on Windows with Node 24, Chrome and the production Vite build. Automated checks are reproducible using the README commands.
 
-The final production build passed **49 unit/data tests and 10 browser tests**. Catalog validation retained all 1,608 input forms, 953 unique species and four supplemental evolution entries. The original CSV is preserved byte for byte.
+The production build passed **49 unit/data tests and 11 browser tests**. Catalog validation retained all 1,608 input forms, 953 unique species and four supplemental evolution entries. The original CSV is preserved byte for byte.
 
 ## Independent calculator comparison
 
@@ -40,6 +40,8 @@ Raw settings, dates, hashes and results are in [independent-validation.json](ind
 Tests exercise production pages at **360, 390, 430 and 1280 pixels** and assert no horizontal overflow, including expanded cards and long form names. Keyboard autocomplete, form changes, malformed IVs, collection flags, gender restrictions, current-level warnings, Best Buddy and persistence are covered.
 
 Offline testing reloads the app with networking disabled, then searches another species and calculates new results. It found and fixed a cache mismatch caused by Vite’s `Vary: Origin` header on module assets. The same-origin immutable asset cache now handles that correctly.
+
+Cloudflare deployment revealed a separate repeat-visit failure: `/index.html` redirects to `/`, and replaying that cached redirected response for navigation causes Chrome's `net::ERR_FAILED`. This was reproduced on the deployed app and in a regression server that mimics the redirect. The worker now caches the canonical `/` URL, normalizes any redirected navigation response, and includes worker-generation code in the cache version. The regression test verifies three reloads, reopening a tab, offline reload, and preservation of saved assessments. The prior Vite-only tests did not reproduce Cloudflare's HTML redirects.
 
 The update test serves two service-worker versions and checks that the second remains waiting until **Update & reload** is selected. A separate corrupt-catalog test verifies that a checksum/version mismatch produces a recoverable error. The importer failure test verifies that a failed update leaves the previous published pointer intact.
 

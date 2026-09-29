@@ -116,6 +116,8 @@ After loading on HTTPS, wait for **“Ready for offline use”**, then use the b
 
 ## Material limitations
 
+If an older deployment loaded once and then shows `ERR_FAILED`, first deploy the service-worker redirect fix. In the affected desktop browser, use Ctrl+Shift+R to bypass the old worker for a fresh load, then select **Update & reload** if offered. If the old worker still blocks loading, unregister only this site's service worker in the browser's Application > Service Workers tools, close its open tabs, and reopen the app. Unregistering the worker preserves local saved assessments; clearing all site data would erase them.
+
 1. The CSV’s 1,608 release claims have not received an individual official-source audit. Searchability and simulator rank are not confirmation of release. The interface discloses this.
 2. Exact evolution/trade rules are incomplete for `golisopodsh` and four special Pikachu forms. Camerupt’s Mega target is absent from the supported source catalog. Three raid-list Shadow forms cannot be mapped. Specific gaps appear in About/Data and the audit file.
 3. CSV budget raid labels are **unverified candidates**, not strong-raid recommendations. No raid-performance percentile, boss simulator or Max Battle strength estimate is invented.
