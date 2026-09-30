@@ -2,7 +2,7 @@ import { it, expect, describe } from 'vitest';
 import { readFileSync } from 'node:fs';
 import pointer from '../src/data/current.json';
 import type { Catalog, CollectionFlags, IVs, Settings, Species } from '../src/types';
-import { reachable, optionsFor, recommendation } from '../src/lib/assessment';
+import { copyGender, reachable, optionsFor, recommendation } from '../src/lib/assessment';
 import { assessIVs, distribution } from '../src/lib/calculator';
 import { searchSpecies } from '../src/lib/search';
 const data = JSON.parse(readFileSync(`public${pointer.file}`, 'utf8')) as Catalog;
@@ -27,6 +27,36 @@ const flags: CollectionFlags = {
 const paths = (id: string, s: Partial<Settings> = {}, ivs: IVs = [1, 12, 13]) =>
   reachable(map.get(id)!, map, { ...settings, ...s }, ivs);
 describe('catalog and branches', () => {
+  it('preserves distinct gender battle forms and cosmetic shared records', () => {
+    expect(map.get('oinkologne')?.name).toBe('Oinkologne (Male)');
+    expect(map.get('oinkologne')?.gender?.fixed).toBe('male');
+    expect(map.get('oinkologne_female')?.gender?.fixed).toBe('female');
+    expect(map.get('meowstic')?.gender?.fixed).toBe('male');
+    expect(map.get('meowstic_female')?.gender?.fixed).toBe('female');
+    expect(map.get('indeedee_female')?.gender?.fixed).toBe('female');
+    for (const id of ['jellicent', 'frillish', 'pyroar']) {
+      expect(map.get(id)?.gender?.fixed).toBeNull();
+      expect(map.get(id)?.gender?.sharedAppearance).toBe(true);
+    }
+    expect(copyGender(map.get('oinkologne_female')!, 'male')).toBe('female');
+    expect(copyGender(map.get('mewtwo')!, 'female')).toBe('genderless');
+  });
+  it('keeps unknown gender branches conditional and filters known copy genders', () => {
+    for (const [start, male, female] of [
+      ['lechonk', 'oinkologne', 'oinkologne_female'],
+      ['espurr', 'meowstic', 'meowstic_female'],
+    ]) {
+      expect(paths(start, { gender: 'female' }).some((t) => t.species.id === male)).toBe(false);
+      expect(paths(start, { gender: 'male' }).some((t) => t.species.id === female)).toBe(false);
+      expect(paths(start).find((t) => t.species.id === female)?.conditional).toBe(true);
+      expect(
+        paths(start, { gender: 'female' }).find((t) => t.species.id === female)?.conditional,
+      ).toBe(false);
+    }
+    expect(paths('frillish', { gender: 'female' }).some((t) => t.species.id === 'jellicent')).toBe(
+      true,
+    );
+  });
   it('covers every CSV form with distinct form and Pokédex counts', () => {
     expect(data.species.filter((p) => p.csv)).toHaveLength(1608);
     expect(data.counts.dexSpecies).toBe(953);

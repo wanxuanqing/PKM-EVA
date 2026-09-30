@@ -140,6 +140,25 @@ export function normalizeData({
   const inverseAlias = new Map(Object.entries(rules.goAliases).map(([id, go]) => [go, id]));
   const resolveGo = (s) =>
     rules.evolutionAliases?.[cleanGo(s)] ?? inverseAlias.get(cleanGo(s)) ?? cleanGo(s);
+  const genderMap = new Map(
+    go
+      .filter((x) => x.data?.genderSettings)
+      .map((x) => [
+        cleanGo(x.templateId.replace(/^SPAWN_V\d+_POKEMON_/, '')),
+        Object.entries(x.data.genderSettings.gender ?? {})
+          .filter(([, value]) => value > 0)
+          .map(([key]) => key.replace('Percent', '')),
+      ]),
+  );
+  const battleSignature = (p) =>
+    JSON.stringify([
+      p.stats,
+      p.type,
+      p.type2,
+      ...['quickMoves', 'cinematicMoves', 'eliteQuickMove', 'eliteCinematicMove'].map((key) =>
+        [...(p[key] ?? [])].sort(),
+      ),
+    ]);
   const ranked = new Map();
   for (const [league, list] of Object.entries(rankings)) {
     if (
@@ -191,6 +210,30 @@ export function normalizeData({
     const temporary = (p?.tags ?? []).includes('mega') || /_mega|_primal/.test(id);
     const baseId = id.replace(/_shadow$/, '');
     const game = goMap.get(rules.goAliases[baseId] ?? baseId);
+    const goId = rules.goAliases[baseId] ?? baseId;
+    const genders = new Set(genderMap.get(goId) ?? []);
+    let sharedGenderAppearance = false;
+    // Merge only cosmetic gender forms that already share a catalog battle record.
+    // Distinct catalog IDs and forms with different moves or stats remain separate.
+    for (const gender of ['male', 'female']) {
+      const variantId = `${goId}_${gender}`;
+      const variant = goMap.get(variantId);
+      if (
+        game &&
+        variant &&
+        !ids.has(variantId) &&
+        battleSignature(game) === battleSignature(variant)
+      ) {
+        for (const value of genderMap.get(variantId) ?? []) genders.add(value);
+        sharedGenderAppearance = true;
+      }
+    }
+    const fixedGender = genders.size === 1 ? [...genders][0] : null;
+    const originalName = row?.['Pokémon / form'] ?? p.speciesName;
+    const genderName =
+      fixedGender === 'male' && ids.has(`${baseId}_female`) && !/male/i.test(originalName)
+        ? originalName.replace(/ \(Shadow\)$/, '') + ' (Male)' + (shadow ? ' (Shadow)' : '')
+        : originalName;
     const notes = [];
     if (!p) audit.missingStats.push(id);
     if (!game && !temporary) {
@@ -206,8 +249,15 @@ export function normalizeData({
     const target = {
       id,
       dex: row ? Number(row['Pokédex #']) : p.dex,
-      name: row?.['Pokémon / form'] ?? p.speciesName,
+      name: genderName,
+      gender: {
+        fixed: fixedGender,
+        sharedAppearance: sharedGenderAppearance,
+        source: 'go-gamemaster',
+      },
       aliases: [
+        originalName,
+        ...(sharedGenderAppearance ? ['male', 'female'].map((g) => `${originalName} ${g}`) : []),
         ...(p?.nicknames ?? []),
         ...(!shadow && !temporary ? [`${p?.speciesName} regular`, `${p?.speciesName} normal`] : []),
       ],
@@ -474,6 +524,8 @@ export function validateCatalog(data, expectedForms) {
   const ids = new Set(data.species.map((p) => p.id));
   if (ids.size !== data.species.length) throw new Error('Duplicate normalized form IDs.');
   for (const p of data.species) {
+    if (p.gender?.fixed && !['male', 'female', 'genderless'].includes(p.gender.fixed))
+      throw new Error(`Bad gender: ${p.id}`);
     if (p.baseStats && !Object.values(p.baseStats).every((n) => Number.isFinite(n) && n > 0))
       throw new Error(`Bad stats: ${p.id}`);
     for (const edge of p.evolutions)

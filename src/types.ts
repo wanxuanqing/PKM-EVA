@@ -31,6 +31,11 @@ export type Species = {
   dex: number;
   name: string;
   aliases: string[];
+  gender?: {
+    fixed: 'male' | 'female' | 'genderless' | null;
+    sharedAppearance: boolean;
+    source: string;
+  };
   types: string[];
   baseStats: BaseStats | null;
   shadow: boolean;
@@ -86,7 +91,7 @@ export type Settings = {
   currentLevel?: number;
   floor: number;
   threshold: number;
-  gender: 'unknown' | 'male' | 'female';
+  gender: 'unknown' | 'male' | 'female' | 'genderless';
   eventPaths: boolean;
 };
 export type CollectionFlags = {

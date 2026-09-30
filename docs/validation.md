@@ -2,7 +2,9 @@
 
 The initial implementation was checked on Windows with Node 24, Chrome and the production Vite build. Automated checks are reproducible using the README commands.
 
-The production build passed **49 unit/data tests and 11 browser tests**. Catalog validation retained all 1,608 input forms, 953 unique species and four supplemental evolution entries. The original CSV is preserved byte for byte.
+The production build passed **51 unit/data tests and 13 browser tests**. Catalog validation retained all 1,608 input forms, 953 unique species and four supplemental evolution entries. The original CSV is preserved byte for byte.
+
+The metric/gender update checks the shared ML/raid IV-sum preference while retaining ML stat-product results, mobile overflow, gender-form synchronization, and reopening an older saved entry with a contradictory gender. Data tests cover distinct Oinkologne/Meowstic/Indeedee records, shared cosmetic Frillish/Jellicent/Pyroar records, and conditional versus eligible gender-restricted evolutions. Snapshot comparison confirmed unchanged existing IDs, base stats, rankings, raid evidence, CSV claims and evolution records. Calculator and Shadow behavior are unchanged.
 
 ## Independent calculator comparison
 

@@ -156,6 +156,23 @@ export function Selector({
           </select>
         </div>
       )}
+      {selected.gender?.fixed && (
+        <p className="small-note">
+          Gender: {selected.gender.fixed}. Set by this species or battle form.
+        </p>
+      )}
+      {selected.gender?.sharedAppearance && (
+        <p className="small-note">
+          Male and female appearances share this battle record: the sourced stats and moves match.
+          Set your copy’s gender in Level & comparison settings for evolution requirements.
+        </p>
+      )}
+      {forms.some((p) => p.gender?.fixed === 'male') &&
+        forms.some((p) => p.gender?.fixed === 'female') && (
+          <p className="small-note">
+            Gender-specific battle forms retain their own stats, moves and rankings in every league.
+          </p>
+        )}
       {recent.length > 1 && (
         <div className="recent">
           <span>Recent</span>

@@ -16,7 +16,7 @@ npm.cmd run dev
 
 Open the URL printed by Vite. On macOS/Linux, use `npm` in place of `npm.cmd`. `npm.cmd` avoids PowerShell execution-policy problems with the `npm.ps1` shim.
 
-The initial screen loads **Duskull, 1/12/13 as an explicitly labeled example**. Enter your own values to assess a copy. Selecting a different Pokémon clears copy-specific collection flags, gender and current level; your general comparison preferences remain.
+The initial screen loads **Duskull, 1/12/13 as an explicitly labeled example**. Enter your own values to assess a copy. Selecting a different Pokémon clears copy-specific collection flags and current level; gender resets to unknown unless the selected species or battle form fixes it. Your general comparison preferences remain.
 
 For the production build and offline preview:
 
@@ -44,6 +44,10 @@ Open <http://127.0.0.1:4173>. `dist/` is the complete static production output. 
 Stat product = effective Attack × effective Defense × HP. Stable integer keys quantize products to 0.000001 solely for floating-point tie comparison. Tied products have the same competition rank: `1 + number of strictly greater products`. All tied ideal IVs are retained.
 
 Rank percentile is `100 × (N − rank) / (N − 1)`; N=1 is defined as 100%. `% of ideal stat product` is a separate ratio. Neither measures battle wins. An explicitly selected IV floor changes the pool; current level never does. A copy already over the cap is flagged because it cannot be powered down.
+
+ML and raid cards both display **Overall IVs (sum / 45)** and explicitly state their shared preference of strictly above 90%. ML also retains its separately labeled stat-product percentile, IV rank, ideal spreads and detailed stats. GL/UL cards state the selected percentile threshold. No calculator or Shadow modifiers changed.
+
+Gender-specific battle forms retain stable IDs and separate source rankings, stats and moves. Cosmetic male/female forms share a record only when their sourced battle stats and moves match and no separate catalog record exists. Fixed genders come from GO templates; controls and reopened saved assessments follow the selected form. Unknown gender leaves restricted evolution paths conditional; known gender filters incompatible paths. Oinkologne’s existing male record is explicitly labeled Male without changing its ID or original CSV evidence.
 
 Calculations run in a Web Worker. Up to 32 distributions are cached in memory and IndexedDB, keyed by snapshot, calculator version, form, league, minimum/maximum level, eligibility and IV floor. Changing IVs reuses the distribution. Storage failure does not prevent calculation.
 

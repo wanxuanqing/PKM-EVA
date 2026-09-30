@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Catalog, CollectionFlags, IVResult, IVs, Settings, Species } from './types';
 import { effectiveMax, overallIV, validLevel } from './lib/calculator';
-import { optionsFor, reachable, recommendation } from './lib/assessment';
+import { copyGender, optionsFor, reachable, recommendation } from './lib/assessment';
 import { loadLocal, saveLocal } from './lib/storage';
 import { parseIVs } from './lib/calculator';
 import { Selector } from './components/Selector';
@@ -209,7 +209,7 @@ export default function App({ data }: { data: Catalog }) {
     setSelectedId(p.id);
     setFlags({ ...noFlags });
     setCurrentLevel('');
-    setSettings((s) => ({ ...s, gender: 'unknown' }));
+    setSettings((s) => ({ ...s, gender: copyGender(p, 'unknown') }));
     setFilter('All');
     setPage('assess');
     const next = [p.id, ...recent.filter((r) => r !== p.id)].slice(0, 6);
@@ -257,7 +257,7 @@ export default function App({ data }: { data: Catalog }) {
     choose(p);
     setFields(s.ivs.map(String));
     setEdited(true);
-    setSettings({ ...defaults, ...s.settings });
+    setSettings({ ...defaults, ...s.settings, gender: copyGender(p, s.settings.gender) });
     setMaxLevel(String(s.settings.maxLevel));
     setThreshold(String(s.settings.threshold));
     setCurrentLevel(s.settings.currentLevel === undefined ? '' : String(s.settings.currentLevel));
@@ -568,7 +568,8 @@ export default function App({ data }: { data: Catalog }) {
                       <label className="stack-label">
                         Gender
                         <select
-                          value={settings.gender}
+                          value={copyGender(selected, settings.gender)}
+                          disabled={!!selected.gender?.fixed}
                           onChange={(e) =>
                             setSettings((s) => ({
                               ...s,
@@ -579,8 +580,16 @@ export default function App({ data }: { data: Catalog }) {
                           <option value="unknown">Unknown / not specified</option>
                           <option value="male">Male</option>
                           <option value="female">Female</option>
+                          {selected.gender?.fixed === 'genderless' && (
+                            <option value="genderless">Genderless</option>
+                          )}
                         </select>
                       </label>
+                      <p className="small-note">
+                        {selected.gender?.fixed
+                          ? 'Gender is fixed by the selected species or battle form. Choose a different form above to change it.'
+                          : 'Gender belongs to your copy and controls eligible evolution paths, not league eligibility.'}
+                      </p>
                       <label className="check-row">
                         <input
                           type="checkbox"

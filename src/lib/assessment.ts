@@ -1,11 +1,14 @@
 import type { Species, IVs, Settings, Reachable, Option, CollectionFlags } from '../types';
 import { goodOverallIV, qualifies } from './calculator';
+export const copyGender = (species: Species, gender: Settings['gender']): Settings['gender'] =>
+  species.gender?.fixed ?? (gender === 'genderless' ? 'unknown' : gender);
 export function reachable(
   start: Species,
   all: Map<string, Species>,
   settings: Settings,
   ivs: IVs,
 ): Reachable[] {
+  const gender = copyGender(start, settings.gender);
   const queue: Reachable[] = [
     { species: start, path: [start.id], requirements: [], conditional: false },
   ];
@@ -20,18 +23,27 @@ export function reachable(
       const next = all.get(edge.to);
       if (!next || next.shadow !== start.shadow || (start.shadow && next.temporary)) continue;
       if (edge.eventOnly && !settings.eventPaths) continue;
-      if (edge.gender && settings.gender !== 'unknown' && settings.gender !== edge.gender) continue;
+      const requiredGender =
+        edge.gender ??
+        (next.gender?.fixed === 'male' || next.gender?.fixed === 'female'
+          ? next.gender.fixed
+          : undefined);
+      if (requiredGender && gender !== 'unknown' && gender !== requiredGender) continue;
       if (edge.highestIV !== undefined && ivs[edge.highestIV] < Math.max(...ivs)) continue;
       queue.push({
         species: next,
         path: [...current.path, next.id],
-        requirements: [...current.requirements, ...edge.requirements],
+        requirements: [
+          ...current.requirements,
+          ...edge.requirements,
+          ...(requiredGender ? [`${requiredGender === 'male' ? 'Male' : 'Female'} only`] : []),
+        ],
         conditional:
           current.conditional ||
           !!edge.review ||
           !!edge.eventOnly ||
           !!edge.random ||
-          (!!edge.gender && settings.gender === 'unknown') ||
+          (!!requiredGender && gender === 'unknown') ||
           (edge.highestIV !== undefined && ivs.filter((v) => v === Math.max(...ivs)).length > 1),
       });
     }

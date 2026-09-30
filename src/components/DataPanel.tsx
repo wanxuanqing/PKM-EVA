@@ -22,7 +22,7 @@ export function DataPanel({ data }: { data: Catalog }) {
         </div>
       </div>
       <section className="paper">
-        <h2>Three ranks, three different questions</h2>
+        <h2>Understand the IV measures</h2>
         <dl className="definitions">
           <div>
             <dt>Species rank</dt>
@@ -50,8 +50,9 @@ export function DataPanel({ data }: { data: Catalog }) {
             <dt>Overall IV percentage</dt>
             <dd>
               (Attack IV + Defense IV + HP IV) / 45 × 100. Your rule is strictly above 90%: 41/45
-              qualifies; 40/45 does not. For GL/UL, the separate app default is IV percentile
-              strictly above 90%.
+              qualifies; 40/45 does not. ML and raids use this same IV preference, even though ML
+              also shows a separate stat-product rank and percentile. For GL/UL, the separate app
+              default is IV percentile strictly above 90%.
             </dd>
           </div>
         </dl>
@@ -90,7 +91,10 @@ export function DataPanel({ data }: { data: Catalog }) {
         <p>
           <b>Availability:</b> all {data.audit.unknownRelease.toLocaleString()} CSV forms retain an
           unverified release status. A species being searchable or ranked is not proof of a released
-          GO form. Selecting a copy does not infer shiny, costume, gender or Max Battle capability.
+          GO form. Selecting a copy does not infer shiny, costume or Max Battle capability. Fixed
+          gender follows the selected species or battle form; otherwise select the copy’s gender
+          explicitly. Cosmetic gender variants share a battle record when sourced stats and moves
+          match. Distinct battle forms keep their IDs and league rankings.
         </p>
         <details>
           <summary>Specific coverage gaps</summary>

@@ -66,10 +66,10 @@ export function ResultCard({
           {badge}
         </span>
       </div>
-      {isRaid ? (
+      {(isRaid || role === 'ML') && (
         <div className="raid-metrics">
           <div>
-            <span className="metric-label">Overall IVs</span>
+            <span className="metric-label">Overall IVs (sum / 45)</span>
             <strong>
               {overall.toFixed(1)}
               <small>%</small>
@@ -80,34 +80,44 @@ export function ResultCard({
             <b>15 / 15 / 15</b>
           </div>
         </div>
-      ) : r ? (
-        <div className="card-metrics">
-          <div className="percentile-metric">
-            <span className="metric-label">IV percentile</span>
-            <strong>
-              {r.percentile === null ? '—' : r.percentile.toFixed(2)}
-              {r.percentile !== null && <small>%</small>}
-            </strong>
-            <div className="meter">
-              <span style={{ width: `${r.percentile ?? 0}%` }} />
+      )}
+      {!isRaid &&
+        (r ? (
+          <div className="card-metrics">
+            <div className="percentile-metric">
+              <span className="metric-label">Stat-product percentile</span>
+              <strong>
+                {r.percentile === null ? '—' : r.percentile.toFixed(2)}
+                {r.percentile !== null && <small>%</small>}
+              </strong>
+              <div className="meter">
+                <span style={{ width: `${r.percentile ?? 0}%` }} />
+              </div>
+            </div>
+            <div>
+              <span className="metric-label">IV rank (stat product)</span>
+              <b>{r.rank === null ? '—' : `#${r.rank.toLocaleString()}`}</b>
+              <small className="pool-size">of {r.poolSize.toLocaleString()}</small>
+            </div>
+            <div>
+              <span className="metric-label">Ideal IVs</span>
+              <b className="ideal-ivs">{r.ideals[0] ? iv(r.ideals[0].ivs) : 'Unavailable'}</b>
+              {r.ideals.length > 1 && (
+                <small className="pool-size">+{r.ideals.length - 1} tied</small>
+              )}
             </div>
           </div>
-          <div>
-            <span className="metric-label">Your IV rank</span>
-            <b>{r.rank === null ? '—' : `#${r.rank.toLocaleString()}`}</b>
-            <small className="pool-size">of {r.poolSize.toLocaleString()}</small>
-          </div>
-          <div>
-            <span className="metric-label">Ideal IVs</span>
-            <b className="ideal-ivs">{r.ideals[0] ? iv(r.ideals[0].ivs) : 'Unavailable'}</b>
-            {r.ideals.length > 1 && (
-              <small className="pool-size">+{r.ideals.length - 1} tied</small>
-            )}
-          </div>
-        </div>
-      ) : (
-        <div className="calculating">Comparing IV combinations…</div>
-      )}
+        ) : (
+          <div className="calculating">Comparing IV combinations…</div>
+        ))}
+      <p className="small-note">
+        IV preference:{' '}
+        {isRaid || role === 'ML'
+          ? 'overall IVs strictly above 90% (at least 41/45).'
+          : `stat-product percentile strictly above ${settings.threshold}%.`}
+        {role === 'ML' &&
+          ' Percentile and rank compare this form’s IV spreads, not the IV sum or raid damage.'}
+      </p>
       {r?.overCap && (
         <p className="inline-warning">
           Already over the cap: this target would be CP {r.currentCP?.toLocaleString()} at your
@@ -124,6 +134,19 @@ export function ResultCard({
       {option.conditional && (
         <p className="inline-warning">
           This path has a condition or uncertain outcome. Check the requirements below.
+        </p>
+      )}
+      {option.requirements.some((note) => /^(male|female) only$/i.test(note)) && (
+        <p className="small-note">
+          Evolution gender:{' '}
+          {[
+            ...new Set(
+              option.requirements
+                .filter((note) => /^(male|female) only$/i.test(note))
+                .map((note) => note.toLowerCase()),
+            ),
+          ].join(' · ')}
+          {settings.gender === 'unknown' ? ' — confirm your copy’s gender.' : '.'}
         </p>
       )}
       <details className="result-details">

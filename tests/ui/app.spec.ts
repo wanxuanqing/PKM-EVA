@@ -211,6 +211,62 @@ test('advanced settings preserve theoretical ranks and separate regional branche
       .filter({ has: page.getByRole('heading', { name: 'Gallade', exact: true }) }),
   ).not.toHaveCount(0);
 });
+test('ML and raids share an explicit IV-sum preference without losing ML ranks', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 360, height: 900 });
+  await page.goto('/');
+  await search(page, 'mewtwo');
+  await page.getByLabel('Form', { exact: true }).selectOption('mewtwo');
+  await page.getByLabel('Paste all three IVs').fill('15/15/14');
+  await page.getByRole('button', { name: 'Apply', exact: true }).click();
+  await stable(page);
+  const ml = page.getByRole('article', { name: 'Mewtwo Master League', exact: true });
+  const raid = page.getByRole('article', { name: 'Mewtwo Raids', exact: true });
+  for (const card of [ml, raid]) {
+    await expect(card).toContainText('97.8%');
+    await expect(card).toContainText('overall IVs strictly above 90%');
+    await expect(card).toContainText('Meets preference');
+  }
+  await expect(ml).toContainText('Stat-product percentile');
+  await expect(ml).toContainText('99.93%');
+  await expect(ml).toContainText('IV rank (stat product)');
+  await ml.getByText('Details & requirements').click();
+  await expect(ml).toContainText('99.479%');
+  await noOverflow(page);
+});
+
+test('gender-specific forms synchronize controls and older saved assessments', async ({ page }) => {
+  await page.goto('/');
+  await search(page, 'oinkologne');
+  await page.getByLabel('Form', { exact: true }).selectOption('oinkologne_female');
+  await page.getByText('Level & comparison settings', { exact: true }).click();
+  const gender = page.getByRole('combobox', { name: 'Gender', exact: true });
+  await expect(gender).toHaveValue('female');
+  await expect(gender).toBeDisabled();
+  await stable(page);
+  await page.getByRole('button', { name: 'Save', exact: true }).click();
+  await page.evaluate(() => {
+    const saved = JSON.parse(localStorage.getItem('pkm-eva:saved')!);
+    saved[0].settings.gender = 'male';
+    localStorage.setItem('pkm-eva:saved', JSON.stringify(saved));
+  });
+  await page.reload();
+  await page.getByRole('button', { name: /Saved/ }).click();
+  await page.getByRole('button', { name: 'Open assessment' }).click();
+  await page.getByText('Level & comparison settings', { exact: true }).click();
+  await expect(gender).toHaveValue('female');
+  await expect(gender).toBeDisabled();
+  await page.getByLabel('Form', { exact: true }).selectOption('oinkologne');
+  await expect(gender).toHaveValue('male');
+  await search(page, 'jellicent');
+  await expect(gender).toBeEnabled();
+  await gender.selectOption('female');
+  await expect(
+    page.getByText('Male and female appearances share this battle record:', { exact: false }),
+  ).toBeVisible();
+});
+
 test('production caches complete assets and calculations survive offline reload', async ({
   page,
   context,
