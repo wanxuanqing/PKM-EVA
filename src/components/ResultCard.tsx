@@ -259,6 +259,13 @@ export function ResultCard({
                       <p key={`${i}:${move}`}>{move}</p>
                     );
                   })
+                ) : option.raid?.moveReview ? (
+                  <p>
+                    {option.raid.moveReview.reason}{' '}
+                    <a href={option.raid.moveReview.source} target="_blank" rel="noreferrer">
+                      GO Hub moves review ↗
+                    </a>
+                  </p>
                 ) : (
                   <p>
                     Moves not yet verified. No sourced raid moveset is available for this candidate
@@ -292,7 +299,10 @@ export function ResultCard({
             ) : (
               <span>Unverified input catalog</span>
             )}{' '}
-            · retrieved {data.retrieved.slice(0, 10)}
+            · retrieved{' '}
+            {isRaid
+              ? option.raid?.reviewed || data.retrieved.slice(0, 10)
+              : data.retrieved.slice(0, 10)}
           </p>
         </div>
       </details>

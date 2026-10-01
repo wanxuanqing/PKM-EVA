@@ -14,6 +14,8 @@
     "test:ui": "playwright test",
     "data:update": "node scripts/update-data.mjs",
     "data:validate": "node scripts/validate-data.mjs",
+    "audit:gender": "node scripts/audit-gender.mjs",
+    "moves:update": "node scripts/update-moves.mjs && node scripts/update-data.mjs --offline",
     "validate:independent": "node scripts/validate-independent.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check ."

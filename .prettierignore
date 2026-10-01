@@ -9,3 +9,4 @@ prompt.md
 *.csv
 package-lock.json
 docs/independent-validation.json
+docs/gender-audit.json

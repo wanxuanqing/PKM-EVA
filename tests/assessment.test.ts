@@ -27,6 +27,50 @@ const flags: CollectionFlags = {
 const paths = (id: string, s: Partial<Settings> = {}, ivs: IVs = [1, 12, 13]) =>
   reachable(map.get(id)!, map, { ...settings, ...s }, ivs);
 describe('catalog and branches', () => {
+  it('distinguishes Nidoran payload IDs and retains fixed genders through Shadow and temporary forms', () => {
+    for (const gender of ['male', 'female'] as const) {
+      for (const suffix of ['', '_shadow']) {
+        const id = `nidoran_${gender}${suffix}`;
+        expect(map.get(id)?.gender?.fixed).toBe(gender);
+        const targets = paths(id);
+        expect(targets.length).toBe(3);
+        expect(targets.every((p) => !p.conditional)).toBe(true);
+        expect(targets.every((p) => p.species.gender?.fixed === gender)).toBe(true);
+      }
+    }
+    for (const [id, gender] of [
+      ['gallade_mega', 'male'],
+      ['kangaskhan_mega', 'female'],
+      ['latias_mega', 'female'],
+      ['latios_mega', 'male'],
+      ['mewtwo_mega_x', 'genderless'],
+      ['groudon_primal', 'genderless'],
+      ['kyogre_primal', 'genderless'],
+    ])
+      expect(map.get(id)?.gender?.fixed).toBe(gender);
+    expect(map.get('charizard_mega_x')?.gender?.allowed).toEqual(['female', 'male']);
+  });
+  it('maps costume genders explicitly and distinguishes unavailable evidence from either gender', () => {
+    expect(map.get('pikachu_libre')?.gender?.fixed).toBe('female');
+    for (const id of ['pikachu_flying', 'pikachu_shaymin', 'pikachu_5th_anniversary'])
+      expect(map.get(id)?.gender?.allowed).toEqual(['female', 'male']);
+    expect(data.species.filter((p) => !p.gender?.allowed?.length).map((p) => p.id)).toEqual([
+      'golisopodsh',
+    ]);
+    expect(map.get('golisopodsh')?.gender?.source).toBe('');
+  });
+  it('filters every explicitly gender-restricted evolution and marks unknown copies conditional', () => {
+    for (const p of data.species)
+      for (const edge of p.evolutions.filter((e) => e.gender)) {
+        const permitted = edge.gender!;
+        const forbidden = permitted === 'male' ? 'female' : 'male';
+        expect(paths(p.id, { gender: permitted }).some((r) => r.species.id === edge.to)).toBe(true);
+        expect(paths(p.id, { gender: forbidden }).some((r) => r.species.id === edge.to)).toBe(
+          false,
+        );
+        expect(paths(p.id).find((r) => r.species.id === edge.to)?.conditional).toBe(true);
+      }
+  });
   it('preserves distinct gender battle forms and cosmetic shared records', () => {
     expect(map.get('oinkologne')?.name).toBe('Oinkologne (Male)');
     expect(map.get('oinkologne')?.gender?.fixed).toBe('male');

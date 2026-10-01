@@ -54,7 +54,7 @@ it('failed offline updates preserve the last valid published pointer', () => {
   const fixture = mkdtempSync(resolve('.work/import-failure-'));
   for (const folder of ['scripts', 'data', 'src/data'])
     mkdirSync(join(fixture, folder), { recursive: true });
-  for (const file of ['update-data.mjs', 'data-lib.mjs'])
+  for (const file of ['update-data.mjs', 'data-lib.mjs', 'movesheet.mjs'])
     copyFileSync(`scripts/${file}`, join(fixture, 'scripts', file));
   const before = JSON.stringify({ version: 'previous-valid', file: '/data/previous-valid.json' });
   writeFileSync(join(fixture, 'src/data/current.json'), before);

@@ -38,6 +38,66 @@ async function noOverflow(page: Page) {
   }));
   expect(dims.scroll).toBeLessThanOrEqual(dims.width);
 }
+test('expanded raid moves retain type roles and export the same catalog datasheet', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 360, height: 900 });
+  await page.goto('/');
+  await search(page, 'chandelure');
+  await page.getByLabel('Form', { exact: true }).selectOption('chandelure');
+  await stable(page);
+  const card = page.getByRole('article', { name: 'Chandelure Raids', exact: true });
+  await card.getByText('Details & requirements').click();
+  await expect(card).toContainText('Hex');
+  await expect(card).toContainText('Shadow Ball');
+  await expect(card).toContainText('Fire Spin');
+  await expect(card).toContainText('Overheat');
+  await expect(card.getByRole('link', { name: 'Raid evidence' })).toHaveAttribute(
+    'href',
+    'https://db.pokemongohub.net/pokemon/609',
+  );
+  await noOverflow(page);
+  await page.getByRole('button', { name: 'Data', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Moves datasheet' })).toBeVisible();
+  const link = page.getByRole('link', { name: 'Download moves datasheet (JSON)' });
+  const url = await link.getAttribute('href');
+  const response = await page.request.get(url!);
+  expect(response.ok()).toBe(true);
+  const sheet = await response.json();
+  expect(
+    sheet.rows.some(
+      (r: { id: string; role: string; attackingType: string; includedInApp: boolean }) =>
+        r.id === 'chandelure' &&
+        r.role === 'Raid' &&
+        r.attackingType === 'ghost' &&
+        r.includedInApp,
+    ),
+  ).toBe(true);
+  await noOverflow(page);
+});
+test('Nidoran, costume and Mega gender controls follow the selected form', async ({ page }) => {
+  await page.goto('/');
+  await stable(page);
+  await page.getByText('Level & comparison settings', { exact: true }).click();
+  const gender = page.getByRole('combobox', { name: 'Gender', exact: true });
+  for (const [query, id, expected] of [
+    ['nidoran male', 'nidoran_male', 'male'],
+    ['nidoran female', 'nidoran_female_shadow', 'female'],
+    ['gallade', 'gallade_mega', 'male'],
+    ['mewtwo', 'mewtwo_mega_x', 'genderless'],
+    ['pikachu libre', 'pikachu_libre', 'female'],
+  ]) {
+    await search(page, query);
+    await page.getByLabel('Form', { exact: true }).selectOption(id);
+    await expect(gender).toHaveValue(expected);
+    await expect(gender).toBeDisabled();
+  }
+  await search(page, 'golisopod');
+  await page.getByLabel('Form', { exact: true }).selectOption('golisopodsh');
+  await expect(
+    page.getByText('Gender is unverified for this exact catalog form.', { exact: false }),
+  ).toBeVisible();
+});
 for (const width of [360, 390, 430, 1280])
   test(`phone/desktop layout and calculator at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });

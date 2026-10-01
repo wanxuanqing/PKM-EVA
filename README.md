@@ -2,7 +2,7 @@
 
 A phone-first Pokémon GO evaluator built with React, TypeScript and Vite. Search a Pokémon and form, enter three IVs, and compare all supported useful evolution paths. Everything runs in your browser; no account, API key, database or Python server is required.
 
-The supplied `prompt.md` and CSV remain unchanged. The initial catalog contains **1,608 forms across 953 Pokédex species**. Four supplemental entries—Spewpa, Cosmog, Cosmoem and Dusk-capable Rockruff—support otherwise missing evolution paths. Forms are keyed by stable IDs, never by display name.
+The supplied `prompt.md` and CSV remain unchanged. The original catalog contains **1,608 forms across 953 Pokédex species**. The current snapshot includes 13 supplemental source entries, for 1,621 supported forms. Forms are keyed by stable IDs, never by display name; inclusion does not confirm GO release availability.
 
 ## Run locally
 
@@ -49,6 +49,8 @@ ML and raid cards both display **Overall IVs (sum / 45)** and explicitly state t
 
 Gender-specific battle forms retain stable IDs and separate source rankings, stats and moves. Cosmetic male/female forms share a record only when their sourced battle stats and moves match and no separate catalog record exists. Fixed genders come from GO templates; controls and reopened saved assessments follow the selected form. Unknown gender leaves restricted evolution paths conditional; known gender filters incompatible paths. Oinkologne’s existing male record is explicitly labeled Male without changing its ID or original CSV evidence.
 
+The [full gender audit](docs/gender-audit.md) covers every catalog entry. Run `npm run audit:gender` to check source evidence and evolution paths and regenerate the per-entry report. Mega/Primal forms inherit base gender; unresolved exact forms are explicitly marked unverified.
+
 Calculations run in a Web Worker. Up to 32 distributions are cached in memory and IndexedDB, keyed by snapshot, calculator version, form, league, minimum/maximum level, eligibility and IV floor. Changing IVs reuses the distribution. Storage failure does not prevent calculation.
 
 ## Data and updates
@@ -56,13 +58,13 @@ Calculations run in a Web Worker. Up to 32 distributions are cached in memory an
 The browser downloads an immutable, versioned local catalog, verifies its SHA-256 and checks its version against the application. It never queries a third-party service during a search.
 
 ```powershell
-npm.cmd run data:update
+npm.cmd run moves:update
 npm.cmd run data:validate
 npm.cmd test
 npm.cmd run build
 ```
 
-`data:update` fetches public sources at pinned commits for that update, parses and validates everything, then publishes the new local catalog pointer. Fetch/schema/checksum failures leave the previous valid app pointer and catalog intact. Existing snapshot files are retained. No deployment occurs.
+`moves:update` refreshes pinned PvPoke game-master/ranking files and GO Hub's shortlist plus exact-form moves pages, then validates and publishes a catalog and matching CSV/JSON datasheets. It retains the separately dated GO evolution/gender snapshot. Fetch/schema/checksum failures leave the previous app pointer intact. Existing published snapshots remain available; no deployment occurs. `data:update` without `--offline` is the baseline all-source refresh; run `moves:update` afterward to add the exact-form raid enrichment.
 
 To regenerate from the checked-in compressed source snapshot without fetching:
 
@@ -79,6 +81,7 @@ Sources:
 - [PvPoke source and MIT license](https://github.com/pvpoke/pvpoke): base stats, precise CP multipliers, overall open-league rankings and suggested moves. The bundled About/Data screen records the commit, source dates and file hashes. License retained in `public/PVPOKE-LICENSE.txt`.
 - [PokeMiners game masters](https://github.com/PokeMiners/game_masters): GO evolution branches, gender requirements, temporary evolution, form changes and tradability. Game templates can contain unreleased content and event-independent settings.
 - [GO Hub attacker lists](https://db.pokemongohub.net/best/attackers-per-type): a source-based raid shortlist by attacking type. Normal-type listings are excluded from the strong shortlist because they do not provide super-effective coverage. This is not a boss-specific simulation.
+- GO Hub individual Pokémon pages expand raid recommendations by exact form and attacking role. Roles rated B or better qualify; lower tiers and excluded Normal roles remain in the [moves datasheet](docs/moves-datasheet.md). Sources, retrieval times, role ranks, previous moves and limited-access flags are retained. Download CSV/JSON from the app's Data screen.
 - The supplied CSV: preserved claims and candidate budget raid alternatives. Its presentation strings are normalized only once during import.
 
 ## Verification
@@ -123,8 +126,8 @@ After loading on HTTPS, wait for **“Ready for offline use”**, then use the b
 If an older deployment loaded once and then shows `ERR_FAILED`, first deploy the service-worker redirect fix. In the affected desktop browser, use Ctrl+Shift+R to bypass the old worker for a fresh load, then select **Update & reload** if offered. If the old worker still blocks loading, unregister only this site's service worker in the browser's Application > Service Workers tools, close its open tabs, and reopen the app. Unregistering the worker preserves local saved assessments; clearing all site data would erase them.
 
 1. The CSV’s 1,608 release claims have not received an individual official-source audit. Searchability and simulator rank are not confirmation of release. The interface discloses this.
-2. Exact evolution/trade rules are incomplete for `golisopodsh` and four special Pikachu forms. Camerupt’s Mega target is absent from the supported source catalog. Three raid-list Shadow forms cannot be mapped. Specific gaps appear in About/Data and the audit file.
-3. CSV budget raid labels are **unverified candidates**, not strong-raid recommendations. No raid-performance percentile, boss simulator or Max Battle strength estimate is invented.
+2. Exact evolution/trade rules are incomplete for `golisopodsh` and four special Pikachu forms. Camerupt’s Mega target is absent from the supported source catalog. Two raid-list Shadow forms cannot be mapped. The retired `golisopodsh` duplicate retains historical stats but no current PvP eligibility. Specific gaps appear in About/Data and the audit file.
+3. CSV-only budget raid labels remain unverified unless backed by qualifying GO Hub role ratings. No raid-performance percentile, boss simulator or Max Battle strength estimate is invented.
 4. Costume, event and special-form rules can change. Known conditional paths are labeled; gender is respected, and ordinary evolution never creates a Shadow. Purification is not modeled. Cosmetic forms with identical battle stats may share an upstream record; the app explains these collapsed targets.
 5. Rankings use the source’s format configuration, not a fresh simulation at your chosen maximum level. Ideal stat product does not optimize every matchup, breakpoint or charge-move priority tie. Minimum-level overrides need maintenance; the default all-IV pool intentionally includes theoretical acquisition-impossible spreads.
 6. Install prompts and storage retention vary by browser. Chrome desktop emulation was verified; physical iOS/Android devices remain a useful follow-up.

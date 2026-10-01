@@ -1,0 +1,28 @@
+{
+  "warnings": [
+    "Unmapped raid listing: Shadow Overqwil (poison).",
+    "Unmapped raid listing: Shadow Thundurus (Therian Forme) (electric).",
+    "All CSV forms are retained. A simulator released flag does not independently verify GO availability.",
+    "CSV-only raid candidates remain unverified unless supported by a GO Hub type role rated B or better. Missing raid evidence never means no raid value.",
+    "Known non-tradable research Pokémon use manually reviewed minimum levels. The default IV comparison remains all 4,096 combinations, even when some IVs are unobtainable.",
+    "GO game-master templates do not establish live release status or event overrides. Costumes and special form changes require in-game confirmation."
+  ],
+  "missingStats": [],
+  "missingEvolutionRules": [
+    "golisopodsh",
+    "pikachu_5th_anniversary",
+    "pikachu_flying",
+    "pikachu_libre",
+    "pikachu_shaymin"
+  ],
+  "rejectedEdges": [
+    {
+      "from": "camerupt",
+      "to": "camerupt_mega",
+      "reason": "Target is not in the supported catalog."
+    }
+  ],
+  "csvRankChanges": 811,
+  "csvRaidClaims": 387,
+  "unknownRelease": 1608
+}

@@ -2,6 +2,7 @@ import { readFile, writeFile, mkdir, rename, copyFile } from 'node:fs/promises';
 import { gzipSync, gunzipSync } from 'node:zlib';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
+import { buildMovesheet, movesheetCSV } from './movesheet.mjs';
 import {
   hash,
   parseCatalog,
@@ -139,7 +140,7 @@ const sources = [
     url: `https://github.com/PokeMiners/game_masters/tree/${bundle.go.commit}`,
     commit: bundle.go.commit,
     date: bundle.go.date,
-    retrieved: bundle.retrieved,
+    retrieved: bundle.go.retrieved ?? bundle.retrieved,
     license: 'Game data; upstream does not supply a code license for these game facts.',
     files: [{ path: 'latest/latest.json', sha256: hash(bundle.go.files['latest/latest.json']) }],
   },
@@ -160,8 +161,29 @@ const sources = [
     date: rules.version,
   },
 ];
-const normalizerHash = hash(await readFile('scripts/data-lib.mjs'));
+if (bundle.raidPages?.length)
+  sources.push({
+    id: 'gohub-moves',
+    name: 'GO Hub · exact-form raid moves and type-role ratings',
+    url: 'https://db.pokemongohub.net/',
+    retrieved: bundle.retrieved,
+    files: bundle.raidPages.map((p) => ({ path: p.url, sha256: p.sha256 })),
+  });
+const normalizerHash = hash(
+  Buffer.concat([
+    await readFile('scripts/data-lib.mjs'),
+    await readFile('scripts/movesheet.mjs'),
+    await readFile('scripts/update-data.mjs'),
+  ]),
+);
 const version = `${bundle.retrieved.slice(0, 10)}-${hash(JSON.stringify({ bundle, rules, csv: hash(csv), normalizerHash, schema: 1 })).slice(0, 12)}`;
+let previous;
+if (bundle.movesAudit?.previousCatalog) {
+  const oldBytes = await readFile(`public${bundle.movesAudit.previousCatalog.file}`);
+  if (hash(oldBytes) !== bundle.movesAudit.previousCatalog.sha256)
+    throw new Error('Previous catalog checksum mismatch');
+  previous = JSON.parse(oldBytes);
+}
 const data = normalizeData({
   gm,
   go,
@@ -170,10 +192,17 @@ const data = normalizeData({
   cpm,
   rules,
   raidFacts: bundle.raidFacts,
+  raidPages: bundle.raidPages,
+  retainedSpecies: previous?.species,
   retrieved: bundle.retrieved,
   sources,
   version,
 });
+const movesheet = buildMovesheet(data, bundle, previous);
+const sheetFile = `/data/moves-${version}`;
+data.movesheet = { json: `${sheetFile}.json`, csv: `${sheetFile}.csv`, ...movesheet.counts };
+await writeFile(`public${sheetFile}.json`, JSON.stringify(movesheet, null, 2) + '\n');
+await writeFile(`public${sheetFile}.csv`, movesheetCSV(movesheet));
 validateCatalog(data, rows.length);
 // Validate everything before publishing a new pointer. Existing valid snapshots are immutable.
 const catalogFile = `public/data/catalog-${version}.json`;

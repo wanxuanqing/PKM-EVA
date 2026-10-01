@@ -1,5 +1,5 @@
 import type { Species, IVs, Settings, Reachable, Option, CollectionFlags } from '../types';
-import { goodOverallIV, qualifies } from './calculator';
+import { goodOverallIV, qualifies } from './calculator.ts';
 export const copyGender = (species: Species, gender: Settings['gender']): Settings['gender'] =>
   species.gender?.fixed ?? (gender === 'genderless' ? 'unknown' : gender);
 export function reachable(

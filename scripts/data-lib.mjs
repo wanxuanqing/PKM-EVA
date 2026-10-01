@@ -106,11 +106,14 @@ export function normalizeData({
   cpm,
   rules,
   raidFacts,
+  raidPages = [],
+  retainedSpecies = [],
   retrieved,
   sources,
   version,
 }) {
   const rowMap = new Map(rows.map((r) => [r['Form ID'], r]));
+  const historical = new Map(retainedSpecies.map((p) => [p.id, p]));
   const gmMap = new Map(gm.pokemon.map((p) => [p.speciesId, p]));
   const goMap = new Map(
     go
@@ -140,16 +143,29 @@ export function normalizeData({
   const inverseAlias = new Map(Object.entries(rules.goAliases).map(([id, go]) => [go, id]));
   const resolveGo = (s) =>
     rules.evolutionAliases?.[cleanGo(s)] ?? inverseAlias.get(cleanGo(s)) ?? cleanGo(s);
-  const genderMap = new Map(
-    go
-      .filter((x) => x.data?.genderSettings)
-      .map((x) => [
-        cleanGo(x.templateId.replace(/^SPAWN_V\d+_POKEMON_/, '')),
-        Object.entries(x.data.genderSettings.gender ?? {})
-          .filter(([, value]) => value > 0)
-          .map(([key]) => key.replace('Percent', '')),
-      ]),
-  );
+  const genderMap = new Map();
+  for (const template of go) {
+    const settings = template.data?.genderSettings;
+    if (!settings) continue;
+    const rawId = template.templateId.replace(/^SPAWN_V\d+_POKEMON_/, '');
+    // Both Nidoran species use NIDORAN in template names; their payload IDs differ.
+    const id = cleanGo(settings.form ?? (cleanGo(rawId) === 'nidoran' ? settings.pokemon : rawId));
+    const allowed = Object.entries(settings.gender ?? {})
+      .filter(([, value]) => value > 0)
+      .map(([key]) => key.replace('Percent', ''))
+      .sort();
+    // A NORMAL form is more specific than the species-wide aggregate (Oinkologne).
+    const priority = rawId.endsWith('_NORMAL') ? 2 : settings.form ? 1 : 0;
+    const previous = genderMap.get(id);
+    if (
+      previous &&
+      previous.priority === priority &&
+      JSON.stringify(previous.allowed) !== JSON.stringify(allowed)
+    )
+      throw new Error(`Conflicting gender templates for ${id}`);
+    if (!previous || priority > previous.priority)
+      genderMap.set(id, { allowed, priority, template: template.templateId });
+  }
   const battleSignature = (p) =>
     JSON.stringify([
       p.stats,
@@ -211,7 +227,13 @@ export function normalizeData({
     const baseId = id.replace(/_shadow$/, '');
     const game = goMap.get(rules.goAliases[baseId] ?? baseId);
     const goId = rules.goAliases[baseId] ?? baseId;
-    const genders = new Set(genderMap.get(goId) ?? []);
+    const genderId = rules.genderAliases?.[baseId] ?? goId;
+    const inheritedFrom = temporary ? baseId.replace(/_(mega(?:_[xy])?|primal)$/, '') : null;
+    const genderRecord =
+      genderMap.get(genderId) ??
+      (inheritedFrom ? genderMap.get(rules.goAliases[inheritedFrom] ?? inheritedFrom) : undefined);
+    const genders = new Set(genderRecord?.allowed ?? []);
+    const genderTemplates = genderRecord ? [genderRecord.template] : [];
     let sharedGenderAppearance = false;
     // Merge only cosmetic gender forms that already share a catalog battle record.
     // Distinct catalog IDs and forms with different moves or stats remain separate.
@@ -224,7 +246,9 @@ export function normalizeData({
         !ids.has(variantId) &&
         battleSignature(game) === battleSignature(variant)
       ) {
-        for (const value of genderMap.get(variantId) ?? []) genders.add(value);
+        const variantGender = genderMap.get(variantId);
+        for (const value of variantGender?.allowed ?? []) genders.add(value);
+        if (variantGender) genderTemplates.push(variantGender.template);
         sharedGenderAppearance = true;
       }
     }
@@ -235,7 +259,11 @@ export function normalizeData({
         ? originalName.replace(/ \(Shadow\)$/, '') + ' (Male)' + (shadow ? ' (Shadow)' : '')
         : originalName;
     const notes = [];
-    if (!p) audit.missingStats.push(id);
+    if (!p && !historical.get(id)?.baseStats) audit.missingStats.push(id);
+    if (!p && historical.get(id)?.baseStats)
+      notes.push(
+        'Removed from the current PvPoke game master. Historical base stats are retained from the previous catalog; no current PvP eligibility is inferred.',
+      );
     if (!game && !temporary) {
       audit.missingEvolutionRules.push(id);
       notes.push('Evolution and trade rules for this exact form are not fully mapped.');
@@ -252,8 +280,11 @@ export function normalizeData({
       name: genderName,
       gender: {
         fixed: fixedGender,
+        allowed: [...genders].sort(),
+        templates: genderTemplates,
+        ...(inheritedFrom && !genderMap.has(genderId) ? { inheritedFrom } : {}),
         sharedAppearance: sharedGenderAppearance,
-        source: 'go-gamemaster',
+        source: genderRecord ? 'go-gamemaster' : '',
       },
       aliases: [
         originalName,
@@ -261,8 +292,8 @@ export function normalizeData({
         ...(p?.nicknames ?? []),
         ...(!shadow && !temporary ? [`${p?.speciesName} regular`, `${p?.speciesName} normal`] : []),
       ],
-      types: (p?.types ?? []).filter((t) => t !== 'none'),
-      baseStats: p?.baseStats ?? null,
+      types: (p?.types ?? historical.get(id)?.types ?? []).filter((t) => t !== 'none'),
+      baseStats: p?.baseStats ?? historical.get(id)?.baseStats ?? null,
       shadow,
       temporary,
       tradable:
@@ -485,11 +516,49 @@ export function normalizeData({
         reviewed: '',
       });
   }
+  // Exact-form individual pages extend the shortlist to sourced budget options.
+  for (const page of raidPages) {
+    const p = byId.get(page.id);
+    if (!p) throw new Error(`Unknown raid moves form: ${page.id}`);
+    if (nameKey(p.name) !== nameKey(page.name) && rules.raidAliases?.[page.name] !== p.id)
+      throw new Error(`Raid form mismatch: ${page.id}`);
+    const roles = page.roles.filter(
+      (r) => r.type !== 'normal' && ['S+', 'S', 'A+', 'A', 'B+', 'B'].includes(r.tier),
+    );
+    if (!roles.length) {
+      for (const entry of p.raid)
+        entry.moveReview = {
+          source: page.url,
+          retrieved: page.retrieved,
+          reason: `GO Hub lists ${page.roles.map((r) => `${r.type} ${r.tier}`).join('; ') || 'no recommended type roles'}. No role meets the app's B-or-better, non-Normal expansion rule.`,
+        };
+      continue;
+    }
+    const entry = p.raid[0] ?? { tier: 'budget' };
+    entry.tier = roles.some((r) => ['S+', 'S', 'A+', 'A'].includes(r.tier)) ? 'strong' : 'budget';
+    entry.types = roles.map((r) => r.type);
+    entry.evidence = `GO Hub role ratings: ${roles.map((r) => `${r.type} ${r.tier} (#${r.rank})`).join('; ')}. General type roles, not a boss-specific simulation.`;
+    entry.source = page.url;
+    entry.reviewed = page.retrieved.slice(0, 10);
+    entry.moves = roles.map(
+      (r) => `${r.type}: ${r.moves.map((m) => m.name + (m.limited ? ' *' : '')).join(' + ')}`,
+    );
+    entry.moveSets = roles.map((r) => ({
+      type: r.type,
+      tier: r.tier,
+      rank: r.rank,
+      fast: r.moves[0],
+      charged: r.moves[1],
+      source: page.url,
+      retrieved: page.retrieved,
+    }));
+    p.raid = [entry];
+  }
   audit.warnings.push(
     'All CSV forms are retained. A simulator released flag does not independently verify GO availability.',
   );
   audit.warnings.push(
-    'Budget raid candidates come from the input CSV and remain unverified. Missing raid evidence never means no raid value.',
+    'CSV-only raid candidates remain unverified unless supported by a GO Hub type role rated B or better. Missing raid evidence never means no raid value.',
   );
   audit.warnings.push(
     'Known non-tradable research Pokémon use manually reviewed minimum levels. The default IV comparison remains all 4,096 combinations, even when some IVs are unobtainable.',
@@ -526,6 +595,15 @@ export function validateCatalog(data, expectedForms) {
   for (const p of data.species) {
     if (p.gender?.fixed && !['male', 'female', 'genderless'].includes(p.gender.fixed))
       throw new Error(`Bad gender: ${p.id}`);
+    if (p.gender?.allowed) {
+      const { allowed, fixed } = p.gender;
+      if (
+        allowed.some((g) => !['male', 'female', 'genderless'].includes(g)) ||
+        new Set(allowed).size !== allowed.length ||
+        fixed !== (allowed.length === 1 ? allowed[0] : null)
+      )
+        throw new Error(`Inconsistent gender metadata: ${p.id}`);
+    }
     if (p.baseStats && !Object.values(p.baseStats).every((n) => Number.isFinite(n) && n > 0))
       throw new Error(`Bad stats: ${p.id}`);
     for (const edge of p.evolutions)

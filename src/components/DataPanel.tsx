@@ -153,6 +153,30 @@ export function DataPanel({ data }: { data: Catalog }) {
           .
         </p>
       </section>
+      {data.movesheet && (
+        <section className="paper">
+          <h2>Moves datasheet</h2>
+          <p>
+            {data.movesheet.pvp} qualifying PvP entries checked against pinned PvPoke rankings and
+            move pools. {data.movesheet.raidFormsWithMoves} raid forms have sourced moves;{' '}
+            {data.movesheet.raidFormsMissingMoves} still need qualifying evidence.
+          </p>
+          <p>
+            Expanded raid suggestions use GO Hub type roles rated B or better. Lower-rated and
+            excluded Normal roles remain documented in the datasheet. Limited-access moves retain
+            their markers.
+          </p>
+          <p>
+            <a href={data.movesheet.csv} download>
+              Download moves datasheet (CSV)
+            </a>
+            {' · '}
+            <a href={data.movesheet.json} download>
+              Download moves datasheet (JSON)
+            </a>
+          </p>
+        </section>
+      )}
       <section className="paper">
         <h2>On your device</h2>
         <p>

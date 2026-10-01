@@ -25,6 +25,16 @@ export type RaidRole = {
   source: string;
   reviewed: string;
   moves?: string[];
+  moveReview?: { source: string; retrieved: string; reason: string };
+  moveSets?: {
+    type: string;
+    tier: string;
+    rank: number;
+    fast: { name: string; limited: boolean; url: string };
+    charged: { name: string; limited: boolean; url: string };
+    source: string;
+    retrieved: string;
+  }[];
 };
 export type Species = {
   id: string;
@@ -33,6 +43,9 @@ export type Species = {
   aliases: string[];
   gender?: {
     fixed: 'male' | 'female' | 'genderless' | null;
+    allowed?: ('male' | 'female' | 'genderless')[];
+    templates?: string[];
+    inheritedFrom?: string;
     sharedAppearance: boolean;
     source: string;
   };
@@ -67,6 +80,17 @@ export type Source = {
   files?: { path: string; sha256: string }[];
 };
 export type Catalog = {
+  movesheet?: {
+    json: string;
+    csv: string;
+    pvp: number;
+    pvpChanged: number;
+    pvpNew: number;
+    raidIncluded: number;
+    raidExcluded: number;
+    raidFormsWithMoves: number;
+    raidFormsMissingMoves: number;
+  };
   schema: 1;
   version: string;
   retrieved: string;

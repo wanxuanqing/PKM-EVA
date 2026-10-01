@@ -161,6 +161,11 @@ export function Selector({
           Gender: {selected.gender.fixed}. Set by this species or battle form.
         </p>
       )}
+      {selected.gender?.allowed?.length === 0 && (
+        <p className="small-note">
+          Gender is unverified for this exact catalog form. Confirm it in the game.
+        </p>
+      )}
       {selected.gender?.sharedAppearance && (
         <p className="small-note">
           Male and female appearances share this battle record: the sourced stats and moves match.

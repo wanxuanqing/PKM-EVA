@@ -1,5 +1,11 @@
 {
-  "version": "2026-09-28.2",
+  "version": "2026-10-01.1",
+  "genderAliases": {
+    "pikachu_5th_anniversary": "pikachu_flying_5th_anniv",
+    "pikachu_flying": "pikachu_flying_01",
+    "pikachu_libre": "pikachu_vs_2019",
+    "pikachu_shaymin": "pikachu_gofest_2022"
+  },
   "goAliases": {
     "tauros_aqua": "tauros_paldea_aqua",
     "tauros_blaze": "tauros_paldea_blaze",
