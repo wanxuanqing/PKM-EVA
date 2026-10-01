@@ -14,7 +14,7 @@ const defaults: Settings = {
   maxLevel: 50,
   bestBuddy: false,
   floor: 0,
-  threshold: 90,
+  threshold: 95,
   gender: 'unknown',
   eventPaths: false,
 };
@@ -38,7 +38,7 @@ type Saved = {
   verdict: string;
 };
 function initialSettings(): Settings {
-  const stored = loadLocal<Partial<Settings>>('preferences', {});
+  const stored = loadLocal<Partial<Settings> & { thresholdVersion?: number }>('preferences', {});
   return {
     ...defaults,
     maxLevel: validLevel(stored.maxLevel ?? 0) && stored.maxLevel! <= 50 ? stored.maxLevel! : 50,
@@ -49,8 +49,10 @@ function initialSettings(): Settings {
         : 0,
     threshold:
       typeof stored.threshold === 'number' && stored.threshold >= 0 && stored.threshold <= 100
-        ? stored.threshold
-        : 90,
+        ? stored.threshold === 90 && stored.thresholdVersion !== 2
+          ? 95
+          : stored.threshold
+        : defaults.threshold,
   };
 }
 export default function App({ data }: { data: Catalog }) {
@@ -176,6 +178,7 @@ export default function App({ data }: { data: Catalog }) {
       maxLevel: settings.maxLevel,
       bestBuddy: settings.bestBuddy,
       threshold: settings.threshold,
+      thresholdVersion: 2,
       floor: settings.floor,
     });
   }, [settings]);
@@ -543,7 +546,7 @@ export default function App({ data }: { data: Catalog }) {
                         <p className="field-error">Use a threshold from 0 to 100.</p>
                       )}
                       <p className="small-note">
-                        IV percentile must be strictly above this value. 90% is the app default,
+                        IV percentile must be strictly above this value. 95% is the app default,
                         separate from your overall-IV rule.
                       </p>
                       <label className="stack-label">

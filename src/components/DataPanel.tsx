@@ -52,7 +52,7 @@ export function DataPanel({ data }: { data: Catalog }) {
               (Attack IV + Defense IV + HP IV) / 45 × 100. Your rule is strictly above 90%: 41/45
               qualifies; 40/45 does not. ML and raids use this same IV preference, even though ML
               also shows a separate stat-product rank and percentile. For GL/UL, the separate app
-              default is IV percentile strictly above 90%.
+              default is IV percentile strictly above 95%.
             </dd>
           </div>
         </dl>

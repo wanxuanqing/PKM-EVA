@@ -10,6 +10,27 @@ const search = async (page: Page, name: string) => {
 const stable = async (page: Page) => {
   await expect(page.getByRole('button', { name: 'Save', exact: true })).toBeEnabled();
 };
+test('percentile default upgrades once while preserving later custom preferences', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await stable(page);
+  await page.getByText('Level & comparison settings', { exact: true }).click();
+  await expect(page.getByLabel('PvP percentile threshold')).toHaveValue('95');
+  await page.evaluate(() =>
+    localStorage.setItem('pkm-eva:preferences', JSON.stringify({ threshold: 90 })),
+  );
+  await page.reload();
+  await stable(page);
+  await page.getByText('Level & comparison settings', { exact: true }).click();
+  await expect(page.getByLabel('PvP percentile threshold')).toHaveValue('95');
+  await page.getByLabel('PvP percentile threshold').fill('90');
+  await stable(page);
+  await page.reload();
+  await stable(page);
+  await page.getByText('Level & comparison settings', { exact: true }).click();
+  await expect(page.getByLabel('PvP percentile threshold')).toHaveValue('90');
+});
 async function noOverflow(page: Page) {
   const dims = await page.evaluate(() => ({
     width: innerWidth,

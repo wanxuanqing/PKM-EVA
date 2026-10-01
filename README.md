@@ -31,7 +31,7 @@ Open <http://127.0.0.1:4173>. `dist/` is the complete static production output. 
 
 - Autocomplete tolerates case, punctuation, accents, gender symbols and form aliases. Type IVs separately or paste `1/12/13`.
 - Open GL/UL/ML species ranks **1–199** qualify. Every qualifying supported target gets a card, ordered by league and species rank; one evolution never hides another because of IV percentile.
-- GL/UL keep preference defaults to IV percentile **strictly above 90%**. ML and verified raid roles use overall IVs **strictly above 90%**, meaning at least **41/45**.
+- GL/UL keep preference defaults to IV percentile **strictly above 95%**. ML and verified raid roles use overall IVs **strictly above 90%**, meaning at least **41/45**. Existing stored 90th-percentile preferences migrate once to 95; other custom thresholds and saved assessment settings remain intact.
 - Trade advice checks Shadow status, source tradability, and the “already traded” flag. Trades reroll IVs and do not guarantee an improvement. Useful Shadows receive Keep/Review advice.
 - Collection flags protect shiny, costume, rare, sentimental and Max Battle copies. Perfect and zero-IV spreads are recognized as collectibles. Collection value does not require perfect IVs.
 - A Transfer suggestion requires the explicit “ordinary extra” flag acknowledging missing battle evidence. Missing rankings alone produce Review. The app never performs game actions.
