@@ -5,6 +5,7 @@ import type { Catalog, CollectionFlags, IVs, Settings, Species } from '../src/ty
 import { copyGender, reachable, optionsFor, recommendation } from '../src/lib/assessment';
 import { assessIVs, distribution } from '../src/lib/calculator';
 import { searchSpecies } from '../src/lib/search';
+import { gymTier, gymTiers } from '../src/lib/gym';
 const data = JSON.parse(readFileSync(`public${pointer.file}`, 'utf8')) as Catalog;
 const map = new Map(data.species.map((p) => [p.id, p]));
 const settings: Settings = {
@@ -27,6 +28,41 @@ const flags: CollectionFlags = {
 const paths = (id: string, s: Partial<Settings> = {}, ivs: IVs = [1, 12, 13]) =>
   reachable(map.get(id)!, map, { ...settings, ...s }, ivs);
 describe('catalog and branches', () => {
+  it('supports the exact 25 gym defenders without inheriting special-form ratings', () => {
+    expect(Object.keys(gymTiers)).toHaveLength(25);
+    for (const [id, tier] of Object.entries(gymTiers)) {
+      const p = map.get(id)!;
+      expect(p, id).toBeDefined();
+      expect(gymTier(p)).toBe(tier);
+      expect(gymTier({ ...p, shadow: true })).toBeUndefined();
+      expect(gymTier({ ...p, temporary: true })).toBeUndefined();
+    }
+    expect(optionsFor(paths('regigigas')).some((o) => o.role === 'Gym')).toBe(false);
+  });
+  it('keeps low-IV Chansey for gyms and follows Happiny and Eevee evolution paths', () => {
+    const options = optionsFor(paths('chansey'));
+    const result = recommendation(map.get('chansey')!, [1, 2, 3], options, flags, settings, true);
+    expect(result.verdict).toBe('Keep');
+    expect(result.title).toBe('Useful for gym defense.');
+    expect(
+      optionsFor(paths('happiny'))
+        .filter((o) => o.role === 'Gym')
+        .map((o) => o.species.id)
+        .sort(),
+    ).toEqual(['blissey', 'chansey']);
+    expect(
+      optionsFor(paths('eevee'))
+        .filter((o) => o.role === 'Gym')
+        .map((o) => o.species.id)
+        .sort(),
+    ).toEqual(['umbreon', 'vaporeon']);
+    const conditional = options
+      .filter((o) => o.role === 'Gym')
+      .map((o) => ({ ...o, conditional: true }));
+    expect(
+      recommendation(map.get('chansey')!, [1, 2, 3], conditional, flags, settings, true).title,
+    ).toBe('Check the evolution conditions.');
+  });
   it('distinguishes Nidoran payload IDs and retains fixed genders through Shadow and temporary forms', () => {
     for (const gender of ['male', 'female'] as const) {
       for (const suffix of ['', '_shadow']) {

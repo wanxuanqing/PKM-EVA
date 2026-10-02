@@ -1,5 +1,6 @@
 import type { Species, IVs, Settings, Reachable, Option, CollectionFlags } from '../types';
 import { goodOverallIV, qualifies } from './calculator.ts';
+import { gymTier } from './gym.ts';
 export const copyGender = (species: Species, gender: Settings['gender']): Settings['gender'] =>
   species.gender?.fixed ?? (gender === 'genderless' ? 'unknown' : gender);
 export function reachable(
@@ -53,6 +54,8 @@ export function reachable(
 export function optionsFor(targets: Reachable[]): Option[] {
   const result: Option[] = [];
   for (const target of targets) {
+    if (gymTier(target.species))
+      result.push({ ...target, role: 'Gym', key: `${target.species.id}:Gym` });
     for (const role of ['GL', 'UL', 'ML'] as const) {
       const ranking = target.species.rankings[role];
       if (qualifies(ranking?.rank) && target.species.eligible[role])
@@ -81,7 +84,7 @@ export function optionsFor(targets: Reachable[]): Option[] {
       });
     });
   }
-  const priority = { GL: 0, UL: 1, ML: 2, Raid: 3 };
+  const priority = { GL: 0, UL: 1, ML: 2, Raid: 3, Gym: 4 };
   return result.sort(
     (a, b) =>
       priority[a.role] - priority[b.role] ||
@@ -126,7 +129,9 @@ export function recommendation(
   const useful = options.filter((o) =>
     o.role === 'Raid'
       ? o.raid?.source !== 'input-csv' && o.raid?.tier !== 'unverified'
-      : !!o.result?.stats,
+      : o.role === 'Gym'
+        ? !!gymTier(o.species)
+        : !!o.result?.stats,
   );
   const reachable = useful.filter(
     (o) => !o.conditional && !o.result?.overCap && !o.result?.aboveMax,
@@ -136,6 +141,13 @@ export function recommendation(
       ? (o.result?.percentile ?? -1) > settings.threshold
       : goodOverallIV(ivs),
   );
+  const defenders = reachable.filter((o) => o.role === 'Gym');
+  if (defenders.length)
+    return {
+      verdict: 'Keep',
+      title: 'Useful for gym defense.',
+      reason: `${defenders.map((o) => o.species.name).join(', ')} ${defenders.length === 1 ? 'is' : 'are'} on the sourced gym-defense shortlist. No minimum IV percentage is required for this role. Consider keeping a defender; this is not a recommendation to power up every copy. Check evolution requirements and your existing defenders.`,
+    };
   if (good.length)
     return {
       verdict: 'Keep',
@@ -151,7 +163,10 @@ export function recommendation(
     };
   if (
     useful.some(
-      (o) => o.result?.overCap || o.result?.aboveMax || (!o.result?.inPool && o.role !== 'Raid'),
+      (o) =>
+        o.result?.overCap ||
+        o.result?.aboveMax ||
+        (!o.result?.inPool && o.role !== 'Raid' && o.role !== 'Gym'),
     )
   )
     return {

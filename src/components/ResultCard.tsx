@@ -1,11 +1,13 @@
 import type { Catalog, Option, Settings } from '../types';
 import { Icon } from './Icon';
 import { sourceURL } from '../lib/data';
+import { GymCard } from './GymCard';
 export const leagueNames = {
   GL: 'Great League',
   UL: 'Ultra League',
   ML: 'Master League',
   Raid: 'Raids',
+  Gym: 'Gym Defense',
 };
 const iv = (values: number[]) => values.join(' / ');
 export function ResultCard({
@@ -20,6 +22,7 @@ export function ResultCard({
   overall: number;
 }) {
   const { species: p, role, result: r } = option;
+  if (role === 'Gym') return <GymCard option={option} />;
   const isRaid = role === 'Raid';
   const score = isRaid || role === 'ML' ? overall : r?.percentile;
   const qualified =

@@ -148,7 +148,9 @@ export default function App({ data }: { data: Catalog }) {
       setBusy(false);
       return;
     }
-    const pvp = baseOptions.filter((o) => o.role !== 'Raid' && o.species.baseStats);
+    const pvp = baseOptions.filter(
+      (o) => ['GL', 'UL', 'ML'].includes(o.role) && o.species.baseStats,
+    );
     if (!pvp.length) {
       setBusy(false);
       return;
@@ -364,7 +366,7 @@ export default function App({ data }: { data: Catalog }) {
                     onSelect={choose}
                     recent={recent}
                   />
-                  <PokemonPicture key={selected.dex} dex={selected.dex} />
+                  <PokemonPicture key={selected.id} species={selected} />
                   <div className="iv-section">
                     <div className="label-row">
                       <h3>Individual values</h3>
@@ -757,14 +759,14 @@ export default function App({ data }: { data: Catalog }) {
                       <span>One copy, more possibilities</span>
                     </div>
                     <div className="role-filters" role="group" aria-label="Filter roles">
-                      {['All', 'GL', 'UL', 'ML', 'Raid'].map((f) => (
+                      {['All', 'GL', 'UL', 'ML', 'Raid', 'Gym'].map((f) => (
                         <button
                           key={f}
                           className={filter === f ? 'active' : ''}
                           aria-pressed={filter === f}
                           onClick={() => setFilter(f)}
                         >
-                          {f === 'Raid' ? 'Raids' : f}
+                          {f === 'Raid' ? 'Raids' : f === 'Gym' ? 'Gym Defense' : f}
                           <span>
                             {f === 'All'
                               ? options.length

@@ -1,4 +1,5 @@
 import type { Catalog } from '../types';
+import { gymSource, gymReviewed } from '../lib/gym';
 export function DataPanel({ data }: { data: Catalog }) {
   return (
     <section className="data-panel page-panel">
@@ -21,6 +22,22 @@ export function DataPanel({ data }: { data: Catalog }) {
           <span>IV combinations by default</span>
         </div>
       </div>
+      <section className="paper">
+        <h2>Gym defense</h2>
+        <p>
+          25 exact regular forms from GO Hub's S/A+ species-bulk shortlist, reviewed {gymReviewed}.
+          Reachable evolutions are included; conditional paths require review. Normal types are
+          allowed. Ratings do not extend to Shadow or temporary forms.
+        </p>
+        <p>
+          This role has no IV threshold or IV rank. Base Defense × Stamina does not model moves,
+          typing, motivation decay or gym activity. Keep advice is not an instruction to power up
+          every copy.
+        </p>
+        <a href={gymSource} target="_blank" rel="noreferrer">
+          Gym-defense source
+        </a>
+      </section>
       <section className="paper">
         <h2>Understand the IV measures</h2>
         <dl className="definitions">

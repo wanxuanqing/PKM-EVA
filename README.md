@@ -31,6 +31,8 @@ Open <http://127.0.0.1:4173>. `dist/` is the complete static production output. 
 
 ## What it does
 
+Regional pictures use 52 verified PokéAPI mappings in `src/data/artwork-forms.json` (reviewed 2026-10-02). Switching between regular and regional forms updates the image even when the Pokédex number is unchanged. Regional Shadows use regional artwork without Shadow effects. Unmapped alternate forms still use clearly labeled standard-species artwork; costumes, shiny colors and gender-specific appearances are not modeled. The mapping includes source API URLs for maintenance and requires no runtime API requests.
+
 - Autocomplete tolerates case, punctuation, accents, gender symbols and form aliases. Type IVs separately or paste `1/12/13`.
 - Open GL/UL/ML species ranks **1–199** qualify. Every qualifying supported target gets a card, ordered by league and species rank; one evolution never hides another because of IV percentile.
 - GL/UL keep preference defaults to IV percentile **strictly above 95%**. ML and verified raid roles use overall IVs **strictly above 90%**, meaning at least **41/45**. Existing stored 90th-percentile preferences migrate once to 95; other custom thresholds and saved assessment settings remain intact.
@@ -56,6 +58,8 @@ The [full gender audit](docs/gender-audit.md) covers every catalog entry. Run `n
 Calculations run in a Web Worker. Up to 32 distributions are cached in memory and IndexedDB, keyed by snapshot, calculator version, form, league, minimum/maximum level, eligibility and IV floor. Changing IVs reuses the distribution. Storage failure does not prevent calculation.
 
 ## Data and updates
+
+Gym Defense is a separate role using GO Hub's S/A+ bulk shortlist, reviewed 2026-10-02. The 25 exact regular forms and reachable evolution paths are recognized without a minimum IV percentage; Normal types are allowed. Conditional paths require review, and Shadow/costume/temporary forms do not inherit ratings. These are species-level Defense × Stamina tiers, not simulations or an instruction to power up every copy. See [gym-defense scope and sources](docs/gym-defense.md). The shortlist is maintained separately from raid/PvP refreshes in `src/lib/gym.ts`.
 
 The assessment list shows only sourced raid roles rated B or better, excluding Normal. CSV-only backup candidates and lower-rated roles are hidden from that list; their original records and datasheet evidence remain available.
 
