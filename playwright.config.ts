@@ -6,7 +6,7 @@ export default defineConfig({
   timeout: 30000,
   use: {
     baseURL: 'http://127.0.0.1:4173',
-    channel: 'chrome',
+    channel: process.env.CI ? undefined : 'chrome',
     headless: true,
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
@@ -14,7 +14,7 @@ export default defineConfig({
   webServer: {
     command: 'npm run preview -- --port 4173 --strictPort',
     url: 'http://127.0.0.1:4173',
-    reuseExistingServer: true,
+    reuseExistingServer: !process.env.CI,
     timeout: 15000,
   },
 });

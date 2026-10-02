@@ -195,6 +195,18 @@ export function DataPanel({ data }: { data: Catalog }) {
           advice only and never performs game actions. No accounts, analytics or paid services are
           required.
         </p>
+        <p>
+          Hosting providers receive normal web-request metadata and may retain logs. Entered IVs and
+          saved assessments are not uploaded by this app.{' '}
+          <a
+            href="https://github.com/wanxuanqing/PKM-EVA/blob/main/docs/privacy.md"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Privacy and local storage
+          </a>
+          .
+        </p>
       </section>
     </section>
   );

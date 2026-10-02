@@ -6,6 +6,8 @@ The supplied `prompt.md` and CSV remain unchanged. The original catalog contains
 
 ## Run locally
 
+Contributions: [CONTRIBUTING.md](CONTRIBUTING.md). Private vulnerability reports: [SECURITY.md](SECURITY.md). Read the [privacy statement](docs/privacy.md), [maintenance and release process](docs/releases.md), and [changelog](CHANGELOG.md).
+
 Use Node.js 24 LTS. In Windows PowerShell:
 
 ```powershell
@@ -93,7 +95,7 @@ npm.cmd run test:ui
 node scripts/validate-independent.mjs
 ```
 
-Browser tests use installed Google Chrome in headless mode. Set `channel` in `playwright.config.ts` to `msedge` if using Edge instead. The browser tests start a production preview automatically if one is not already running.
+Local browser tests use installed Google Chrome in headless mode; CI uses Playwright Chromium. Set the local `channel` in `playwright.config.ts` to `msedge` if using Edge instead. The browser tests start a production preview automatically if one is not already running; CI always starts its own server.
 
 Calculator/data tests cover rounding, half-level boundaries, ties, percentile conventions, Best Buddy, unreachable caps, ineligible forms, comparison floors, strict thresholds, malformed inputs, aliases, Shadow separation, restricted branches, CSV quoting/BOM handling and failed-update retention. Browser tests cover 360/390/430/1280 px widths, keyboard search, form selection, saved assessments, expanded cards, overflow, accessibility, offline reload, catalog integrity and explicit update activation.
 
