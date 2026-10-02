@@ -57,6 +57,8 @@ Calculations run in a Web Worker. Up to 32 distributions are cached in memory an
 
 ## Data and updates
 
+The assessment list shows only sourced raid roles rated B or better, excluding Normal. CSV-only backup candidates and lower-rated roles are hidden from that list; their original records and datasheet evidence remain available.
+
 The browser downloads an immutable, versioned local catalog, verifies its SHA-256 and checks its version against the application. It never queries a third-party service during a search.
 
 ```powershell

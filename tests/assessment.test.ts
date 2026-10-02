@@ -225,5 +225,52 @@ describe('search and recommendations', () => {
       { species: p, path: [p.id], requirements: [], conditional: false },
     ]);
     expect(recommendation(p, [15, 15, 11], options, flags, settings, true).verdict).toBe('Review');
+    expect(options).toHaveLength(0);
+  });
+  it('hides excluded raid candidates while retaining qualifying evolution alternatives', () => {
+    for (const id of [
+      'magmar',
+      'growlithe',
+      'cyndaquil',
+      'makuhita',
+      'leafeon',
+      'pidove',
+      'regigigas',
+      'regigigas_shadow',
+      'golisopodsh',
+    ]) {
+      expect(
+        optionsFor(paths(id)).filter((o) => o.role === 'Raid'),
+        id,
+      ).toHaveLength(0);
+    }
+    expect(
+      optionsFor(paths('magmar_shadow')).some(
+        (o) => o.role === 'Raid' && o.species.id === 'magmortar_shadow',
+      ),
+    ).toBe(true);
+    const eeveeRaids = optionsFor(paths('eevee')).filter((o) => o.role === 'Raid');
+    expect(eeveeRaids.some((o) => o.species.id === 'leafeon')).toBe(false);
+    expect(eeveeRaids.some((o) => o.species.id === 'glaceon')).toBe(true);
+    expect(map.get('magmortar')!.raid).not.toHaveLength(0);
+  });
+  it('uses source tiers and excludes Normal even when an entry is labeled strong', () => {
+    const source = map.get('magmortar_shadow')!;
+    for (const role of [
+      { type: 'normal', tier: 'S' },
+      { type: 'fire', tier: 'C' },
+    ]) {
+      const species = {
+        ...source,
+        rankings: {},
+        raid: source.raid.map((r) => ({
+          ...r,
+          moveSets: r.moveSets!.map((m) => ({ ...m, ...role })),
+        })),
+      };
+      expect(
+        optionsFor([{ species, path: [species.id], requirements: [], conditional: false }]),
+      ).toHaveLength(0);
+    }
   });
 });

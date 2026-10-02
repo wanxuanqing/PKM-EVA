@@ -47,4 +47,4 @@ Cloudflare deployment revealed a separate repeat-visit failure: `/index.html` re
 
 The update test serves two service-worker versions and checks that the second remains waiting until **Update & reload** is selected. A separate corrupt-catalog test verifies that a checksum/version mismatch produces a recoverable error. The importer failure test verifies that a failed update leaves the previous published pointer intact.
 
-Automated axe accessibility checks cover the expanded assessment interface and Data screen. Screenshots are in [screenshots/](screenshots/). These checks are evidence for tested states, not a claim that every browser or assistive technology has been manually certified.
+Automated axe accessibility checks cover the expanded assessment interface and Data screen. Running `npm run test:ui` generates local screenshots in `docs/screenshots/`; these generated files are excluded from Git. These checks are evidence for tested states, not a claim that every browser or assistive technology has been manually certified.
