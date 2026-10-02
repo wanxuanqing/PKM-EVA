@@ -8,6 +8,7 @@ import { Selector } from './components/Selector';
 import { BrandMark, Icon } from './components/Icon';
 import { ResultCard, leagueNames } from './components/ResultCard';
 import { DataPanel } from './components/DataPanel';
+import { PokemonPicture } from './components/PokemonPicture';
 import type { CalculationRequest, CalculationResponse } from './worker/calculator.worker';
 
 const defaults: Settings = {
@@ -59,6 +60,7 @@ export default function App({ data }: { data: Catalog }) {
   const [page, setPage] = useState<'assess' | 'saved' | 'data'>('assess');
   const [selectedId, setSelectedId] = useState('duskull');
   const [fields, setFields] = useState(['1', '12', '13']);
+  const ivInputs = useRef<(HTMLInputElement | null)[]>([]);
   const [edited, setEdited] = useState(false);
   const [paste, setPaste] = useState('');
   const [pasteError, setPasteError] = useState('');
@@ -362,6 +364,7 @@ export default function App({ data }: { data: Catalog }) {
                     onSelect={choose}
                     recent={recent}
                   />
+                  <PokemonPicture key={selected.dex} dex={selected.dex} />
                   <div className="iv-section">
                     <div className="label-row">
                       <h3>Individual values</h3>
@@ -376,6 +379,9 @@ export default function App({ data }: { data: Catalog }) {
                           </label>
                           <input
                             id={`iv-${i}`}
+                            ref={(element) => {
+                              ivInputs.current[i] = element;
+                            }}
                             type="text"
                             inputMode="numeric"
                             pattern="[0-9]*"
@@ -385,8 +391,12 @@ export default function App({ data }: { data: Catalog }) {
                             aria-describedby={!ivs ? 'iv-error' : undefined}
                             onFocus={(e) => e.target.select()}
                             onChange={(e) => {
-                              setFields(fields.map((v, n) => (n === i ? e.target.value : v)));
+                              const value = e.target.value;
+                              setFields(fields.map((v, n) => (n === i ? value : v)));
                               setEdited(true);
+                              if (/^\d{2}$/.test(value) && Number(value) <= 15) {
+                                ivInputs.current[i + 1]?.focus();
+                              }
                             }}
                             onPaste={(e) => {
                               const text = e.clipboardData.getData('text');
@@ -411,6 +421,7 @@ export default function App({ data }: { data: Catalog }) {
                         Enter a whole number from 0 to 15 in each IV field.
                       </p>
                     )}
+                    <p className="small-note">Two valid digits move to the next IV field.</p>
                     <form
                       className="paste-row"
                       onSubmit={(e) => {
