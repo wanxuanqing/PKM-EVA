@@ -58,9 +58,28 @@ export function optionsFor(targets: Reachable[]): Option[] {
       if (qualifies(ranking?.rank) && target.species.eligible[role])
         result.push({ ...target, role, ranking, key: `${target.species.id}:${role}` });
     }
-    target.species.raid.forEach((raid, i) =>
-      result.push({ ...target, role: 'Raid', raid, key: `${target.species.id}:Raid:${i}` }),
-    );
+    target.species.raid.forEach((raid, i) => {
+      if (raid.source === 'input-csv' || raid.tier === 'unverified') return;
+      const moveSets = raid.moveSets?.filter(
+        (r) =>
+          r.type.toLowerCase() !== 'normal' && ['S+', 'S', 'A+', 'A', 'B+', 'B'].includes(r.tier),
+      );
+      if (!moveSets?.length) return;
+      result.push({
+        ...target,
+        role: 'Raid',
+        raid: {
+          ...raid,
+          moveSets,
+          types: moveSets.map((r) => r.type),
+          moves: moveSets.map(
+            (r) =>
+              `${r.type}: ${r.fast.name}${r.fast.limited ? ' *' : ''} + ${r.charged.name}${r.charged.limited ? ' *' : ''}`,
+          ),
+        },
+        key: `${target.species.id}:Raid:${i}`,
+      });
+    });
   }
   const priority = { GL: 0, UL: 1, ML: 2, Raid: 3 };
   return result.sort(

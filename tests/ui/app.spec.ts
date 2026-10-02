@@ -10,6 +10,51 @@ const search = async (page: Page, name: string) => {
 const stable = async (page: Page) => {
   await expect(page.getByRole('button', { name: 'Save', exact: true })).toBeEnabled();
 };
+
+test('two valid IV digits advance focus without skipping invalid or single digits', async ({
+  page,
+}) => {
+  await page.goto('/');
+  const attack = page.getByLabel('Attack', { exact: true });
+  const defense = page.getByLabel('Defense', { exact: true });
+  const hp = page.getByLabel('HP', { exact: true });
+  await attack.fill('');
+  await attack.pressSequentially('1');
+  await expect(attack).toBeFocused();
+  await attack.pressSequentially('5');
+  await expect(defense).toBeFocused();
+  await page.keyboard.type('09');
+  await expect(defense).toHaveValue('09');
+  await expect(hp).toBeFocused();
+  await page.keyboard.type('15');
+  await expect(hp).toBeFocused();
+  await expect(hp).toHaveValue('15');
+  await attack.fill('99');
+  await expect(attack).toBeFocused();
+  await expect(attack).toHaveAttribute('aria-invalid', 'true');
+});
+
+test('species pictures change with selection and fail gracefully', async ({ page }) => {
+  await page.route('https://raw.githubusercontent.com/PokeAPI/sprites/**', (route) =>
+    route.request().url().endsWith('/25.png')
+      ? route.abort()
+      : route.fulfill({
+          contentType: 'image/svg+xml',
+          body: '<svg xmlns="http://www.w3.org/2000/svg" width="144" height="144"><circle cx="72" cy="72" r="50"/></svg>',
+        }),
+  );
+  await page.goto('/');
+  await expect(
+    page.getByRole('img', { name: 'Standard species artwork for Pokédex #355' }),
+  ).toBeVisible();
+  await search(page, 'Pikachu');
+  await expect(page.getByText('Picture unavailable offline or from source.')).toBeVisible();
+  await stable(page);
+  await search(page, 'Duskull');
+  await expect(
+    page.getByRole('img', { name: 'Standard species artwork for Pokédex #355' }),
+  ).toBeVisible();
+});
 test('percentile default upgrades once while preserving later custom preferences', async ({
   page,
 }) => {

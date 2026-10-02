@@ -57,6 +57,8 @@ Calculations run in a Web Worker. Up to 32 distributions are cached in memory an
 
 ## Data and updates
 
+The assessment list shows only sourced raid roles rated B or better, excluding Normal. CSV-only backup candidates and lower-rated roles are hidden from that list; their original records and datasheet evidence remain available.
+
 The browser downloads an immutable, versioned local catalog, verifies its SHA-256 and checks its version against the application. It never queries a third-party service during a search.
 
 ```powershell
@@ -134,7 +136,7 @@ If an older deployment loaded once and then shows `ERR_FAILED`, first deploy the
 5. Rankings use the source’s format configuration, not a fresh simulation at your chosen maximum level. Ideal stat product does not optimize every matchup, breakpoint or charge-move priority tie. Minimum-level overrides need maintenance; the default all-IV pool intentionally includes theoretical acquisition-impossible spreads.
 6. Install prompts and storage retention vary by browser. Chrome desktop emulation was verified; physical iOS/Android devices remain a useful follow-up.
 
-Optional follow-ups: more official release evidence, manually reviewed budget raid options, copy-specific move inputs, import/export of saved assessments, localization, and physical-device testing. Pokémon artwork is deliberately unnecessary; the app’s geometric icon is original.
+Optional follow-ups: more official release evidence, manually reviewed budget raid options, copy-specific move inputs, import/export of saved assessments, localization, and physical-device testing. The app’s geometric icon is original. Standard species artwork loads from [PokéAPI sprites](https://github.com/PokeAPI/sprites); it may not match the selected form, costume, gender, shiny or Shadow appearance. Artwork remains subject to its respective owners' rights and is not relicensed by this project's MIT license. Pictures require network access or the browser's existing image cache; missing images do not prevent offline calculations.
 
 ## Source structure
 
