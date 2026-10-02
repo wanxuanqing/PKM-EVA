@@ -163,7 +163,7 @@ export type IVResult = {
 };
 export type Option = Reachable & {
   key: string;
-  role: League | 'Raid';
+  role: League | 'Raid' | 'Gym';
   ranking?: Ranking;
   raid?: RaidRole;
   result?: IVResult;

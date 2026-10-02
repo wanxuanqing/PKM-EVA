@@ -55,6 +55,39 @@ test('species pictures change with selection and fail gracefully', async ({ page
     page.getByRole('img', { name: 'Standard species artwork for Pokédex #355' }),
   ).toBeVisible();
 });
+test('regional artwork follows form changes and resets a failed picture for the same dex', async ({
+  page,
+}) => {
+  await page.route('https://raw.githubusercontent.com/PokeAPI/sprites/**', (route) =>
+    route.request().url().endsWith('/713.png')
+      ? route.abort()
+      : route.fulfill({
+          contentType: 'image/svg+xml',
+          body: '<svg xmlns="http://www.w3.org/2000/svg" width="144" height="144"/>',
+        }),
+  );
+  await page.goto('/');
+  await search(page, 'Avalugg');
+  await page.getByLabel('Form', { exact: true }).selectOption('avalugg');
+  await expect(page.getByText('Picture unavailable offline or from source.')).toBeVisible();
+  await page.getByLabel('Form', { exact: true }).selectOption('avalugg_hisuian');
+  const image = page.getByRole('img', {
+    name: 'Regional artwork for Avalugg (Hisuian)',
+    exact: true,
+  });
+  await expect(image).toBeVisible();
+  await expect(image).toHaveAttribute('src', /\/10243\.png$/);
+  for (const [name, id, number] of [
+    ['Typhlosion', 'typhlosion_hisuian', '10233'],
+    ['Growlithe', 'growlithe_hisuian', '10229'],
+  ]) {
+    await search(page, name);
+    await page.getByLabel('Form', { exact: true }).selectOption(id);
+    await expect(
+      page.getByRole('img', { name: `Regional artwork for ${name} (Hisuian)`, exact: true }),
+    ).toHaveAttribute('src', new RegExp(`/${number}\\.png$`));
+  }
+});
 test('percentile default upgrades once while preserving later custom preferences', async ({
   page,
 }) => {
@@ -75,6 +108,27 @@ test('percentile default upgrades once while preserving later custom preferences
   await stable(page);
   await page.getByText('Level & comparison settings', { exact: true }).click();
   await expect(page.getByLabel('PvP percentile threshold')).toHaveValue('90');
+});
+test('gym defenders get a separate role and keep advice without an IV cutoff', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  await search(page, 'Chansey');
+  await stable(page);
+  await expect(page.getByText('Useful for gym defense.', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: /^Gym Defense/ }).click();
+  const card = page.getByRole('article', { name: 'Chansey Gym Defense', exact: true });
+  await expect(card).toContainText('S tier');
+  await expect(card).toContainText('No minimum IV percentage');
+  await expect(card).not.toContainText('IV rank');
+  await card.getByText('Details & requirements', { exact: true }).click();
+  await expect(card.getByRole('link', { name: 'GO Hub gym-defense tiers' })).toBeVisible();
+  await noOverflow(page);
+  await page.reload();
+  await search(page, 'Chansey');
+  await stable(page);
+  await expect(
+    page.getByRole('article', { name: 'Chansey Gym Defense', exact: true }),
+  ).toBeVisible();
 });
 async function noOverflow(page: Page) {
   const dims = await page.evaluate(() => ({
