@@ -1,26 +1,25 @@
 import { useState } from 'react';
 import type { Species } from '../types';
-import artwork from '../data/artwork-forms.json';
+import { pokemonArtwork } from '../lib/artwork';
 
 export function PokemonPicture({ species }: { species: Species }) {
   const [failed, setFailed] = useState(false);
-  const formId = species.id.replace(/_shadow$/, '');
-  const regional = (artwork.forms as Record<string, { url: string }>)[formId];
-  const src =
-    regional?.url ??
-    `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${species.dex}.png`;
+  const picture = pokemonArtwork(species);
+  const src = picture.url;
   return (
     <figure className="pokemon-picture">
-      {failed ? (
+      {!src || failed ? (
         <div className="pokemon-picture-placeholder">
-          Picture unavailable offline or from source.
+          {!src
+            ? 'Picture unavailable for this form.'
+            : 'Picture unavailable offline or from source.'}
         </div>
       ) : (
         <img
           src={src}
           alt={
-            regional
-              ? `Regional artwork for ${species.name.replace(' (Shadow)', '')}`
+            picture.mapped
+              ? `Form artwork for ${species.name.replace(' (Shadow)', '')}`
               : `Standard species artwork for Pokédex #${species.dex}`
           }
           width={144}
@@ -30,9 +29,14 @@ export function PokemonPicture({ species }: { species: Species }) {
         />
       )}
       <figcaption>
-        {regional
-          ? 'Regional form artwork; costumes, shiny colors and Shadow effects are not shown.'
-          : 'Standard species appearance; other forms, costumes and Shadow effects may differ.'}{' '}
+        {!src
+          ? 'No matching form image is available.'
+          : picture.mapped
+            ? picture.kind === 'sprite'
+              ? 'Form sprite; matching official artwork is unavailable.'
+              : 'Form artwork.'
+            : 'Standard species artwork.'}{' '}
+        Shiny colors and Shadow effects are not shown. Pictures are not scaled to size.{' '}
         <a href="https://github.com/PokeAPI/sprites" target="_blank" rel="noreferrer">
           Artwork via PokéAPI
         </a>

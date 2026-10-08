@@ -1,265 +1,1307 @@
 {
-  "reviewed": "2026-10-02",
+  "reviewed": "2026-10-08",
   "forms": {
+    "abomasnow_mega": {
+      "id": 10060,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10060.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/abomasnow-mega"
+    },
+    "absol_mega": {
+      "id": 10057,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10057.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/absol-mega"
+    },
+    "aegislash_shield": {
+      "id": 681,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/681.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/aegislash-shield"
+    },
+    "aerodactyl_mega": {
+      "id": 10042,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10042.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/aerodactyl-mega"
+    },
+    "aggron_mega": {
+      "id": 10053,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10053.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/aggron-mega"
+    },
+    "alakazam_mega": {
+      "id": 10037,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10037.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/alakazam-mega"
+    },
+    "altaria_mega": {
+      "id": 10067,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10067.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/altaria-mega"
+    },
+    "ampharos_mega": {
+      "id": 10045,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10045.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/ampharos-mega"
+    },
     "arcanine_hisuian": {
       "id": 10230,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10230.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/arcanine-hisui"
     },
     "articuno_galarian": {
       "id": 10169,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10169.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/articuno-galar"
+    },
+    "audino_mega": {
+      "id": 10069,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10069.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/audino-mega"
     },
     "avalugg_hisuian": {
       "id": 10243,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10243.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/avalugg-hisui"
+    },
+    "banette_mega": {
+      "id": 10056,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10056.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/banette-mega"
+    },
+    "beedrill_mega": {
+      "id": 10090,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10090.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/beedrill-mega"
+    },
+    "blastoise_mega": {
+      "id": 10036,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10036.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/blastoise-mega"
+    },
+    "blaziken_mega": {
+      "id": 10050,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10050.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/blaziken-mega"
     },
     "braviary_hisuian": {
       "id": 10240,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10240.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/braviary-hisui"
+    },
+    "burmy_plant": {
+      "id": 412,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/412.png",
+      "kind": "sprite",
+      "source": "https://pokeapi.co/api/v2/pokemon-form/burmy-plant"
+    },
+    "burmy_sandy": {
+      "id": 10034,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/412-sandy.png",
+      "kind": "sprite",
+      "source": "https://pokeapi.co/api/v2/pokemon-form/burmy-sandy"
+    },
+    "burmy_trash": {
+      "id": 10035,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/412-trash.png",
+      "kind": "sprite",
+      "source": "https://pokeapi.co/api/v2/pokemon-form/burmy-trash"
+    },
+    "castform_rainy": {
+      "id": 10014,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10014.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/castform-rainy"
+    },
+    "castform_snowy": {
+      "id": 10015,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10015.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/castform-snowy"
+    },
+    "castform_sunny": {
+      "id": 10013,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10013.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/castform-sunny"
+    },
+    "charizard_mega_x": {
+      "id": 10034,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10034.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/charizard-mega-x"
+    },
+    "charizard_mega_y": {
+      "id": 10035,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10035.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/charizard-mega-y"
+    },
+    "cherrim_overcast": {
+      "id": 421,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/421.png",
+      "kind": "sprite",
+      "source": "https://pokeapi.co/api/v2/pokemon-form/cherrim-overcast"
+    },
+    "cherrim_sunny": {
+      "id": 10038,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/421-sunshine.png",
+      "kind": "sprite",
+      "source": "https://pokeapi.co/api/v2/pokemon-form/cherrim-sunshine"
+    },
+    "chesnaught_mega": {
+      "id": 10292,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10292.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/chesnaught-mega"
     },
     "corsola_galarian": {
       "id": 10173,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10173.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/corsola-galar"
     },
     "darmanitan_galarian_standard": {
       "id": 10177,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10177.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/darmanitan-galar-standard"
+    },
+    "darmanitan_standard": {
+      "id": 555,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/555.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/darmanitan-standard"
     },
     "darumaka_galarian": {
       "id": 10176,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10176.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/darumaka-galar"
     },
     "decidueye_hisuian": {
       "id": 10244,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10244.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/decidueye-hisui"
+    },
+    "delphox_mega": {
+      "id": 10293,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10293.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/delphox-mega"
+    },
+    "deoxys_attack": {
+      "id": 10001,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10001.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/deoxys-attack"
+    },
+    "deoxys_defense": {
+      "id": 10002,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10002.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/deoxys-defense"
+    },
+    "deoxys_speed": {
+      "id": 10003,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10003.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/deoxys-speed"
+    },
+    "dialga_origin": {
+      "id": 10245,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10245.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/dialga-origin"
+    },
+    "diancie_mega": {
+      "id": 10075,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10075.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/diancie-mega"
     },
     "diglett_alolan": {
       "id": 10105,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10105.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/diglett-alola"
+    },
+    "dragonite_mega": {
+      "id": 10281,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10281.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/dragonite-mega"
     },
     "dugtrio_alolan": {
       "id": 10106,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10106.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/dugtrio-alola"
     },
     "electrode_hisuian": {
       "id": 10232,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10232.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/electrode-hisui"
+    },
+    "enamorus_incarnate": {
+      "id": 905,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/905.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/enamorus-incarnate"
+    },
+    "enamorus_therian": {
+      "id": 10249,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10249.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/enamorus-therian"
     },
     "exeggutor_alolan": {
       "id": 10114,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10114.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/exeggutor-alola"
+    },
+    "falinks_mega": {
+      "id": 10303,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10303.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/falinks-mega"
     },
     "farfetchd_galarian": {
       "id": 10166,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10166.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/farfetchd-galar"
+    },
+    "gallade_mega": {
+      "id": 10068,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10068.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/gallade-mega"
+    },
+    "garchomp_mega": {
+      "id": 10058,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10058.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/garchomp-mega"
+    },
+    "gardevoir_mega": {
+      "id": 10051,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10051.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/gardevoir-mega"
+    },
+    "genesect_burn": {
+      "id": 10077,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/649-burn.png",
+      "kind": "sprite",
+      "source": "https://pokeapi.co/api/v2/pokemon-form/genesect-burn"
+    },
+    "genesect_chill": {
+      "id": 10078,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/649-chill.png",
+      "kind": "sprite",
+      "source": "https://pokeapi.co/api/v2/pokemon-form/genesect-chill"
+    },
+    "genesect_douse": {
+      "id": 10075,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/649-douse.png",
+      "kind": "sprite",
+      "source": "https://pokeapi.co/api/v2/pokemon-form/genesect-douse"
+    },
+    "genesect_shock": {
+      "id": 10076,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/649-shock.png",
+      "kind": "sprite",
+      "source": "https://pokeapi.co/api/v2/pokemon-form/genesect-shock"
+    },
+    "gengar_mega": {
+      "id": 10038,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10038.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/gengar-mega"
     },
     "geodude_alolan": {
       "id": 10109,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10109.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/geodude-alola"
+    },
+    "giratina_altered": {
+      "id": 487,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/487.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/giratina-altered"
+    },
+    "giratina_origin": {
+      "id": 10007,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10007.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/giratina-origin"
+    },
+    "glalie_mega": {
+      "id": 10074,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10074.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/glalie-mega"
     },
     "golem_alolan": {
       "id": 10111,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10111.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/golem-alola"
+    },
+    "gourgeist_average": {
+      "id": 711,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/711.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/gourgeist-average"
+    },
+    "gourgeist_large": {
+      "id": 10031,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10031.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/gourgeist-large"
+    },
+    "gourgeist_small": {
+      "id": 10030,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10030.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/gourgeist-small"
+    },
+    "gourgeist_super": {
+      "id": 10032,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10032.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/gourgeist-super"
     },
     "graveler_alolan": {
       "id": 10110,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10110.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/graveler-alola"
+    },
+    "greninja_mega": {
+      "id": 10294,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10294.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/greninja-mega"
     },
     "grimer_alolan": {
       "id": 10112,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10112.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/grimer-alola"
+    },
+    "groudon_primal": {
+      "id": 10078,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10078.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/groudon-primal"
     },
     "growlithe_hisuian": {
       "id": 10229,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10229.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/growlithe-hisui"
+    },
+    "gyarados_mega": {
+      "id": 10041,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10041.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/gyarados-mega"
+    },
+    "hakamo_o": {
+      "id": 783,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/783.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/hakamo-o"
+    },
+    "heracross_mega": {
+      "id": 10047,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10047.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/heracross-mega"
+    },
+    "ho_oh": {
+      "id": 250,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/250.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/ho-oh"
+    },
+    "hoopa_unbound": {
+      "id": 10086,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10086.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/hoopa-unbound"
+    },
+    "houndoom_mega": {
+      "id": 10048,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10048.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/houndoom-mega"
+    },
+    "indeedee_female": {
+      "id": 10186,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10186.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/indeedee-female"
+    },
+    "indeedee_male": {
+      "id": 876,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/876.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/indeedee-male"
+    },
+    "jangmo_o": {
+      "id": 782,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/782.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/jangmo-o"
+    },
+    "kangaskhan_mega": {
+      "id": 10039,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10039.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/kangaskhan-mega"
+    },
+    "keldeo_ordinary": {
+      "id": 647,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/647.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/keldeo-ordinary"
+    },
+    "keldeo_resolute": {
+      "id": 10024,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10024.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/keldeo-resolute"
+    },
+    "kommo_o": {
+      "id": 784,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/784.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/kommo-o"
+    },
+    "kyogre_primal": {
+      "id": 10077,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10077.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/kyogre-primal"
+    },
+    "kyurem_black": {
+      "id": 10022,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10022.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/kyurem-black"
+    },
+    "kyurem_white": {
+      "id": 10023,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10023.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/kyurem-white"
+    },
+    "landorus_incarnate": {
+      "id": 645,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/645.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/landorus-incarnate"
+    },
+    "landorus_therian": {
+      "id": 10021,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10021.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/landorus-therian"
+    },
+    "latias_mega": {
+      "id": 10062,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10062.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/latias-mega"
+    },
+    "latios_mega": {
+      "id": 10063,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10063.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/latios-mega"
     },
     "lilligant_hisuian": {
       "id": 10237,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10237.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/lilligant-hisui"
     },
     "linoone_galarian": {
       "id": 10175,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10175.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/linoone-galar"
+    },
+    "lopunny_mega": {
+      "id": 10088,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10088.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/lopunny-mega"
+    },
+    "lucario_mega": {
+      "id": 10059,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10059.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/lucario-mega"
+    },
+    "lycanroc_dusk": {
+      "id": 10152,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10152.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/lycanroc-dusk"
+    },
+    "lycanroc_midday": {
+      "id": 745,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/745.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/lycanroc-midday"
+    },
+    "lycanroc_midnight": {
+      "id": 10126,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10126.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/lycanroc-midnight"
+    },
+    "malamar_mega": {
+      "id": 10297,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10297.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/malamar-mega"
+    },
+    "manectric_mega": {
+      "id": 10055,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10055.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/manectric-mega"
     },
     "marowak_alolan": {
       "id": 10115,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10115.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/marowak-alola"
+    },
+    "mawile_mega": {
+      "id": 10052,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10052.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/mawile-mega"
+    },
+    "medicham_mega": {
+      "id": 10054,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10054.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/medicham-mega"
+    },
+    "meloetta_aria": {
+      "id": 648,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/648.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/meloetta-aria"
+    },
+    "meowstic_female": {
+      "id": 10025,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10025.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/meowstic-female"
     },
     "meowth_alolan": {
       "id": 10107,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10107.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/meowth-alola"
     },
     "meowth_galarian": {
       "id": 10161,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10161.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/meowth-galar"
+    },
+    "metagross_mega": {
+      "id": 10076,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10076.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/metagross-mega"
+    },
+    "mewtwo_armored": {
+      "url": null,
+      "reason": "No matching artwork or form sprite available from PokéAPI.",
+      "source": "https://pokeapi.co/api/v2/pokemon-form/mewtwo-armored"
+    },
+    "mewtwo_mega_x": {
+      "id": 10043,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10043.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/mewtwo-mega-x"
+    },
+    "mewtwo_mega_y": {
+      "id": 10044,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10044.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/mewtwo-mega-y"
+    },
+    "mime_jr": {
+      "id": 439,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/439.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/mime-jr"
     },
     "moltres_galarian": {
       "id": 10171,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10171.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/moltres-galar"
+    },
+    "morpeko_full_belly": {
+      "id": 877,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/877.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/morpeko-full-belly"
+    },
+    "mr_mime": {
+      "id": 122,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/122.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/mr-mime"
     },
     "mr_mime_galarian": {
       "id": 10168,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10168.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/mr-mime-galar"
+    },
+    "mr_rime": {
+      "id": 866,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/866.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/mr-rime"
     },
     "muk_alolan": {
       "id": 10113,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10113.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/muk-alola"
+    },
+    "necrozma_dawn_wings": {
+      "id": 10156,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10156.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/necrozma-dawn"
+    },
+    "necrozma_dusk_mane": {
+      "id": 10155,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10155.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/necrozma-dusk"
+    },
+    "nidoran_female": {
+      "id": 29,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/29.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/nidoran-f"
+    },
+    "nidoran_male": {
+      "id": 32,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/32.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/nidoran-m"
     },
     "ninetales_alolan": {
       "id": 10104,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10104.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/ninetales-alola"
+    },
+    "oinkologne_female": {
+      "id": 10254,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10254.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/oinkologne-female"
+    },
+    "oricorio_baile": {
+      "id": 741,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/741.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/oricorio-baile"
+    },
+    "oricorio_pau": {
+      "id": 10124,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10124.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/oricorio-pau"
+    },
+    "oricorio_pom_pom": {
+      "id": 10123,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10123.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/oricorio-pom-pom"
+    },
+    "oricorio_sensu": {
+      "id": 10125,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10125.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/oricorio-sensu"
+    },
+    "palkia_origin": {
+      "id": 10246,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10246.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/palkia-origin"
     },
     "persian_alolan": {
       "id": 10108,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10108.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/persian-alola"
+    },
+    "pidgeot_mega": {
+      "id": 10073,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10073.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/pidgeot-mega"
+    },
+    "pikachu_5th_anniversary": {
+      "url": null,
+      "reason": "No matching artwork or form sprite available from PokéAPI.",
+      "source": "https://pokeapi.co/api/v2/pokemon-form/pikachu-5th-anniversary"
+    },
+    "pikachu_flying": {
+      "url": null,
+      "reason": "No matching artwork or form sprite available from PokéAPI.",
+      "source": "https://pokeapi.co/api/v2/pokemon-form/pikachu-flying"
+    },
+    "pikachu_horizons": {
+      "url": null,
+      "reason": "No matching artwork or form sprite available from PokéAPI.",
+      "source": "https://pokeapi.co/api/v2/pokemon-form/pikachu-horizons"
+    },
+    "pikachu_kariyushi": {
+      "url": null,
+      "reason": "No matching artwork or form sprite available from PokéAPI.",
+      "source": "https://pokeapi.co/api/v2/pokemon-form/pikachu-kariyushi"
+    },
+    "pikachu_libre": {
+      "id": 10084,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10084.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/pikachu-libre"
+    },
+    "pikachu_pop_star": {
+      "id": 10082,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10082.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/pikachu-pop-star"
+    },
+    "pikachu_rock_star": {
+      "id": 10080,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10080.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/pikachu-rock-star"
+    },
+    "pikachu_shaymin": {
+      "url": null,
+      "reason": "No matching artwork or form sprite available from PokéAPI.",
+      "source": "https://pokeapi.co/api/v2/pokemon-form/pikachu-shaymin"
+    },
+    "pinsir_mega": {
+      "id": 10040,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10040.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/pinsir-mega"
     },
     "ponyta_galarian": {
       "id": 10162,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10162.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/ponyta-galar"
+    },
+    "porygon_z": {
+      "id": 474,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/474.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/porygon-z"
+    },
+    "pumpkaboo_average": {
+      "id": 710,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/710.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/pumpkaboo-average"
+    },
+    "pumpkaboo_large": {
+      "id": 10028,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10028.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/pumpkaboo-large"
+    },
+    "pumpkaboo_small": {
+      "id": 10027,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10027.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/pumpkaboo-small"
+    },
+    "pumpkaboo_super": {
+      "id": 10029,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10029.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/pumpkaboo-super"
     },
     "qwilfish_hisuian": {
       "id": 10234,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10234.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/qwilfish-hisui"
     },
     "raichu_alolan": {
       "id": 10100,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10100.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/raichu-alola"
+    },
+    "raichu_mega_x": {
+      "id": 10304,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10304.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/raichu-mega-x"
+    },
+    "raichu_mega_y": {
+      "id": 10305,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10305.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/raichu-mega-y"
     },
     "rapidash_galarian": {
       "id": 10163,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10163.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/rapidash-galar"
     },
     "raticate_alolan": {
       "id": 10092,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10092.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/raticate-alola"
     },
     "rattata_alolan": {
       "id": 10091,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10091.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/rattata-alola"
+    },
+    "rayquaza_mega": {
+      "id": 10079,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10079.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/rayquaza-mega"
+    },
+    "rockruff_dusk": {
+      "id": 10151,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10151.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/rockruff-own-tempo"
+    },
+    "rotom_fan": {
+      "id": 10011,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10011.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/rotom-fan"
+    },
+    "rotom_frost": {
+      "id": 10010,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10010.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/rotom-frost"
+    },
+    "rotom_heat": {
+      "id": 10008,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10008.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/rotom-heat"
+    },
+    "rotom_mow": {
+      "id": 10012,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10012.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/rotom-mow"
+    },
+    "rotom_wash": {
+      "id": 10009,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10009.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/rotom-wash"
+    },
+    "sableye_mega": {
+      "id": 10066,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10066.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/sableye-mega"
+    },
+    "salamence_mega": {
+      "id": 10089,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10089.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/salamence-mega"
     },
     "samurott_hisuian": {
       "id": 10236,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10236.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/samurott-hisui"
     },
     "sandshrew_alolan": {
       "id": 10101,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10101.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/sandshrew-alola"
     },
     "sandslash_alolan": {
       "id": 10102,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10102.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/sandslash-alola"
+    },
+    "sceptile_mega": {
+      "id": 10065,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10065.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/sceptile-mega"
+    },
+    "scizor_mega": {
+      "id": 10046,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10046.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/scizor-mega"
+    },
+    "sharpedo_mega": {
+      "id": 10070,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10070.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/sharpedo-mega"
+    },
+    "shaymin_land": {
+      "id": 492,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/492.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/shaymin-land"
+    },
+    "shaymin_sky": {
+      "id": 10006,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10006.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/shaymin-sky"
+    },
+    "skarmory_mega": {
+      "id": 10284,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10284.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/skarmory-mega"
     },
     "slowbro_galarian": {
       "id": 10165,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10165.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/slowbro-galar"
+    },
+    "slowbro_mega": {
+      "id": 10071,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10071.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/slowbro-mega"
     },
     "slowking_galarian": {
       "id": 10172,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10172.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/slowking-galar"
     },
     "slowpoke_galarian": {
       "id": 10164,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10164.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/slowpoke-galar"
     },
     "sneasel_hisuian": {
       "id": 10235,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10235.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/sneasel-hisui"
+    },
+    "staraptor_mega": {
+      "id": 10308,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10308.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/staraptor-mega"
+    },
+    "starmie_mega": {
+      "id": 10280,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10280.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/starmie-mega"
+    },
+    "steelix_mega": {
+      "id": 10072,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10072.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/steelix-mega"
     },
     "stunfisk_galarian": {
       "id": 10180,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10180.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/stunfisk-galar"
+    },
+    "swampert_mega": {
+      "id": 10064,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10064.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/swampert-mega"
+    },
+    "tapu_bulu": {
+      "id": 787,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/787.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/tapu-bulu"
+    },
+    "tapu_fini": {
+      "id": 788,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/788.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/tapu-fini"
+    },
+    "tapu_koko": {
+      "id": 785,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/785.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/tapu-koko"
+    },
+    "tapu_lele": {
+      "id": 786,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/786.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/tapu-lele"
+    },
+    "tatsugiri_curly": {
+      "id": 978,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/978.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/tatsugiri-curly"
+    },
+    "tatsugiri_droopy": {
+      "id": 10258,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10258.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/tatsugiri-droopy"
+    },
+    "tatsugiri_stretchy": {
+      "id": 10259,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10259.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/tatsugiri-stretchy"
+    },
+    "tauros_aqua": {
+      "id": 10252,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10252.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/tauros-paldea-aqua-breed"
+    },
+    "tauros_blaze": {
+      "id": 10251,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10251.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/tauros-paldea-blaze-breed"
+    },
+    "tauros_combat": {
+      "id": 10250,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10250.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/tauros-paldea-combat-breed"
+    },
+    "thundurus_incarnate": {
+      "id": 642,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/642.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/thundurus-incarnate"
+    },
+    "thundurus_therian": {
+      "id": 10020,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10020.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/thundurus-therian"
+    },
+    "tornadus_incarnate": {
+      "id": 641,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/641.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/tornadus-incarnate"
+    },
+    "tornadus_therian": {
+      "id": 10019,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10019.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/tornadus-therian"
     },
     "typhlosion_hisuian": {
       "id": 10233,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10233.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/typhlosion-hisui"
+    },
+    "tyranitar_mega": {
+      "id": 10049,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10049.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/tyranitar-mega"
+    },
+    "urshifu_rapid_strike": {
+      "id": 10191,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10191.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/urshifu-rapid-strike"
+    },
+    "urshifu_single_strike": {
+      "id": 892,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/892.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/urshifu-single-strike"
+    },
+    "venusaur_mega": {
+      "id": 10033,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10033.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/venusaur-mega"
+    },
+    "victreebel_mega": {
+      "id": 10279,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10279.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/victreebel-mega"
     },
     "voltorb_hisuian": {
       "id": 10231,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10231.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/voltorb-hisui"
     },
     "vulpix_alolan": {
       "id": 10103,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10103.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/vulpix-alola"
     },
     "weezing_galarian": {
       "id": 10167,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10167.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/weezing-galar"
     },
     "wooper_paldean": {
       "id": 10253,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10253.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/wooper-paldea"
+    },
+    "wormadam_plant": {
+      "id": 413,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/413.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/wormadam-plant"
+    },
+    "wormadam_sandy": {
+      "id": 10004,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10004.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/wormadam-sandy"
+    },
+    "wormadam_trash": {
+      "id": 10005,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10005.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/wormadam-trash"
     },
     "yamask_galarian": {
       "id": 10179,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10179.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/yamask-galar"
+    },
+    "zacian_crowned_sword": {
+      "id": 10188,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10188.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/zacian-crowned"
+    },
+    "zacian_hero": {
+      "id": 888,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/888.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/zacian"
+    },
+    "zamazenta_crowned_shield": {
+      "id": 10189,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10189.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/zamazenta-crowned"
+    },
+    "zamazenta_hero": {
+      "id": 889,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/889.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/zamazenta"
     },
     "zapdos_galarian": {
       "id": 10170,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10170.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/zapdos-galar"
     },
     "zigzagoon_galarian": {
       "id": 10174,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10174.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/zigzagoon-galar"
     },
     "zoroark_hisuian": {
       "id": 10239,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10239.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/zoroark-hisui"
     },
     "zorua_hisuian": {
       "id": 10238,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10238.png",
+      "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/zorua-hisui"
+    },
+    "zygarde_10": {
+      "id": 10181,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10181.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/zygarde-10"
+    },
+    "zygarde_complete": {
+      "id": 10120,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10120.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/zygarde-complete"
     }
   }
 }
