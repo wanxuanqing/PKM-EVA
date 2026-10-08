@@ -8,7 +8,7 @@ Clear this site's browser storage to remove all local records and offline caches
 
 Online visits and update checks request app files and catalogs from the hosting provider. These requests expose normal connection metadata, such as IP address, request path and browser headers, to the provider. The checked-in Cloudflare configuration enables persisted observability and invocation logs; actual coverage and retention depend on the deployed service and account settings. This document does not promise zero hosting logs or a specific retention period. See [Cloudflare's privacy policy](https://www.cloudflare.com/privacypolicy/).
 
-Species pictures load from PokéAPI's sprite repository on raw.githubusercontent.com. That host receives normal connection metadata and the requested species or regional-form image ID, but no referrer, IVs or saved assessments. Regional artwork mappings are bundled locally; searches do not call the PokéAPI API. Pictures are not included in the offline precache and may be unavailable offline.
+Species pictures load from PokéAPI's sprite repository on raw.githubusercontent.com. That host receives normal connection metadata and the requested species or form image ID, but no referrer, IVs or saved assessments. Form artwork mappings are bundled locally; searches do not call the PokéAPI API. Pictures are not included in the offline precache and may be unavailable offline.
 
 The app does not send entered IVs, saved assessments or preferences to third-party ranking providers during searches. Opening an external source link visits that provider under its own policies. Data-maintenance scripts fetch source sites when a maintainer explicitly runs an update; those scripts are separate from ordinary app use.
 

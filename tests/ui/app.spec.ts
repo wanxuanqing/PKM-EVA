@@ -72,7 +72,7 @@ test('regional artwork follows form changes and resets a failed picture for the 
   await expect(page.getByText('Picture unavailable offline or from source.')).toBeVisible();
   await page.getByLabel('Form', { exact: true }).selectOption('avalugg_hisuian');
   const image = page.getByRole('img', {
-    name: 'Regional artwork for Avalugg (Hisuian)',
+    name: 'Form artwork for Avalugg (Hisuian)',
     exact: true,
   });
   await expect(image).toBeVisible();
@@ -84,7 +84,7 @@ test('regional artwork follows form changes and resets a failed picture for the 
     await search(page, name);
     await page.getByLabel('Form', { exact: true }).selectOption(id);
     await expect(
-      page.getByRole('img', { name: `Regional artwork for ${name} (Hisuian)`, exact: true }),
+      page.getByRole('img', { name: `Form artwork for ${name} (Hisuian)`, exact: true }),
     ).toHaveAttribute('src', new RegExp(`/${number}\\.png$`));
   }
 });
@@ -472,4 +472,55 @@ test('production caches complete assets and calculations survive offline reload'
   await expect(page.getByRole('heading', { name: 'Eevee', exact: true })).toBeVisible();
   await noOverflow(page);
   await context.setOffline(false);
+});
+
+test('alternate forms keep distinct images and unsupported costumes do not borrow the base picture', async ({
+  page,
+}) => {
+  await page.route('https://raw.githubusercontent.com/PokeAPI/sprites/**', (route) =>
+    route.fulfill({
+      contentType: 'image/svg+xml',
+      body: '<svg xmlns="http://www.w3.org/2000/svg" width="144" height="144"/>',
+    }),
+  );
+  await page.goto('/');
+  for (const [name, forms] of [
+    [
+      'Shaymin',
+      [
+        ['shaymin_land', '492'],
+        ['shaymin_sky', '10006'],
+        ['shaymin_land', '492'],
+      ],
+    ],
+    [
+      'Giratina',
+      [
+        ['giratina_altered', '487'],
+        ['giratina_origin', '10007'],
+      ],
+    ],
+    [
+      'Charizard',
+      [
+        ['charizard_mega_x', '10034'],
+        ['charizard_mega_y', '10035'],
+      ],
+    ],
+  ] as const) {
+    await search(page, name);
+    for (const [id, number] of forms) {
+      await page.getByLabel('Form', { exact: true }).selectOption(id);
+      await expect(page.locator('.pokemon-picture img')).toHaveAttribute(
+        'src',
+        new RegExp(`/${number}\\.png$`),
+      );
+    }
+  }
+  await search(page, 'Pikachu');
+  await page.getByLabel('Form', { exact: true }).selectOption('pikachu_flying');
+  await expect(page.getByText('Picture unavailable for this form.')).toBeVisible();
+  await expect(page.locator('.pokemon-picture img')).toHaveCount(0);
+  await page.getByLabel('Form', { exact: true }).selectOption('pikachu');
+  await expect(page.locator('.pokemon-picture img')).toHaveAttribute('src', /\/25\.png$/);
 });
