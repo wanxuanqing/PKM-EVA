@@ -205,7 +205,7 @@ for (const width of [360, 390, 430, 1280])
     await page.goto('/');
     await stable(page);
     const card = page.getByRole('article', { name: 'Dusclops Great League', exact: true });
-    await expect(card).toContainText('#61');
+    await expect(card).toContainText('#78');
     await expect(card).toContainText('98.53%');
     await noOverflow(page);
     await card.getByText('Details & requirements').click();
@@ -369,7 +369,7 @@ test('advanced settings preserve theoretical ranks and separate regional branche
   await stable(page);
   const card = page.getByRole('article', { name: 'Dusclops Great League', exact: true });
   await expect(card).toContainText('Already over the cap');
-  await expect(card).toContainText('#61');
+  await expect(card).toContainText('#78');
   await page.getByLabel('Current level', { exact: true }).fill('');
   await page.getByLabel('Best Buddy boost').check();
   await stable(page);
@@ -523,4 +523,44 @@ test('alternate forms keep distinct images and unsupported costumes do not borro
   await expect(page.locator('.pokemon-picture img')).toHaveCount(0);
   await page.getByLabel('Form', { exact: true }).selectOption('pikachu');
   await expect(page.locator('.pokemon-picture img')).toHaveAttribute('src', /\/25\.png$/);
+});
+
+test('Top 50 lists league ideals, moves and type-specific raid shortlists on mobile', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.route('https://raw.githubusercontent.com/PokeAPI/sprites/**', (route) =>
+    route.fulfill({
+      contentType: 'image/svg+xml',
+      body: '<svg xmlns="http://www.w3.org/2000/svg" width="144" height="144"/>',
+    }),
+  );
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Top 50', exact: true }).click();
+  const cards = page.locator('.top-card');
+  await expect(cards).toHaveCount(50);
+  await expect(cards.first()).toContainText('PvPoke #1');
+  await expect(cards.first().locator('.top-ivs')).toHaveText(/Best IVs: \d+ \/ \d+ \/ \d+/);
+  await expect(cards.first()).toContainText('Elite TM');
+  await expect(cards.first().locator('img')).toBeVisible();
+  await page.screenshot({ path: 'docs/screenshots/top50-mobile.png' });
+  const accessibility = await new AxeBuilder({ page }).include('.top-pokemon').analyze();
+  expect(accessibility.violations).toEqual([]);
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.screenshot({ path: 'docs/screenshots/top50-desktop.png' });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.getByRole('button', { name: 'Ultra League', exact: true }).click();
+  await expect(cards).toHaveCount(50);
+  await expect(cards.first().locator('.top-ivs')).toHaveText(/Best IVs: \d+ \/ \d+ \/ \d+/);
+  await page.getByRole('button', { name: 'Master League', exact: true }).click();
+  await expect(cards.first()).toContainText('15 / 15 / 15');
+  await page.getByRole('button', { name: 'Raids', exact: true }).click();
+  await expect(cards).toHaveCount(50);
+  await expect(cards.first()).toContainText('Type rank #');
+  await page.getByLabel('Attack type').selectOption('fire');
+  await expect(cards.first()).toContainText('fire');
+  await expect(page.locator('.top-raid-set strong').filter({ hasNotText: 'fire' })).toHaveCount(0);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.getByRole('button', { name: 'Assess', exact: true }).click();
+  await expect(page.getByLabel('Attack', { exact: true })).toHaveValue('1');
 });
