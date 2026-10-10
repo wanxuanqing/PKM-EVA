@@ -1,5 +1,5 @@
 {
-  "reviewed": "2026-10-08",
+  "reviewed": "2026-10-10",
   "forms": {
     "abomasnow_mega": {
       "id": 10060,
@@ -120,6 +120,12 @@
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/412-trash.png",
       "kind": "sprite",
       "source": "https://pokeapi.co/api/v2/pokemon-form/burmy-trash"
+    },
+    "camerupt_mega": {
+      "id": 10087,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10087.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/camerupt-mega"
     },
     "castform_rainy": {
       "id": 10014,

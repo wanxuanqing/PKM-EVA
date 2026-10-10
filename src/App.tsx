@@ -8,6 +8,7 @@ import { Selector } from './components/Selector';
 import { BrandMark, Icon } from './components/Icon';
 import { ResultCard, leagueNames } from './components/ResultCard';
 import { DataPanel } from './components/DataPanel';
+import { TopPokemon } from './components/TopPokemon';
 import { PokemonPicture } from './components/PokemonPicture';
 import type { CalculationRequest, CalculationResponse } from './worker/calculator.worker';
 
@@ -57,7 +58,7 @@ function initialSettings(): Settings {
   };
 }
 export default function App({ data }: { data: Catalog }) {
-  const [page, setPage] = useState<'assess' | 'saved' | 'data'>('assess');
+  const [page, setPage] = useState<'assess' | 'top' | 'saved' | 'data'>('assess');
   const [selectedId, setSelectedId] = useState('duskull');
   const [fields, setFields] = useState(['1', '12', '13']);
   const ivInputs = useRef<(HTMLInputElement | null)[]>([]);
@@ -284,7 +285,7 @@ export default function App({ data }: { data: Catalog }) {
             </span>
           </button>
           <nav aria-label="Main navigation">
-            {(['assess', 'saved', 'data'] as const).map((p) => (
+            {(['assess', 'top', 'saved', 'data'] as const).map((p) => (
               <button
                 key={p}
                 aria-current={page === p ? 'page' : undefined}
@@ -293,6 +294,8 @@ export default function App({ data }: { data: Catalog }) {
               >
                 {p === 'assess' ? (
                   'Assess'
+                ) : p === 'top' ? (
+                  'Top 50'
                 ) : p === 'saved' ? (
                   <>
                     Saved <span className="nav-count">{saved.length}</span>
@@ -865,6 +868,8 @@ export default function App({ data }: { data: Catalog }) {
               </section>
             </div>
           </>
+        ) : page === 'top' ? (
+          <TopPokemon data={data} />
         ) : page === 'data' ? (
           <DataPanel data={data} />
         ) : (
