@@ -31,7 +31,7 @@ Open <http://127.0.0.1:4173>. `dist/` is the complete static production output. 
 
 ## What it does
 
-Pictures use an audited mapping of all 218 named entries in `src/data/artwork-forms.json` (reviewed 2026-10-07). This includes regional, Mega, alternate battle, gender and supported costume forms: 212 have matching artwork or form sprites. Shaymin Land and Sky, for example, have separate images. Shadow entries reuse their corresponding form without Shadow effects. Six costumes have no matching PokeAPI image (Armored Mewtwo and Pikachu Flying, 5th Anniversary, Horizons, Kariyushi and Shaymin Scarf); these show an unavailable message instead of the base species. Newly added named forms also fail safely until mapped. Sizes are not visually scaled, and shiny colors are not modeled. Source URLs are bundled locally; no runtime API requests are needed.
+Pictures use an audited mapping of all 219 named entries in `src/data/artwork-forms.json` (reviewed 2026-10-10). This includes regional, Mega, alternate battle, gender and supported costume forms: 213 have matching artwork or form sprites. Shaymin Land and Sky, for example, have separate images. Shadow entries reuse their corresponding form without Shadow effects. Six costumes have no matching PokeAPI image (Armored Mewtwo and Pikachu Flying, 5th Anniversary, Horizons, Kariyushi and Shaymin Scarf); these show an unavailable message instead of the base species. Newly added named forms also fail safely until mapped. Sizes are not visually scaled, and shiny colors are not modeled. Source URLs are bundled locally; no runtime API requests are needed.
 
 To refresh the mapping, run `node scripts/update-artwork.mjs`, then `npm run format`, `npm test`, `npm run build` and `npm run test:ui`. The updater checks source species identity and image availability before writing the mapping. The catalog coverage test fails if a new named entry has no explicit artwork decision. Review changed images and unavailable entries before committing.
 
@@ -158,3 +158,9 @@ tests/               unit and browser tests
 docs/                validation results and verified screenshots
 dist/                production output (regenerated; not source controlled)
 ```
+
+### Top 50 browser
+
+The top navigation includes Top 50 with Great, Ultra and Master League lists ordered by the bundled PvPoke rankings. Each card includes the selected form picture, recommended fast and charged moves with Elite/legacy labels, and ideal IVs. GL/UL ideals are calculated in a background worker at level 50 maximum, without Best Buddy, using the full 0-15 IV pool and each form's minimum level. Tied best stat-product spreads remain available. These are theoretical ideals, not encounter guarantees or matchup-specific recommendations; ML and raids use 15/15/15.
+
+Raids uses the existing verified GO Hub move sets, excludes Normal and tiers below B, and offers an attack-type filter. The combined 50-form shortlist sorts by tier, then within-type rank, then type and form ID for deterministic ties; it is not a cross-type DPS ranking or a boss simulation. Alternate, Mega and Shadow forms remain separate. Rankings and moves use the displayed bundled snapshot date; this view does not fetch fresh rankings. Unsupported pictures retain the normal unavailable message and offline calculation still works.

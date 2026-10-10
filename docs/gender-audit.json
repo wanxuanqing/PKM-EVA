@@ -1,14 +1,14 @@
 {
-  "snapshot": "2026-10-01-535cab1bf42a",
+  "snapshot": "2026-10-10-ce5d12bcf944",
   "sourceCommit": "8e227be44f288d34463e23bf04e9b564d3c16f79",
   "scope": "Bundled GO gender templates, form mappings, Shadow/base agreement and all supported evolution paths; not a live availability audit.",
-  "total": 1621,
-  "sourceBacked": 1620,
+  "total": 1622,
+  "sourceBacked": 1621,
   "unverified": [
     "golisopodsh"
   ],
-  "inheritedTemporaryForms": 61,
-  "traversals": 11792,
+  "inheritedTemporaryForms": 62,
+  "traversals": 11800,
   "failures": [],
   "entries": [
     {
@@ -2563,6 +2563,23 @@
       "templates": [
         "SPAWN_V0323_POKEMON_CAMERUPT_NORMAL"
       ],
+      "sharedAppearance": false,
+      "source": "go-gamemaster",
+      "status": "source-backed"
+    },
+    {
+      "id": "camerupt_mega",
+      "name": "Camerupt (Mega)",
+      "dex": 323,
+      "fixed": null,
+      "allowed": [
+        "female",
+        "male"
+      ],
+      "templates": [
+        "SPAWN_V0323_POKEMON_CAMERUPT_NORMAL"
+      ],
+      "inheritedFrom": "camerupt",
       "sharedAppearance": false,
       "source": "go-gamemaster",
       "status": "source-backed"

@@ -66,7 +66,7 @@ test('Cloudflare HTML redirects survive repeat visits, reopening and offline use
       await page.reload();
       await expect(
         page.getByRole('article', { name: 'Dusclops Great League', exact: true }),
-      ).toContainText('#61');
+      ).toContainText('#78');
     }
     await page.close();
     const reopened = await context.newPage();
@@ -78,7 +78,7 @@ test('Cloudflare HTML redirects survive repeat visits, reopening and offline use
     await reopened.reload();
     await expect(
       reopened.getByRole('article', { name: 'Dusclops Great League', exact: true }),
-    ).toContainText('#61');
+    ).toContainText('#78');
     expect(await reopened.evaluate(() => localStorage.getItem('pkm-eva:saved'))).toBe(saved);
     await reopened.close();
   } finally {
