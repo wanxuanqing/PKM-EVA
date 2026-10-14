@@ -611,6 +611,28 @@ export function validateCatalog(data, expectedForms) {
     for (const r of Object.values(p.rankings))
       if (!Number.isInteger(r.rank) || r.rank < 1) throw new Error(`Bad ranking: ${p.id}`);
   }
+  // A sourced temporary raid target must remain reachable from its ordinary copy.
+  const byId = new Map(data.species.map((p) => [p.id, p]));
+  for (const mega of data.species.filter((p) => p.temporary && !p.shadow)) {
+    const baseId = mega.id.replace(/_(mega(?:_[xy])?|primal)$/, '');
+    const base = byId.get(baseId);
+    const raidUseful = mega.raid.some(
+      (r) =>
+        r.source !== 'input-csv' &&
+        r.tier !== 'unverified' &&
+        r.moveSets?.some(
+          (m) => m.type !== 'normal' && ['S+', 'S', 'A+', 'A', 'B+', 'B'].includes(m.tier),
+        ),
+    );
+    if (
+      base &&
+      base.id !== mega.id &&
+      base.dex === mega.dex &&
+      raidUseful &&
+      !base.evolutions.some((e) => e.to === mega.id && e.kind === 'temporary')
+    )
+      throw new Error(`Missing Mega/Primal raid path: ${base.id} -> ${mega.id}`);
+  }
   if (!(data.cpm[98] > 0.84 && data.cpm[100] > data.cpm[98]))
     throw new Error('Invalid level 50/51 CP multipliers.');
   return true;

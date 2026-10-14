@@ -71,3 +71,10 @@ it('failed offline updates preserve the last valid published pointer', () => {
   expect(result.stderr).toContain('checksum mismatch');
   expect(readFileSync(join(fixture, 'src/data/current.json'), 'utf8')).toBe(before);
 });
+
+it('rejects a useful Mega raid target with a missing regular-form connection', () => {
+  const data = JSON.parse(readFileSync(`public${pointer.file}`, 'utf8'));
+  const base = data.species.find((p: { id: string }) => p.id === 'staraptor');
+  base.evolutions = base.evolutions.filter((e: { to: string }) => e.to !== 'staraptor_mega');
+  expect(() => validateCatalog(data, 1608)).toThrow('Missing Mega/Primal raid path');
+});

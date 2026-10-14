@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-01.1",
+  "version": "2026-10-13.1",
   "genderAliases": {
     "pikachu_5th_anniversary": "pikachu_flying_5th_anniv",
     "pikachu_flying": "pikachu_flying_01",
@@ -139,6 +139,17 @@
         "Form change must be unlocked through Mischief Unbound research; requires 50 Candy and 10,000 Stardust."
       ],
       "source": "https://pokemongo.com/news/mischief-unbound-2021"
+    },
+    {
+      "from": "staraptor",
+      "to": "staraptor_mega",
+      "kind": "temporary",
+      "requirements": [
+        "Mega Evolution must be unlocked for this Staraptor; Mega Energy or an eligible cooldown is required. Check the current in-game cost.",
+        "Brave Bird+ is available while Mega Evolved; its power depends on Mega Level. Check the required Mega Level and recommended move availability before investing.",
+        "Mega Evolution is temporary and preserves this copy’s IVs."
+      ],
+      "source": "https://pokemongo.com/news/staraptor-super-mega-raid-day-2026"
     }
   ],
   "eventEdges": [
