@@ -564,3 +564,28 @@ test('Top 50 lists league ideals, moves and type-specific raid shortlists on mob
   await page.getByRole('button', { name: 'Assess', exact: true }).click();
   await expect(page.getByLabel('Attack', { exact: true })).toHaveValue('1');
 });
+
+test('Mega raid value appears from Starly, Staravia and Staraptor with the full path and requirements', async ({
+  page,
+}) => {
+  await page.goto('/');
+  for (const name of ['Starly', 'Staravia', 'Staraptor']) {
+    await search(page, name);
+    await stable(page);
+    const card = page.getByRole('article', { name: 'Staraptor (Mega) Raids', exact: true });
+    await expect(card).toBeVisible();
+    await expect(card).toContainText('RAID VALUE VIA MEGA / PRIMAL');
+    await expect(card).toContainText(`${name} →`);
+    await card.getByText('Details & requirements').click();
+    await expect(card).toContainText('Mega Level');
+    await expect(card).toContainText('Gust');
+    await expect(card).toContainText('Brave Bird+');
+    await expect(card).toContainText('IVs');
+  }
+  await search(page, 'Starly');
+  await page.getByLabel('Form', { exact: true }).selectOption('starly_shadow');
+  await stable(page);
+  await expect(
+    page.getByRole('article', { name: 'Staraptor (Mega) Raids', exact: true }),
+  ).toHaveCount(0);
+});

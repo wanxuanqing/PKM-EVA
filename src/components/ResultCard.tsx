@@ -60,7 +60,11 @@ export function ResultCard({
       <div className="target-title">
         <div>
           <span className="target-path">
-            {option.path.length > 1 ? 'EVOLUTION / FORM OPTION' : 'THIS FORM'}
+            {isRaid && p.temporary && option.path.length > 1
+              ? 'RAID VALUE VIA MEGA / PRIMAL'
+              : option.path.length > 1
+                ? 'EVOLUTION / FORM OPTION'
+                : 'THIS FORM'}
           </span>
           <h3>{p.name}</h3>
         </div>
@@ -69,6 +73,13 @@ export function ResultCard({
           {badge}
         </span>
       </div>
+      {isRaid && p.temporary && option.path.length > 1 && (
+        <p className="small-note">
+          {option.path.map((id) => data.species.find((s) => s.id === id)?.name ?? id).join(' → ')}.{' '}
+          This raid rating applies to the temporary form. Evolve first if needed, then meet the Mega
+          or Primal requirements below. Your IVs are preserved.
+        </p>
+      )}
       {(isRaid || role === 'ML') && (
         <div className="raid-metrics">
           <div>

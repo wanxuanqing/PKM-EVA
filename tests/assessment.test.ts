@@ -310,3 +310,65 @@ describe('search and recommendations', () => {
     }
   });
 });
+
+describe('Mega and Primal raid paths', () => {
+  it('connects every temporary form to its regular base without duplicate edges', () => {
+    for (const mega of data.species.filter((p) => p.temporary && !p.shadow)) {
+      const base = map.get(mega.id.replace(/_(mega(?:_[xy])?|primal)$/, ''));
+      expect(base, mega.id).toBeDefined();
+      expect(
+        base!.evolutions.filter((e) => e.to === mega.id),
+        mega.id,
+      ).toHaveLength(1);
+      expect(
+        paths(base!.id).some((p) => p.species.id === mega.id),
+        mega.id,
+      ).toBe(true);
+    }
+  });
+  it('propagates the same Mega raid role to regular copies and earlier stages', () => {
+    for (const [start, target, expected] of [
+      ['starly', 'staraptor_mega', ['starly', 'staravia', 'staraptor', 'staraptor_mega']],
+      ['staravia', 'staraptor_mega', ['staravia', 'staraptor', 'staraptor_mega']],
+      ['staraptor', 'staraptor_mega', ['staraptor', 'staraptor_mega']],
+      [
+        'charmander',
+        'charizard_mega_y',
+        ['charmander', 'charmeleon', 'charizard', 'charizard_mega_y'],
+      ],
+      ['bagon', 'salamence_mega', ['bagon', 'shelgon', 'salamence', 'salamence_mega']],
+    ] as const) {
+      const option = optionsFor(paths(start)).find(
+        (o) => o.role === 'Raid' && o.species.id === target,
+      );
+      expect(option, start).toBeDefined();
+      expect(option!.path).toEqual([...expected]);
+      expect(option!.raid!.moveSets?.length).toBeGreaterThan(0);
+      expect(option!.requirements.length).toBeGreaterThan(0);
+    }
+    const option = optionsFor(paths('starly', {}, [15, 15, 15])).find(
+      (o) => o.species.id === 'staraptor_mega',
+    )!;
+    expect(option.requirements.join(' ')).toContain('Mega Level');
+    expect(
+      recommendation(map.get('starly')!, [15, 15, 15], [option], flags, settings, true).verdict,
+    ).toBe('Keep');
+    const low = optionsFor(paths('starly', {}, [1, 1, 1]));
+    expect(recommendation(map.get('starly')!, [1, 1, 1], low, flags, settings, true).verdict).toBe(
+      'Trade',
+    );
+  });
+  it('preserves gender restrictions and does not route Shadows into Megas', () => {
+    expect(paths('ralts', { gender: 'female' }).some((p) => p.species.id === 'gallade_mega')).toBe(
+      false,
+    );
+    expect(paths('ralts', { gender: 'male' }).some((p) => p.species.id === 'gallade_mega')).toBe(
+      true,
+    );
+    for (const id of ['starly_shadow', 'staravia_shadow', 'staraptor_shadow', 'charmander_shadow'])
+      expect(
+        paths(id).some((p) => p.species.temporary),
+        id,
+      ).toBe(false);
+  });
+});
