@@ -107,6 +107,7 @@ export function normalizeData({
   rules,
   raidFacts,
   raidPages = [],
+  raidForms = [],
   retainedSpecies = [],
   retrieved,
   sources,
@@ -115,6 +116,20 @@ export function normalizeData({
   const rowMap = new Map(rows.map((r) => [r['Form ID'], r]));
   const historical = new Map(retainedSpecies.map((p) => [p.id, p]));
   const gmMap = new Map(gm.pokemon.map((p) => [p.speciesId, p]));
+  for (const form of raidForms) {
+    if (gmMap.has(form.id)) continue;
+    const base = gmMap.get(form.baseId);
+    if (!base || form.id !== `${form.baseId}_shadow` || base.dex !== form.dex)
+      throw new Error(`Unsupported sourced Shadow raid form: ${form.id}`);
+    gmMap.set(form.id, {
+      ...base,
+      speciesId: form.id,
+      speciesName: form.name,
+      tags: [...(base.tags ?? []), 'shadow'],
+      family: undefined,
+      raidOnly: true,
+    });
+  }
   const goMap = new Map(
     go
       .filter((x) => x.data?.pokemonSettings)
@@ -218,6 +233,7 @@ export function normalizeData({
   for (const id of ['spewpa', 'cosmog', 'cosmoem', 'rockruff_dusk']) if (gmMap.has(id)) ids.add(id);
   for (const p of gm.pokemon)
     if (p.released && (p.family || ranked.has(p.speciesId))) ids.add(p.speciesId);
+  for (const form of raidForms) ids.add(form.id);
   const species = [];
   for (const id of ids) {
     const p = gmMap.get(id),
@@ -259,6 +275,10 @@ export function normalizeData({
         ? originalName.replace(/ \(Shadow\)$/, '') + ' (Male)' + (shadow ? ' (Shadow)' : '')
         : originalName;
     const notes = [];
+    if (p?.raidOnly)
+      notes.push(
+        'Raid-only Shadow form from GO Hub; base stats and gender follow its regular GO form. PvP eligibility and live availability are not inferred.',
+      );
     if (!p && !historical.get(id)?.baseStats) audit.missingStats.push(id);
     if (!p && historical.get(id)?.baseStats)
       notes.push(
@@ -273,7 +293,7 @@ export function normalizeData({
       notes.push(
         'Supplemental source-backed form or evolution stage absent from the original CSV; its release status is not inferred from simulator flags.',
       );
-    const baseEligible = !!p && !temporary && !['ditto', 'shedinja'].includes(id);
+    const baseEligible = !!p && !p.raidOnly && !temporary && !['ditto', 'shedinja'].includes(id);
     const target = {
       id,
       dex: row ? Number(row['Pokédex #']) : p.dex,
@@ -523,22 +543,22 @@ export function normalizeData({
     if (nameKey(p.name) !== nameKey(page.name) && rules.raidAliases?.[page.name] !== p.id)
       throw new Error(`Raid form mismatch: ${page.id}`);
     const roles = page.roles.filter(
-      (r) => r.type !== 'normal' && ['S+', 'S', 'A+', 'A', 'B+', 'B'].includes(r.tier),
+      (r) => r.type !== 'normal' && ['SS', 'S+', 'S', 'A+', 'A'].includes(r.tier),
     );
     if (!roles.length) {
       for (const entry of p.raid)
         entry.moveReview = {
           source: page.url,
           retrieved: page.retrieved,
-          reason: `GO Hub lists ${page.roles.map((r) => `${r.type} ${r.tier}`).join('; ') || 'no recommended type roles'}. No role meets the app's B-or-better, non-Normal expansion rule.`,
+          reason: `GO Hub lists ${page.roles.map((r) => `${r.type} ${r.tier}`).join('; ') || 'no recommended type roles'}. No role meets the app's A-or-better, non-Normal expansion rule.`,
         };
       continue;
     }
     const entry = p.raid[0] ?? { tier: 'budget' };
-    entry.tier = roles.some((r) => ['S+', 'S', 'A+', 'A'].includes(r.tier)) ? 'strong' : 'budget';
+    entry.tier = 'strong';
     entry.types = roles.map((r) => r.type);
     entry.evidence = `GO Hub role ratings: ${roles.map((r) => `${r.type} ${r.tier} (#${r.rank})`).join('; ')}. General type roles, not a boss-specific simulation.`;
-    entry.source = page.url;
+    entry.source = roles[0].source ?? page.url;
     entry.reviewed = page.retrieved.slice(0, 10);
     entry.moves = roles.map(
       (r) => `${r.type}: ${r.moves.map((m) => m.name + (m.limited ? ' *' : '')).join(' + ')}`,
@@ -549,8 +569,11 @@ export function normalizeData({
       rank: r.rank,
       fast: r.moves[0],
       charged: r.moves[1],
-      source: page.url,
-      retrieved: page.retrieved,
+      source: r.source ?? page.url,
+      retrieved: r.retrieved ?? page.retrieved,
+      offType: r.offType ?? false,
+      mixedMoves: r.mixedMoves ?? false,
+      conditions: r.conditions ?? [],
     }));
     p.raid = [entry];
   }
@@ -558,7 +581,7 @@ export function normalizeData({
     'All CSV forms are retained. A simulator released flag does not independently verify GO availability.',
   );
   audit.warnings.push(
-    'CSV-only raid candidates remain unverified unless supported by a GO Hub type role rated B or better. Missing raid evidence never means no raid value.',
+    'CSV-only raid candidates remain unverified unless supported by a GO Hub type role rated A or better. Missing raid evidence never means no raid value.',
   );
   audit.warnings.push(
     'Known non-tradable research Pokémon use manually reviewed minimum levels. The default IV comparison remains all 4,096 combinations, even when some IVs are unobtainable.',
@@ -621,7 +644,7 @@ export function validateCatalog(data, expectedForms) {
         r.source !== 'input-csv' &&
         r.tier !== 'unverified' &&
         r.moveSets?.some(
-          (m) => m.type !== 'normal' && ['S+', 'S', 'A+', 'A', 'B+', 'B'].includes(m.tier),
+          (m) => m.type !== 'normal' && ['SS', 'S+', 'S', 'A+', 'A'].includes(m.tier),
         ),
     );
     if (
@@ -632,6 +655,96 @@ export function validateCatalog(data, expectedForms) {
       !base.evolutions.some((e) => e.to === mega.id && e.kind === 'temporary')
     )
       throw new Error(`Missing Mega/Primal raid path: ${base.id} -> ${mega.id}`);
+  }
+  if (data.maxBattles) {
+    const max = data.maxBattles;
+    if (
+      max.byType.length !== 18 ||
+      new Set(max.byType.map((t) => t.type)).size !== 18 ||
+      new Set(max.entries.map((e) => e.id)).size !== max.entries.length
+    )
+      throw new Error('Incomplete or duplicate Max Battle coverage');
+    for (const e of max.entries) {
+      const base = byId.get(e.speciesId);
+      if (!base || base.dex !== e.dex || base.shadow || base.temporary || !e.roles.length)
+        throw new Error(`Invalid Max Battle form: ${e.id}`);
+      for (const r of e.roles)
+        if (
+          !Number.isInteger(r.rank) ||
+          r.rank < 1 ||
+          r.rank > 5 ||
+          !r.tier ||
+          !(r.damage > 0) ||
+          !r.fast.name ||
+          !r.maxMove.name ||
+          !r.source.startsWith('https://db.pokemongohub.net/')
+        )
+          throw new Error(`Invalid Max Battle role: ${e.id}`);
+    }
+    for (const e of max.usefulEntries ?? []) {
+      const base = byId.get(e.speciesId);
+      if (!base || base.dex !== e.dex || base.shadow || base.temporary || !e.roles.length)
+        throw new Error('Invalid useful Max form: ' + e.id);
+      for (const r of e.roles)
+        if (
+          !Number.isInteger(r.rank) ||
+          r.rank < 1 ||
+          !['SS', 'S+', 'S', 'A+', 'A'].includes(r.tier) ||
+          !(r.damage > 0) ||
+          !r.fast.name ||
+          !r.maxMove.name ||
+          !max.byType.some((t) => t.type === r.type) ||
+          !r.source.startsWith('https://db.pokemongohub.net/')
+        )
+          throw new Error('Invalid useful Max role: ' + e.id);
+    }
+    if (
+      new Set((max.usefulEntries ?? []).map((e) => e.id)).size !== (max.usefulEntries?.length ?? 0)
+    )
+      throw new Error('Duplicate useful Max forms');
+    const supportIds = new Set();
+    for (const e of max.supportEntries ?? []) {
+      const base = byId.get(e.speciesId);
+      if (
+        !base ||
+        base.dex !== e.dex ||
+        base.shadow ||
+        base.temporary ||
+        !e.support?.length ||
+        e.roles.length ||
+        supportIds.has(e.id)
+      )
+        throw new Error('Invalid Max support form: ' + e.id);
+      supportIds.add(e.id);
+      const roles = new Set();
+      for (const r of e.support) {
+        if (
+          !['Defender', 'Healer'].includes(r.role) ||
+          roles.has(r.role) ||
+          !['SS', 'S+', 'S', 'A+', 'A'].includes(r.tier) ||
+          !r.source.startsWith('https://pokemongohub.net/post/guide/') ||
+          !Number.isFinite(Date.parse(r.retrieved)) ||
+          !r.notes.length ||
+          (r.role === 'Defender' && !r.fastMoves.length) ||
+          (r.role === 'Healer' && r.fastMoves.length) ||
+          r.fastMoves.some(
+            (m) => !m.name || typeof m.verified !== 'boolean' || typeof m.limited !== 'boolean',
+          )
+        )
+          throw new Error('Invalid Max support role: ' + e.id);
+        roles.add(r.role);
+      }
+    }
+    for (const t of max.byType) {
+      const roles = max.entries.flatMap((e) => e.roles).filter((r) => r.type === t.type);
+      if (
+        t.selected !== Math.min(5, t.available) ||
+        roles.length !== t.selected ||
+        new Set(roles.map((r) => r.rank)).size !== roles.length ||
+        roles.some((r) => r.rank > t.selected)
+      )
+        throw new Error(`Incomplete top-five Max Battle ranking: ${t.type}`);
+    }
   }
   if (!(data.cpm[98] > 0.84 && data.cpm[100] > data.cpm[98]))
     throw new Error('Invalid level 50/51 CP multipliers.');

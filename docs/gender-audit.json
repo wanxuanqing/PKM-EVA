@@ -1,14 +1,14 @@
 {
-  "snapshot": "2026-10-10-910cf0fdc87a",
+  "snapshot": "2026-10-15-c5d59f118e43",
   "sourceCommit": "8e227be44f288d34463e23bf04e9b564d3c16f79",
   "scope": "Bundled GO gender templates, form mappings, Shadow/base agreement and all supported evolution paths; not a live availability audit.",
-  "total": 1622,
-  "sourceBacked": 1621,
+  "total": 1626,
+  "sourceBacked": 1625,
   "unverified": [
     "golisopodsh"
   ],
   "inheritedTemporaryForms": 62,
-  "traversals": 11800,
+  "traversals": 11828,
   "failures": [],
   "entries": [
     {
@@ -14341,6 +14341,22 @@
       "status": "source-backed"
     },
     {
+      "id": "mr_rime_shadow",
+      "name": "Mr. Rime (Shadow)",
+      "dex": 866,
+      "fixed": null,
+      "allowed": [
+        "female",
+        "male"
+      ],
+      "templates": [
+        "SPAWN_V0866_POKEMON_MR_RIME_NORMAL"
+      ],
+      "sharedAppearance": false,
+      "source": "go-gamemaster",
+      "status": "source-backed"
+    },
+    {
       "id": "mudbray",
       "name": "Mudbray",
       "dex": 749,
@@ -15540,6 +15556,22 @@
     {
       "id": "overqwil",
       "name": "Overqwil",
+      "dex": 904,
+      "fixed": null,
+      "allowed": [
+        "female",
+        "male"
+      ],
+      "templates": [
+        "SPAWN_V0904_POKEMON_OVERQWIL_NORMAL"
+      ],
+      "sharedAppearance": false,
+      "source": "go-gamemaster",
+      "status": "source-backed"
+    },
+    {
+      "id": "overqwil_shadow",
+      "name": "Overqwil (Shadow)",
       "dex": 904,
       "fixed": null,
       "allowed": [
@@ -20045,6 +20077,22 @@
       "status": "source-backed"
     },
     {
+      "id": "sirfetchd_shadow",
+      "name": "Sirfetch'd (Shadow)",
+      "dex": 865,
+      "fixed": null,
+      "allowed": [
+        "female",
+        "male"
+      ],
+      "templates": [
+        "SPAWN_V0865_POKEMON_SIRFETCHD_NORMAL"
+      ],
+      "sharedAppearance": false,
+      "source": "go-gamemaster",
+      "status": "source-backed"
+    },
+    {
       "id": "sizzlipede",
       "name": "Sizzlipede",
       "dex": 850,
@@ -22555,6 +22603,21 @@
     {
       "id": "thundurus_therian",
       "name": "Thundurus (Therian)",
+      "dex": 642,
+      "fixed": "male",
+      "allowed": [
+        "male"
+      ],
+      "templates": [
+        "SPAWN_V0642_POKEMON_THUNDURUS_THERIAN"
+      ],
+      "sharedAppearance": false,
+      "source": "go-gamemaster",
+      "status": "source-backed"
+    },
+    {
+      "id": "thundurus_therian_shadow",
+      "name": "Thundurus (Therian) (Shadow)",
       "dex": 642,
       "fixed": "male",
       "allowed": [

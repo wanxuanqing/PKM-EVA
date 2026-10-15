@@ -78,6 +78,19 @@ export function buildMovesheet(data, bundle, previous) {
     }
   }
   const pages = new Map((bundle.raidPages ?? []).map((p) => [p.id, p]));
+  // Normal is excluded from recommendations, but retain its previous captured
+  // rows in the audit export with their original source and retrieval time.
+  for (const oldPage of bundle.previousRaidPages ?? []) {
+    const current = pages.get(oldPage.id);
+    const normal = oldPage.roles
+      .filter((r) => r.type === 'normal')
+      .map((r) => ({ ...r, source: oldPage.url, retrieved: oldPage.retrieved }));
+    if (normal.length)
+      pages.set(oldPage.id, {
+        ...(current ?? oldPage),
+        roles: [...(current?.roles ?? []), ...normal],
+      });
+  }
   for (const p of previous?.species ?? [])
     for (const league of ['GL', 'UL', 'ML']) {
       const before = p.rankings[league];
@@ -130,11 +143,11 @@ export function buildMovesheet(data, bundle, previous) {
             ? 'sourced'
             : role.type === 'normal'
               ? 'Normal role excluded by app policy'
-              : 'Below B-tier expansion cutoff',
+              : 'Below A-tier recommendation cutoff',
           moves: role.moves,
           previousMoves: old.get(p.id)?.raid.flatMap((r) => r.moves ?? []) ?? [],
-          source: page.url,
-          retrieved: page.retrieved,
+          source: role.source ?? page.url,
+          retrieved: role.retrieved ?? page.retrieved,
         });
       }
     // Keep every app recommendation represented, including shortlist-only sources and unresolved CSV candidates.
@@ -157,7 +170,7 @@ export function buildMovesheet(data, bundle, previous) {
           attackingType: match?.[1] ?? '',
           rank: null,
           tier: raid.tier,
-          includedInApp: true,
+          includedInApp: false,
           verification: selected.length
             ? 'GO Hub type shortlist'
             : 'No qualifying sourced raid role',

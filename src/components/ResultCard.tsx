@@ -2,12 +2,14 @@ import type { Catalog, Option, Settings } from '../types';
 import { Icon } from './Icon';
 import { sourceURL } from '../lib/data';
 import { GymCard } from './GymCard';
+import { MaxCard } from './MaxCard';
 export const leagueNames = {
   GL: 'Great League',
   UL: 'Ultra League',
   ML: 'Master League',
   Raid: 'Raids',
   Gym: 'Gym Defense',
+  Max: 'Max Battles',
 };
 const iv = (values: number[]) => values.join(' / ');
 export function ResultCard({
@@ -22,6 +24,7 @@ export function ResultCard({
   overall: number;
 }) {
   const { species: p, role, result: r } = option;
+  if (role === 'Max') return <MaxCard option={option} data={data} overall={overall} />;
   if (role === 'Gym') return <GymCard option={option} />;
   const isRaid = role === 'Raid';
   const score = isRaid || role === 'ML' ? overall : r?.percentile;
@@ -49,11 +52,7 @@ export function ResultCard({
         </span>
         <span className="species-rank">
           {isRaid
-            ? option.raid?.tier === 'strong'
-              ? 'Strong option'
-              : option.raid?.tier === 'budget'
-                ? 'Budget candidate'
-                : 'Unverified candidate'
+            ? `${['SS', 'S+', 'S', 'A+', 'A'].filter((t) => option.raid?.moveSets?.some((m) => m.tier === t)).join(' / ')} tier`
             : `Species #${option.ranking?.rank}`}
         </span>
       </div>
@@ -89,10 +88,6 @@ export function ResultCard({
               <small>%</small>
             </strong>
           </div>
-          <div>
-            <span className="metric-label">Ideal IVs</span>
-            <b>15 / 15 / 15</b>
-          </div>
         </div>
       )}
       {!isRaid &&
@@ -113,13 +108,15 @@ export function ResultCard({
               <b>{r.rank === null ? '—' : `#${r.rank.toLocaleString()}`}</b>
               <small className="pool-size">of {r.poolSize.toLocaleString()}</small>
             </div>
-            <div>
-              <span className="metric-label">Ideal IVs</span>
-              <b className="ideal-ivs">{r.ideals[0] ? iv(r.ideals[0].ivs) : 'Unavailable'}</b>
-              {r.ideals.length > 1 && (
-                <small className="pool-size">+{r.ideals.length - 1} tied</small>
-              )}
-            </div>
+            {role !== 'ML' && (
+              <div>
+                <span className="metric-label">Ideal IVs</span>
+                <b className="ideal-ivs">{r.ideals[0] ? iv(r.ideals[0].ivs) : 'Unavailable'}</b>
+                {r.ideals.length > 1 && (
+                  <small className="pool-size">+{r.ideals.length - 1} tied</small>
+                )}
+              </div>
+            )}
           </div>
         ) : (
           <div className="calculating">Comparing IV combinations…</div>
@@ -200,7 +197,7 @@ export function ResultCard({
                 {settings.maxLevel + (settings.bestBuddy ? 1 : 0)}. Current level does not change
                 the theoretical comparison pool. Stat product is not a battle-win percentage.
               </p>
-              {r.ideals.length > 1 && (
+              {role !== 'ML' && r.ideals.length > 1 && (
                 <p className="small-note">
                   <b>All tied ideal IVs:</b> {r.ideals.map((x) => iv(x.ivs)).join(' · ')}
                 </p>
@@ -250,29 +247,51 @@ export function ResultCard({
               )}
               <section className="suggested-moves" aria-label="Suggested raid moves">
                 <h4>Suggested raid moves</h4>
-                {option.raid?.moves?.length ? (
-                  option.raid.moves.map((move, i) => {
-                    // Preserve source text if a future snapshot has an unfamiliar format.
-                    // Only the exact importer separator is split; move markers stay intact.
-                    const parts = /^([^:]+): (.+) \+ (.+)$/.exec(move);
-                    return parts ? (
-                      <div className="raid-moveset" key={`${i}:${move}`}>
-                        <h5>{parts[1]} attacking role</h5>
-                        <dl>
-                          <div>
-                            <dt>Fast move</dt>
-                            <dd>{parts[2]}</dd>
-                          </div>
-                          <div>
-                            <dt>Charged move</dt>
-                            <dd>{parts[3]}</dd>
-                          </div>
-                        </dl>
-                      </div>
-                    ) : (
-                      <p key={`${i}:${move}`}>{move}</p>
-                    );
-                  })
+                {option.raid?.moveSets?.length ? (
+                  option.raid.moveSets.map((set) => (
+                    <div className="raid-moveset" key={set.type}>
+                      <h5>
+                        {set.type} · {set.tier} tier · Type rank #{set.rank}
+                      </h5>
+                      <dl>
+                        <div>
+                          <dt>Fast move</dt>
+                          <dd>
+                            {set.fast.name}
+                            {set.fast.limited ? ' *' : ''}
+                          </dd>
+                        </div>
+                        <div>
+                          <dt>Charged move</dt>
+                          <dd>
+                            {set.charged.name}
+                            {set.charged.limited ? ' *' : ''}
+                          </dd>
+                        </div>
+                      </dl>
+                      {set.offType && (
+                        <p className="small-note">Off-type attacker for this role.</p>
+                      )}
+                      {set.mixedMoves && (
+                        <p className="small-note">
+                          Mixed moveset: one move has a different attack type.
+                        </p>
+                      )}
+                      {set.conditions
+                        ?.filter(
+                          (note) =>
+                            !note.startsWith('GO Hub default Mega benchmark uses Super Max Level'),
+                        )
+                        .map((note) => (
+                          <p className="small-note" key={note}>
+                            {note}
+                          </p>
+                        ))}
+                      <a href={set.source} target="_blank" rel="noreferrer">
+                        GO Hub {set.type} ranking ↗
+                      </a>
+                    </div>
+                  ))
                 ) : option.raid?.moveReview ? (
                   <p>
                     {option.raid.moveReview.reason}{' '}
@@ -288,9 +307,7 @@ export function ResultCard({
                 )}
               </section>
               <p className="small-note">
-                Moves are source-listed recommendations; * marks limited move access. Raid
-                effectiveness depends on moves, opponent, level, weather and party conditions. There
-                is no raid IV percentile here.
+                Moves are source-listed recommendations; * marks limited move access.
               </p>
             </>
           )}
@@ -316,7 +333,10 @@ export function ResultCard({
             · retrieved{' '}
             {isRaid
               ? option.raid?.reviewed || data.retrieved.slice(0, 10)
-              : data.retrieved.slice(0, 10)}
+              : (data.sources.find((s) => s.id === 'pvpoke')?.retrieved ?? data.retrieved).slice(
+                  0,
+                  10,
+                )}
           </p>
         </div>
       </details>

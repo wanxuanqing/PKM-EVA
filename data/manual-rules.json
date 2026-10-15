@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-13.1",
+  "version": "2026-10-15.1",
   "genderAliases": {
     "pikachu_5th_anniversary": "pikachu_flying_5th_anniv",
     "pikachu_flying": "pikachu_flying_01",
@@ -51,7 +51,15 @@
     "vivillon_meadow": "vivillon"
   },
   "raidAliases": {
-    "Deoxys (Normal Forme)": "deoxys"
+    "Deoxys (Normal Forme)": "deoxys",
+    "Galarian Standard Mode Darmanitan": "darmanitan_galarian_standard",
+    "Hoopa Confined": "hoopa",
+    "Standard Mode Shadow Darmanitan": "darmanitan_standard_shadow",
+    "Zacian (Hero of Many Battles)": "zacian_hero",
+    "Shadow Mr. Rime": "mr_rime_shadow",
+    "Shadow Overqwil": "overqwil_shadow",
+    "Shadow Sirfetch'd": "sirfetchd_shadow",
+    "Shadow Thundurus (Therian Forme)": "thundurus_therian_shadow"
   },
   "notes": {
     "golisopodsh": "Upstream simulator-specific form ID. Relationship and availability not independently verified.",
@@ -168,5 +176,28 @@
       "source": "https://github.com/DeathbyToast/PvP_IVs/blob/8e580166c8a4bbe1995a55a673d930265ef0321b/includes/pokeListObj.js",
       "note": "The independent reference categorizes Deoxys forms as raid mythicals with minimum level 20; GO templates mark them non-tradable. The comparison IV floor remains explicitly user selected."
     }
-  ]
+  ],
+  "raidSupplementalForms": [
+    {
+      "id": "mr_rime_shadow",
+      "baseId": "mr_rime"
+    },
+    {
+      "id": "overqwil_shadow",
+      "baseId": "overqwil"
+    },
+    {
+      "id": "sirfetchd_shadow",
+      "baseId": "sirfetchd"
+    },
+    {
+      "id": "thundurus_therian_shadow",
+      "baseId": "thundurus_therian"
+    }
+  ],
+  "maxAliases": {
+    "Dynamax Darmanitan": "darmanitan_standard",
+    "Dynamax Toxtricity (Amped Form)": "toxtricity",
+    "Dynamax Toxtricity (Low Key Form)": "toxtricity"
+  }
 }

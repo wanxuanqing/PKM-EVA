@@ -30,6 +30,9 @@ export type RaidRole = {
     type: string;
     tier: string;
     rank: number;
+    offType?: boolean;
+    mixedMoves?: boolean;
+    conditions?: string[];
     fast: { name: string; limited: boolean; url: string };
     charged: { name: string; limited: boolean; url: string };
     source: string;
@@ -79,7 +82,47 @@ export type Source = {
   license?: string;
   files?: { path: string; sha256: string }[];
 };
+export type MaxBattleRole = {
+  type: string;
+  rank: number;
+  tier: string;
+  damage: number;
+  fast: { name: string; limited: boolean; url: string };
+  maxMove: { name: string; limited: boolean; url: string };
+  source: string;
+  retrieved: string;
+};
+export type MaxSupportRole = {
+  role: 'Defender' | 'Healer';
+  tier: string;
+  fastMoves: { name: string; verified: boolean; limited: boolean; legacy: boolean }[];
+  resistances: string[];
+  source: string;
+  retrieved: string;
+  updated: string | null;
+  notes: string[];
+};
+export type MaxBattleEntry = {
+  id: string;
+  speciesId: string;
+  dex: number;
+  name: string;
+  form: string;
+  mode: 'Dynamax' | 'Gigantamax' | 'Special';
+  roles: MaxBattleRole[];
+  support?: MaxSupportRole[];
+  artwork?: { url: string | null; source: string; kind?: string };
+};
+export type MaxBattleData = {
+  retrieved: string;
+  benchmark: string;
+  byType: { type: string; available: number; selected: number; source: string }[];
+  entries: MaxBattleEntry[];
+  usefulEntries?: MaxBattleEntry[];
+  supportEntries?: MaxBattleEntry[];
+};
 export type Catalog = {
+  maxBattles?: MaxBattleData;
   movesheet?: {
     json: string;
     csv: string;
@@ -163,7 +206,8 @@ export type IVResult = {
 };
 export type Option = Reachable & {
   key: string;
-  role: League | 'Raid' | 'Gym';
+  role: League | 'Raid' | 'Gym' | 'Max';
+  max?: MaxBattleEntry;
   ranking?: Ranking;
   raid?: RaidRole;
   result?: IVResult;

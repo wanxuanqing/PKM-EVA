@@ -1,5 +1,6 @@
 import { readFile, writeFile, mkdir, rename, copyFile } from 'node:fs/promises';
 import { gzipSync, gunzipSync } from 'node:zlib';
+import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 import { buildMovesheet, movesheetCSV } from './movesheet.mjs';
@@ -84,16 +85,17 @@ if (offline) {
     raidFacts: extractRaidFacts(await readFile('.work/sources/raid.html', 'utf8')),
   };
 } else {
-  const [pvpoke, go, raidHTML] = await Promise.all([
-    fetchRepo('pvpoke/pvpoke', paths),
-    fetchRepo('PokeMiners/game_masters', ['latest/latest.json']),
-    get('https://db.pokemongohub.net/best/attackers-per-type'),
-  ]);
-  bundle = {
+  // Reuse full type-list discovery so a routine refresh cannot regress to
+  // the old top-ten summary or silently drop verified raid moves.
+  const capture = spawnSync(process.execPath, ['scripts/update-moves.mjs'], { stdio: 'inherit' });
+  if (capture.status !== 0) throw new Error('Complete moves/source capture failed.');
+  const pointer = JSON.parse(await readFile('data/sources-current.json', 'utf8'));
+  const compressed = await readFile(pointer.file);
+  if (hash(compressed) !== pointer.sha256) throw new Error('Raw snapshot checksum mismatch.');
+  bundle = JSON.parse(gunzipSync(compressed).toString('utf8'));
+  bundle.go = {
+    ...(await fetchRepo('PokeMiners/game_masters', ['latest/latest.json'])),
     retrieved: new Date().toISOString(),
-    pvpoke,
-    go,
-    raidFacts: extractRaidFacts(raidHTML),
   };
 }
 const csvFile = 'Pokemon_GO_full_alphabetical_catalog_2026-09-27.csv';
@@ -130,7 +132,7 @@ const sources = [
     url: `https://github.com/pvpoke/pvpoke/tree/${bundle.pvpoke.commit}`,
     commit: bundle.pvpoke.commit,
     date: bundle.pvpoke.date,
-    retrieved: bundle.retrieved,
+    retrieved: bundle.pvpoke.retrieved ?? bundle.retrieved,
     license: 'MIT',
     files: paths.map((path) => ({ path, sha256: hash(bundle.pvpoke.files[path]) })),
   },
@@ -164,10 +166,30 @@ const sources = [
 if (bundle.raidPages?.length)
   sources.push({
     id: 'gohub-moves',
-    name: 'GO Hub · exact-form raid moves and type-role ratings',
+    name: 'GO Hub · full per-type raid rankings and moves',
     url: 'https://db.pokemongohub.net/',
     retrieved: bundle.retrieved,
-    files: bundle.raidPages.map((p) => ({ path: p.url, sha256: p.sha256 })),
+    files: (bundle.raidTypeRankings ?? bundle.raidPages).map((p) => ({
+      path: p.url,
+      sha256: p.sha256,
+    })),
+  });
+if (bundle.maxBattleRankings)
+  sources.push({
+    id: 'gohub-max',
+    name: 'GO Hub · Max Battle attackers, top five per type',
+    url: 'https://db.pokemongohub.net/best/dynamax-attackers-per-type',
+    retrieved: bundle.maxBattleRankings.retrieved,
+    files: bundle.maxBattleRankings.captures.map((c) => ({ path: c.url, sha256: c.sha256 })),
+  });
+for (const capture of bundle.maxSupportCaptures ?? [])
+  sources.push({
+    id: 'gohub-max-' + capture.role.toLowerCase(),
+    name: 'GO Hub · Max ' + capture.role.toLowerCase() + ' tiers',
+    url: capture.url,
+    retrieved: capture.retrieved,
+    date: capture.updated,
+    files: [{ path: capture.url, sha256: capture.sha256 }],
   });
 const normalizerHash = hash(
   Buffer.concat([
@@ -193,11 +215,16 @@ const data = normalizeData({
   rules,
   raidFacts: bundle.raidFacts,
   raidPages: bundle.raidPages,
+  raidForms: bundle.raidForms,
   retainedSpecies: previous?.species,
   retrieved: bundle.retrieved,
   sources,
   version,
 });
+if (bundle.maxBattleRankings) {
+  const { captures, ...maxBattles } = bundle.maxBattleRankings;
+  data.maxBattles = maxBattles;
+}
 const movesheet = buildMovesheet(data, bundle, previous);
 const sheetFile = `/data/moves-${version}`;
 data.movesheet = { json: `${sheetFile}.json`, csv: `${sheetFile}.csv`, ...movesheet.counts };

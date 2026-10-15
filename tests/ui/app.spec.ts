@@ -149,11 +149,12 @@ test('expanded raid moves retain type roles and export the same catalog datashee
   await card.getByText('Details & requirements').click();
   await expect(card).toContainText('Hex');
   await expect(card).toContainText('Shadow Ball');
-  await expect(card).toContainText('Fire Spin');
-  await expect(card).toContainText('Overheat');
+  await expect(card).toContainText('ghost · A tier');
+  await expect(card).not.toContainText('Fire Spin');
+  await expect(card).not.toContainText('Overheat');
   await expect(card.getByRole('link', { name: 'Raid evidence' })).toHaveAttribute(
     'href',
-    'https://db.pokemongohub.net/pokemon/609',
+    'https://db.pokemongohub.net/pokemon-list/best-per-type/ghost',
   );
   await noOverflow(page);
   await page.getByRole('button', { name: 'Data', exact: true }).click();
@@ -404,6 +405,7 @@ test('ML and raids share an explicit IV-sum preference without losing ML ranks',
   const ml = page.getByRole('article', { name: 'Mewtwo Master League', exact: true });
   const raid = page.getByRole('article', { name: 'Mewtwo Raids', exact: true });
   for (const card of [ml, raid]) {
+    await expect(card.getByText('Ideal IVs', { exact: true })).toHaveCount(0);
     await expect(card).toContainText('97.8%');
     await expect(card).toContainText('overall IVs strictly above 90%');
     await expect(card).toContainText('Meets preference');
@@ -540,6 +542,8 @@ test('Top 50 lists league ideals, moves and type-specific raid shortlists on mob
   const cards = page.locator('.top-card');
   await expect(cards).toHaveCount(50);
   await expect(cards.first()).toContainText('PvPoke #1');
+  await expect(cards.first().getByLabel('Evolution line')).toContainText('Meltan → Melmetal');
+  await expect(page.locator('.top-evolution')).toHaveCount(50);
   await expect(cards.first().locator('.top-ivs')).toHaveText(/Best IVs: \d+ \/ \d+ \/ \d+/);
   await expect(cards.first()).toContainText('Elite TM');
   await expect(cards.first().locator('img')).toBeVisible();
@@ -553,11 +557,16 @@ test('Top 50 lists league ideals, moves and type-specific raid shortlists on mob
   await expect(cards).toHaveCount(50);
   await expect(cards.first().locator('.top-ivs')).toHaveText(/Best IVs: \d+ \/ \d+ \/ \d+/);
   await page.getByRole('button', { name: 'Master League', exact: true }).click();
-  await expect(cards.first()).toContainText('15 / 15 / 15');
+  await expect(page.locator('.top-ivs')).toHaveCount(0);
   await page.getByRole('button', { name: 'Raids', exact: true }).click();
   await expect(cards).toHaveCount(50);
   await expect(cards.first()).toContainText('Type rank #');
+  await expect(page.locator('.top-ivs')).toHaveCount(0);
   await page.getByLabel('Attack type').selectOption('fire');
+  const charizard = page.getByRole('article', { name: 'Charizard (Mega Y)', exact: true });
+  await expect(charizard.getByLabel('Evolution line')).toContainText(
+    'Charmander → Charmeleon → Charizard → Charizard (Mega Y)',
+  );
   await expect(cards.first()).toContainText('fire');
   await expect(page.locator('.top-raid-set strong').filter({ hasNotText: 'fire' })).toHaveCount(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -588,4 +597,252 @@ test('Mega raid value appears from Starly, Staravia and Staraptor with the full 
   await expect(
     page.getByRole('article', { name: 'Staraptor (Mega) Raids', exact: true }),
   ).toHaveCount(0);
+});
+
+test('Rillaboom exposes separate tiered raid and PvP moves and earlier evolution recommendations', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 900 });
+  await page.goto('/');
+  await search(page, 'Rillaboom');
+  await stable(page);
+  const raid = page.getByRole('article', { name: 'Rillaboom Raids', exact: true });
+  await expect(raid).toContainText('S tier');
+  await expect(raid.getByText('Ideal IVs', { exact: true })).toHaveCount(0);
+  await raid.getByText('Details & requirements').click();
+  await expect(raid).toContainText('grass · S tier · Type rank #14');
+  await expect(raid).toContainText('Razor Leaf');
+  await expect(raid).toContainText('Frenzy Plant *');
+  const pvp = page.getByRole('article', { name: 'Rillaboom Ultra League', exact: true });
+  await pvp.getByText('Details & requirements').click();
+  await expect(pvp).toContainText('Drum Beating');
+  await expect(pvp).toContainText('Earth Power');
+  await noOverflow(page);
+  await page.screenshot({ path: 'docs/screenshots/rillaboom-raid-tiers.png' });
+  await search(page, 'Grookey');
+  await stable(page);
+  await expect(page.getByRole('article', { name: 'Rillaboom Raids', exact: true })).toBeVisible();
+});
+
+test('Max Battles shows top five per type with distinct forms, correct moves and offline data', async ({
+  page,
+  context,
+}) => {
+  await page.setViewportSize({ width: 390, height: 900 });
+  await page.route('https://raw.githubusercontent.com/PokeAPI/sprites/**', (route) =>
+    route.fulfill({
+      contentType: 'image/svg+xml',
+      body: '<svg xmlns="http://www.w3.org/2000/svg" width="144" height="144"/>',
+    }),
+  );
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Top 50', exact: true }).click();
+  await page.getByRole('button', { name: 'Max Battles', exact: true }).click();
+  await expect(
+    page.getByRole('heading', { name: 'Max Battle recommendations', exact: true }),
+  ).toBeVisible();
+  expect(await page.locator('.max-card').count()).toBeGreaterThan(50);
+  await page.getByLabel('Max attack type').selectOption('grass');
+  await expect(page.locator('.max-card')).toHaveCount(3);
+  await expect(page.getByRole('article', { name: 'Dynamax Leafeon', exact: true })).toHaveCount(0);
+  const gmax = page.getByRole('article', { name: 'Gigantamax Rillaboom', exact: true });
+  const dmax = page.getByRole('article', { name: 'Dynamax Rillaboom', exact: true });
+  await expect(gmax).toContainText('G-Max Drum Solo');
+  await expect(gmax).toContainText('grass · #1');
+  await expect(dmax).toContainText('Max Overgrowth');
+  await expect(dmax).toContainText('Razor Leaf');
+  await expect(gmax.locator('img')).not.toHaveAttribute('src', /\/812\.png$/);
+  await expect(page.locator('.max-card .top-ivs')).toHaveCount(0);
+  await noOverflow(page);
+  const accessibility = await new AxeBuilder({ page })
+    .include('[aria-label="Max Battle recommendations"]')
+    .analyze();
+  expect(accessibility.violations).toEqual([]);
+  await page.screenshot({ path: 'docs/screenshots/max-battles-mobile.png' });
+  await page.getByLabel('Max attack type').selectOption('poison');
+  await expect(page.locator('.max-card')).toHaveCount(3);
+  await expect(
+    page.getByText('Only 3 options are listed for poison.', { exact: false }),
+  ).toBeVisible();
+  await page.getByLabel('Max attack type').selectOption('fighting');
+  await expect(
+    page.getByRole('article', { name: 'Gigantamax Machamp', exact: true }),
+  ).toBeVisible();
+  await expect(page.getByRole('article', { name: 'Dynamax Machamp', exact: true })).toBeVisible();
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await noOverflow(page);
+  await page.screenshot({ path: 'docs/screenshots/max-battles-desktop.png' });
+  await page.waitForFunction(
+    async () => !!(await navigator.serviceWorker.getRegistration())?.active,
+  );
+  await context.setOffline(true);
+  await page.reload();
+  await page.getByRole('button', { name: 'Top 50', exact: true }).click();
+  await page.getByRole('button', { name: 'Max Battles', exact: true }).click();
+  await page.getByLabel('Max attack type').selectOption('grass');
+  await expect(
+    page.getByRole('article', { name: 'Gigantamax Rillaboom', exact: true }),
+  ).toContainText('G-Max Drum Solo');
+});
+
+test('Useful paths includes A-or-better Max evolutions and copy capability conditions', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 900 });
+  await page.route('https://raw.githubusercontent.com/PokeAPI/sprites/**', (route) =>
+    route.fulfill({
+      contentType: 'image/svg+xml',
+      body: '<svg xmlns="http://www.w3.org/2000/svg" width="144" height="144"/>',
+    }),
+  );
+  await page.goto('/');
+  await search(page, 'Grookey');
+  await stable(page);
+  await page
+    .getByRole('group', { name: 'Filter roles' })
+    .getByRole('button', { name: /^Max Battles/ })
+    .click();
+  const card = page.getByRole('article', { name: 'Dynamax Rillaboom Max Battles', exact: true });
+  await expect(card).toBeVisible();
+  await expect(card).toContainText('Grookey → Thwackey → Rillaboom');
+  const moves = card.getByRole('region', { name: 'Dynamax Rillaboom suggested Max attacks' });
+  await expect(moves).toBeHidden();
+  await card.getByText('Details & requirements').click();
+  await expect(moves).toBeVisible();
+  await expect(moves.locator('dt')).toContainText([
+    'Fast move',
+    'Max Attack',
+    'Fast move',
+    'Max Attack',
+  ]);
+  await expect(moves.getByText('Attacker · A tier', { exact: true })).toHaveCount(0);
+  await expect(card).toContainText('grass · A tier · Type rank #3');
+  await expect(card).toContainText('Max Overgrowth');
+  await expect(card).toContainText('Check Max capability');
+  await expect(
+    page.getByRole('article', { name: 'Gigantamax Rillaboom Max Battles', exact: true }),
+  ).toHaveCount(0);
+  await expect(card).toContainText('Ordinary copies do not gain Max capability through evolution.');
+  await noOverflow(page);
+  const a11y = await new AxeBuilder({ page }).include('.role-Max').analyze();
+  expect(a11y.violations).toEqual([]);
+  await card.screenshot({ path: 'docs/screenshots/max-useful-path-mobile.png' });
+  await search(page, 'Rillaboom');
+  await stable(page);
+  await page
+    .getByRole('group', { name: 'Filter roles' })
+    .getByRole('button', { name: /^Max Battles/ })
+    .click();
+  await expect(
+    page.getByRole('article', { name: 'Gigantamax Rillaboom Max Battles', exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole('article', { name: 'Dynamax Rillaboom Max Battles', exact: true }),
+  ).toBeVisible();
+  await search(page, 'Bounsweet');
+  await stable(page);
+  await page
+    .getByRole('group', { name: 'Filter roles' })
+    .getByRole('button', { name: /^Max Battles/ })
+    .click();
+  await expect(page.locator('.role-Max')).toHaveCount(0);
+  await expect(page.getByText('No Max Battles options here.', { exact: true })).toBeVisible();
+});
+
+test('Max defender and healer roles have separate tiers, paths, move labels and offline lists', async ({
+  page,
+  context,
+}) => {
+  await page.setViewportSize({ width: 390, height: 900 });
+  await page.route('https://raw.githubusercontent.com/PokeAPI/sprites/**', (route) =>
+    route.fulfill({
+      contentType: 'image/svg+xml',
+      body: '<svg xmlns="http://www.w3.org/2000/svg" width="144" height="144"/>',
+    }),
+  );
+  await page.goto('/');
+  await search(page, 'Wailmer');
+  await stable(page);
+  await page
+    .getByRole('group', { name: 'Filter roles' })
+    .getByRole('button', { name: /^Max Battles/ })
+    .click();
+  const wailord = page.getByRole('article', { name: 'Dynamax Wailord Max Battles', exact: true });
+  await expect(wailord).toContainText('Healer · A tier');
+  await expect(wailord).toContainText('Wailmer → Wailord');
+  await expect(wailord).toContainText('Max Spirit');
+  await expect(wailord).toContainText('Check Max capability');
+  await expect(
+    wailord.getByRole('region', { name: 'Dynamax Wailord Healer recommendation' }),
+  ).toBeHidden();
+  await wailord.getByText('Details & requirements').click();
+  await expect(
+    wailord.getByRole('region', { name: 'Dynamax Wailord Healer recommendation' }),
+  ).toBeVisible();
+  await noOverflow(page);
+  await wailord.screenshot({ path: 'docs/screenshots/max-healer-useful-path.png' });
+  await search(page, 'Beldum');
+  await stable(page);
+  const metagross = page.getByRole('article', {
+    name: 'Dynamax Metagross Max Battles',
+    exact: true,
+  });
+  await metagross.getByText('Details & requirements').click();
+  await expect(metagross).toContainText('Defender · A tier');
+  await expect(metagross).toContainText('Beldum → Metang → Metagross');
+  await expect(metagross).toContainText('Fury Cutter');
+  await expect(metagross).toContainText('Shadow Claw · Elite / event move');
+  await page.getByRole('button', { name: 'Top 50', exact: true }).click();
+  await page.getByRole('button', { name: 'Max Battles', exact: true }).click();
+  const roles = page.getByRole('group', { name: 'Max Battle role' });
+  await roles.getByRole('button', { name: 'Healer', exact: true }).click();
+  await expect(page.locator('.max-card')).toHaveCount(10);
+  await expect(page.getByLabel('Max attack type')).toHaveCount(0);
+  const blissey = page.getByRole('article', { name: 'Dynamax Blissey', exact: true });
+  await expect(blissey).toContainText('Healer · S tier');
+  await expect(blissey).toContainText('Max Spirit');
+  await expect(blissey).not.toContainText('Defender');
+  await expect(page.getByRole('article', { name: 'Dynamax Chansey', exact: true })).toHaveCount(0);
+  await noOverflow(page);
+  const a11y = await new AxeBuilder({ page })
+    .include('[aria-label="Max Battle recommendations"]')
+    .analyze();
+  expect(a11y.violations).toEqual([]);
+  await page.screenshot({ path: 'docs/screenshots/max-healers-mobile.png' });
+  await roles.getByRole('button', { name: 'Defender', exact: true }).click();
+  await expect(page.locator('.max-card')).toHaveCount(7);
+  const registeel = page.getByRole('article', { name: 'Dynamax Registeel', exact: true });
+  await expect(registeel).toContainText('Defender · S tier');
+  await expect(registeel).toContainText('Lock-On / Metal Claw');
+  await expect(registeel).toContainText('Max Guard');
+  await expect(registeel).toContainText('depends on the boss');
+  await expect(page.getByRole('article', { name: 'Dynamax Blissey', exact: true })).toHaveCount(0);
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await noOverflow(page);
+  await page.screenshot({ path: 'docs/screenshots/max-defenders-desktop.png' });
+  await roles.getByRole('button', { name: 'All roles', exact: true }).click();
+  const crown = page.getByRole('article', { name: 'Crowned Shield Zamazenta', exact: true });
+  await expect(crown).toHaveCount(1);
+  await expect(crown).toContainText('Attacker');
+  await expect(crown).toContainText('Defender · S tier');
+  await page.waitForFunction(
+    async () => !!(await navigator.serviceWorker.getRegistration())?.active,
+  );
+  await context.setOffline(true);
+  await page.reload();
+  await page.getByRole('button', { name: 'Top 50', exact: true }).click();
+  await page.getByRole('button', { name: 'Max Battles', exact: true }).click();
+  await page
+    .getByRole('group', { name: 'Max Battle role' })
+    .getByRole('button', { name: 'Healer', exact: true })
+    .click();
+  await expect(page.getByRole('article', { name: 'Dynamax Blissey', exact: true })).toContainText(
+    'Healer · S tier',
+  );
+  await page.getByRole('button', { name: 'Assess', exact: true }).click();
+  await search(page, 'Wailmer');
+  await stable(page);
+  await expect(
+    page.getByRole('article', { name: 'Dynamax Wailord Max Battles', exact: true }),
+  ).toContainText('Healer · A tier');
 });
