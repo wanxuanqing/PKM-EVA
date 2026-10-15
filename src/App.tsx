@@ -114,7 +114,10 @@ export default function App({ data }: { data: Catalog }) {
     () => (ivs ? reachable(selected, byId, settings, ivs) : []),
     [selected, byId, settings, ivs],
   );
-  const baseOptions = useMemo(() => optionsFor(targets), [targets]);
+  const baseOptions = useMemo(
+    () => optionsFor(targets, data.maxBattles),
+    [targets, data.maxBattles],
+  );
   const options = useMemo(
     () => baseOptions.map((o) => ({ ...o, result: calculations[o.key] })),
     [baseOptions, calculations],
@@ -762,14 +765,20 @@ export default function App({ data }: { data: Catalog }) {
                       <span>One copy, more possibilities</span>
                     </div>
                     <div className="role-filters" role="group" aria-label="Filter roles">
-                      {['All', 'GL', 'UL', 'ML', 'Raid', 'Gym'].map((f) => (
+                      {['All', 'GL', 'UL', 'ML', 'Raid', 'Max', 'Gym'].map((f) => (
                         <button
                           key={f}
                           className={filter === f ? 'active' : ''}
                           aria-pressed={filter === f}
                           onClick={() => setFilter(f)}
                         >
-                          {f === 'Raid' ? 'Raids' : f === 'Gym' ? 'Gym Defense' : f}
+                          {f === 'Raid'
+                            ? 'Raids'
+                            : f === 'Max'
+                              ? 'Max Battles'
+                              : f === 'Gym'
+                                ? 'Gym Defense'
+                                : f}
                           <span>
                             {f === 'All'
                               ? options.length
@@ -829,8 +838,10 @@ export default function App({ data }: { data: Catalog }) {
                           90%.
                         </p>
                         <p>
-                          Every qualifying evolution is preserved. More than one path can be worth
-                          keeping a copy for.
+                          Max Battle paths require an A-tier-or-better GO Hub attacker, defender or
+                          healer role and a copy with the matching capability. Gigantamax is not
+                          granted by evolution. Every qualifying evolution is preserved. More than
+                          one path can be worth keeping a copy for.
                         </p>
                         <button className="text-button" onClick={() => setPage('data')}>
                           See calculation rules & sources <Icon name="arrow" size={15} />

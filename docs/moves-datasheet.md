@@ -42,3 +42,9 @@ Source-listed moves for excluded roles are still present in the datasheet with `
 Run `npm run moves:update` for a new public-source capture and import. An interrupted capture can be resumed with `node scripts/update-moves.mjs --resume` (cached pages must be less than 24 hours old), followed by `npm run data:update -- --offline`. For a deterministic rebuild from bundled sources, use only the offline command.
 
 The build, 58 unit/data tests and 16 browser tests passed. Tests cover exact source agreement, form mismatches, limited moves, excluded roles, CSV/JSON agreement, mobile cards, downloads, accessibility and offline behavior. IV thresholds and Shadow damage calculations are unchanged.
+
+## Current raid inclusion policy (October 15, 2026)
+
+Raid recommendations use full GO Hub per-type ranking payloads and include SS, S and A (with legacy S+/A+ labels supported). Normal and lower tiers are excluded from recommendations. Each role retains its within-type rank, exact moves, limited-access flags, source URL and capture time; mixed/off-type entries and special Mega conditions are labeled. Earlier sections record the original import audit and may describe its former B-tier cutoff.
+
+The current capture covers 259 distinct forms and 397 qualifying roles, including four additional raid-only Shadow forms. Omitted lower-tier rows remain in the captured sources, and older immutable snapshots retain previous advice. The exported movesheet uses the current cutoff for includedInApp. Raid-only capture preserves the pinned PvP snapshot and original retrieval date.

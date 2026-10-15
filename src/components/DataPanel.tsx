@@ -135,6 +135,29 @@ export function DataPanel({ data }: { data: Catalog }) {
           </ul>
         </details>
       </section>
+      {data.maxBattles && (
+        <section className="paper">
+          <h2>Max Battle recommendations</h2>
+          <p>
+            Saved GO Hub top-five Max Attack captures cover {data.maxBattles.byType.length} attack
+            types and {data.maxBattles.entries.length} distinct forms. Snapshot{' '}
+            {data.maxBattles.retrieved.slice(0, 10)}. These attack-damage rankings are separate from
+            ordinary raid, tank and healer roles. Copies must have the matching Max capability and
+            unlocks. Recommendations use A tier and above; Useful paths include qualifying targets
+            beyond fifth place, with {data.maxBattles.usefulEntries?.length ?? 0} A-or-better forms.
+            Copy capability must be confirmed. Defender and healer recommendations use separate GO
+            Hub tiers, with{' '}
+            {data.maxBattles.supportEntries?.filter((e) =>
+              e.support?.some((r) => r.role === 'Defender'),
+            ).length ?? 0}{' '}
+            defender forms and{' '}
+            {data.maxBattles.supportEntries?.filter((e) =>
+              e.support?.some((r) => r.role === 'Healer'),
+            ).length ?? 0}{' '}
+            healer forms. These general support tiers are separate from gym defense.
+          </p>
+        </section>
+      )}
       <section className="paper">
         <h2>Sources & freshness</h2>
         <p>
@@ -179,9 +202,10 @@ export function DataPanel({ data }: { data: Catalog }) {
             {data.movesheet.raidFormsMissingMoves} still need qualifying evidence.
           </p>
           <p>
-            Expanded raid suggestions use GO Hub type roles rated B or better. Lower-rated and
-            excluded Normal roles remain documented in the datasheet. Limited-access moves retain
-            their markers.
+            Expanded raid suggestions use the full GO Hub type lists, limited to SS, S and A tiers.
+            Lower-rated and excluded Normal roles remain documented in the datasheet. Limited-access
+            moves retain their markers. Each attack-type role shows its tier and rank, with
+            mixed/off-type and Mega benchmark conditions labeled.
           </p>
           <p>
             <a href={data.movesheet.csv} download>

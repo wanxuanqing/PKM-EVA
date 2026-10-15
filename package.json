@@ -18,7 +18,9 @@
     "moves:update": "node scripts/update-moves.mjs && node scripts/update-data.mjs --offline",
     "validate:independent": "node scripts/validate-independent.mjs",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "max:update": "node scripts/update-max.mjs && node scripts/update-max-support.mjs && node scripts/update-data.mjs --offline",
+    "max:support:update": "node scripts/update-max-support.mjs && node scripts/update-data.mjs --offline"
   },
   "dependencies": {
     "react": "^19.2.0",

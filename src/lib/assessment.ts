@@ -1,8 +1,28 @@
-import type { Species, IVs, Settings, Reachable, Option, CollectionFlags } from '../types';
+import type {
+  Species,
+  IVs,
+  Settings,
+  Reachable,
+  Option,
+  CollectionFlags,
+  MaxBattleData,
+} from '../types';
 import { goodOverallIV, qualifies } from './calculator.ts';
 import { gymTier } from './gym.ts';
+import { goodMaxTier, usefulMaxEntries } from './maxPokemon.ts';
 export const copyGender = (species: Species, gender: Settings['gender']): Settings['gender'] =>
   species.gender?.fixed ?? (gender === 'genderless' ? 'unknown' : gender);
+function pathRequirements(notes: string[]): string[] {
+  const genders = new Set<string>();
+  return notes.flatMap((note) => {
+    const match = note.trim().match(/^(male|female)\s+only[.!]?$/i);
+    if (!match) return [note];
+    const gender = match[1].toLowerCase();
+    if (genders.has(gender)) return [];
+    genders.add(gender);
+    return [gender === 'male' ? 'Male only' : 'Female only'];
+  });
+}
 export function reachable(
   start: Species,
   all: Map<string, Species>,
@@ -34,11 +54,11 @@ export function reachable(
       queue.push({
         species: next,
         path: [...current.path, next.id],
-        requirements: [
+        requirements: pathRequirements([
           ...current.requirements,
           ...edge.requirements,
           ...(requiredGender ? [`${requiredGender === 'male' ? 'Male' : 'Female'} only`] : []),
-        ],
+        ]),
         conditional:
           current.conditional ||
           !!edge.review ||
@@ -51,9 +71,35 @@ export function reachable(
   }
   return results;
 }
-export function optionsFor(targets: Reachable[]): Option[] {
+export function optionsFor(targets: Reachable[], maxBattles?: MaxBattleData): Option[] {
   const result: Option[] = [];
   for (const target of targets) {
+    if (!target.species.shadow && !target.species.temporary) {
+      for (const entry of usefulMaxEntries(maxBattles)) {
+        if (entry.speciesId !== target.species.id) continue;
+        // Evolution does not turn a Dynamax copy into a Gigantamax copy.
+        if (entry.mode === 'Gigantamax' && target.path.length > 1) continue;
+        const roles = entry.roles.filter((r) => goodMaxTier(r.tier));
+        const support = entry.support?.filter((r) => goodMaxTier(r.tier));
+        if (!roles.length && !support?.length) continue;
+        result.push({
+          ...target,
+          role: 'Max',
+          key: entry.id,
+          max: { ...entry, roles, support },
+          conditional: true,
+          requirements: [
+            ...target.requirements,
+            entry.mode === 'Gigantamax'
+              ? 'Requires this species as a Gigantamax-capable copy; evolving an ordinary or Dynamax copy does not grant Gigantamax.'
+              : entry.mode === 'Dynamax'
+                ? 'Requires a Dynamax-capable copy with the matching form. Ordinary copies do not gain Max capability through evolution.'
+                : 'Confirm this copy meets the special Max Battle form and move requirements.',
+            'Confirm move unlocks and Max Move upgrades before investing.',
+          ],
+        });
+      }
+    }
     if (gymTier(target.species))
       result.push({ ...target, role: 'Gym', key: `${target.species.id}:Gym` });
     for (const role of ['GL', 'UL', 'ML'] as const) {
@@ -64,8 +110,7 @@ export function optionsFor(targets: Reachable[]): Option[] {
     target.species.raid.forEach((raid, i) => {
       if (raid.source === 'input-csv' || raid.tier === 'unverified') return;
       const moveSets = raid.moveSets?.filter(
-        (r) =>
-          r.type.toLowerCase() !== 'normal' && ['S+', 'S', 'A+', 'A', 'B+', 'B'].includes(r.tier),
+        (r) => r.type.toLowerCase() !== 'normal' && ['SS', 'S+', 'S', 'A+', 'A'].includes(r.tier),
       );
       if (!moveSets?.length) return;
       result.push({
@@ -84,7 +129,7 @@ export function optionsFor(targets: Reachable[]): Option[] {
       });
     });
   }
-  const priority = { GL: 0, UL: 1, ML: 2, Raid: 3, Gym: 4 };
+  const priority = { GL: 0, UL: 1, ML: 2, Raid: 3, Max: 4, Gym: 5 };
   return result.sort(
     (a, b) =>
       priority[a.role] - priority[b.role] ||
@@ -129,9 +174,14 @@ export function recommendation(
   const useful = options.filter((o) =>
     o.role === 'Raid'
       ? o.raid?.source !== 'input-csv' && o.raid?.tier !== 'unverified'
-      : o.role === 'Gym'
-        ? !!gymTier(o.species)
-        : !!o.result?.stats,
+      : o.role === 'Max'
+        ? !!(
+            o.max?.roles.some((r) => goodMaxTier(r.tier)) ||
+            o.max?.support?.some((r) => goodMaxTier(r.tier))
+          )
+        : o.role === 'Gym'
+          ? !!gymTier(o.species)
+          : !!o.result?.stats,
   );
   const reachable = useful.filter(
     (o) => !o.conditional && !o.result?.overCap && !o.result?.aboveMax,
@@ -154,6 +204,13 @@ export function recommendation(
       title: 'A place on your team.',
       reason: `${good.length} useful ${good.length === 1 ? 'option meets' : 'options meet'} your IV preference. Check moves and evolution requirements before investing; IVs alone do not determine battle performance.`,
     };
+  if (useful.some((o) => o.role === 'Max'))
+    return {
+      verdict: 'Review',
+      title: 'Check this copy’s Max capability.',
+      reason:
+        'An A-tier-or-better Max Battle attacker, defender or healer target is available for this species or a supported evolution. Confirm the matching Dynamax, Gigantamax or special form on this copy. The species rating alone does not establish its capability; each role has its own source tier, and defender performance depends on the boss.',
+    };
   if (useful.some((o) => o.conditional))
     return {
       verdict: 'Review',
@@ -166,7 +223,7 @@ export function recommendation(
       (o) =>
         o.result?.overCap ||
         o.result?.aboveMax ||
-        (!o.result?.inPool && o.role !== 'Raid' && o.role !== 'Gym'),
+        (!o.result?.inPool && o.role !== 'Raid' && o.role !== 'Gym' && o.role !== 'Max'),
     )
   )
     return {

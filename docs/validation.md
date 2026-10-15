@@ -48,3 +48,23 @@ Cloudflare deployment revealed a separate repeat-visit failure: `/index.html` re
 The update test serves two service-worker versions and checks that the second remains waiting until **Update & reload** is selected. A separate corrupt-catalog test verifies that a checksum/version mismatch produces a recoverable error. The importer failure test verifies that a failed update leaves the previous published pointer intact.
 
 Automated axe accessibility checks cover the expanded assessment interface and Data screen. Running `npm run test:ui` generates local screenshots in `docs/screenshots/`; these generated files are excluded from Git. These checks are evidence for tested states, not a claim that every browser or assistive technology has been manually certified.
+
+## Max Battle recommendations (October 15, 2026)
+
+The current production build passes **79 unit/data tests and 25 browser tests**, including the Max Battles category in Top 50. All 18 GO Hub type captures are checked against their selected source ranks, tiers, Fast Attacks, Max Attacks and limited-move flags. The bundled list contains 70 distinct forms and 88 type recommendations; Poison has three available options. Dynamax and Gigantamax Machamp retain distinct identities and artwork, and both Dynamax Toxtricity forms retain their own pictures.
+
+The new browser check covers the mobile type filter, the short Poison list, separate Dynamax/Gigantamax cards, no horizontal overflow, axe accessibility checks and recommendations after an offline reload. A live-image check loaded and visually inspected Gigantamax Rillaboom's matching artwork. Catalog validation, the gender audit, formatting and the TypeScript/Vite production build also pass. Source-derived Max damage rankings do not validate boss-specific performance, tanking or healing.
+
+### Max Battle useful paths and tier cutoff
+
+The A-or-better update passes **83 unit/data tests and 26 browser tests**. Data tests compare every qualifying role with the full source captures, retain below-cutoff source data and check qualifying roles below fifth place. Path tests cover Grookey to Dynamax Rillaboom, direct Gigantamax Rillaboom, exclusion of invented Gigantamax evolutions, Shadow/Mega exclusion, B-tier Tsareena exclusion, Gallade gender restrictions and capability-review verdicts at low and high IVs. The Max-capable collection flag retains its independent Keep behavior.
+
+The new browser check covers the Max Battles role filter, evolution paths and move details on mobile, capability requirements, exclusion of a B-tier-only evolution, no horizontal overflow and axe accessibility checks on the Max card. The production build, catalog validator, gender audit and formatting also pass.
+
+### Max defenders and healers
+
+The support-role update passes **88 unit/data tests and 27 browser tests**. New checks reparse both saved GO Hub guide captures and verify their checksums, independent S/A tiers, source dates, defender fast moves and resistances, and Elite/event flags. The catalog contains seven defender forms and ten healer forms across nine healer species. Blissey's S healer tier does not inherit its below-cutoff defender rating. Dynamax and Gigantamax Lapras remain distinct.
+
+Path checks cover Happiny to Blissey, Wailmer to Wailord, Beldum to Metagross, conditional copy-capability review at low and high IVs, and Shadow/Mega exclusion. Role filters merge multiple qualifying roles into one form card without mutating source data. Invalid source identity, incomplete support tables and below-cutoff support data are rejected.
+
+The new browser test covers mobile Useful paths, separate defender/healer lists, support move labels, boss-dependence notes, combined-role cards, axe accessibility checks, desktop overflow and offline browsing plus offline evolution assessment. Shared recommendation headings use the correct level for Top 50 versus assessment cards, with unique accessible labels. The offline support importer, production build, catalog validation, gender audit and formatting also pass. Support tiers are general sourced advice, not a fresh boss simulation or a calculation of this copy's healing output.

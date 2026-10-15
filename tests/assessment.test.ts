@@ -105,6 +105,16 @@ describe('catalog and branches', () => {
           false,
         );
         expect(paths(p.id).find((r) => r.species.id === edge.to)?.conditional).toBe(true);
+        const requirements = paths(p.id, { gender: permitted }).find(
+          (r) => r.species.id === edge.to,
+        )!.requirements;
+        const genderNotes = requirements.filter((note) => /^(male|female) only$/i.test(note));
+        expect(genderNotes).toEqual([permitted === 'male' ? 'Male only' : 'Female only']);
+        expect(requirements).toEqual(
+          expect.arrayContaining(
+            edge.requirements.filter((note) => !/^(male|female) only$/i.test(note)),
+          ),
+        );
       }
   });
   it('preserves distinct gender battle forms and cosmetic shared records', () => {
@@ -284,17 +294,19 @@ describe('search and recommendations', () => {
       optionsFor(paths('magmar_shadow')).some(
         (o) => o.role === 'Raid' && o.species.id === 'magmortar_shadow',
       ),
-    ).toBe(true);
+    ).toBe(false);
     const eeveeRaids = optionsFor(paths('eevee')).filter((o) => o.role === 'Raid');
     expect(eeveeRaids.some((o) => o.species.id === 'leafeon')).toBe(false);
-    expect(eeveeRaids.some((o) => o.species.id === 'glaceon')).toBe(true);
+    expect(eeveeRaids.some((o) => o.species.id === 'glaceon')).toBe(false);
     expect(map.get('magmortar')!.raid).not.toHaveLength(0);
   });
   it('uses source tiers and excludes Normal even when an entry is labeled strong', () => {
-    const source = map.get('magmortar_shadow')!;
+    const source = map.get('rillaboom')!;
     for (const role of [
       { type: 'normal', tier: 'S' },
       { type: 'fire', tier: 'C' },
+      { type: 'grass', tier: 'B' },
+      { type: 'grass', tier: 'B+' },
     ]) {
       const species = {
         ...source,
@@ -370,5 +382,72 @@ describe('Mega and Primal raid paths', () => {
         paths(id).some((p) => p.species.temporary),
         id,
       ).toBe(false);
+  });
+});
+
+describe('Max Battle useful paths', () => {
+  const maxOptions = (id: string, s: Partial<Settings> = {}) =>
+    optionsFor(paths(id, s), data.maxBattles).filter((o) => o.role === 'Max');
+  it('follows Dynamax evolution, preserves tiers and never invents a Gigantamax evolution', () => {
+    const grookey = maxOptions('grookey');
+    expect(grookey.map((o) => o.max?.name)).toContain('Dynamax Rillaboom');
+    expect(grookey.some((o) => o.max?.mode === 'Gigantamax')).toBe(false);
+    expect(grookey.find((o) => o.max?.name === 'Dynamax Rillaboom')?.path).toEqual([
+      'grookey',
+      'thwackey',
+      'rillaboom',
+    ]);
+    expect(
+      maxOptions('rillaboom')
+        .map((o) => o.max?.mode)
+        .sort(),
+    ).toEqual(['Dynamax', 'Gigantamax']);
+    expect(maxOptions('charmander_shadow')).toEqual([]);
+    expect(maxOptions('charizard_mega_y')).toEqual([]);
+    expect(maxOptions('bounsweet')).toEqual([]);
+    expect(
+      grookey.every((o) =>
+        o.max?.roles.every((r) => ['SS', 'S+', 'S', 'A+', 'A'].includes(r.tier)),
+      ),
+    ).toBe(true);
+  });
+  it('preserves gender restrictions and finds qualifying roles outside the top five', () => {
+    const female = maxOptions('ralts', { gender: 'female' });
+    expect(female.some((o) => o.species.id === 'gallade')).toBe(false);
+    const male = maxOptions('ralts', { gender: 'male' });
+    expect(male.find((o) => o.species.id === 'gallade')?.max?.roles).toEqual(
+      expect.arrayContaining([expect.objectContaining({ type: 'psychic', tier: 'S', rank: 6 })]),
+    );
+  });
+  it('requests copy capability review regardless of IVs and preserves the collection flag', () => {
+    const options = maxOptions('grookey');
+    for (const ivs of [
+      [1, 2, 3],
+      [15, 15, 14],
+    ] as IVs[]) {
+      const result = recommendation(
+        map.get('grookey')!,
+        ivs,
+        options,
+        { ...flags, ordinaryExtra: true },
+        settings,
+        true,
+      );
+      expect(result.verdict).toBe('Review');
+      expect(result.title).toBe('Check this copy’s Max capability.');
+    }
+    expect(
+      recommendation(
+        map.get('grookey')!,
+        [1, 2, 3],
+        options,
+        { ...flags, maxBattle: true },
+        settings,
+        true,
+      ).verdict,
+    ).toBe('Keep');
+    expect(
+      options.every((o) => o.conditional && o.requirements.some((r) => r.includes('capable'))),
+    ).toBe(true);
   });
 });
