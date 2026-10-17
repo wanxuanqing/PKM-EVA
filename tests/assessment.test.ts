@@ -197,12 +197,39 @@ describe('catalog and branches', () => {
     expect(paths('litleo', { gender: 'male' }).some((t) => t.species.id === 'pyroar')).toBe(true);
     expect(paths('rockruff_dusk').some((t) => t.species.id === 'lycanroc_dusk')).toBe(true);
   });
-  it('preserves alternative Eevee and Duskull targets instead of CSV’s single suggestion', () => {
+  it('preserves every qualifying Eevee and Duskull target within the top-100 cutoff', () => {
     const options = optionsFor(paths('eevee'));
-    expect(options.filter((x) => x.role === 'UL').length).toBeGreaterThan(1);
-    expect(
-      optionsFor(paths('duskull')).some((x) => x.species.id === 'dusknoir' && x.role === 'GL'),
-    ).toBe(true);
+    for (const league of ['GL', 'UL', 'ML'] as const) {
+      const expected = paths('eevee')
+        .filter(
+          (t) =>
+            t.species.eligible[league] && (t.species.rankings[league]?.rank ?? Infinity) <= 100,
+        )
+        .map((t) => t.species.id)
+        .sort();
+      expect(
+        options
+          .filter((o) => o.role === league)
+          .map((o) => o.species.id)
+          .sort(),
+      ).toEqual(expected);
+    }
+    expect(paths('duskull').some((t) => t.species.id === 'dusknoir')).toBe(true);
+    for (const league of ['GL', 'UL', 'ML'] as const) {
+      const expected = paths('duskull')
+        .filter(
+          (t) =>
+            t.species.eligible[league] && (t.species.rankings[league]?.rank ?? Infinity) <= 100,
+        )
+        .map((t) => t.species.id)
+        .sort();
+      expect(
+        optionsFor(paths('duskull'))
+          .filter((o) => o.role === league)
+          .map((o) => o.species.id)
+          .sort(),
+      ).toEqual(expected);
+    }
   });
   it('fusion preserves the host’s IVs and never applies Zekrom’s to Kyurem', () => {
     expect(paths('kyurem').some((p) => p.species.id === 'kyurem_black')).toBe(true);
@@ -451,3 +478,20 @@ describe('Max Battle useful paths', () => {
     ).toBe(true);
   });
 });
+
+it.each(['GL', 'UL', 'ML'] as const)(
+  'includes rank 100 and excludes 101 for %s useful paths',
+  (league) => {
+    for (const rank of [100, 101]) {
+      const species = data.species.find(
+        (p) => p.eligible[league] && p.rankings[league]?.rank === rank,
+      )!;
+      expect(species).toBeDefined();
+      const options = optionsFor(
+        [{ species, path: [species.id], requirements: [], conditional: false }],
+        data.maxBattles,
+      );
+      expect(options.some((o) => o.role === league)).toBe(rank === 100);
+    }
+  },
+);

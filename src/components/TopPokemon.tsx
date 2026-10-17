@@ -1,10 +1,11 @@
+import { raidNotes } from '../lib/raidNotes';
 import { useEffect, useMemo, useState } from 'react';
 import type { Catalog } from '../types';
 import { topPokemon, evolutionLines, type TopCategory } from '../lib/topPokemon';
 import type { TopResponse } from '../worker/top.worker';
 import { MaxPokemon } from './MaxPokemon';
 import { PokemonPicture } from './PokemonPicture';
-import { leagueNames } from './ResultCard';
+import { leagueNames } from '../lib/leagueNames';
 import { sourceURL } from '../lib/data';
 export function TopPokemon({ data }: { data: Catalog }) {
   const [category, setCategory] = useState<TopCategory | 'Max'>('GL');
@@ -180,18 +181,11 @@ export function TopPokemon({ data }: { data: Catalog }) {
                         </p>
                         {m.offType && <p className="small-note">Off-type attacker.</p>}
                         {m.mixedMoves && <p className="small-note">Mixed moveset.</p>}
-                        {m.conditions
-                          ?.filter(
-                            (note) =>
-                              !note.startsWith(
-                                'GO Hub default Mega benchmark uses Super Max Level',
-                              ),
-                          )
-                          .map((note) => (
-                            <p className="small-note" key={note}>
-                              {note}
-                            </p>
-                          ))}
+                        {raidNotes(m.conditions).map((note) => (
+                          <p className="small-note" key={note}>
+                            {note}
+                          </p>
+                        ))}
                         <a href={m.source} target="_blank" rel="noreferrer">
                           GO Hub · {m.retrieved.slice(0, 10)}
                         </a>

@@ -146,9 +146,7 @@ for (const capture of captures)
             ]
           : []),
         ...(/[+]$/.test(row.qm.name) || /[+]$/.test(row.cm.name)
-          ? [
-              'Special + moves require the applicable Mega Level and move unlocks; verify these on your copy.',
-            ]
+          ? ['+ moves are available while Mega Evolved and get stronger with Mega Level.']
           : []),
       ],
     });

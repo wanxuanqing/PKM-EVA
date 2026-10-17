@@ -23,6 +23,7 @@ export function buildMovesheet(data, bundle, previous) {
       bundle.pvpoke.files[`src/data/rankings/all/overall/rankings-${cap}.json`],
     );
     const rankings = new Map(raw.map((r, i) => [r.speciesId, { ...r, rank: i + 1 }]));
+    // Retain the historically verified top-199 rows for audit; only ranks 1–100 are recommended.
     for (const p of data.species.filter(
       (s) => s.eligible[league] && s.rankings[league]?.rank < 200,
     )) {
@@ -54,9 +55,11 @@ export function buildMovesheet(data, bundle, previous) {
         : JSON.stringify(before.moves) === JSON.stringify(p.rankings[league].moves)
           ? 'unchanged'
           : 'updated';
-      counts.pvp++;
-      if (comparison === 'updated') counts.pvpChanged++;
-      if (comparison === 'new') counts.pvpNew++;
+      const included = ranking.rank <= 100;
+      if (included) counts.pvp++;
+      else counts.pvpExcluded++;
+      if (included && comparison === 'updated') counts.pvpChanged++;
+      if (included && comparison === 'new') counts.pvpNew++;
       rows.push({
         id: p.id,
         name: p.name,
@@ -67,8 +70,10 @@ export function buildMovesheet(data, bundle, previous) {
         rank: ranking.rank,
         previousRank: before?.rank ?? null,
         tier: '',
-        includedInApp: true,
-        verification: 'Matched pinned PvPoke recommendation and exact-form move pool',
+        includedInApp: included,
+        verification: included
+          ? 'Matched pinned PvPoke recommendation and exact-form move pool'
+          : 'Outside top-100 recommendation cutoff; retained for audit',
         comparison,
         moves: selected,
         previousMoves: before?.moves ?? [],
@@ -111,7 +116,7 @@ export function buildMovesheet(data, bundle, previous) {
         previousRank: before.rank,
         tier: '',
         includedInApp: false,
-        verification: 'No longer meets current top-199 eligibility',
+        verification: 'No longer meets current top-100 eligibility',
         comparison: 'no longer qualifying',
         moves: after?.moves ?? [],
         previousMoves: before.moves,

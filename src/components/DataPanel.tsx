@@ -45,7 +45,8 @@ export function DataPanel({ data }: { data: Catalog }) {
             <dt>Species rank</dt>
             <dd>
               How a species and form compare with other Pokémon in an open league. PvPoke overall
-              ranks 1–199 qualify; rank 200 does not. Shadow rankings stay separate.
+              ranks 1–100 qualify in GL, UL and ML; rank 101 does not. Shadow rankings stay
+              separate.
             </dd>
           </div>
           <div>

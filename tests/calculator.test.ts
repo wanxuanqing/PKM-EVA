@@ -160,8 +160,13 @@ describe('input and strict user thresholds', () => {
     for (const s of ['1/12/13', ' 1 / 12 / 13 ', '1,12,13', '1 12 13'])
       expect(parseIVs(s)).toEqual([1, 12, 13]);
   });
-  it('distinguishes 199 from 200 and 40/45 from 41/45', () => {
-    expect(qualifies(199)).toBe(true);
+  it('includes species rank 100, excludes 101, and distinguishes 40/45 from 41/45', () => {
+    expect(qualifies(1)).toBe(true);
+    expect(qualifies(100)).toBe(true);
+    expect(qualifies(101)).toBe(false);
+    expect(qualifies(199)).toBe(false);
+    expect(qualifies(0)).toBe(false);
+    expect(qualifies(99.5)).toBe(false);
     expect(qualifies(200)).toBe(false);
     expect(qualifies(undefined)).toBe(false);
     expect(goodOverallIV([15, 15, 10])).toBe(false);

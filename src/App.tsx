@@ -6,7 +6,8 @@ import { loadLocal, saveLocal } from './lib/storage';
 import { parseIVs } from './lib/calculator';
 import { Selector } from './components/Selector';
 import { BrandMark, Icon } from './components/Icon';
-import { ResultCard, leagueNames } from './components/ResultCard';
+import { ResultCard } from './components/ResultCard';
+import { leagueNames } from './lib/leagueNames';
 import { DataPanel } from './components/DataPanel';
 import { TopPokemon } from './components/TopPokemon';
 import { PokemonPicture } from './components/PokemonPicture';
@@ -824,7 +825,7 @@ export default function App({ data }: { data: Catalog }) {
                       </summary>
                       <div>
                         <p>
-                          <b>Species rank</b> compares different Pokémon in a league. Ranks 1–199
+                          <b>Species rank</b> compares different Pokémon in a league. Ranks 1–100
                           qualify here.
                         </p>
                         <p>

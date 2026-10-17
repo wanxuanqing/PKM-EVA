@@ -150,4 +150,4 @@ export function assessIVs(
 export const overallIV = (ivs: IVs) => (ivs.reduce((a, b) => a + b, 0) / 45) * 100;
 export const goodOverallIV = (ivs: IVs) => ivs.reduce((a, b) => a + b, 0) >= 41;
 export const qualifies = (rank?: number) =>
-  rank !== undefined && Number.isInteger(rank) && rank > 0 && rank < 200;
+  rank !== undefined && Number.isInteger(rank) && rank > 0 && rank <= 100;

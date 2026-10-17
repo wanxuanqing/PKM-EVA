@@ -36,7 +36,7 @@ Pictures use an audited mapping of all 219 named entries in `src/data/artwork-fo
 To refresh the mapping, run `node scripts/update-artwork.mjs`, then `npm run format`, `npm test`, `npm run build` and `npm run test:ui`. The updater checks source species identity and image availability before writing the mapping. The catalog coverage test fails if a new named entry has no explicit artwork decision. Review changed images and unavailable entries before committing.
 
 - Autocomplete tolerates case, punctuation, accents, gender symbols and form aliases. Type IVs separately or paste `1/12/13`.
-- Open GL/UL/ML species ranks **1–199** qualify. Every qualifying supported target gets a card, ordered by league and species rank; one evolution never hides another because of IV percentile.
+- Open GL/UL/ML species ranks **1–100 inclusive** qualify. Every qualifying supported target gets a card, ordered by league and species rank; one evolution never hides another because of IV percentile.
 - GL/UL keep preference defaults to IV percentile **strictly above 95%**. ML and verified raid roles use overall IVs **strictly above 90%**, meaning at least **41/45**. Existing stored 90th-percentile preferences migrate once to 95; other custom thresholds and saved assessment settings remain intact.
 - Trade advice checks Shadow status, source tradability, and the “already traded” flag. Trades reroll IVs and do not guarantee an improvement. Useful Shadows receive Keep/Review advice.
 - Collection flags protect shiny, costume, rare, sentimental and Max Battle copies. Perfect and zero-IV spreads are recognized as collectibles. Collection value does not require perfect IVs.
