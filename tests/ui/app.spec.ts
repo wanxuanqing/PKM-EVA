@@ -380,16 +380,12 @@ test('advanced settings preserve theoretical ranks and separate regional branche
   await page.getByRole('combobox', { name: 'Gender', exact: true }).selectOption('female');
   await stable(page);
   await expect(
-    page
-      .getByRole('article')
-      .filter({ has: page.getByRole('heading', { name: 'Gallade', exact: true }) }),
+    page.getByRole('article', { name: 'Dynamax Gallade Max Battles', exact: true }),
   ).toHaveCount(0);
   await page.getByRole('combobox', { name: 'Gender', exact: true }).selectOption('male');
   await stable(page);
   await expect(
-    page
-      .getByRole('article')
-      .filter({ has: page.getByRole('heading', { name: 'Gallade', exact: true }) }),
+    page.getByRole('article', { name: 'Dynamax Gallade Max Battles', exact: true }),
   ).not.toHaveCount(0);
 });
 test('ML and raids share an explicit IV-sum preference without losing ML ranks', async ({
@@ -845,4 +841,29 @@ test('Max defender and healer roles have separate tiers, paths, move labels and 
   await expect(
     page.getByRole('article', { name: 'Dynamax Wailord Max Battles', exact: true }),
   ).toContainText('Healer · A tier');
+});
+
+test('PvP useful paths include rank 100 and exclude rank 101 in every league', async ({ page }) => {
+  await page.goto('/');
+  for (const [name, form, target, league, included] of [
+    ['Talonflame', 'talonflame_shadow', 'Talonflame (Shadow)', 'Great League', true],
+    ['Wigglytuff', '', 'Wigglytuff', 'Great League', false],
+    ['Sylveon', '', 'Sylveon', 'Ultra League', true],
+    ['Hippowdon', '', 'Hippowdon', 'Ultra League', false],
+    ['Kommo-o', '', 'Kommo-o', 'Master League', true],
+    ['Kartana', '', 'Kartana', 'Master League', false],
+  ] as const) {
+    await search(page, name);
+    if (form) await page.getByLabel('Form', { exact: true }).selectOption(form);
+    await stable(page);
+    const card = page.getByRole('article', { name: target + ' ' + league, exact: true });
+    if (included) {
+      await expect(card).toBeVisible();
+      await expect(card).toContainText('Species #100');
+    } else await expect(card).toHaveCount(0);
+  }
+  await page.getByRole('button', { name: 'Data', exact: true }).click();
+  await expect(
+    page.getByText('ranks 1–100 qualify in GL, UL and ML; rank 101 does not.', { exact: false }),
+  ).toBeVisible();
 });

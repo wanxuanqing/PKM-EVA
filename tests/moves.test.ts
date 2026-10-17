@@ -15,7 +15,7 @@ const data = JSON.parse(readFileSync(`public${pointer.file}`, 'utf8')) as Catalo
 const rawPointer = JSON.parse(readFileSync('data/sources-current.json', 'utf8'));
 const bundle = JSON.parse(gunzipSync(readFileSync(rawPointer.file)).toString());
 describe('verified moves datasheet', () => {
-  it('matches every qualifying PvP moveset against the pinned raw ranking, including move flags', () => {
+  it('verifies current and archived top-199 PvP movesets against pinned rankings, including flags', () => {
     const gm = JSON.parse(bundle.pvpoke.files['src/data/gamemaster.json']);
     for (const [league, cap] of [
       ['GL', 1500],
@@ -65,6 +65,30 @@ describe('verified moves datasheet', () => {
       columns: true,
     }) as Record<string, string>[];
     expect(sheet.catalogVersion).toBe(data.version);
+    const pvpRows = sheet.rows.filter((r: { role: string }) => ['GL', 'UL', 'ML'].includes(r.role));
+    expect(
+      pvpRows
+        .filter((r: { rank: number; includedInApp: boolean }) => r.includedInApp)
+        .every((r: { rank: number }) => r.rank >= 1 && r.rank <= 100),
+    ).toBe(true);
+    expect(
+      pvpRows.filter((r: { rank: number }) => r.rank > 100 && r.rank <= 199).length,
+    ).toBeGreaterThan(0);
+    expect(
+      pvpRows
+        .filter((r: { rank: number }) => r.rank > 100)
+        .every((r: { includedInApp: boolean }) => !r.includedInApp),
+    ).toBe(true);
+    for (const league of ['GL', 'UL', 'ML'] as const) {
+      expect(
+        pvpRows.find((r: { role: string; rank: number }) => r.role === league && r.rank === 100)
+          ?.includedInApp,
+      ).toBe(true);
+      expect(
+        pvpRows.find((r: { role: string; rank: number }) => r.role === league && r.rank === 101)
+          ?.includedInApp,
+      ).toBe(false);
+    }
     expect(sheet.pvpokeCommit).toBe(bundle.pvpoke.commit);
     expect(csv.length).toBe(sheet.rows.length);
     const normal = sheet.rows.filter(

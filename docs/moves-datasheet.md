@@ -48,3 +48,7 @@ The build, 58 unit/data tests and 16 browser tests passed. Tests cover exact sou
 Raid recommendations use full GO Hub per-type ranking payloads and include SS, S and A (with legacy S+/A+ labels supported). Normal and lower tiers are excluded from recommendations. Each role retains its within-type rank, exact moves, limited-access flags, source URL and capture time; mixed/off-type entries and special Mega conditions are labeled. Earlier sections record the original import audit and may describe its former B-tier cutoff.
 
 The current capture covers 259 distinct forms and 397 qualifying roles, including four additional raid-only Shadow forms. Omitted lower-tier rows remain in the captured sources, and older immutable snapshots retain previous advice. The exported movesheet uses the current cutoff for includedInApp. Raid-only capture preserves the pinned PvP snapshot and original retrieval date.
+
+## Current PvP cutoff (October 17, 2026)
+
+GL, UL and ML recommendations now include species ranks **1–100 inclusive**. The current [CSV](../public/data/moves-2026-10-15-4e79a74540b1.csv) and [JSON](../public/data/moves-2026-10-15-4e79a74540b1.json) exports contain 300 qualifying PvP rows (100 per league) and preserve 297 rank-101–199 PvP rows as excluded audit records. Full catalog ranks, moves, source captures and the original CSV are retained. This policy change does not refresh source rankings or alter raid, gym, Max Battle, collection or IV-comparison rules.

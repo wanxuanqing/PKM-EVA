@@ -1,16 +1,10 @@
+import { raidNotes } from '../lib/raidNotes';
 import type { Catalog, Option, Settings } from '../types';
 import { Icon } from './Icon';
 import { sourceURL } from '../lib/data';
 import { GymCard } from './GymCard';
 import { MaxCard } from './MaxCard';
-export const leagueNames = {
-  GL: 'Great League',
-  UL: 'Ultra League',
-  ML: 'Master League',
-  Raid: 'Raids',
-  Gym: 'Gym Defense',
-  Max: 'Max Battles',
-};
+import { leagueNames } from '../lib/leagueNames';
 const iv = (values: number[]) => values.join(' / ');
 export function ResultCard({
   option,
@@ -277,16 +271,11 @@ export function ResultCard({
                           Mixed moveset: one move has a different attack type.
                         </p>
                       )}
-                      {set.conditions
-                        ?.filter(
-                          (note) =>
-                            !note.startsWith('GO Hub default Mega benchmark uses Super Max Level'),
-                        )
-                        .map((note) => (
-                          <p className="small-note" key={note}>
-                            {note}
-                          </p>
-                        ))}
+                      {raidNotes(set.conditions).map((note) => (
+                        <p className="small-note" key={note}>
+                          {note}
+                        </p>
+                      ))}
                       <a href={set.source} target="_blank" rel="noreferrer">
                         GO Hub {set.type} ranking ↗
                       </a>
