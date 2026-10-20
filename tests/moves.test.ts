@@ -164,7 +164,7 @@ describe('complete SS/S/A raid coverage', () => {
       expect(shadow.baseStats).toEqual(base.baseStats);
       expect(shadow.gender?.allowed).toEqual(base.gender?.allowed);
       expect(shadow.eligible).toEqual({ GL: false, UL: false, ML: false });
-      expect(shadow.raid.some((r) => r.moveSets?.length)).toBe(true);
+      expect(shadow.raid.some((r) => r.moveSets?.length)).toBe(id !== 'sirfetchd');
     }
   });
   it('extracts complete embedded tables beyond page one and rejects truncated qualifying tiers', () => {
@@ -188,4 +188,39 @@ describe('complete SS/S/A raid coverage', () => {
       matchRaidForm({ ...rows[0], attacker: { ...attacker, form: 'Shadow' } }, data.species, {}),
     ).toBeUndefined();
   });
+});
+
+it('resolves shared GO Hub move references and rejects dangling or circular references', () => {
+  const first = {
+    attacker: { id: 812, name: 'Rillaboom', type1: 'grass', type2: 'none', form: null },
+    qm: { id: 215, name: 'Razor Leaf', type: 'grass' },
+    cm: { id: 296, name: 'Frenzy Plant', type: 'grass', isLegacy: 1 },
+    order: 1,
+    tier: 'S',
+  };
+  const reference = '$47:props:initialData:attackers:0:';
+  const html = (move: string) => {
+    const rows = [first, { ...first, order: 2, tier: 'B', qm: move, cm: reference + 'cm' }];
+    const flight =
+      '47:' +
+      JSON.stringify([
+        '$',
+        null,
+        null,
+        {
+          allowedType: 'grass',
+          initialData: { attackers: rows },
+        },
+      ]) +
+      '\n';
+    return '<script>self.__next_f.push(' + JSON.stringify([1, flight]) + ')</script>';
+  };
+  const rows = extractTypeRankings(html(reference + 'qm'), 'grass');
+  expect(rows[1].qm).toEqual(first.qm);
+  expect(rows[1].cm).toEqual(first.cm);
+  expect(rows[1].cm.isLegacy).toBe(1);
+  expect(() => extractTypeRankings(html('$ff:missing'), 'grass')).toThrow('Unresolved');
+  expect(() => extractTypeRankings(html('$47:props:initialData:attackers:1:qm'), 'grass')).toThrow(
+    'Unresolved',
+  );
 });

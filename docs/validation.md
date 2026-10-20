@@ -72,3 +72,9 @@ The new browser test covers mobile Useful paths, separate defender/healer lists,
 ### Top-100 PvP cutoff (October 17, 2026)
 
 All three open leagues now qualify species ranks 1–100 inclusive. Unit checks cover rank 100 versus 101 for GL, UL and ML, verify moves-export inclusion flags and retain rank-101–199 rows as excluded audit evidence. The catalog preserves all species, rankings, moves and evolution edges. Existing alternative-evolution tests now compare every target against the new cutoff instead of assuming a rank-101–199 evolution must qualify. Browser checks exercise both sides of the boundary in all three leagues; gender-restricted Gallade remains covered through its sourced Max role. IV comparison settings, limited-cup coverage and all non-PvP roles are unchanged.
+
+### Database refresh (October 19, 2026)
+
+Catalog `2026-10-20-2ad2f6d1ea80` contains 1,634 forms, preserving all 1,608 CSV forms and all previous IDs. The refreshed source snapshots, moves CSV/JSON and exact before/after comparison are documented in [the data update report](data-update-2026-10-19.md). All 93 unit/data tests and 29 browser tests pass. The production build, catalog validation and gender audit pass; 1,633 forms have GO-backed gender metadata and all 11,868 gender/evolution traversals pass. New regression coverage checks shared GO Hub move references, missing/circular references, limited flags, Minior battle stats, Phony/Antique Candy costs and Bramblin's buddy requirement. Core color availability and mid-battle Minior form switching are explicitly outside the current model.
+
+The refresh files pass formatting. The repository-wide formatting check still flags 12 unchanged files that match HEAD; see the data report for the list.

@@ -2,7 +2,7 @@
 
 A phone-first Pokémon GO evaluator built with React, TypeScript and Vite. Search a Pokémon and form, enter three IVs, and compare all supported useful evolution paths. Everything runs in your browser; no account, API key, database or Python server is required.
 
-The supplied `prompt.md` and CSV remain unchanged. The original catalog contains **1,608 forms across 953 Pokédex species**. The current snapshot includes 13 supplemental source entries, for 1,621 supported forms. Forms are keyed by stable IDs, never by display name; inclusion does not confirm GO release availability.
+The supplied `prompt.md` and CSV remain unchanged. The original catalog contains **1,608 forms across 953 Pokédex species**. The current snapshot includes 26 supplemental source entries, for 1,634 supported forms. Forms are keyed by stable IDs, never by display name; inclusion does not confirm GO release availability.
 
 ## Run locally
 
@@ -11,7 +11,7 @@ Contributions: [CONTRIBUTING.md](CONTRIBUTING.md). Private vulnerability reports
 Use Node.js 24 LTS. In Windows PowerShell:
 
 ```powershell
-cd C:\Users\wanxu\OneDrive\Documents\GitHub\PKM-EVA
+cd C:\GitHub\PKM-EVA
 npm.cmd ci
 npm.cmd run dev
 ```
@@ -31,7 +31,7 @@ Open <http://127.0.0.1:4173>. `dist/` is the complete static production output. 
 
 ## What it does
 
-Pictures use an audited mapping of all 219 named entries in `src/data/artwork-forms.json` (reviewed 2026-10-10). This includes regional, Mega, alternate battle, gender and supported costume forms: 213 have matching artwork or form sprites. Shaymin Land and Sky, for example, have separate images. Shadow entries reuse their corresponding form without Shadow effects. Six costumes have no matching PokeAPI image (Armored Mewtwo and Pikachu Flying, 5th Anniversary, Horizons, Kariyushi and Shaymin Scarf); these show an unavailable message instead of the base species. Newly added named forms also fail safely until mapped. Sizes are not visually scaled, and shiny colors are not modeled. Source URLs are bundled locally; no runtime API requests are needed.
+Pictures use an audited mapping of all 225 named entries in `src/data/artwork-forms.json` (reviewed 2026-10-20 UTC). This includes regional, Mega, alternate battle, gender and supported costume forms: 218 have matching artwork or form sprites. Shaymin Land and Sky, for example, have separate images. Shadow entries reuse their corresponding form without Shadow effects. Seven entries have no matching PokeAPI image (Minior Core, Armored Mewtwo and Pikachu Flying, 5th Anniversary, Horizons, Kariyushi and Shaymin Scarf); these show an unavailable message instead of the base species. Newly added named forms also fail safely until mapped. Sizes are not visually scaled, and shiny colors are not modeled. Source URLs are bundled locally; no runtime API requests are needed.
 
 To refresh the mapping, run `node scripts/update-artwork.mjs`, then `npm run format`, `npm test`, `npm run build` and `npm run test:ui`. The updater checks source species identity and image availability before writing the mapping. The catalog coverage test fails if a new named entry has no explicit artwork decision. Review changed images and unavailable entries before committing.
 
@@ -60,6 +60,8 @@ The [full gender audit](docs/gender-audit.md) covers every catalog entry. Run `n
 Calculations run in a Web Worker. Up to 32 distributions are cached in memory and IndexedDB, keyed by snapshot, calculator version, form, league, minimum/maximum level, eligibility and IV floor. Changing IVs reuses the distribution. Storage failure does not prevent calculation.
 
 ## Data and updates
+
+Latest refresh: [October 19, 2026 database comparison](docs/data-update-2026-10-19.md), including new debut forms and changes to PvP, raid and Max recommendations.
 
 Gym Defense is a separate role using GO Hub's S/A+ bulk shortlist, reviewed 2026-10-02. The 25 exact regular forms and reachable evolution paths are recognized without a minimum IV percentage; Normal types are allowed. Conditional paths require review, and Shadow/costume/temporary forms do not inherit ratings. These are species-level Defense × Stamina tiers, not simulations or an instruction to power up every copy. See [gym-defense scope and sources](docs/gym-defense.md). The shortlist is maintained separately from raid/PvP refreshes in `src/lib/gym.ts`.
 

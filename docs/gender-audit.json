@@ -1,14 +1,14 @@
 {
-  "snapshot": "2026-10-15-4e79a74540b1",
+  "snapshot": "2026-10-20-2ad2f6d1ea80",
   "sourceCommit": "8e227be44f288d34463e23bf04e9b564d3c16f79",
   "scope": "Bundled GO gender templates, form mappings, Shadow/base agreement and all supported evolution paths; not a live availability audit.",
-  "total": 1626,
-  "sourceBacked": 1625,
+  "total": 1634,
+  "sourceBacked": 1633,
   "unverified": [
     "golisopodsh"
   ],
   "inheritedTemporaryForms": 62,
-  "traversals": 11828,
+  "traversals": 11868,
   "failures": [],
   "entries": [
     {
@@ -2167,6 +2167,38 @@
       ],
       "templates": [
         "SPAWN_V0654_POKEMON_BRAIXEN_NORMAL"
+      ],
+      "sharedAppearance": false,
+      "source": "go-gamemaster",
+      "status": "source-backed"
+    },
+    {
+      "id": "brambleghast",
+      "name": "Brambleghast",
+      "dex": 947,
+      "fixed": null,
+      "allowed": [
+        "female",
+        "male"
+      ],
+      "templates": [
+        "SPAWN_V0947_POKEMON_BRAMBLEGHAST_NORMAL"
+      ],
+      "sharedAppearance": false,
+      "source": "go-gamemaster",
+      "status": "source-backed"
+    },
+    {
+      "id": "bramblin",
+      "name": "Bramblin",
+      "dex": 946,
+      "fixed": null,
+      "allowed": [
+        "female",
+        "male"
+      ],
+      "templates": [
+        "SPAWN_V0946_POKEMON_BRAMBLIN_NORMAL"
       ],
       "sharedAppearance": false,
       "source": "go-gamemaster",
@@ -14074,6 +14106,36 @@
       "status": "source-backed"
     },
     {
+      "id": "minior_core",
+      "name": "Minior (Core)",
+      "dex": 774,
+      "fixed": "genderless",
+      "allowed": [
+        "genderless"
+      ],
+      "templates": [
+        "SPAWN_V0774_POKEMON_MINIOR"
+      ],
+      "sharedAppearance": false,
+      "source": "go-gamemaster",
+      "status": "source-backed"
+    },
+    {
+      "id": "minior_meteor",
+      "name": "Minior (Meteor)",
+      "dex": 774,
+      "fixed": "genderless",
+      "allowed": [
+        "genderless"
+      ],
+      "templates": [
+        "SPAWN_V0774_POKEMON_MINIOR"
+      ],
+      "sharedAppearance": false,
+      "source": "go-gamemaster",
+      "status": "source-backed"
+    },
+    {
       "id": "minun",
       "name": "Minun",
       "dex": 312,
@@ -16812,6 +16874,36 @@
     {
       "id": "polteageist",
       "name": "Polteageist",
+      "dex": 855,
+      "fixed": "genderless",
+      "allowed": [
+        "genderless"
+      ],
+      "templates": [
+        "SPAWN_V0855_POKEMON_POLTEAGEIST"
+      ],
+      "sharedAppearance": false,
+      "source": "go-gamemaster",
+      "status": "source-backed"
+    },
+    {
+      "id": "polteageist_antique",
+      "name": "Polteageist (Antique)",
+      "dex": 855,
+      "fixed": "genderless",
+      "allowed": [
+        "genderless"
+      ],
+      "templates": [
+        "SPAWN_V0855_POKEMON_POLTEAGEIST"
+      ],
+      "sharedAppearance": false,
+      "source": "go-gamemaster",
+      "status": "source-backed"
+    },
+    {
+      "id": "polteageist_phony",
+      "name": "Polteageist (Phony)",
       "dex": 855,
       "fixed": "genderless",
       "allowed": [
@@ -20048,6 +20140,36 @@
     {
       "id": "sinistea",
       "name": "Sinistea",
+      "dex": 854,
+      "fixed": "genderless",
+      "allowed": [
+        "genderless"
+      ],
+      "templates": [
+        "SPAWN_V0854_POKEMON_SINISTEA"
+      ],
+      "sharedAppearance": false,
+      "source": "go-gamemaster",
+      "status": "source-backed"
+    },
+    {
+      "id": "sinistea_antique",
+      "name": "Sinistea (Antique)",
+      "dex": 854,
+      "fixed": "genderless",
+      "allowed": [
+        "genderless"
+      ],
+      "templates": [
+        "SPAWN_V0854_POKEMON_SINISTEA"
+      ],
+      "sharedAppearance": false,
+      "source": "go-gamemaster",
+      "status": "source-backed"
+    },
+    {
+      "id": "sinistea_phony",
+      "name": "Sinistea (Phony)",
       "dex": 854,
       "fixed": "genderless",
       "allowed": [

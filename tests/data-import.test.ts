@@ -5,6 +5,7 @@ import { spawnSync } from 'node:child_process';
 // @ts-expect-error The controlled Node import step is plain JavaScript, not browser code.
 import { parseCatalog, validateCatalog } from '../scripts/data-lib.mjs';
 import pointer from '../src/data/current.json';
+import type { Catalog } from '../src/types';
 const headers = [
   'Pokémon / form',
   'Pokédex #',
@@ -77,4 +78,41 @@ it('rejects a useful Mega raid target with a missing regular-form connection', (
   const base = data.species.find((p: { id: string }) => p.id === 'staraptor');
   base.evolutions = base.evolutions.filter((e: { to: string }) => e.to !== 'staraptor_mega');
   expect(() => validateCatalog(data, 1608)).toThrow('Missing Mega/Primal raid path');
+});
+
+it('preserves new debut forms and their distinct GO evolution rules', () => {
+  const data = JSON.parse(readFileSync('public' + pointer.file, 'utf8')) as Catalog;
+  const byId = new Map(data.species.map((p) => [p.id, p]));
+  for (const form of ['phony', 'antique']) {
+    const baby = byId.get('sinistea_' + form)!,
+      adult = byId.get('polteageist_' + form)!;
+    expect(baby.gender!.allowed).toEqual(['genderless']);
+    expect(baby.baseStats).toEqual(byId.get('sinistea')!.baseStats);
+    expect(adult.baseStats).toEqual(byId.get('polteageist')!.baseStats);
+    expect(baby.evolutions).toHaveLength(1);
+    expect(baby.evolutions[0]).toMatchObject({
+      to: adult.id,
+      requirements: [form === 'phony' ? '50 Candy' : '400 Candy'],
+    });
+    expect(adult.raid[0].moveSets).toEqual(
+      expect.arrayContaining([expect.objectContaining({ type: 'ghost', tier: 'A' })]),
+    );
+    expect(adult.rankings).toEqual({});
+  }
+  expect(byId.get('sinistea')!.evolutions[0]).toMatchObject({ review: true });
+  expect(byId.get('sinistea')!.evolutions[0].requirements.join(' ')).toContain('400 Candy');
+  expect(byId.get('bramblin')!.evolutions).toEqual([
+    expect.objectContaining({
+      to: 'brambleghast',
+      requirements: ['50 Candy', 'Walk 20 km with Bramblin as your buddy'],
+      source: 'https://db.pokemongohub.net/pokemon/946',
+    }),
+  ]);
+  expect(byId.get('minior_meteor')!.baseStats).toEqual({ atk: 116, def: 194, hp: 155 });
+  expect(byId.get('minior_core')!.baseStats).toEqual({ atk: 218, def: 131, hp: 155 });
+  for (const id of ['minior_meteor', 'minior_core']) {
+    expect(byId.get(id)!.evolutions).toEqual([]);
+    expect(byId.get(id)!.rankings).toEqual({});
+    expect(byId.get(id)!.notes.join(' ')).toContain('not an ordinary evolution');
+  }
 });

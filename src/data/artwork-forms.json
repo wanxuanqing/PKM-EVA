@@ -1,5 +1,5 @@
 {
-  "reviewed": "2026-10-10",
+  "reviewed": "2026-10-20",
   "forms": {
     "abomasnow_mega": {
       "id": 10060,
@@ -672,6 +672,17 @@
       "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/mime-jr"
     },
+    "minior_core": {
+      "url": null,
+      "reason": "No matching artwork or form sprite available from PokéAPI.",
+      "source": "https://pokeapi.co/api/v2/pokemon-form/minior-core"
+    },
+    "minior_meteor": {
+      "id": 774,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/774.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/minior-red-meteor"
+    },
     "moltres_galarian": {
       "id": 10171,
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10171.png",
@@ -834,6 +845,18 @@
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10040.png",
       "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/pinsir-mega"
+    },
+    "polteageist_antique": {
+      "id": 10345,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/855-antique.png",
+      "kind": "sprite",
+      "source": "https://pokeapi.co/api/v2/pokemon-form/polteageist-antique"
+    },
+    "polteageist_phony": {
+      "id": 855,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/855.png",
+      "kind": "sprite",
+      "source": "https://pokeapi.co/api/v2/pokemon-form/polteageist-phony"
     },
     "ponyta_galarian": {
       "id": 10162,
@@ -1014,6 +1037,18 @@
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10006.png",
       "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/shaymin-sky"
+    },
+    "sinistea_antique": {
+      "id": 10344,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/854-antique.png",
+      "kind": "sprite",
+      "source": "https://pokeapi.co/api/v2/pokemon-form/sinistea-antique"
+    },
+    "sinistea_phony": {
+      "id": 854,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/854.png",
+      "kind": "sprite",
+      "source": "https://pokeapi.co/api/v2/pokemon-form/sinistea-phony"
     },
     "skarmory_mega": {
       "id": 10284,
