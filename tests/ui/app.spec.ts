@@ -149,7 +149,7 @@ test('expanded raid moves retain type roles and export the same catalog datashee
   await card.getByText('Details & requirements').click();
   await expect(card).toContainText('Hex');
   await expect(card).toContainText('Shadow Ball');
-  await expect(card).toContainText('ghost · A tier');
+  await expect(card).toContainText('ghost · S tier');
   await expect(card).not.toContainText('Fire Spin');
   await expect(card).not.toContainText('Overheat');
   await expect(card.getByRole('link', { name: 'Raid evidence' })).toHaveAttribute(
@@ -606,7 +606,7 @@ test('Rillaboom exposes separate tiered raid and PvP moves and earlier evolution
   await expect(raid).toContainText('S tier');
   await expect(raid.getByText('Ideal IVs', { exact: true })).toHaveCount(0);
   await raid.getByText('Details & requirements').click();
-  await expect(raid).toContainText('grass · S tier · Type rank #14');
+  await expect(raid).toContainText('grass · S tier · Type rank #12');
   await expect(raid).toContainText('Razor Leaf');
   await expect(raid).toContainText('Frenzy Plant *');
   const pvp = page.getByRole('article', { name: 'Rillaboom Ultra League', exact: true });
@@ -846,10 +846,10 @@ test('Max defender and healer roles have separate tiers, paths, move labels and 
 test('PvP useful paths include rank 100 and exclude rank 101 in every league', async ({ page }) => {
   await page.goto('/');
   for (const [name, form, target, league, included] of [
-    ['Talonflame', 'talonflame_shadow', 'Talonflame (Shadow)', 'Great League', true],
-    ['Wigglytuff', '', 'Wigglytuff', 'Great League', false],
-    ['Sylveon', '', 'Sylveon', 'Ultra League', true],
-    ['Hippowdon', '', 'Hippowdon', 'Ultra League', false],
+    ['Oranguru', '', 'Oranguru', 'Great League', true],
+    ['Drapion', 'drapion_shadow', 'Drapion (Shadow)', 'Great League', false],
+    ['Zapdos', 'zapdos', 'Zapdos', 'Ultra League', true],
+    ['Cofagrigus', 'cofagrigus_shadow', 'Cofagrigus (Shadow)', 'Ultra League', false],
     ['Kommo-o', '', 'Kommo-o', 'Master League', true],
     ['Kartana', '', 'Kartana', 'Master League', false],
   ] as const) {
@@ -866,4 +866,26 @@ test('PvP useful paths include rank 100 and exclude rank 101 in every league', a
   await expect(
     page.getByText('ranks 1–100 qualify in GL, UL and ML; rank 101 does not.', { exact: false }),
   ).toBeVisible();
+});
+
+test('new debut entries retain walking requirements and form-specific raid paths', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await search(page, 'Bramblin');
+  await stable(page);
+  await page.getByText('Coverage & availability for Bramblin', { exact: true }).click();
+  await expect(page.getByText('20 km', { exact: false }).first()).toBeVisible();
+  await search(page, 'Sinistea');
+  await page.getByLabel('Form', { exact: true }).selectOption('sinistea_antique');
+  await stable(page);
+  const raid = page.getByRole('article', { name: 'Polteageist (Antique) Raids', exact: true });
+  await expect(raid).toBeVisible();
+  await raid.getByText('Details & requirements', { exact: true }).click();
+  await expect(raid).toContainText('400 Candy');
+  await expect(raid).toContainText('A tier');
+  await search(page, 'Minior');
+  await page.getByLabel('Form', { exact: true }).selectOption('minior_core');
+  await stable(page);
+  await expect(page.getByLabel('Form', { exact: true })).toHaveValue('minior_core');
 });

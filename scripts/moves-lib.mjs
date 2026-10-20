@@ -56,15 +56,42 @@ export function extractRankingPayload(html, type, maxBattle = false) {
       .match(/^self\.__next_f\.push\((.*)\)$/s);
     if (match) flight += JSON.parse(match[1])[1] ?? '';
   }
+  const roots = new Map();
   for (const line of flight.split('\n')) {
     const colon = line.indexOf(':');
     if (colon < 0) continue;
-    let root;
     try {
-      root = JSON.parse(line.slice(colon + 1));
+      roots.set(line.slice(0, colon), JSON.parse(line.slice(colon + 1)));
     } catch {
-      continue;
+      // Flight also includes module and other non-JSON records.
     }
+  }
+  const cache = new Map();
+  function resolve(value, trail = new Set()) {
+    if (typeof value === 'string') {
+      const ref = value.match(/^\$([0-9a-f]+)((?::[^:]+)*)$/i);
+      if (!ref) return value;
+      if (cache.has(value)) return cache.get(value);
+      if (trail.has(value) || !roots.has(ref[1]))
+        throw new Error('Unresolved GO Hub table reference: ' + value);
+      const next = new Set([...trail, value]);
+      let target = roots.get(ref[1]);
+      for (const key of ref[2].split(':').slice(1)) {
+        if (typeof target === 'string') target = resolve(target, next);
+        target =
+          key === 'props' && Array.isArray(target) && target[0] === '$' ? target[3] : target?.[key];
+        if (target === undefined) throw new Error('Unresolved GO Hub table reference: ' + value);
+      }
+      const result = resolve(target, next);
+      cache.set(value, result);
+      return result;
+    }
+    if (Array.isArray(value)) return value.map((v) => resolve(v, trail));
+    if (value && typeof value === 'object')
+      return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, resolve(v, trail)]));
+    return value;
+  }
+  for (const root of roots.values()) {
     const stack = [root];
     while (stack.length) {
       const node = stack.pop();
@@ -74,7 +101,7 @@ export function extractRankingPayload(html, type, maxBattle = false) {
         !!node.onlyDynamax === maxBattle &&
         node.initialData?.attackers
       )
-        return node;
+        return resolve(node);
       stack.push(...Object.values(node));
     }
   }

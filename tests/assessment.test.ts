@@ -324,7 +324,10 @@ describe('search and recommendations', () => {
     ).toBe(false);
     const eeveeRaids = optionsFor(paths('eevee')).filter((o) => o.role === 'Raid');
     expect(eeveeRaids.some((o) => o.species.id === 'leafeon')).toBe(false);
-    expect(eeveeRaids.some((o) => o.species.id === 'glaceon')).toBe(false);
+    expect(eeveeRaids.some((o) => o.species.id === 'glaceon')).toBe(true);
+    expect(map.get('glaceon')!.raid[0].moveSets).toEqual(
+      expect.arrayContaining([expect.objectContaining({ type: 'ice', tier: 'A' })]),
+    );
     expect(map.get('magmortar')!.raid).not.toHaveLength(0);
   });
   it('uses source tiers and excludes Normal even when an entry is labeled strong', () => {

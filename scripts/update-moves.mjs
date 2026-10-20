@@ -63,6 +63,13 @@ const supplementals = (rules.raidSupplementalForms ?? []).map(({ id, baseId }) =
 });
 const roster = [
   ...catalog.species,
+  ...(rules.battleFormVariants ?? [])
+    .filter((f) => !catalog.species.some((p) => p.id === f.id))
+    .map((f) => {
+      const base = catalog.species.find((p) => p.id === f.baseId);
+      if (!base) throw new Error('Missing variant base: ' + f.baseId);
+      return { ...base, id: f.id, name: f.name };
+    }),
   ...supplementals.filter((p) => !catalog.species.some((s) => s.id === p.id)),
 ];
 const types = [

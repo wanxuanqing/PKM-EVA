@@ -153,6 +153,25 @@ export function normalizeData({
       nicknames: ['dusk rockruff'],
       family: undefined,
     });
+  // Cosmetic forms remain distinct where GO supplies separate evolution branches.
+  const addedBattleForms = [];
+  for (const form of rules.battleFormVariants ?? []) {
+    const base = gmMap.get(form.baseId),
+      game = goMap.get(form.id),
+      baseGame = goMap.get(form.baseId);
+    const signature = (p) =>
+      JSON.stringify([
+        p?.stats,
+        p?.type,
+        p?.type2,
+        [...(p?.quickMoves ?? [])].sort(),
+        [...(p?.cinematicMoves ?? [])].sort(),
+      ]);
+    if (!base || !game || !baseGame || signature(game) !== signature(baseGame))
+      throw new Error('Unverified shared battle form: ' + form.id);
+    gmMap.set(form.id, { ...base, speciesId: form.id, speciesName: form.name, family: undefined });
+    addedBattleForms.push(form.id);
+  }
   const byName = new Map(gm.pokemon.map((p) => [nameKey(p.speciesName), p.speciesId]));
   rows.forEach((r) => byName.set(nameKey(r['Pokémon / form']), r['Form ID']));
   const inverseAlias = new Map(Object.entries(rules.goAliases).map(([id, go]) => [go, id]));
@@ -234,6 +253,10 @@ export function normalizeData({
   for (const p of gm.pokemon)
     if (p.released && (p.family || ranked.has(p.speciesId))) ids.add(p.speciesId);
   for (const form of raidForms) ids.add(form.id);
+  for (const id of [...addedBattleForms, ...(rules.sourceBackedEntries ?? [])]) {
+    if (!gmMap.has(id)) throw new Error('Missing source-backed species: ' + id);
+    ids.add(id);
+  }
   const species = [];
   for (const id of ids) {
     const p = gmMap.get(id),

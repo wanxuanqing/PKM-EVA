@@ -1,10 +1,16 @@
 {
-  "version": "2026-10-15.1",
+  "version": "2026-10-19.1",
   "genderAliases": {
     "pikachu_5th_anniversary": "pikachu_flying_5th_anniv",
     "pikachu_flying": "pikachu_flying_01",
     "pikachu_libre": "pikachu_vs_2019",
-    "pikachu_shaymin": "pikachu_gofest_2022"
+    "pikachu_shaymin": "pikachu_gofest_2022",
+    "sinistea_phony": "sinistea",
+    "sinistea_antique": "sinistea",
+    "polteageist_phony": "polteageist",
+    "polteageist_antique": "polteageist",
+    "minior_meteor": "minior",
+    "minior_core": "minior"
   },
   "goAliases": {
     "tauros_aqua": "tauros_paldea_aqua",
@@ -15,7 +21,9 @@
     "zygarde_10": "zygarde_ten_percent",
     "zygarde": "zygarde_fifty_percent",
     "zygarde_complete": "zygarde_complete",
-    "oricorio_pom_pom": "oricorio_pompom"
+    "oricorio_pom_pom": "oricorio_pompom",
+    "minior_meteor": "minior",
+    "minior_core": "minior_red"
   },
   "minimumLevels": {
     "mew": 15,
@@ -68,7 +76,16 @@
     "rockruff": "Ordinary Rockruff cannot evolve into Dusk Lycanroc. A Dusk-capable Rockruff is a separate form.",
     "aegislash_shield": "Battle-triggered form changes are not ordinary evolution; rankings include the upstream battle model.",
     "pikachu_libre": "Costume-specific evolution restrictions apply; no evolution is inferred from ordinary Pikachu.",
-    "zygarde_10": "Uses the GO form-change route and Zygarde Cells, not ordinary evolution."
+    "zygarde_10": "Uses the GO form-change route and Zygarde Cells, not ordinary evolution.",
+    "minior_meteor": "Official debut announced for October 19, 2026 at 5 p.m. local time. Minior changes to Core form below 50% HP in supported trainer battles; this is not an ordinary evolution. Individual colors debut at different meteor showers.",
+    "minior_core": "Shared Core battle-stat record for Minior colors. Core is a battle-triggered form below 50% HP, not an ordinary evolution or proof that every color has been released. The app does not simulate the mid-battle form change.",
+    "bramblin": "Bramblin debuted during Fall Marathon: Buddy Trek on October 13, 2026. Evolution requires 50 Candy and walking 20 km with Bramblin as your buddy.",
+    "sinistea_phony": "Distinct GO form with GO-verified stats and move pools matching sinistea. Its form-specific evolution cost is preserved; PvPoke supplies rankings only for the shared base battle record.",
+    "sinistea_antique": "Distinct GO form with GO-verified stats and move pools matching sinistea. Its form-specific evolution cost is preserved; PvPoke supplies rankings only for the shared base battle record.",
+    "polteageist_phony": "Distinct GO form with GO-verified stats and move pools matching polteageist. Its form-specific evolution cost is preserved; PvPoke supplies rankings only for the shared base battle record.",
+    "polteageist_antique": "Distinct GO form with GO-verified stats and move pools matching polteageist. Its form-specific evolution cost is preserved; PvPoke supplies rankings only for the shared base battle record.",
+    "sinistea": "Select Phony or Antique for form-specific raid paths and evolution costs: Phony needs 50 Candy; Antique needs 400 Candy. This shared battle record does not identify your copy’s form.",
+    "polteageist": "Select Phony or Antique for the source-listed raid rating and moves. This shared battle record does not identify your copy’s form."
   },
   "extraEdges": [
     {
@@ -158,6 +175,23 @@
         "Mega Evolution is temporary and preserves this copy’s IVs."
       ],
       "source": "https://pokemongo.com/news/staraptor-super-mega-raid-day-2026"
+    },
+    {
+      "from": "bramblin",
+      "to": "brambleghast",
+      "kind": "evolution",
+      "requirements": ["50 Candy", "Walk 20 km with Bramblin as your buddy"],
+      "source": "https://db.pokemongohub.net/pokemon/946"
+    },
+    {
+      "from": "sinistea",
+      "to": "polteageist",
+      "kind": "evolution",
+      "requirements": [
+        "Confirm the matching form first: Phony requires 50 Candy; Antique requires 400 Candy."
+      ],
+      "review": true,
+      "source": "go-gamemaster"
     }
   ],
   "eventEdges": [
@@ -199,5 +233,28 @@
     "Dynamax Darmanitan": "darmanitan_standard",
     "Dynamax Toxtricity (Amped Form)": "toxtricity",
     "Dynamax Toxtricity (Low Key Form)": "toxtricity"
-  }
+  },
+  "battleFormVariants": [
+    {
+      "id": "sinistea_phony",
+      "baseId": "sinistea",
+      "name": "Sinistea (Phony)"
+    },
+    {
+      "id": "sinistea_antique",
+      "baseId": "sinistea",
+      "name": "Sinistea (Antique)"
+    },
+    {
+      "id": "polteageist_phony",
+      "baseId": "polteageist",
+      "name": "Polteageist (Phony)"
+    },
+    {
+      "id": "polteageist_antique",
+      "baseId": "polteageist",
+      "name": "Polteageist (Antique)"
+    }
+  ],
+  "sourceBackedEntries": ["minior_meteor", "minior_core"]
 }

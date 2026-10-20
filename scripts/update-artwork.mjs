@@ -17,6 +17,7 @@ const aliases = {
   zamazenta_hero: 'zamazenta',
   zamazenta_crowned_shield: 'zamazenta-crowned',
   zygarde_10: 'zygarde-10',
+  minior_meteor: 'minior-red-meteor',
 };
 async function get(url) {
   const response = await fetch(url);
