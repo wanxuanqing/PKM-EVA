@@ -24,6 +24,8 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
+      - name: Check React runtime compatibility
+        run: npm run check:dependencies
       - run: npm run format:check
       - run: npm run data:validate
       - run: npm run audit:gender
