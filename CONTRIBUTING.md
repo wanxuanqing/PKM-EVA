@@ -9,6 +9,7 @@ Use Node.js 24 and the committed lockfile. Run `npm ci`, then `npm run dev`. On 
 Before submitting:
 
 ```sh
+npm run check:dependencies
 npm run format:check
 npm run data:validate
 npm run audit:gender
@@ -18,6 +19,12 @@ npm run test:ui
 ```
 
 Local browser tests use installed Google Chrome. CI installs Playwright Chromium and starts a fresh production preview. Run `npm run format` to fix formatting. Include meaningful regression coverage for changes to calculations, evolution rules, storage or offline behavior. The separate `npm run validate:independent` check downloads a pinned reference calculator; use it when changing calculator mathematics and review its report.
+
+## Dependency updates
+
+React and React DOM must resolve to the exact same version. Dependabot groups this pair for version and security updates. Keep the lockfile in the same PR and require the Checks workflow to pass before merging. If only one package has a compatible release, wait for its matching partner or update the pair together; do not merge a mismatched runtime.
+
+CI runs `npm run check:dependencies` immediately after installation, and `npm run build` runs it automatically. It checks both locked and installed versions. Run `npm ci` when the local installation is older than the lockfile. Type declaration packages have their own version numbers and are not part of the exact runtime version check.
 
 ## Data corrections
 
