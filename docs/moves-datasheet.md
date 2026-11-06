@@ -1,5 +1,7 @@
 # App moves datasheet
 
+Latest refresh: [November 5, 2026](data-update-2026-11-05.md), with 240 current raid forms / 355 type roles. Upcoming Mega Clefable is excluded with its official debut date; downgraded supplemental forms retain their source moves in the export. Earlier capture details below are historical.
+
 Updated October 1, 2026. Catalog: `2026-10-01-535cab1bf42a`.
 
 The app's Data screen offers [CSV](../public/data/moves-2026-10-01-535cab1bf42a.csv) and [JSON](../public/data/moves-2026-10-01-535cab1bf42a.json) exports. Both contain the same 846 rows and correspond to the app's current immutable catalog. JSON preserves structured move flags and source details; CSV provides a flat table for filtering.

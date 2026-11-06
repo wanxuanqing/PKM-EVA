@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Refresh battle data for November 5: add Mega Chandelure, update PvP/raid and gym shortlists, expand Max support with explicit form evidence, and retain upcoming/lower-tier rows in the audit exports. See [the comparison](docs/data-update-2026-11-05.md).
+- Patch the source tooling's undici dependency to 7.30.2.
+
 - Refresh PvPoke and GO Hub data, add Bramblin/Brambleghast and Minior battle forms, and separate Sinistea/Polteageist forms with correct evolution costs. See the [October 19 data comparison](docs/data-update-2026-10-19.md).
 - Resolve shared GO Hub embedded move references without losing limited-move flags.
 

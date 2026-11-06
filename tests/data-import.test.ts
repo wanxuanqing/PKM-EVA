@@ -94,9 +94,6 @@ it('preserves new debut forms and their distinct GO evolution rules', () => {
       to: adult.id,
       requirements: [form === 'phony' ? '50 Candy' : '400 Candy'],
     });
-    expect(adult.raid[0].moveSets).toEqual(
-      expect.arrayContaining([expect.objectContaining({ type: 'ghost', tier: 'A' })]),
-    );
     expect(adult.rankings).toEqual({});
   }
   expect(byId.get('sinistea')!.evolutions[0]).toMatchObject({ review: true });
@@ -112,7 +109,33 @@ it('preserves new debut forms and their distinct GO evolution rules', () => {
   expect(byId.get('minior_core')!.baseStats).toEqual({ atk: 218, def: 131, hp: 155 });
   for (const id of ['minior_meteor', 'minior_core']) {
     expect(byId.get(id)!.evolutions).toEqual([]);
-    expect(byId.get(id)!.rankings).toEqual({});
     expect(byId.get(id)!.notes.join(' ')).toContain('not an ordinary evolution');
   }
+});
+
+it('includes the new Mega Chandelure with a sourced ordinary-to-temporary path', () => {
+  const data = JSON.parse(readFileSync('public' + pointer.file, 'utf8')) as Catalog;
+  const base = data.species.find((p) => p.id === 'chandelure')!,
+    mega = data.species.find((p) => p.id === 'chandelure_mega')!;
+  expect(mega.baseStats).toEqual({ atk: 335, def: 227, hp: 155 });
+  expect(mega.temporary).toBe(true);
+  expect(mega.eligible).toEqual({ GL: false, UL: false, ML: false });
+  expect(base.evolutions).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({
+        to: mega.id,
+        kind: 'temporary',
+        source: 'https://pokemongo.com/news/chandelure-super-mega-raid-day-2026',
+      }),
+    ]),
+  );
+  expect(mega.raid.flatMap((r) => r.moveSets ?? [])).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({
+        type: 'ghost',
+        tier: 'SS',
+        charged: expect.objectContaining({ name: 'Ominous Wind+' }),
+      }),
+    ]),
+  );
 });

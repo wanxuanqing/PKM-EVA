@@ -29,7 +29,9 @@ export function extractMaxSupport(html, role) {
         const url = link.attr('href');
         const name = link.find('.name').text().trim() || link.text().trim();
         const dex = Number(url?.match(/\/pokemon\/(\d+)/)?.[1]);
-        if (!name || !dex) throw new Error('Unidentified ' + role + ' row');
+        // GO Hub includes its non-Pokemon Substitute placeholder in low-tier rows.
+        const placeholder = dex === 0 && name === 'Substitute' && !goodSupportTier(tier);
+        if (!name || (!dex && !placeholder)) throw new Error('Unidentified ' + role + ' row');
         const fastMoves =
           role === 'Defender'
             ? cells
@@ -53,7 +55,15 @@ export function extractMaxSupport(html, role) {
               .replace(/ type icon$/, '')
               .toLowerCase(),
           );
-        rows.push({ name, dex, tier, fastMoves, resistances, url });
+        rows.push({
+          name,
+          dex,
+          tier,
+          fastMoves,
+          resistances,
+          url,
+          ...(placeholder ? { placeholder: true } : {}),
+        });
       });
   });
   if (
@@ -61,10 +71,32 @@ export function extractMaxSupport(html, role) {
     !tiers.has('A') ||
     !rows.some((r) => r.tier === 'S') ||
     !rows.some((r) => r.tier === 'A') ||
-    new Set(rows.map((r) => r.url)).size !== rows.length
+    new Set(rows.filter((r) => !r.placeholder).map((r) => r.url)).size !==
+      rows.filter((r) => !r.placeholder).length
   )
     throw new Error('Incomplete or duplicate Max support source');
   return { rows, updated: $('meta[property="article:modified_time"]').attr('content') ?? null };
+}
+export function extractMaxCapabilities(html) {
+  const $ = load(html);
+  if (!$('h1').first().text().includes('Max Attackers Tier List'))
+    throw new Error('Wrong Max capability source');
+  const forms = new Map();
+  $('a.pokemon-link-renderer[href*="db.pokemongohub.net/pokemon/"]').each((_, el) => {
+    const mode = $(el).find('.label').text().trim();
+    if (!['Dynamax', 'Gigantamax'].includes(mode)) return;
+    const name = $(el).find('.name').text().trim();
+    const dex = Number(
+      $(el)
+        .attr('href')
+        ?.match(/\/pokemon\/(\d+)/)?.[1],
+    );
+    if (!name || !dex || name === 'Substitute') throw new Error('Unidentified Max capability');
+    const attacker = { id: dex, name: mode + ' ' + name, form: mode };
+    forms.set(attacker.name, attacker);
+  });
+  if (!forms.size) throw new Error('Missing explicit Max capability labels');
+  return [...forms.values()];
 }
 export function maxBase(attacker, catalog, rules) {
   const ordinary = attacker.name.replace(/^(Dynamax|Gigantamax)\s+/, '').replace(/\bStyle\b/g, '');
@@ -79,10 +111,12 @@ export function maxBase(attacker, catalog, rules) {
   if (candidates.length !== 1) throw new Error('Unmapped Max form: ' + attacker.name);
   return candidates[0];
 }
-export function buildMaxSupport(captures, attackCaptures, catalog, gm, rules) {
+export function buildMaxSupport(captures, attackCaptures, catalog, gm, rules, capabilities = []) {
   const roster = [
     ...new Map(
-      attackCaptures.flatMap((c) => c.rows).map((r) => [r.attacker.name, r.attacker]),
+      [...attackCaptures.flatMap((c) => c.rows).map((r) => r.attacker), ...capabilities].map(
+        (attacker) => [attacker.name, attacker],
+      ),
     ).values(),
   ];
   const entries = new Map();

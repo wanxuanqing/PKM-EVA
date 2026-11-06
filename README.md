@@ -2,7 +2,7 @@
 
 A phone-first Pokémon GO evaluator built with React, TypeScript and Vite. Search a Pokémon and form, enter three IVs, and compare all supported useful evolution paths. Everything runs in your browser; no account, API key, database or Python server is required.
 
-The supplied `prompt.md` and CSV remain unchanged. The original catalog contains **1,608 forms across 953 Pokédex species**. The current snapshot includes 26 supplemental source entries, for 1,634 supported forms. Forms are keyed by stable IDs, never by display name; inclusion does not confirm GO release availability.
+The supplied `prompt.md` and CSV remain unchanged. The original catalog contains **1,608 forms across 953 Pokédex species**. The current snapshot includes 27 supplemental source entries, for 1,635 supported forms. Forms are keyed by stable IDs, never by display name; inclusion does not confirm GO release availability.
 
 ## Run locally
 
@@ -31,7 +31,7 @@ Open <http://127.0.0.1:4173>. `dist/` is the complete static production output. 
 
 ## What it does
 
-Pictures use an audited mapping of all 225 named entries in `src/data/artwork-forms.json` (reviewed 2026-10-20 UTC). This includes regional, Mega, alternate battle, gender and supported costume forms: 218 have matching artwork or form sprites. Shaymin Land and Sky, for example, have separate images. Shadow entries reuse their corresponding form without Shadow effects. Seven entries have no matching PokeAPI image (Minior Core, Armored Mewtwo and Pikachu Flying, 5th Anniversary, Horizons, Kariyushi and Shaymin Scarf); these show an unavailable message instead of the base species. Newly added named forms also fail safely until mapped. Sizes are not visually scaled, and shiny colors are not modeled. Source URLs are bundled locally; no runtime API requests are needed.
+Pictures use an audited mapping of all 226 named entries in `src/data/artwork-forms.json` (reviewed 2026-11-06 UTC). This includes regional, Mega, alternate battle, gender and supported costume forms: 219 have matching artwork or form sprites. Shaymin Land and Sky, for example, have separate images. Shadow entries reuse their corresponding form without Shadow effects. Seven entries have no matching PokeAPI image (Minior Core, Armored Mewtwo and Pikachu Flying, 5th Anniversary, Horizons, Kariyushi and Shaymin Scarf); these show an unavailable message instead of the base species. Newly added named forms also fail safely until mapped. Sizes are not visually scaled, and shiny colors are not modeled. Source URLs are bundled locally; no runtime API requests are needed.
 
 To refresh the mapping, run `node scripts/update-artwork.mjs`, then `npm run format`, `npm test`, `npm run build` and `npm run test:ui`. The updater checks source species identity and image availability before writing the mapping. The catalog coverage test fails if a new named entry has no explicit artwork decision. Review changed images and unavailable entries before committing.
 
@@ -61,9 +61,9 @@ Calculations run in a Web Worker. Up to 32 distributions are cached in memory an
 
 ## Data and updates
 
-Latest refresh: [October 19, 2026 database comparison](docs/data-update-2026-10-19.md), including new debut forms and changes to PvP, raid and Max recommendations.
+Latest refresh: [November 5, 2026 database comparison](docs/data-update-2026-11-05.md), including new debut forms and changes to PvP, raid and Max recommendations.
 
-Gym Defense is a separate role using GO Hub's S/A+ bulk shortlist, reviewed 2026-10-02. The 25 exact regular forms and reachable evolution paths are recognized without a minimum IV percentage; Normal types are allowed. Conditional paths require review, and Shadow/costume/temporary forms do not inherit ratings. These are species-level Defense × Stamina tiers, not simulations or an instruction to power up every copy. See [gym-defense scope and sources](docs/gym-defense.md). The shortlist is maintained separately from raid/PvP refreshes in `src/lib/gym.ts`.
+Gym Defense is a separate role using GO Hub's SS/S/A bulk shortlist, reviewed 2026-11-05. The 18 exact regular forms and reachable evolution paths are recognized without a minimum IV percentage; Normal types are allowed. Conditional paths require review, and Shadow/costume/temporary forms do not inherit ratings. These are species-level Defense × Stamina tiers, not simulations or an instruction to power up every copy. See [gym-defense scope and sources](docs/gym-defense.md). The shortlist is maintained separately from raid/PvP refreshes in `src/lib/gym.ts`.
 
 The assessment list shows only sourced raid roles rated A or better, excluding Normal. CSV-only backup candidates and lower-rated roles are hidden from that list; their original records and datasheet evidence remain available.
 

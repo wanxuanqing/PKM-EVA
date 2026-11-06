@@ -28,8 +28,8 @@ const flags: CollectionFlags = {
 const paths = (id: string, s: Partial<Settings> = {}, ivs: IVs = [1, 12, 13]) =>
   reachable(map.get(id)!, map, { ...settings, ...s }, ivs);
 describe('catalog and branches', () => {
-  it('supports the exact 25 gym defenders without inheriting special-form ratings', () => {
-    expect(Object.keys(gymTiers)).toHaveLength(25);
+  it('supports the exact 18 gym defenders without inheriting special-form ratings', () => {
+    expect(Object.keys(gymTiers)).toHaveLength(18);
     for (const [id, tier] of Object.entries(gymTiers)) {
       const p = map.get(id)!;
       expect(p, id).toBeDefined();
@@ -55,7 +55,7 @@ describe('catalog and branches', () => {
         .filter((o) => o.role === 'Gym')
         .map((o) => o.species.id)
         .sort(),
-    ).toEqual(['umbreon', 'vaporeon']);
+    ).toEqual(['umbreon']);
     const conditional = options
       .filter((o) => o.role === 'Gym')
       .map((o) => ({ ...o, conditional: true }));

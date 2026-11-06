@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-19.1",
+  "version": "2026-11-05.1",
   "genderAliases": {
     "pikachu_5th_anniversary": "pikachu_flying_5th_anniv",
     "pikachu_flying": "pikachu_flying_01",
@@ -85,7 +85,8 @@
     "polteageist_phony": "Distinct GO form with GO-verified stats and move pools matching polteageist. Its form-specific evolution cost is preserved; PvPoke supplies rankings only for the shared base battle record.",
     "polteageist_antique": "Distinct GO form with GO-verified stats and move pools matching polteageist. Its form-specific evolution cost is preserved; PvPoke supplies rankings only for the shared base battle record.",
     "sinistea": "Select Phony or Antique for form-specific raid paths and evolution costs: Phony needs 50 Candy; Antique needs 400 Candy. This shared battle record does not identify your copy’s form.",
-    "polteageist": "Select Phony or Antique for the source-listed raid rating and moves. This shared battle record does not identify your copy’s form."
+    "polteageist": "Select Phony or Antique for the source-listed raid rating and moves. This shared battle record does not identify your copy’s form.",
+    "chandelure_mega": "Mega Chandelure debuted October 31, 2026. This rating applies while Mega Evolved; Ominous Wind+ scales with Mega Level."
   },
   "extraEdges": [
     {
@@ -192,6 +193,17 @@
       ],
       "review": true,
       "source": "go-gamemaster"
+    },
+    {
+      "from": "chandelure",
+      "to": "chandelure_mega",
+      "kind": "temporary",
+      "requirements": [
+        "Mega Evolution debuted October 31, 2026. Unlock Mega Evolution for this copy and meet the current Mega Energy or cooldown requirements.",
+        "Ominous Wind+ is available while Mega Evolved and gets stronger with Mega Level.",
+        "Mega Evolution is temporary and preserves this copy’s IVs."
+      ],
+      "source": "https://pokemongo.com/news/chandelure-super-mega-raid-day-2026"
     }
   ],
   "eventEdges": [
@@ -256,5 +268,16 @@
       "name": "Polteageist (Antique)"
     }
   ],
-  "sourceBackedEntries": ["minior_meteor", "minior_core"]
+  "sourceBackedEntries": ["minior_meteor", "minior_core"],
+  "deferredRaidForms": [
+    {
+      "id": "clefable_mega",
+      "name": "Mega Clefable",
+      "dex": 36,
+      "form": "Mega",
+      "availableFrom": "2026-11-28",
+      "source": "https://pokemongo.com/news/clefable-super-mega-raid-day-2026",
+      "reason": "Official debut announced for November 28, 2026. Retained as upcoming source evidence; excluded from current recommendations."
+    }
+  ]
 }

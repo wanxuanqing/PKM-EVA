@@ -1,0 +1,1117 @@
+{
+  "source": "https://db.pokemongohub.net/best/gym-defenders",
+  "retrieved": "2026-11-06T05:02:42.683Z",
+  "sha256": "3d1e19840adb698694b803f378591ff5a6420beea6035b033c16fa65f2a8fbe3",
+  "policy": "Exact regular forms rated SS, S or A by GO Hub species bulk; original lower-tier catalog records remain.",
+  "capturedRows": [
+    {
+      "rank": 1,
+      "name": "Blissey",
+      "tier": "SS",
+      "score": 83824,
+      "hp": 496,
+      "def": 169,
+      "url": "https://db.pokemongohub.net/pokemon/242"
+    },
+    {
+      "rank": 2,
+      "name": "Chansey",
+      "tier": "S",
+      "score": 62336,
+      "hp": 487,
+      "def": 128,
+      "url": "https://db.pokemongohub.net/pokemon/113"
+    },
+    {
+      "rank": 3,
+      "name": "Snorlax",
+      "tier": "S",
+      "score": 55770,
+      "hp": 330,
+      "def": 169,
+      "url": "https://db.pokemongohub.net/pokemon/143"
+    },
+    {
+      "rank": 4,
+      "name": "Dondozo",
+      "tier": "S",
+      "score": 55536,
+      "hp": 312,
+      "def": 178,
+      "url": "https://db.pokemongohub.net/pokemon/977"
+    },
+    {
+      "rank": 5,
+      "name": "Umbreon",
+      "tier": "A",
+      "score": 51840,
+      "hp": 216,
+      "def": 240,
+      "url": "https://db.pokemongohub.net/pokemon/197"
+    },
+    {
+      "rank": 6,
+      "name": "Avalugg",
+      "tier": "A",
+      "score": 51840,
+      "hp": 216,
+      "def": 240,
+      "url": "https://db.pokemongohub.net/pokemon/713"
+    },
+    {
+      "rank": 7,
+      "name": "Hisuian Avalugg",
+      "tier": "A",
+      "score": 51408,
+      "hp": 216,
+      "def": 238,
+      "url": "https://db.pokemongohub.net/pokemon/713-Hisuian"
+    },
+    {
+      "rank": 8,
+      "name": "Melmetal",
+      "tier": "A",
+      "score": 50160,
+      "hp": 264,
+      "def": 190,
+      "url": "https://db.pokemongohub.net/pokemon/809"
+    },
+    {
+      "rank": 9,
+      "name": "Ursaluna",
+      "tier": "A",
+      "score": 50137,
+      "hp": 277,
+      "def": 181,
+      "url": "https://db.pokemongohub.net/pokemon/901"
+    },
+    {
+      "rank": 10,
+      "name": "Goodra",
+      "tier": "A",
+      "score": 50094,
+      "hp": 207,
+      "def": 242,
+      "url": "https://db.pokemongohub.net/pokemon/706"
+    },
+    {
+      "rank": 11,
+      "name": "Mandibuzz",
+      "tier": "A",
+      "score": 49610,
+      "hp": 242,
+      "def": 205,
+      "url": "https://db.pokemongohub.net/pokemon/630"
+    },
+    {
+      "rank": 12,
+      "name": "Steelix",
+      "tier": "A",
+      "score": 49232,
+      "hp": 181,
+      "def": 272,
+      "url": "https://db.pokemongohub.net/pokemon/208"
+    },
+    {
+      "rank": 13,
+      "name": "Lapras",
+      "tier": "A",
+      "score": 48198,
+      "hp": 277,
+      "def": 174,
+      "url": "https://db.pokemongohub.net/pokemon/131"
+    },
+    {
+      "rank": 14,
+      "name": "Coalossal",
+      "tier": "A",
+      "score": 47916,
+      "hp": 242,
+      "def": 198,
+      "url": "https://db.pokemongohub.net/pokemon/839"
+    },
+    {
+      "rank": 15,
+      "name": "Garganacl",
+      "tier": "A",
+      "score": 47700,
+      "hp": 225,
+      "def": 212,
+      "url": "https://db.pokemongohub.net/pokemon/934"
+    },
+    {
+      "rank": 16,
+      "name": "Rhyperior",
+      "tier": "A",
+      "score": 47690,
+      "hp": 251,
+      "def": 190,
+      "url": "https://db.pokemongohub.net/pokemon/464"
+    },
+    {
+      "rank": 17,
+      "name": "Milotic",
+      "tier": "A",
+      "score": 47304,
+      "hp": 216,
+      "def": 219,
+      "url": "https://db.pokemongohub.net/pokemon/350"
+    },
+    {
+      "rank": 18,
+      "name": "Slaking",
+      "tier": "A",
+      "score": 47144,
+      "hp": 284,
+      "def": 166,
+      "url": "https://db.pokemongohub.net/pokemon/289"
+    },
+    {
+      "rank": 19,
+      "name": "Tyranitar",
+      "tier": "B",
+      "score": 46575,
+      "hp": 225,
+      "def": 207,
+      "url": "https://db.pokemongohub.net/pokemon/248"
+    },
+    {
+      "rank": 20,
+      "name": "Garchomp",
+      "tier": "B",
+      "score": 46127,
+      "hp": 239,
+      "def": 193,
+      "url": "https://db.pokemongohub.net/pokemon/445"
+    },
+    {
+      "rank": 21,
+      "name": "Relicanth",
+      "tier": "B",
+      "score": 45675,
+      "hp": 225,
+      "def": 203,
+      "url": "https://db.pokemongohub.net/pokemon/369"
+    },
+    {
+      "rank": 22,
+      "name": "Kingambit",
+      "tier": "B",
+      "score": 45675,
+      "hp": 225,
+      "def": 203,
+      "url": "https://db.pokemongohub.net/pokemon/983"
+    },
+    {
+      "rank": 23,
+      "name": "Hippowdon",
+      "tier": "B",
+      "score": 45649,
+      "hp": 239,
+      "def": 191,
+      "url": "https://db.pokemongohub.net/pokemon/450"
+    },
+    {
+      "rank": 24,
+      "name": "Florges",
+      "tier": "B",
+      "score": 45384,
+      "hp": 186,
+      "def": 244,
+      "url": "https://db.pokemongohub.net/pokemon/671"
+    },
+    {
+      "rank": 25,
+      "name": "Vaporeon",
+      "tier": "B",
+      "score": 44597,
+      "hp": 277,
+      "def": 161,
+      "url": "https://db.pokemongohub.net/pokemon/134"
+    },
+    {
+      "rank": 26,
+      "name": "Bastiodon",
+      "tier": "B",
+      "score": 44330,
+      "hp": 155,
+      "def": 286,
+      "url": "https://db.pokemongohub.net/pokemon/411"
+    },
+    {
+      "rank": 27,
+      "name": "Sylveon",
+      "tier": "B",
+      "score": 44280,
+      "hp": 216,
+      "def": 205,
+      "url": "https://db.pokemongohub.net/pokemon/700"
+    },
+    {
+      "rank": 28,
+      "name": "Alomomola",
+      "tier": "B",
+      "score": 44278,
+      "hp": 338,
+      "def": 131,
+      "url": "https://db.pokemongohub.net/pokemon/594"
+    },
+    {
+      "rank": 29,
+      "name": "Aggron",
+      "tier": "B",
+      "score": 44204,
+      "hp": 172,
+      "def": 257,
+      "url": "https://db.pokemongohub.net/pokemon/306"
+    },
+    {
+      "rank": 30,
+      "name": "Lickilicky",
+      "tier": "B",
+      "score": 43802,
+      "hp": 242,
+      "def": 181,
+      "url": "https://db.pokemongohub.net/pokemon/463"
+    },
+    {
+      "rank": 31,
+      "name": "Hydrapple",
+      "tier": "B",
+      "score": 43710,
+      "hp": 235,
+      "def": 186,
+      "url": "https://db.pokemongohub.net/pokemon/1019"
+    },
+    {
+      "rank": 32,
+      "name": "Kommo-o",
+      "tier": "B",
+      "score": 43440,
+      "hp": 181,
+      "def": 240,
+      "url": "https://db.pokemongohub.net/pokemon/784"
+    },
+    {
+      "rank": 33,
+      "name": "Metagross",
+      "tier": "B",
+      "score": 43320,
+      "hp": 190,
+      "def": 228,
+      "url": "https://db.pokemongohub.net/pokemon/376"
+    },
+    {
+      "rank": 34,
+      "name": "Aurorus",
+      "tier": "B",
+      "score": 43195,
+      "hp": 265,
+      "def": 163,
+      "url": "https://db.pokemongohub.net/pokemon/699"
+    },
+    {
+      "rank": 35,
+      "name": "Annihilape",
+      "tier": "B",
+      "score": 43076,
+      "hp": 242,
+      "def": 178,
+      "url": "https://db.pokemongohub.net/pokemon/979"
+    },
+    {
+      "rank": 36,
+      "name": "Togekiss",
+      "tier": "B",
+      "score": 42966,
+      "hp": 198,
+      "def": 217,
+      "url": "https://db.pokemongohub.net/pokemon/468"
+    },
+    {
+      "rank": 37,
+      "name": "Cetitan",
+      "tier": "B",
+      "score": 42681,
+      "hp": 347,
+      "def": 123,
+      "url": "https://db.pokemongohub.net/pokemon/975"
+    },
+    {
+      "rank": 38,
+      "name": "Probopass",
+      "tier": "B",
+      "score": 42625,
+      "hp": 155,
+      "def": 275,
+      "url": "https://db.pokemongohub.net/pokemon/476"
+    },
+    {
+      "rank": 39,
+      "name": "Walrein",
+      "tier": "B",
+      "score": 42592,
+      "hp": 242,
+      "def": 176,
+      "url": "https://db.pokemongohub.net/pokemon/365"
+    },
+    {
+      "rank": 40,
+      "name": "Corviknight",
+      "tier": "B",
+      "score": 42432,
+      "hp": 221,
+      "def": 192,
+      "url": "https://db.pokemongohub.net/pokemon/823"
+    },
+    {
+      "rank": 41,
+      "name": "Aegislash Shield Forme",
+      "tier": "C",
+      "score": 42160,
+      "hp": 155,
+      "def": 272,
+      "url": "https://db.pokemongohub.net/pokemon/681-Shield_Form"
+    },
+    {
+      "rank": 42,
+      "name": "Musharna",
+      "tier": "C",
+      "score": 41998,
+      "hp": 253,
+      "def": 166,
+      "url": "https://db.pokemongohub.net/pokemon/518"
+    },
+    {
+      "rank": 43,
+      "name": "Clodsire",
+      "tier": "C",
+      "score": 41827,
+      "hp": 277,
+      "def": 151,
+      "url": "https://db.pokemongohub.net/pokemon/980"
+    },
+    {
+      "rank": 44,
+      "name": "Miltank",
+      "tier": "C",
+      "score": 41688,
+      "hp": 216,
+      "def": 193,
+      "url": "https://db.pokemongohub.net/pokemon/241"
+    },
+    {
+      "rank": 45,
+      "name": "Chesnaught",
+      "tier": "C",
+      "score": 41616,
+      "hp": 204,
+      "def": 204,
+      "url": "https://db.pokemongohub.net/pokemon/652"
+    },
+    {
+      "rank": 46,
+      "name": "Throh",
+      "tier": "C",
+      "score": 41600,
+      "hp": 260,
+      "def": 160,
+      "url": "https://db.pokemongohub.net/pokemon/538"
+    },
+    {
+      "rank": 47,
+      "name": "Cryogonal",
+      "tier": "C",
+      "score": 41420,
+      "hp": 190,
+      "def": 218,
+      "url": "https://db.pokemongohub.net/pokemon/615"
+    },
+    {
+      "rank": 48,
+      "name": "Tangrowth",
+      "tier": "C",
+      "score": 41400,
+      "hp": 225,
+      "def": 184,
+      "url": "https://db.pokemongohub.net/pokemon/465"
+    },
+    {
+      "rank": 49,
+      "name": "Dragonite",
+      "tier": "C",
+      "score": 41382,
+      "hp": 209,
+      "def": 198,
+      "url": "https://db.pokemongohub.net/pokemon/149"
+    },
+    {
+      "rank": 50,
+      "name": "Skeledirge",
+      "tier": "C",
+      "score": 41296,
+      "hp": 232,
+      "def": 178,
+      "url": "https://db.pokemongohub.net/pokemon/911"
+    },
+    {
+      "rank": 51,
+      "name": "Obstagoon",
+      "tier": "C",
+      "score": 41128,
+      "hp": 212,
+      "def": 194,
+      "url": "https://db.pokemongohub.net/pokemon/862"
+    },
+    {
+      "rank": 52,
+      "name": "Stunfisk",
+      "tier": "C",
+      "score": 41040,
+      "hp": 240,
+      "def": 171,
+      "url": "https://db.pokemongohub.net/pokemon/618"
+    },
+    {
+      "rank": 53,
+      "name": "Galarian Stunfisk",
+      "tier": "C",
+      "score": 41040,
+      "hp": 240,
+      "def": 171,
+      "url": "https://db.pokemongohub.net/pokemon/618-Galarian"
+    },
+    {
+      "rank": 54,
+      "name": "Stonjourner",
+      "tier": "C",
+      "score": 40950,
+      "hp": 225,
+      "def": 182,
+      "url": "https://db.pokemongohub.net/pokemon/874"
+    },
+    {
+      "rank": 55,
+      "name": "Golisopod",
+      "tier": "C",
+      "score": 40906,
+      "hp": 181,
+      "def": 226,
+      "url": "https://db.pokemongohub.net/pokemon/768"
+    },
+    {
+      "rank": 56,
+      "name": "Oinkologne (Female)",
+      "tier": "C",
+      "score": 40662,
+      "hp": 251,
+      "def": 162,
+      "url": "https://db.pokemongohub.net/pokemon/916-Female"
+    },
+    {
+      "rank": 57,
+      "name": "Torterra",
+      "tier": "C",
+      "score": 40608,
+      "hp": 216,
+      "def": 188,
+      "url": "https://db.pokemongohub.net/pokemon/389"
+    },
+    {
+      "rank": 58,
+      "name": "Greedent",
+      "tier": "C",
+      "score": 40560,
+      "hp": 260,
+      "def": 156,
+      "url": "https://db.pokemongohub.net/pokemon/820"
+    },
+    {
+      "rank": 59,
+      "name": "Wobbuffet",
+      "tier": "C",
+      "score": 40492,
+      "hp": 382,
+      "def": 106,
+      "url": "https://db.pokemongohub.net/pokemon/202"
+    },
+    {
+      "rank": 60,
+      "name": "Dudunsparce (Three-Segment Form)",
+      "tier": "C",
+      "score": 40200,
+      "hp": 268,
+      "def": 150,
+      "url": "https://db.pokemongohub.net/pokemon/982-Three-Segment_Form"
+    },
+    {
+      "rank": 61,
+      "name": "Dudunsparce (Two-Segment Form)",
+      "tier": "C",
+      "score": 40200,
+      "hp": 268,
+      "def": 150,
+      "url": "https://db.pokemongohub.net/pokemon/982-Two-Segment_Form"
+    },
+    {
+      "rank": 62,
+      "name": "Gliscor",
+      "tier": "C",
+      "score": 40182,
+      "hp": 181,
+      "def": 222,
+      "url": "https://db.pokemongohub.net/pokemon/472"
+    },
+    {
+      "rank": 63,
+      "name": "Gyarados",
+      "tier": "C",
+      "score": 40176,
+      "hp": 216,
+      "def": 186,
+      "url": "https://db.pokemongohub.net/pokemon/130"
+    },
+    {
+      "rank": 64,
+      "name": "Muk",
+      "tier": "C",
+      "score": 40076,
+      "hp": 233,
+      "def": 172,
+      "url": "https://db.pokemongohub.net/pokemon/89"
+    },
+    {
+      "rank": 65,
+      "name": "Alolan Muk",
+      "tier": "C",
+      "score": 40076,
+      "hp": 233,
+      "def": 172,
+      "url": "https://db.pokemongohub.net/pokemon/89-Alola"
+    },
+    {
+      "rank": 66,
+      "name": "Jellicent",
+      "tier": "C",
+      "score": 40050,
+      "hp": 225,
+      "def": 178,
+      "url": "https://db.pokemongohub.net/pokemon/593"
+    },
+    {
+      "rank": 67,
+      "name": "Jellicent (Female)",
+      "tier": "C",
+      "score": 40050,
+      "hp": 225,
+      "def": 178,
+      "url": "https://db.pokemongohub.net/pokemon/593-Female"
+    },
+    {
+      "rank": 68,
+      "name": "Ferrothorn",
+      "tier": "C",
+      "score": 39917,
+      "hp": 179,
+      "def": 223,
+      "url": "https://db.pokemongohub.net/pokemon/598"
+    },
+    {
+      "rank": 69,
+      "name": "Rhydon",
+      "tier": "C",
+      "score": 39843,
+      "hp": 233,
+      "def": 171,
+      "url": "https://db.pokemongohub.net/pokemon/112"
+    },
+    {
+      "rank": 70,
+      "name": "Gigalith",
+      "tier": "C",
+      "score": 39798,
+      "hp": 198,
+      "def": 201,
+      "url": "https://db.pokemongohub.net/pokemon/526"
+    },
+    {
+      "rank": 71,
+      "name": "Oranguru",
+      "tier": "C",
+      "score": 39744,
+      "hp": 207,
+      "def": 192,
+      "url": "https://db.pokemongohub.net/pokemon/765"
+    },
+    {
+      "rank": 72,
+      "name": "Tentacruel",
+      "tier": "C",
+      "score": 39710,
+      "hp": 190,
+      "def": 209,
+      "url": "https://db.pokemongohub.net/pokemon/73"
+    },
+    {
+      "rank": 73,
+      "name": "Toedscruel",
+      "tier": "C",
+      "score": 39710,
+      "hp": 190,
+      "def": 209,
+      "url": "https://db.pokemongohub.net/pokemon/949"
+    },
+    {
+      "rank": 74,
+      "name": "Hydreigon",
+      "tier": "C",
+      "score": 39668,
+      "hp": 211,
+      "def": 188,
+      "url": "https://db.pokemongohub.net/pokemon/635"
+    },
+    {
+      "rank": 75,
+      "name": "Gourgeist (Super size)",
+      "tier": "C",
+      "score": 39600,
+      "hp": 198,
+      "def": 200,
+      "url": "https://db.pokemongohub.net/pokemon/711-Super"
+    },
+    {
+      "rank": 76,
+      "name": "Bellibolt",
+      "tier": "C",
+      "score": 39600,
+      "hp": 240,
+      "def": 165,
+      "url": "https://db.pokemongohub.net/pokemon/939"
+    },
+    {
+      "rank": 77,
+      "name": "Swampert",
+      "tier": "C",
+      "score": 39375,
+      "hp": 225,
+      "def": 175,
+      "url": "https://db.pokemongohub.net/pokemon/260"
+    },
+    {
+      "rank": 78,
+      "name": "Bouffalant",
+      "tier": "C",
+      "score": 39312,
+      "hp": 216,
+      "def": 182,
+      "url": "https://db.pokemongohub.net/pokemon/626"
+    },
+    {
+      "rank": 79,
+      "name": "Mudsdale",
+      "tier": "C",
+      "score": 39150,
+      "hp": 225,
+      "def": 174,
+      "url": "https://db.pokemongohub.net/pokemon/750"
+    },
+    {
+      "rank": 80,
+      "name": "Carbink",
+      "tier": "C",
+      "score": 39045,
+      "hp": 137,
+      "def": 285,
+      "url": "https://db.pokemongohub.net/pokemon/703"
+    },
+    {
+      "rank": 81,
+      "name": "Blastoise",
+      "tier": "C",
+      "score": 38916,
+      "hp": 188,
+      "def": 207,
+      "url": "https://db.pokemongohub.net/pokemon/9"
+    },
+    {
+      "rank": 82,
+      "name": "Slowbro",
+      "tier": "C",
+      "score": 38880,
+      "hp": 216,
+      "def": 180,
+      "url": "https://db.pokemongohub.net/pokemon/80"
+    },
+    {
+      "rank": 83,
+      "name": "Slowking",
+      "tier": "C",
+      "score": 38880,
+      "hp": 216,
+      "def": 180,
+      "url": "https://db.pokemongohub.net/pokemon/199"
+    },
+    {
+      "rank": 84,
+      "name": "Galarian Slowking",
+      "tier": "C",
+      "score": 38880,
+      "hp": 216,
+      "def": 180,
+      "url": "https://db.pokemongohub.net/pokemon/199-Galarian"
+    },
+    {
+      "rank": 85,
+      "name": "Tinkaton",
+      "tier": "C",
+      "score": 38808,
+      "hp": 198,
+      "def": 196,
+      "url": "https://db.pokemongohub.net/pokemon/959"
+    },
+    {
+      "rank": 86,
+      "name": "Cradily",
+      "tier": "C",
+      "score": 38800,
+      "hp": 200,
+      "def": 194,
+      "url": "https://db.pokemongohub.net/pokemon/346"
+    },
+    {
+      "rank": 87,
+      "name": "Gogoat",
+      "tier": "C",
+      "score": 38690,
+      "hp": 265,
+      "def": 146,
+      "url": "https://db.pokemongohub.net/pokemon/673"
+    },
+    {
+      "rank": 88,
+      "name": "Baxcalibur",
+      "tier": "D",
+      "score": 38472,
+      "hp": 229,
+      "def": 168,
+      "url": "https://db.pokemongohub.net/pokemon/998"
+    },
+    {
+      "rank": 89,
+      "name": "Kangaskhan",
+      "tier": "D",
+      "score": 38445,
+      "hp": 233,
+      "def": 165,
+      "url": "https://db.pokemongohub.net/pokemon/115"
+    },
+    {
+      "rank": 90,
+      "name": "Meganium",
+      "tier": "D",
+      "score": 38380,
+      "hp": 190,
+      "def": 202,
+      "url": "https://db.pokemongohub.net/pokemon/154"
+    },
+    {
+      "rank": 91,
+      "name": "Gholdengo",
+      "tier": "D",
+      "score": 38380,
+      "hp": 202,
+      "def": 190,
+      "url": "https://db.pokemongohub.net/pokemon/1000"
+    },
+    {
+      "rank": 92,
+      "name": "Donphan",
+      "tier": "D",
+      "score": 38295,
+      "hp": 207,
+      "def": 185,
+      "url": "https://db.pokemongohub.net/pokemon/232"
+    },
+    {
+      "rank": 93,
+      "name": "Hypno",
+      "tier": "D",
+      "score": 38214,
+      "hp": 198,
+      "def": 193,
+      "url": "https://db.pokemongohub.net/pokemon/97"
+    },
+    {
+      "rank": 94,
+      "name": "Poliwrath",
+      "tier": "D",
+      "score": 38088,
+      "hp": 207,
+      "def": 184,
+      "url": "https://db.pokemongohub.net/pokemon/62"
+    },
+    {
+      "rank": 95,
+      "name": "Incineroar",
+      "tier": "D",
+      "score": 37800,
+      "hp": 216,
+      "def": 175,
+      "url": "https://db.pokemongohub.net/pokemon/727"
+    },
+    {
+      "rank": 96,
+      "name": "Rillaboom",
+      "tier": "D",
+      "score": 37800,
+      "hp": 225,
+      "def": 168,
+      "url": "https://db.pokemongohub.net/pokemon/812"
+    },
+    {
+      "rank": 97,
+      "name": "Orthworm",
+      "tier": "D",
+      "score": 37668,
+      "hp": 172,
+      "def": 219,
+      "url": "https://db.pokemongohub.net/pokemon/968"
+    },
+    {
+      "rank": 98,
+      "name": "Golem",
+      "tier": "D",
+      "score": 37620,
+      "hp": 190,
+      "def": 198,
+      "url": "https://db.pokemongohub.net/pokemon/76"
+    },
+    {
+      "rank": 99,
+      "name": "Alolan Golem",
+      "tier": "D",
+      "score": 37620,
+      "hp": 190,
+      "def": 198,
+      "url": "https://db.pokemongohub.net/pokemon/76-Alola"
+    },
+    {
+      "rank": 100,
+      "name": "Audino",
+      "tier": "D",
+      "score": 37490,
+      "hp": 230,
+      "def": 163,
+      "url": "https://db.pokemongohub.net/pokemon/531"
+    }
+  ],
+  "selected": [
+    {
+      "rank": 1,
+      "name": "Blissey",
+      "tier": "SS",
+      "score": 83824,
+      "hp": 496,
+      "def": 169,
+      "url": "https://db.pokemongohub.net/pokemon/242",
+      "id": "blissey"
+    },
+    {
+      "rank": 2,
+      "name": "Chansey",
+      "tier": "S",
+      "score": 62336,
+      "hp": 487,
+      "def": 128,
+      "url": "https://db.pokemongohub.net/pokemon/113",
+      "id": "chansey"
+    },
+    {
+      "rank": 3,
+      "name": "Snorlax",
+      "tier": "S",
+      "score": 55770,
+      "hp": 330,
+      "def": 169,
+      "url": "https://db.pokemongohub.net/pokemon/143",
+      "id": "snorlax"
+    },
+    {
+      "rank": 4,
+      "name": "Dondozo",
+      "tier": "S",
+      "score": 55536,
+      "hp": 312,
+      "def": 178,
+      "url": "https://db.pokemongohub.net/pokemon/977",
+      "id": "dondozo"
+    },
+    {
+      "rank": 5,
+      "name": "Umbreon",
+      "tier": "A",
+      "score": 51840,
+      "hp": 216,
+      "def": 240,
+      "url": "https://db.pokemongohub.net/pokemon/197",
+      "id": "umbreon"
+    },
+    {
+      "rank": 6,
+      "name": "Avalugg",
+      "tier": "A",
+      "score": 51840,
+      "hp": 216,
+      "def": 240,
+      "url": "https://db.pokemongohub.net/pokemon/713",
+      "id": "avalugg"
+    },
+    {
+      "rank": 7,
+      "name": "Hisuian Avalugg",
+      "tier": "A",
+      "score": 51408,
+      "hp": 216,
+      "def": 238,
+      "url": "https://db.pokemongohub.net/pokemon/713-Hisuian",
+      "id": "avalugg_hisuian"
+    },
+    {
+      "rank": 8,
+      "name": "Melmetal",
+      "tier": "A",
+      "score": 50160,
+      "hp": 264,
+      "def": 190,
+      "url": "https://db.pokemongohub.net/pokemon/809",
+      "id": "melmetal"
+    },
+    {
+      "rank": 9,
+      "name": "Ursaluna",
+      "tier": "A",
+      "score": 50137,
+      "hp": 277,
+      "def": 181,
+      "url": "https://db.pokemongohub.net/pokemon/901",
+      "id": "ursaluna"
+    },
+    {
+      "rank": 10,
+      "name": "Goodra",
+      "tier": "A",
+      "score": 50094,
+      "hp": 207,
+      "def": 242,
+      "url": "https://db.pokemongohub.net/pokemon/706",
+      "id": "goodra"
+    },
+    {
+      "rank": 11,
+      "name": "Mandibuzz",
+      "tier": "A",
+      "score": 49610,
+      "hp": 242,
+      "def": 205,
+      "url": "https://db.pokemongohub.net/pokemon/630",
+      "id": "mandibuzz"
+    },
+    {
+      "rank": 12,
+      "name": "Steelix",
+      "tier": "A",
+      "score": 49232,
+      "hp": 181,
+      "def": 272,
+      "url": "https://db.pokemongohub.net/pokemon/208",
+      "id": "steelix"
+    },
+    {
+      "rank": 13,
+      "name": "Lapras",
+      "tier": "A",
+      "score": 48198,
+      "hp": 277,
+      "def": 174,
+      "url": "https://db.pokemongohub.net/pokemon/131",
+      "id": "lapras"
+    },
+    {
+      "rank": 14,
+      "name": "Coalossal",
+      "tier": "A",
+      "score": 47916,
+      "hp": 242,
+      "def": 198,
+      "url": "https://db.pokemongohub.net/pokemon/839",
+      "id": "coalossal"
+    },
+    {
+      "rank": 15,
+      "name": "Garganacl",
+      "tier": "A",
+      "score": 47700,
+      "hp": 225,
+      "def": 212,
+      "url": "https://db.pokemongohub.net/pokemon/934",
+      "id": "garganacl"
+    },
+    {
+      "rank": 16,
+      "name": "Rhyperior",
+      "tier": "A",
+      "score": 47690,
+      "hp": 251,
+      "def": 190,
+      "url": "https://db.pokemongohub.net/pokemon/464",
+      "id": "rhyperior"
+    },
+    {
+      "rank": 17,
+      "name": "Milotic",
+      "tier": "A",
+      "score": 47304,
+      "hp": 216,
+      "def": 219,
+      "url": "https://db.pokemongohub.net/pokemon/350",
+      "id": "milotic"
+    },
+    {
+      "rank": 18,
+      "name": "Slaking",
+      "tier": "A",
+      "score": 47144,
+      "hp": 284,
+      "def": 166,
+      "url": "https://db.pokemongohub.net/pokemon/289",
+      "id": "slaking"
+    }
+  ],
+  "previous": {
+    "blissey": "S",
+    "chansey": "S",
+    "snorlax": "A+",
+    "dondozo": "A+",
+    "umbreon": "A+",
+    "avalugg": "A+",
+    "avalugg_hisuian": "A+",
+    "melmetal": "A+",
+    "ursaluna": "A+",
+    "goodra": "A+",
+    "mandibuzz": "A+",
+    "steelix": "A+",
+    "lapras": "A+",
+    "coalossal": "A+",
+    "garganacl": "A+",
+    "rhyperior": "A+",
+    "milotic": "A+",
+    "slaking": "A+",
+    "tyranitar": "A+",
+    "garchomp": "A+",
+    "relicanth": "A+",
+    "kingambit": "A+",
+    "hippowdon": "A+",
+    "florges": "A+",
+    "vaporeon": "A+"
+  }
+}
