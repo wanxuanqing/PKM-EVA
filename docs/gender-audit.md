@@ -1,6 +1,6 @@
 # Gender audit — October 1, 2026
 
-Latest refresh: catalog `2026-10-20-2ad2f6d1ea80` was checked October 19, 2026 (Los Angeles): 1,634 entries, 1,633 with GO-backed gender metadata, 62 inherited temporary forms and 11,868 traversals, with no failures. Only `golisopodsh` remains unverified. See [the current per-entry report](gender-audit.json) and [database changes](data-update-2026-10-19.md). The original correction audit below is retained as history.
+Latest refresh: catalog `2026-11-06-5622bf9fd6f1` was checked November 5, 2026 (Los Angeles): 1,635 entries, 1,634 with GO-backed gender metadata, 63 inherited temporary forms and 11,876 traversals, with no failures. Only `golisopodsh` remains unverified. See [the current per-entry report](gender-audit.json) and [database changes](data-update-2026-11-05.md). The original correction audit below is retained as history.
 
 Audited every supported catalog entry against the bundled GO game-master gender templates, including Shadow variants, temporary forms, cosmetic gender variants and evolution restrictions.
 

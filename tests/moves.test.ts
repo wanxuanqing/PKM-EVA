@@ -9,6 +9,7 @@ import {
   extractTypeRankings,
   matchRaidForm,
   goodRaidTier,
+  reviewedRaidDeferral,
   // @ts-expect-error Source extraction runs in Node, outside browser TypeScript.
 } from '../scripts/moves-lib.mjs';
 const data = JSON.parse(readFileSync(`public${pointer.file}`, 'utf8')) as Catalog;
@@ -130,6 +131,20 @@ describe('complete SS/S/A raid coverage', () => {
       expect(capture.type).not.toBe('normal');
       expect(goodRaidTier(capture.rows.at(-1).tier)).toBe(false);
       for (const row of capture.rows.filter((r: { tier: string }) => goodRaidTier(r.tier))) {
+        const upcoming = reviewedRaidDeferral(row, rules.deferredRaidForms, capture.retrieved);
+        if (upcoming) {
+          expect(bundle.movesAudit.deferred).toEqual(
+            expect.arrayContaining([
+              expect.objectContaining({
+                id: upcoming.id,
+                type: capture.type,
+                tier: row.tier,
+                rank: row.order,
+              }),
+            ]),
+          );
+          continue;
+        }
         const p = matchRaidForm(row, data.species, rules.raidAliases);
         expect(p, row.attacker.name).toBeDefined();
         const set = p.raid
@@ -145,7 +160,10 @@ describe('complete SS/S/A raid coverage', () => {
         count++;
       }
     }
-    expect(count).toBe(bundle.movesAudit.qualifyingRoles);
+    expect(count).toBe(bundle.movesAudit.matchedQualifyingRoles);
+    expect(count + (bundle.movesAudit.deferred?.length ?? 0)).toBe(
+      bundle.movesAudit.qualifyingRoles,
+    );
     expect(bundle.movesAudit.unmapped).toEqual([]);
     expect(data.species.flatMap((p) => p.raid.flatMap((r) => r.moveSets ?? []))).toHaveLength(
       count,
@@ -223,4 +241,42 @@ it('resolves shared GO Hub move references and rejects dangling or circular refe
   expect(() => extractTypeRankings(html('$47:props:initialData:attackers:1:qm'), 'grass')).toThrow(
     'Unresolved',
   );
+});
+
+it('defers only the reviewed upcoming exact form and stops deferring on its debut date', () => {
+  const form = {
+    id: 'clefable_mega',
+    name: 'Mega Clefable',
+    dex: 36,
+    form: 'Mega',
+    availableFrom: '2026-11-28',
+  };
+  const row = { attacker: { id: 36, name: 'Mega Clefable', form: 'Mega' } };
+  expect(reviewedRaidDeferral(row, [form], '2026-11-05T12:00:00Z')).toEqual(form);
+  expect(reviewedRaidDeferral(row, [form], '2026-11-28T12:00:00Z')).toBeUndefined();
+  expect(
+    reviewedRaidDeferral(
+      { attacker: { id: 36, name: 'Clefable', form: null } },
+      [form],
+      '2026-11-05',
+    ),
+  ).toBeUndefined();
+  const sheet = JSON.parse(readFileSync('public' + data.movesheet!.json, 'utf8'));
+  for (const deferred of bundle.movesAudit.deferred ?? []) {
+    expect(sheet.rows).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: deferred.id,
+          role: 'Raid',
+          attackingType: deferred.type,
+          includedInApp: false,
+          rank: deferred.rank,
+          tier: deferred.tier,
+        }),
+      ]),
+    );
+    expect(
+      data.species.some((p) => p.id === deferred.id && p.raid.some((r) => r.moveSets?.length)),
+    ).toBe(false);
+  }
 });

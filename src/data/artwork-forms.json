@@ -1,5 +1,5 @@
 {
-  "reviewed": "2026-10-20",
+  "reviewed": "2026-11-06",
   "forms": {
     "abomasnow_mega": {
       "id": 10060,
@@ -144,6 +144,12 @@
       "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10013.png",
       "kind": "artwork",
       "source": "https://pokeapi.co/api/v2/pokemon/castform-sunny"
+    },
+    "chandelure_mega": {
+      "id": 10291,
+      "url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10291.png",
+      "kind": "artwork",
+      "source": "https://pokeapi.co/api/v2/pokemon/chandelure-mega"
     },
     "charizard_mega_x": {
       "id": 10034,

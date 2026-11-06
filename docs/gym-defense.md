@@ -1,16 +1,20 @@
 # Gym Defense
 
-Reviewed 2026-10-02 against [GO Hub's defender list](https://db.pokemongohub.net/best/gym-defenders). The exact allowlist is in `src/lib/gym.ts`; source date is shown on cards and About/Data. Refresh this list manually when reviewing gym rankings; `moves:update` does not change it.
+Reviewed 2026-11-05 against [GO Hub's defender list](https://db.pokemongohub.net/best/gym-defenders). The exact allowlist is in `src/lib/gym.ts`; source date is shown on cards and About/Data. Refresh this list manually when reviewing gym rankings; `moves:update` does not change it.
 
-S: Blissey, Chansey.
+SS: Blissey.
 
-A+: Snorlax, Dondozo, Umbreon, Avalugg, Hisuian Avalugg, Melmetal, Ursaluna, Goodra, Mandibuzz, Steelix, Lapras, Coalossal, Garganacl, Rhyperior, Milotic, Slaking, Tyranitar, Garchomp, Relicanth, Kingambit, Hippowdon, Florges, Vaporeon.
+S: Chansey, Snorlax, Dondozo.
+
+A: Umbreon, Avalugg, Hisuian Avalugg, Melmetal, Ursaluna, Goodra, Mandibuzz, Steelix, Lapras, Coalossal, Garganacl, Rhyperior, Milotic, Slaking.
+
+The previous 25-form shortlist used older S/A+ source labels. Seven former entries are now B and no longer qualify: Tyranitar, Garchomp, Relicanth, Kingambit, Hippowdon, Florges and Vaporeon. Current rows and previous tiers are preserved in [the source audit](../data/gym-defense-2026-11-05.json).
 
 Exact regular-form IDs prevent accidental inheritance by Shadows, costumes, Mega/Primal forms or other alternate forms. Melmetal is deliberately included in this gym shortlist; do not apply a blanket exclusion based on mythical classification. This is not a general eligibility validator for every species.
 
-All 25 shortlisted forms have `isDeployable: true` in the bundled PokeMiners game-master snapshot at commit `8e227be44f288d34463e23bf04e9b564d3c16f79`, including Hisuian Avalugg and Melmetal. Florges color templates agree. This is template evidence, not a guarantee that a particular copy can enter a particular gym.
+All 18 shortlisted forms have `isDeployable: true` in the bundled PokeMiners game-master snapshot at commit `8e227be44f288d34463e23bf04e9b564d3c16f79`, including Hisuian Avalugg and Melmetal. Florges color templates agree. This is template evidence, not a guarantee that a particular copy can enter a particular gym.
 
-Recent release references checked during implementation:
+Historical release references checked during implementation:
 
 - [Dondozo](https://pokemongo.com/news/sunkissed-shores-2025?hl=en)
 - [Kingambit](https://pokemongo.com/news/crown-clash-2025)

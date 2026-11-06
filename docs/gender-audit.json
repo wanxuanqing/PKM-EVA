@@ -1,14 +1,14 @@
 {
-  "snapshot": "2026-10-20-2ad2f6d1ea80",
+  "snapshot": "2026-11-06-5622bf9fd6f1",
   "sourceCommit": "8e227be44f288d34463e23bf04e9b564d3c16f79",
   "scope": "Bundled GO gender templates, form mappings, Shadow/base agreement and all supported evolution paths; not a live availability audit.",
-  "total": 1634,
-  "sourceBacked": 1633,
+  "total": 1635,
+  "sourceBacked": 1634,
   "unverified": [
     "golisopodsh"
   ],
-  "inheritedTemporaryForms": 62,
-  "traversals": 11868,
+  "inheritedTemporaryForms": 63,
+  "traversals": 11876,
   "failures": [],
   "entries": [
     {
@@ -2961,6 +2961,23 @@
       "templates": [
         "SPAWN_V0609_POKEMON_CHANDELURE_NORMAL"
       ],
+      "sharedAppearance": false,
+      "source": "go-gamemaster",
+      "status": "source-backed"
+    },
+    {
+      "id": "chandelure_mega",
+      "name": "Chandelure (Mega)",
+      "dex": 609,
+      "fixed": null,
+      "allowed": [
+        "female",
+        "male"
+      ],
+      "templates": [
+        "SPAWN_V0609_POKEMON_CHANDELURE_NORMAL"
+      ],
+      "inheritedFrom": "chandelure",
       "sharedAppearance": false,
       "source": "go-gamemaster",
       "status": "source-backed"

@@ -164,3 +164,13 @@ export function matchRaidForm(row, species, aliases) {
     return undefined;
   return matches[0];
 }
+
+export function reviewedRaidDeferral(row, forms, retrieved) {
+  return (forms ?? []).find(
+    (form) =>
+      form.dex === row.attacker.id &&
+      form.name === row.attacker.name &&
+      form.form === row.attacker.form &&
+      retrieved.slice(0, 10) < form.availableFrom,
+  );
+}

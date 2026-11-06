@@ -1,7 +1,12 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { gzipSync, gunzipSync } from 'node:zlib';
 import { hash } from './data-lib.mjs';
-import { extractTypeRankings, matchRaidForm, goodRaidTier } from './moves-lib.mjs';
+import {
+  extractTypeRankings,
+  matchRaidForm,
+  goodRaidTier,
+  reviewedRaidDeferral,
+} from './moves-lib.mjs';
 
 const readJSON = async (p) => JSON.parse(await readFile(p, 'utf8'));
 const pointer = await readJSON('src/data/current.json');
@@ -63,6 +68,17 @@ const supplementals = (rules.raidSupplementalForms ?? []).map(({ id, baseId }) =
 });
 const roster = [
   ...catalog.species,
+  ...JSON.parse(bundle.pvpoke.files['src/data/gamemaster.json'])
+    .pokemon.filter(
+      (p) => p.released && !catalog.species.some((existing) => existing.id === p.speciesId),
+    )
+    .map((p) => ({
+      id: p.speciesId,
+      name: p.speciesName,
+      dex: p.dex,
+      shadow: (p.tags ?? []).includes('shadow') || p.speciesId.endsWith('_shadow'),
+      temporary: (p.tags ?? []).includes('mega') || /_mega|_primal/.test(p.speciesId),
+    })),
   ...(rules.battleFormVariants ?? [])
     .filter((f) => !catalog.species.some((p) => p.id === f.id))
     .map((f) => {
@@ -105,11 +121,29 @@ await batches(types, async (type) => {
 captures.sort((a, b) => a.type.localeCompare(b.type));
 const byForm = new Map();
 const unmapped = [];
+const deferred = [];
 let qualifyingRoles = 0;
 for (const capture of captures)
   for (const row of capture.rows) {
     const p = matchRaidForm(row, roster, rules.raidAliases ?? {});
     if (goodRaidTier(row.tier)) qualifyingRoles++;
+    const upcoming = reviewedRaidDeferral(row, rules.deferredRaidForms, retrieved);
+    if (upcoming && goodRaidTier(row.tier)) {
+      deferred.push({
+        ...upcoming,
+        type: capture.type,
+        tier: row.tier,
+        rank: row.order,
+        moves: [row.qm, row.cm].map((m) => ({
+          name: m.name,
+          limited: !!m.isLegacy,
+          url: 'https://db.pokemongohub.net/move/' + m.id,
+        })),
+        rankingSource: capture.url,
+        retrieved: capture.retrieved,
+      });
+      continue;
+    }
     if (!p) {
       if (goodRaidTier(row.tier))
         unmapped.push({
@@ -180,6 +214,7 @@ bundle.movesAudit = {
   retrieved,
   previousCatalog: pointer,
   unmapped,
+  deferred,
   qualifyingRoles,
   matchedQualifyingRoles: bundle.raidPages.reduce(
     (n, p) => n + p.roles.filter((r) => goodRaidTier(r.tier)).length,

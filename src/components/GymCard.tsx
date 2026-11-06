@@ -30,8 +30,8 @@ export function GymCard({ option }: { option: Option }) {
         <summary>Details & requirements</summary>
         <div className="detail-content">
           <p>
-            GO Hub's S/A+ shortlist uses base Defense × Stamina. This is a species rating, not an IV
-            percentile or a simulation of gym battles.
+            GO Hub's SS/S/A shortlist uses base Defense × Stamina. This is a species rating, not an
+            IV percentile or a simulation of gym battles.
           </p>
           <p>
             Typing, moves, motivation decay, level, gym activity and the surrounding defenders can

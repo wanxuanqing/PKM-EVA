@@ -1,7 +1,7 @@
 import { readFile, writeFile, rename, mkdir } from 'node:fs/promises';
 import { gzipSync, gunzipSync } from 'node:zlib';
 import { hash } from './data-lib.mjs';
-import { extractMaxSupport, buildMaxSupport } from './max-support-lib.mjs';
+import { extractMaxSupport, buildMaxSupport, extractMaxCapabilities } from './max-support-lib.mjs';
 const json = async (p) => JSON.parse(await readFile(p, 'utf8'));
 const pointer = await json('data/sources-current.json'),
   compressed = await readFile(pointer.file);
@@ -41,12 +41,32 @@ for (const [role, url] of [
     ...extractMaxSupport(html, role),
   });
 }
+const capabilityURL = 'https://pokemongohub.net/post/guide/max-attackers-tier-list/';
+let capability;
+if (offline) {
+  capability = bundle.maxCapabilityCapture;
+  if (!capability || hash(capability.html) !== capability.sha256)
+    throw new Error('Missing or corrupt explicit Max capability capture');
+} else {
+  const response = await fetch(capabilityURL, { signal: AbortSignal.timeout(45000) });
+  if (!response.ok) throw new Error(response.status + ': ' + capabilityURL);
+  const html = await response.text();
+  capability = {
+    url: capabilityURL,
+    retrieved: new Date().toISOString(),
+    sha256: hash(html),
+    html,
+  };
+}
+capability.forms = extractMaxCapabilities(capability.html);
+bundle.maxCapabilityCapture = capability;
 const entries = buildMaxSupport(
   captures,
   bundle.maxBattleRankings.captures,
   catalog,
   JSON.parse(bundle.pvpoke.files['src/data/gamemaster.json']),
   rules,
+  capability.forms,
 );
 const savedArtwork = new Map(
   [

@@ -527,7 +527,20 @@ export function normalizeData({
     const id = rules.raidAliases?.[fact.name] ?? byName.get(nameKey(fact.name));
     const p = byId.get(id);
     if (!p) {
-      audit.warnings.push(`Unmapped raid listing: ${fact.name} (${fact.type}).`);
+      const upcoming = (rules.deferredRaidForms ?? []).find(
+        (form) => form.name === fact.name && retrieved.slice(0, 10) < form.availableFrom,
+      );
+      audit.warnings.push(
+        upcoming
+          ? 'Upcoming raid listing withheld until ' +
+              upcoming.availableFrom +
+              ': ' +
+              fact.name +
+              ' (' +
+              fact.type +
+              ').'
+          : `Unmapped raid listing: ${fact.name} (${fact.type}).`,
+      );
       continue;
     }
     let entry = p.raid.find((r) => r.tier === 'strong');

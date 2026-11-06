@@ -191,6 +191,14 @@ for (const capture of bundle.maxSupportCaptures ?? [])
     date: capture.updated,
     files: [{ path: capture.url, sha256: capture.sha256 }],
   });
+if (bundle.maxCapabilityCapture)
+  sources.push({
+    id: 'gohub-max-capability',
+    name: 'GO Hub explicit Max forms',
+    url: bundle.maxCapabilityCapture.url,
+    retrieved: bundle.maxCapabilityCapture.retrieved,
+    files: [{ path: bundle.maxCapabilityCapture.url, sha256: bundle.maxCapabilityCapture.sha256 }],
+  });
 const normalizerHash = hash(
   Buffer.concat([
     await readFile('scripts/data-lib.mjs'),

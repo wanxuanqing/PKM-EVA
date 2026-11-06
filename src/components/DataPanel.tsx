@@ -1,5 +1,5 @@
 import type { Catalog } from '../types';
-import { gymSource, gymReviewed } from '../lib/gym';
+import { gymSource, gymReviewed, gymTiers } from '../lib/gym';
 export function DataPanel({ data }: { data: Catalog }) {
   return (
     <section className="data-panel page-panel">
@@ -25,9 +25,10 @@ export function DataPanel({ data }: { data: Catalog }) {
       <section className="paper">
         <h2>Gym defense</h2>
         <p>
-          25 exact regular forms from GO Hub's S/A+ species-bulk shortlist, reviewed {gymReviewed}.
-          Reachable evolutions are included; conditional paths require review. Normal types are
-          allowed. Ratings do not extend to Shadow or temporary forms.
+          {Object.keys(gymTiers).length} exact regular forms from GO Hub's SS/S/A species-bulk
+          shortlist, reviewed {gymReviewed}. Reachable evolutions are included; conditional paths
+          require review. Normal types are allowed. Ratings do not extend to Shadow or temporary
+          forms.
         </p>
         <p>
           This role has no IV threshold or IV rank. Base Defense × Stamina does not model moves,

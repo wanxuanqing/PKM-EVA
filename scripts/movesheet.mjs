@@ -124,10 +124,10 @@ export function buildMovesheet(data, bundle, previous) {
         retrieved: bundle.pvpoke.retrieved ?? bundle.retrieved,
       });
     }
-  for (const p of data.species.filter((p) => p.raid.length)) {
+  for (const p of data.species.filter((p) => p.raid.length || pages.has(p.id))) {
     const page = pages.get(p.id);
     if (p.raid.some((r) => r.moves?.length)) counts.raidFormsWithMoves++;
-    else counts.raidFormsMissingMoves++;
+    else if (p.raid.length) counts.raidFormsMissingMoves++;
     if (page)
       for (const role of page.roles) {
         const included = p.raid.some((r) => r.moveSets?.some((m) => m.type === role.type));
@@ -190,6 +190,27 @@ export function buildMovesheet(data, bundle, previous) {
         });
       }
     }
+  }
+  // Keep reviewed upcoming forms in the datasheet even before a supported app record exists.
+  for (const form of bundle.movesAudit?.deferred ?? []) {
+    counts.raidExcluded++;
+    rows.push({
+      id: form.id,
+      name: form.name,
+      shadow: false,
+      gender: '',
+      role: 'Raid',
+      attackingType: form.type,
+      rank: form.rank,
+      tier: form.tier,
+      includedInApp: false,
+      verification: 'GO Hub ranking; official debut pending',
+      comparison: form.reason,
+      moves: form.moves,
+      previousMoves: [],
+      source: form.rankingSource,
+      retrieved: form.retrieved,
+    });
   }
   return {
     schema: 1,

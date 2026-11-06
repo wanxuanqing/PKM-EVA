@@ -1,0 +1,4303 @@
+{
+  "dateLocal": "2026-11-05",
+  "timezone": "America/Los_Angeles",
+  "before": "2026-10-20-2ad2f6d1ea80",
+  "after": "2026-11-06-5622bf9fd6f1",
+  "counts": {
+    "before": 1634,
+    "after": 1635,
+    "originalCsv": 1608,
+    "dexBefore": 959,
+    "dexAfter": 959
+  },
+  "added": [
+    {
+      "id": "chandelure_mega",
+      "name": "Chandelure (Mega)",
+      "dex": 609,
+      "stats": {
+        "atk": 335,
+        "def": 227,
+        "hp": 155
+      },
+      "rankings": {},
+      "notes": [
+        "Mega Chandelure debuted October 31, 2026. This rating applies while Mega Evolved; Ominous Wind+ scales with Mega Level.",
+        "Supplemental source-backed form or evolution stage absent from the original CSV; its release status is not inferred from simulator flags."
+      ],
+      "evolutions": []
+    }
+  ],
+  "removed": [],
+  "pvp": {
+    "GL": {
+      "before": 100,
+      "after": 100,
+      "entered": [
+        {
+          "id": "drapion_shadow",
+          "name": "Drapion (Shadow)",
+          "before": 101,
+          "after": 95
+        },
+        {
+          "id": "gourgeist_small",
+          "name": "Gourgeist (Small)",
+          "before": 103,
+          "after": 96
+        },
+        {
+          "id": "talonflame_shadow",
+          "name": "Talonflame (Shadow)",
+          "before": 104,
+          "after": 98
+        },
+        {
+          "id": "wigglytuff",
+          "name": "Wigglytuff",
+          "before": 110,
+          "after": 100
+        }
+      ],
+      "left": [
+        {
+          "id": "dunsparce",
+          "name": "Dunsparce",
+          "before": 83,
+          "after": 102
+        },
+        {
+          "id": "dusknoir",
+          "name": "Dusknoir",
+          "before": 97,
+          "after": 106
+        },
+        {
+          "id": "muk_alolan",
+          "name": "Muk (Alolan)",
+          "before": 99,
+          "after": 105
+        },
+        {
+          "id": "sealeo",
+          "name": "Sealeo",
+          "before": 95,
+          "after": 109
+        }
+      ],
+      "rankChangesInCurrentTop100": [
+        {
+          "id": "aegislash_shield",
+          "name": "Aegislash (Shield)",
+          "before": 77,
+          "after": 76
+        },
+        {
+          "id": "altaria_shadow",
+          "name": "Altaria (Shadow)",
+          "before": 9,
+          "after": 7
+        },
+        {
+          "id": "annihilape",
+          "name": "Annihilape",
+          "before": 33,
+          "after": 27
+        },
+        {
+          "id": "annihilape_shadow",
+          "name": "Annihilape (Shadow)",
+          "before": 38,
+          "after": 33
+        },
+        {
+          "id": "araquanid",
+          "name": "Araquanid",
+          "before": 15,
+          "after": 19
+        },
+        {
+          "id": "araquanid_shadow",
+          "name": "Araquanid (Shadow)",
+          "before": 30,
+          "after": 34
+        },
+        {
+          "id": "azumarill",
+          "name": "Azumarill",
+          "before": 31,
+          "after": 30
+        },
+        {
+          "id": "blastoise",
+          "name": "Blastoise",
+          "before": 58,
+          "after": 57
+        },
+        {
+          "id": "carbink",
+          "name": "Carbink",
+          "before": 44,
+          "after": 31
+        },
+        {
+          "id": "charjabug",
+          "name": "Charjabug",
+          "before": 42,
+          "after": 43
+        },
+        {
+          "id": "clefable",
+          "name": "Clefable",
+          "before": 96,
+          "after": 86
+        },
+        {
+          "id": "clodsire",
+          "name": "Clodsire",
+          "before": 17,
+          "after": 15
+        },
+        {
+          "id": "corsola_galarian",
+          "name": "Corsola (Galarian)",
+          "before": 8,
+          "after": 9
+        },
+        {
+          "id": "corviknight",
+          "name": "Corviknight",
+          "before": 6,
+          "after": 8
+        },
+        {
+          "id": "corviknight_shadow",
+          "name": "Corviknight (Shadow)",
+          "before": 10,
+          "after": 13
+        },
+        {
+          "id": "cradily",
+          "name": "Cradily",
+          "before": 66,
+          "after": 64
+        },
+        {
+          "id": "cramorant",
+          "name": "Cramorant",
+          "before": 4,
+          "after": 5
+        },
+        {
+          "id": "deoxys_defense",
+          "name": "Deoxys (Defense)",
+          "before": 34,
+          "after": 40
+        },
+        {
+          "id": "dewgong",
+          "name": "Dewgong",
+          "before": 70,
+          "after": 69
+        },
+        {
+          "id": "diggersby",
+          "name": "Diggersby",
+          "before": 59,
+          "after": 71
+        },
+        {
+          "id": "dondozo",
+          "name": "Dondozo",
+          "before": 50,
+          "after": 47
+        },
+        {
+          "id": "doublade",
+          "name": "Doublade",
+          "before": 75,
+          "after": 77
+        },
+        {
+          "id": "dragonair",
+          "name": "Dragonair",
+          "before": 86,
+          "after": 82
+        },
+        {
+          "id": "dragonair_shadow",
+          "name": "Dragonair (Shadow)",
+          "before": 67,
+          "after": 60
+        },
+        {
+          "id": "drapion_shadow",
+          "name": "Drapion (Shadow)",
+          "before": 101,
+          "after": 95
+        },
+        {
+          "id": "dusclops_shadow",
+          "name": "Dusclops (Shadow)",
+          "before": 71,
+          "after": 66
+        },
+        {
+          "id": "dusknoir_shadow",
+          "name": "Dusknoir (Shadow)",
+          "before": 76,
+          "after": 79
+        },
+        {
+          "id": "electrode_hisuian",
+          "name": "Electrode (Hisuian)",
+          "before": 35,
+          "after": 32
+        },
+        {
+          "id": "empoleon",
+          "name": "Empoleon",
+          "before": 24,
+          "after": 35
+        },
+        {
+          "id": "empoleon_shadow",
+          "name": "Empoleon (Shadow)",
+          "before": 25,
+          "after": 36
+        },
+        {
+          "id": "fearow",
+          "name": "Fearow",
+          "before": 26,
+          "after": 22
+        },
+        {
+          "id": "feraligatr",
+          "name": "Feraligatr",
+          "before": 32,
+          "after": 44
+        },
+        {
+          "id": "feraligatr_shadow",
+          "name": "Feraligatr (Shadow)",
+          "before": 60,
+          "after": 58
+        },
+        {
+          "id": "florges",
+          "name": "Florges",
+          "before": 11,
+          "after": 10
+        },
+        {
+          "id": "forretress",
+          "name": "Forretress",
+          "before": 51,
+          "after": 67
+        },
+        {
+          "id": "forretress_shadow",
+          "name": "Forretress (Shadow)",
+          "before": 49,
+          "after": 55
+        },
+        {
+          "id": "furret",
+          "name": "Furret",
+          "before": 45,
+          "after": 49
+        },
+        {
+          "id": "gourgeist_average",
+          "name": "Gourgeist (Average)",
+          "before": 98,
+          "after": 91
+        },
+        {
+          "id": "gourgeist_small",
+          "name": "Gourgeist (Small)",
+          "before": 103,
+          "after": 96
+        },
+        {
+          "id": "grumpig",
+          "name": "Grumpig",
+          "before": 92,
+          "after": 85
+        },
+        {
+          "id": "guzzlord",
+          "name": "Guzzlord",
+          "before": 46,
+          "after": 41
+        },
+        {
+          "id": "hippowdon",
+          "name": "Hippowdon",
+          "before": 52,
+          "after": 50
+        },
+        {
+          "id": "hydreigon",
+          "name": "Hydreigon",
+          "before": 74,
+          "after": 72
+        },
+        {
+          "id": "hydreigon_shadow",
+          "name": "Hydreigon (Shadow)",
+          "before": 18,
+          "after": 16
+        },
+        {
+          "id": "jellicent",
+          "name": "Jellicent",
+          "before": 23,
+          "after": 20
+        },
+        {
+          "id": "jumpluff_shadow",
+          "name": "Jumpluff (Shadow)",
+          "before": 79,
+          "after": 99
+        },
+        {
+          "id": "kingdra",
+          "name": "Kingdra",
+          "before": 57,
+          "after": 54
+        },
+        {
+          "id": "kingdra_shadow",
+          "name": "Kingdra (Shadow)",
+          "before": 62,
+          "after": 59
+        },
+        {
+          "id": "lapras",
+          "name": "Lapras",
+          "before": 39,
+          "after": 37
+        },
+        {
+          "id": "lapras_shadow",
+          "name": "Lapras (Shadow)",
+          "before": 63,
+          "after": 62
+        },
+        {
+          "id": "malamar",
+          "name": "Malamar",
+          "before": 43,
+          "after": 45
+        },
+        {
+          "id": "malamar_shadow",
+          "name": "Malamar (Shadow)",
+          "before": 47,
+          "after": 42
+        },
+        {
+          "id": "mandibuzz",
+          "name": "Mandibuzz",
+          "before": 53,
+          "after": 51
+        },
+        {
+          "id": "mantine",
+          "name": "Mantine",
+          "before": 27,
+          "after": 28
+        },
+        {
+          "id": "marowak",
+          "name": "Marowak",
+          "before": 20,
+          "after": 23
+        },
+        {
+          "id": "medicham",
+          "name": "Medicham",
+          "before": 55,
+          "after": 52
+        },
+        {
+          "id": "mimikyu",
+          "name": "Mimikyu",
+          "before": 7,
+          "after": 4
+        },
+        {
+          "id": "moltres_galarian",
+          "name": "Moltres (Galarian)",
+          "before": 72,
+          "after": 73
+        },
+        {
+          "id": "morpeko_full_belly",
+          "name": "Morpeko (Full Belly)",
+          "before": 54,
+          "after": 53
+        },
+        {
+          "id": "ninetales",
+          "name": "Ninetales",
+          "before": 13,
+          "after": 14
+        },
+        {
+          "id": "ninetales_alolan",
+          "name": "Ninetales (Alolan)",
+          "before": 68,
+          "after": 65
+        },
+        {
+          "id": "ninetales_alolan_shadow",
+          "name": "Ninetales (Alolan) (Shadow)",
+          "before": 73,
+          "after": 70
+        },
+        {
+          "id": "oranguru",
+          "name": "Oranguru",
+          "before": 100,
+          "after": 93
+        },
+        {
+          "id": "pachirisu",
+          "name": "Pachirisu",
+          "before": 65,
+          "after": 68
+        },
+        {
+          "id": "quagsire",
+          "name": "Quagsire",
+          "before": 14,
+          "after": 12
+        },
+        {
+          "id": "quagsire_shadow",
+          "name": "Quagsire (Shadow)",
+          "before": 12,
+          "after": 11
+        },
+        {
+          "id": "regidrago",
+          "name": "Regidrago",
+          "before": 94,
+          "after": 97
+        },
+        {
+          "id": "registeel",
+          "name": "Registeel",
+          "before": 89,
+          "after": 92
+        },
+        {
+          "id": "rillaboom",
+          "name": "Rillaboom",
+          "before": 36,
+          "after": 29
+        },
+        {
+          "id": "sableye",
+          "name": "Sableye",
+          "before": 37,
+          "after": 38
+        },
+        {
+          "id": "sableye_shadow",
+          "name": "Sableye (Shadow)",
+          "before": 19,
+          "after": 17
+        },
+        {
+          "id": "seismitoad",
+          "name": "Seismitoad",
+          "before": 84,
+          "after": 81
+        },
+        {
+          "id": "shelgon_shadow",
+          "name": "Shelgon (Shadow)",
+          "before": 93,
+          "after": 94
+        },
+        {
+          "id": "snorlax",
+          "name": "Snorlax",
+          "before": 28,
+          "after": 24
+        },
+        {
+          "id": "snorlax_shadow",
+          "name": "Snorlax (Shadow)",
+          "before": 40,
+          "after": 46
+        },
+        {
+          "id": "spidops",
+          "name": "Spidops",
+          "before": 69,
+          "after": 84
+        },
+        {
+          "id": "steelix_shadow",
+          "name": "Steelix (Shadow)",
+          "before": 90,
+          "after": 89
+        },
+        {
+          "id": "stunfisk_galarian",
+          "name": "Stunfisk (Galarian)",
+          "before": 91,
+          "after": 90
+        },
+        {
+          "id": "swampert",
+          "name": "Swampert",
+          "before": 81,
+          "after": 74
+        },
+        {
+          "id": "swampert_shadow",
+          "name": "Swampert (Shadow)",
+          "before": 82,
+          "after": 75
+        },
+        {
+          "id": "talonflame",
+          "name": "Talonflame",
+          "before": 85,
+          "after": 83
+        },
+        {
+          "id": "talonflame_shadow",
+          "name": "Talonflame (Shadow)",
+          "before": 104,
+          "after": 98
+        },
+        {
+          "id": "thievul",
+          "name": "Thievul",
+          "before": 16,
+          "after": 18
+        },
+        {
+          "id": "tinkaton",
+          "name": "Tinkaton",
+          "before": 5,
+          "after": 6
+        },
+        {
+          "id": "turtonator",
+          "name": "Turtonator",
+          "before": 64,
+          "after": 63
+        },
+        {
+          "id": "umbreon",
+          "name": "Umbreon",
+          "before": 29,
+          "after": 25
+        },
+        {
+          "id": "vigoroth",
+          "name": "Vigoroth",
+          "before": 22,
+          "after": 26
+        },
+        {
+          "id": "vigoroth_shadow",
+          "name": "Vigoroth (Shadow)",
+          "before": 41,
+          "after": 39
+        },
+        {
+          "id": "wigglytuff",
+          "name": "Wigglytuff",
+          "before": 110,
+          "after": 100
+        }
+      ],
+      "moveChangesInCurrentTop100": [
+        {
+          "id": "cramorant",
+          "name": "Cramorant",
+          "before": [
+            {
+              "name": "Peck",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Dive",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Fly",
+              "elite": false,
+              "legacy": false
+            }
+          ],
+          "after": [
+            {
+              "name": "Peck",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Surf",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Fly",
+              "elite": false,
+              "legacy": false
+            }
+          ]
+        }
+      ]
+    },
+    "UL": {
+      "before": 100,
+      "after": 100,
+      "entered": [
+        {
+          "id": "crustle",
+          "name": "Crustle",
+          "before": 106,
+          "after": 84
+        },
+        {
+          "id": "hydreigon_shadow",
+          "name": "Hydreigon (Shadow)",
+          "before": 127,
+          "after": 92
+        },
+        {
+          "id": "kommo_o",
+          "name": "Kommo-o",
+          "before": 120,
+          "after": 91
+        },
+        {
+          "id": "kyurem",
+          "name": "Kyurem",
+          "before": 108,
+          "after": 86
+        },
+        {
+          "id": "lickilicky",
+          "name": "Lickilicky",
+          "before": 102,
+          "after": 100
+        },
+        {
+          "id": "sylveon",
+          "name": "Sylveon",
+          "before": 104,
+          "after": 99
+        }
+      ],
+      "left": [
+        {
+          "id": "cobalion",
+          "name": "Cobalion",
+          "before": 93,
+          "after": 103
+        },
+        {
+          "id": "gastrodon",
+          "name": "Gastrodon",
+          "before": 98,
+          "after": 115
+        },
+        {
+          "id": "hippowdon",
+          "name": "Hippowdon",
+          "before": 95,
+          "after": 105
+        },
+        {
+          "id": "hippowdon_shadow",
+          "name": "Hippowdon (Shadow)",
+          "before": 92,
+          "after": 110
+        },
+        {
+          "id": "piloswine",
+          "name": "Piloswine",
+          "before": 96,
+          "after": 112
+        },
+        {
+          "id": "samurott_shadow",
+          "name": "Samurott (Shadow)",
+          "before": 99,
+          "after": 118
+        }
+      ],
+      "rankChangesInCurrentTop100": [
+        {
+          "id": "ampharos",
+          "name": "Ampharos",
+          "before": 50,
+          "after": 51
+        },
+        {
+          "id": "ampharos_shadow",
+          "name": "Ampharos (Shadow)",
+          "before": 54,
+          "after": 53
+        },
+        {
+          "id": "annihilape",
+          "name": "Annihilape",
+          "before": 60,
+          "after": 57
+        },
+        {
+          "id": "annihilape_shadow",
+          "name": "Annihilape (Shadow)",
+          "before": 72,
+          "after": 73
+        },
+        {
+          "id": "aromatisse",
+          "name": "Aromatisse",
+          "before": 79,
+          "after": 76
+        },
+        {
+          "id": "bellibolt",
+          "name": "Bellibolt",
+          "before": 57,
+          "after": 58
+        },
+        {
+          "id": "blastoise",
+          "name": "Blastoise",
+          "before": 29,
+          "after": 34
+        },
+        {
+          "id": "blastoise_shadow",
+          "name": "Blastoise (Shadow)",
+          "before": 87,
+          "after": 89
+        },
+        {
+          "id": "bombirdier",
+          "name": "Bombirdier",
+          "before": 76,
+          "after": 74
+        },
+        {
+          "id": "cofagrigus",
+          "name": "Cofagrigus",
+          "before": 81,
+          "after": 83
+        },
+        {
+          "id": "cradily",
+          "name": "Cradily",
+          "before": 86,
+          "after": 81
+        },
+        {
+          "id": "cradily_shadow",
+          "name": "Cradily (Shadow)",
+          "before": 55,
+          "after": 54
+        },
+        {
+          "id": "cramorant",
+          "name": "Cramorant",
+          "before": 18,
+          "after": 19
+        },
+        {
+          "id": "cresselia",
+          "name": "Cresselia",
+          "before": 35,
+          "after": 33
+        },
+        {
+          "id": "crustle",
+          "name": "Crustle",
+          "before": 106,
+          "after": 84
+        },
+        {
+          "id": "deoxys_defense",
+          "name": "Deoxys (Defense)",
+          "before": 42,
+          "after": 40
+        },
+        {
+          "id": "dondozo",
+          "name": "Dondozo",
+          "before": 26,
+          "after": 27
+        },
+        {
+          "id": "doublade",
+          "name": "Doublade",
+          "before": 94,
+          "after": 85
+        },
+        {
+          "id": "dusknoir",
+          "name": "Dusknoir",
+          "before": 24,
+          "after": 25
+        },
+        {
+          "id": "dusknoir_shadow",
+          "name": "Dusknoir (Shadow)",
+          "before": 27,
+          "after": 26
+        },
+        {
+          "id": "empoleon",
+          "name": "Empoleon",
+          "before": 7,
+          "after": 9
+        },
+        {
+          "id": "empoleon_shadow",
+          "name": "Empoleon (Shadow)",
+          "before": 8,
+          "after": 11
+        },
+        {
+          "id": "florges",
+          "name": "Florges",
+          "before": 11,
+          "after": 8
+        },
+        {
+          "id": "forretress",
+          "name": "Forretress",
+          "before": 30,
+          "after": 32
+        },
+        {
+          "id": "forretress_shadow",
+          "name": "Forretress (Shadow)",
+          "before": 39,
+          "after": 43
+        },
+        {
+          "id": "genesect_shock",
+          "name": "Genesect (Shock)",
+          "before": 91,
+          "after": 97
+        },
+        {
+          "id": "giratina_altered",
+          "name": "Giratina (Altered)",
+          "before": 17,
+          "after": 16
+        },
+        {
+          "id": "giratina_altered_shadow",
+          "name": "Giratina (Altered) (Shadow)",
+          "before": 31,
+          "after": 28
+        },
+        {
+          "id": "golisopod",
+          "name": "Golisopod",
+          "before": 71,
+          "after": 68
+        },
+        {
+          "id": "golisopod_shadow",
+          "name": "Golisopod (Shadow)",
+          "before": 51,
+          "after": 55
+        },
+        {
+          "id": "guzzlord",
+          "name": "Guzzlord",
+          "before": 19,
+          "after": 18
+        },
+        {
+          "id": "gyarados",
+          "name": "Gyarados",
+          "before": 74,
+          "after": 78
+        },
+        {
+          "id": "gyarados_shadow",
+          "name": "Gyarados (Shadow)",
+          "before": 66,
+          "after": 69
+        },
+        {
+          "id": "hydreigon_shadow",
+          "name": "Hydreigon (Shadow)",
+          "before": 127,
+          "after": 92
+        },
+        {
+          "id": "jellicent",
+          "name": "Jellicent",
+          "before": 16,
+          "after": 17
+        },
+        {
+          "id": "kingdra",
+          "name": "Kingdra",
+          "before": 68,
+          "after": 59
+        },
+        {
+          "id": "kingdra_shadow",
+          "name": "Kingdra (Shadow)",
+          "before": 75,
+          "after": 64
+        },
+        {
+          "id": "kommo_o",
+          "name": "Kommo-o",
+          "before": 120,
+          "after": 91
+        },
+        {
+          "id": "kyurem",
+          "name": "Kyurem",
+          "before": 108,
+          "after": 86
+        },
+        {
+          "id": "lapras",
+          "name": "Lapras",
+          "before": 22,
+          "after": 21
+        },
+        {
+          "id": "lapras_shadow",
+          "name": "Lapras (Shadow)",
+          "before": 23,
+          "after": 22
+        },
+        {
+          "id": "lickilicky",
+          "name": "Lickilicky",
+          "before": 102,
+          "after": 100
+        },
+        {
+          "id": "malamar",
+          "name": "Malamar",
+          "before": 67,
+          "after": 60
+        },
+        {
+          "id": "malamar_shadow",
+          "name": "Malamar (Shadow)",
+          "before": 58,
+          "after": 52
+        },
+        {
+          "id": "melmetal",
+          "name": "Melmetal",
+          "before": 5,
+          "after": 12
+        },
+        {
+          "id": "milotic",
+          "name": "Milotic",
+          "before": 73,
+          "after": 77
+        },
+        {
+          "id": "milotic_shadow",
+          "name": "Milotic (Shadow)",
+          "before": 52,
+          "after": 61
+        },
+        {
+          "id": "miltank",
+          "name": "Miltank",
+          "before": 61,
+          "after": 66
+        },
+        {
+          "id": "mimikyu",
+          "name": "Mimikyu",
+          "before": 9,
+          "after": 7
+        },
+        {
+          "id": "moltres_galarian",
+          "name": "Moltres (Galarian)",
+          "before": 13,
+          "after": 10
+        },
+        {
+          "id": "muk_alolan",
+          "name": "Muk (Alolan)",
+          "before": 37,
+          "after": 35
+        },
+        {
+          "id": "muk_alolan_shadow",
+          "name": "Muk (Alolan) (Shadow)",
+          "before": 69,
+          "after": 67
+        },
+        {
+          "id": "ninetales",
+          "name": "Ninetales",
+          "before": 34,
+          "after": 38
+        },
+        {
+          "id": "ninetales_alolan",
+          "name": "Ninetales (Alolan)",
+          "before": 25,
+          "after": 23
+        },
+        {
+          "id": "ninetales_alolan_shadow",
+          "name": "Ninetales (Alolan) (Shadow)",
+          "before": 32,
+          "after": 31
+        },
+        {
+          "id": "ninetales_shadow",
+          "name": "Ninetales (Shadow)",
+          "before": 64,
+          "after": 72
+        },
+        {
+          "id": "oinkologne_female",
+          "name": "Oinkologne (Female)",
+          "before": 82,
+          "after": 79
+        },
+        {
+          "id": "oranguru",
+          "name": "Oranguru",
+          "before": 77,
+          "after": 70
+        },
+        {
+          "id": "orthworm",
+          "name": "Orthworm",
+          "before": 83,
+          "after": 87
+        },
+        {
+          "id": "piloswine_shadow",
+          "name": "Piloswine (Shadow)",
+          "before": 84,
+          "after": 93
+        },
+        {
+          "id": "politoed_shadow",
+          "name": "Politoed (Shadow)",
+          "before": 88,
+          "after": 95
+        },
+        {
+          "id": "primarina",
+          "name": "Primarina",
+          "before": 47,
+          "after": 48
+        },
+        {
+          "id": "raikou_shadow",
+          "name": "Raikou (Shadow)",
+          "before": 97,
+          "after": 98
+        },
+        {
+          "id": "regidrago",
+          "name": "Regidrago",
+          "before": 33,
+          "after": 29
+        },
+        {
+          "id": "registeel",
+          "name": "Registeel",
+          "before": 28,
+          "after": 30
+        },
+        {
+          "id": "rillaboom",
+          "name": "Rillaboom",
+          "before": 21,
+          "after": 24
+        },
+        {
+          "id": "runerigus",
+          "name": "Runerigus",
+          "before": 40,
+          "after": 41
+        },
+        {
+          "id": "samurott",
+          "name": "Samurott",
+          "before": 65,
+          "after": 71
+        },
+        {
+          "id": "seaking",
+          "name": "Seaking",
+          "before": 43,
+          "after": 49
+        },
+        {
+          "id": "seismitoad",
+          "name": "Seismitoad",
+          "before": 62,
+          "after": 65
+        },
+        {
+          "id": "snorlax",
+          "name": "Snorlax",
+          "before": 12,
+          "after": 13
+        },
+        {
+          "id": "steelix",
+          "name": "Steelix",
+          "before": 44,
+          "after": 45
+        },
+        {
+          "id": "steelix_shadow",
+          "name": "Steelix (Shadow)",
+          "before": 48,
+          "after": 47
+        },
+        {
+          "id": "swampert",
+          "name": "Swampert",
+          "before": 53,
+          "after": 63
+        },
+        {
+          "id": "swampert_shadow",
+          "name": "Swampert (Shadow)",
+          "before": 89,
+          "after": 94
+        },
+        {
+          "id": "sylveon",
+          "name": "Sylveon",
+          "before": 104,
+          "after": 99
+        },
+        {
+          "id": "talonflame",
+          "name": "Talonflame",
+          "before": 38,
+          "after": 37
+        },
+        {
+          "id": "tentacruel",
+          "name": "Tentacruel",
+          "before": 78,
+          "after": 82
+        },
+        {
+          "id": "tentacruel_shadow",
+          "name": "Tentacruel (Shadow)",
+          "before": 85,
+          "after": 96
+        },
+        {
+          "id": "togekiss",
+          "name": "Togekiss",
+          "before": 59,
+          "after": 62
+        },
+        {
+          "id": "toucannon",
+          "name": "Toucannon",
+          "before": 49,
+          "after": 44
+        },
+        {
+          "id": "toucannon_shadow",
+          "name": "Toucannon (Shadow)",
+          "before": 63,
+          "after": 50
+        },
+        {
+          "id": "turtonator",
+          "name": "Turtonator",
+          "before": 70,
+          "after": 75
+        },
+        {
+          "id": "walrein",
+          "name": "Walrein",
+          "before": 45,
+          "after": 42
+        },
+        {
+          "id": "walrein_shadow",
+          "name": "Walrein (Shadow)",
+          "before": 41,
+          "after": 39
+        },
+        {
+          "id": "zapdos",
+          "name": "Zapdos",
+          "before": 100,
+          "after": 88
+        },
+        {
+          "id": "zygarde_complete",
+          "name": "Zygarde (Complete Forme)",
+          "before": 10,
+          "after": 5
+        }
+      ],
+      "moveChangesInCurrentTop100": []
+    },
+    "ML": {
+      "before": 100,
+      "after": 100,
+      "entered": [],
+      "left": [],
+      "rankChangesInCurrentTop100": [],
+      "moveChangesInCurrentTop100": []
+    }
+  },
+  "raids": {
+    "before": {
+      "forms": 251,
+      "roles": 370
+    },
+    "after": {
+      "forms": 240,
+      "roles": 355
+    },
+    "entered": [
+      {
+        "key": "chandelure_mega:fire",
+        "id": "chandelure_mega",
+        "name": "Chandelure (Mega)",
+        "type": "fire",
+        "tier": "S",
+        "rank": 6,
+        "fast": "Fire Spin",
+        "fastLimited": false,
+        "charged": "Overheat",
+        "chargedLimited": false
+      },
+      {
+        "key": "chandelure_mega:ghost",
+        "id": "chandelure_mega",
+        "name": "Chandelure (Mega)",
+        "type": "ghost",
+        "tier": "SS",
+        "rank": 1,
+        "fast": "Hex",
+        "fastLimited": false,
+        "charged": "Ominous Wind+",
+        "chargedLimited": false
+      },
+      {
+        "key": "incineroar:dark",
+        "id": "incineroar",
+        "name": "Incineroar",
+        "type": "dark",
+        "tier": "A",
+        "rank": 24,
+        "fast": "Snarl",
+        "fastLimited": false,
+        "charged": "Darkest Lariat",
+        "chargedLimited": false
+      },
+      {
+        "key": "kyurem_white:steel",
+        "id": "kyurem_white",
+        "name": "Kyurem (White)",
+        "type": "steel",
+        "tier": "A",
+        "rank": 13,
+        "fast": "Steel Wing",
+        "fastLimited": false,
+        "charged": "Ice Burn",
+        "chargedLimited": false
+      },
+      {
+        "key": "yveltal:dark",
+        "id": "yveltal",
+        "name": "Yveltal",
+        "type": "dark",
+        "tier": "A",
+        "rank": 25,
+        "fast": "Snarl",
+        "fastLimited": false,
+        "charged": "Dark Pulse",
+        "chargedLimited": false
+      }
+    ],
+    "left": [
+      {
+        "key": "breloom:grass",
+        "id": "breloom",
+        "name": "Breloom",
+        "type": "grass",
+        "tier": "A",
+        "rank": 33,
+        "fast": "Force Palm",
+        "fastLimited": false,
+        "charged": "Grass Knot",
+        "chargedLimited": true
+      },
+      {
+        "key": "dhelmise:ghost",
+        "id": "dhelmise",
+        "name": "Dhelmise",
+        "type": "ghost",
+        "tier": "A",
+        "rank": 35,
+        "fast": "Shadow Claw",
+        "fastLimited": false,
+        "charged": "Shadow Ball",
+        "chargedLimited": false
+      },
+      {
+        "key": "drifblim_shadow:ghost",
+        "id": "drifblim_shadow",
+        "name": "Drifblim (Shadow)",
+        "type": "ghost",
+        "tier": "A",
+        "rank": 40,
+        "fast": "Hex",
+        "fastLimited": false,
+        "charged": "Shadow Ball",
+        "chargedLimited": false
+      },
+      {
+        "key": "gengar:ghost",
+        "id": "gengar",
+        "name": "Gengar",
+        "type": "ghost",
+        "tier": "A",
+        "rank": 33,
+        "fast": "Lick",
+        "fastLimited": true,
+        "charged": "Shadow Ball",
+        "chargedLimited": false
+      },
+      {
+        "key": "gengar_shadow:ghost",
+        "id": "gengar_shadow",
+        "name": "Gengar (Shadow)",
+        "type": "ghost",
+        "tier": "A",
+        "rank": 23,
+        "fast": "Lick",
+        "fastLimited": true,
+        "charged": "Shadow Ball",
+        "chargedLimited": false
+      },
+      {
+        "key": "giratina_altered:ghost",
+        "id": "giratina_altered",
+        "name": "Giratina (Altered)",
+        "type": "ghost",
+        "tier": "A",
+        "rank": 38,
+        "fast": "Shadow Claw",
+        "fastLimited": false,
+        "charged": "Shadow Force",
+        "chargedLimited": true
+      },
+      {
+        "key": "hoopa:ghost",
+        "id": "hoopa",
+        "name": "Hoopa",
+        "type": "ghost",
+        "tier": "A",
+        "rank": 22,
+        "fast": "Astonish",
+        "fastLimited": false,
+        "charged": "Shadow Ball",
+        "chargedLimited": false
+      },
+      {
+        "key": "lucario_mega:ghost",
+        "id": "lucario_mega",
+        "name": "Lucario (Mega)",
+        "type": "ghost",
+        "tier": "A",
+        "rank": 27,
+        "fast": "Force Palm",
+        "fastLimited": true,
+        "charged": "Shadow Ball",
+        "chargedLimited": false
+      },
+      {
+        "key": "metagross_mega:ghost",
+        "id": "metagross_mega",
+        "name": "Metagross (Mega)",
+        "type": "ghost",
+        "tier": "A",
+        "rank": 25,
+        "fast": "Shadow Claw",
+        "fastLimited": true,
+        "charged": "Meteor Mash",
+        "chargedLimited": true
+      },
+      {
+        "key": "metagross_shadow:ghost",
+        "id": "metagross_shadow",
+        "name": "Metagross (Shadow)",
+        "type": "ghost",
+        "tier": "A",
+        "rank": 28,
+        "fast": "Shadow Claw",
+        "fastLimited": true,
+        "charged": "Meteor Mash",
+        "chargedLimited": true
+      },
+      {
+        "key": "mewtwo:ghost",
+        "id": "mewtwo",
+        "name": "Mewtwo",
+        "type": "ghost",
+        "tier": "A",
+        "rank": 24,
+        "fast": "Psycho Cut",
+        "fastLimited": false,
+        "charged": "Shadow Ball",
+        "chargedLimited": true
+      },
+      {
+        "key": "mismagius_shadow:ghost",
+        "id": "mismagius_shadow",
+        "name": "Mismagius (Shadow)",
+        "type": "ghost",
+        "tier": "A",
+        "rank": 36,
+        "fast": "Hex",
+        "fastLimited": false,
+        "charged": "Shadow Ball",
+        "chargedLimited": false
+      },
+      {
+        "key": "polteageist:ghost",
+        "id": "polteageist",
+        "name": "Polteageist",
+        "type": "ghost",
+        "tier": "A",
+        "rank": 31,
+        "fast": "Hex",
+        "fastLimited": false,
+        "charged": "Shadow Ball",
+        "chargedLimited": false
+      },
+      {
+        "key": "polteageist_antique:ghost",
+        "id": "polteageist_antique",
+        "name": "Polteageist (Antique)",
+        "type": "ghost",
+        "tier": "A",
+        "rank": 30,
+        "fast": "Hex",
+        "fastLimited": false,
+        "charged": "Shadow Ball",
+        "chargedLimited": false
+      },
+      {
+        "key": "polteageist_phony:ghost",
+        "id": "polteageist_phony",
+        "name": "Polteageist (Phony)",
+        "type": "ghost",
+        "tier": "A",
+        "rank": 29,
+        "fast": "Hex",
+        "fastLimited": false,
+        "charged": "Shadow Ball",
+        "chargedLimited": false
+      },
+      {
+        "key": "raikou_shadow:ghost",
+        "id": "raikou_shadow",
+        "name": "Raikou (Shadow)",
+        "type": "ghost",
+        "tier": "A",
+        "rank": 26,
+        "fast": "Thunder Shock",
+        "fastLimited": false,
+        "charged": "Shadow Ball",
+        "chargedLimited": false
+      },
+      {
+        "key": "skeledirge:ghost",
+        "id": "skeledirge",
+        "name": "Skeledirge",
+        "type": "ghost",
+        "tier": "A",
+        "rank": 39,
+        "fast": "Hex",
+        "fastLimited": false,
+        "charged": "Shadow Ball",
+        "chargedLimited": false
+      },
+      {
+        "key": "trevenant_shadow:ghost",
+        "id": "trevenant_shadow",
+        "name": "Trevenant (Shadow)",
+        "type": "ghost",
+        "tier": "A",
+        "rank": 34,
+        "fast": "Shadow Claw",
+        "fastLimited": false,
+        "charged": "Shadow Ball",
+        "chargedLimited": false
+      },
+      {
+        "key": "typhlosion_hisuian:ghost",
+        "id": "typhlosion_hisuian",
+        "name": "Typhlosion (Hisuian)",
+        "type": "ghost",
+        "tier": "A",
+        "rank": 32,
+        "fast": "Hex",
+        "fastLimited": false,
+        "charged": "Shadow Ball",
+        "chargedLimited": false
+      },
+      {
+        "key": "zoroark_hisuian:ghost",
+        "id": "zoroark_hisuian",
+        "name": "Zoroark (Hisuian)",
+        "type": "ghost",
+        "tier": "A",
+        "rank": 37,
+        "fast": "Shadow Claw",
+        "fastLimited": false,
+        "charged": "Shadow Ball",
+        "chargedLimited": false
+      }
+    ],
+    "changed": [
+      {
+        "before": {
+          "key": "absol_shadow:dark",
+          "id": "absol_shadow",
+          "name": "Absol (Shadow)",
+          "type": "dark",
+          "tier": "A",
+          "rank": 12,
+          "fast": "Snarl",
+          "fastLimited": false,
+          "charged": "Brutal Swing",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "absol_shadow:dark",
+          "id": "absol_shadow",
+          "name": "Absol (Shadow)",
+          "type": "dark",
+          "tier": "A",
+          "rank": 13,
+          "fast": "Snarl",
+          "fastLimited": false,
+          "charged": "Brutal Swing",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "alakazam_mega:fairy",
+          "id": "alakazam_mega",
+          "name": "Alakazam (Mega)",
+          "type": "fairy",
+          "tier": "S",
+          "rank": 5,
+          "fast": "Psycho Cut",
+          "fastLimited": false,
+          "charged": "Dazzling Gleam",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "alakazam_mega:fairy",
+          "id": "alakazam_mega",
+          "name": "Alakazam (Mega)",
+          "type": "fairy",
+          "tier": "S",
+          "rank": 6,
+          "fast": "Psycho Cut",
+          "fastLimited": false,
+          "charged": "Dazzling Gleam",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "alakazam_mega:ghost",
+          "id": "alakazam_mega",
+          "name": "Alakazam (Mega)",
+          "type": "ghost",
+          "tier": "S",
+          "rank": 10,
+          "fast": "Psycho Cut",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "alakazam_mega:ghost",
+          "id": "alakazam_mega",
+          "name": "Alakazam (Mega)",
+          "type": "ghost",
+          "tier": "A",
+          "rank": 11,
+          "fast": "Psycho Cut",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "articuno_shadow:ice",
+          "id": "articuno_shadow",
+          "name": "Articuno (Shadow)",
+          "type": "ice",
+          "tier": "A",
+          "rank": 16,
+          "fast": "Frost Breath",
+          "fastLimited": false,
+          "charged": "Triple Axel",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "articuno_shadow:ice",
+          "id": "articuno_shadow",
+          "name": "Articuno (Shadow)",
+          "type": "ice",
+          "tier": "A",
+          "rank": 17,
+          "fast": "Frost Breath",
+          "fastLimited": false,
+          "charged": "Triple Axel",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "banette_mega:ghost",
+          "id": "banette_mega",
+          "name": "Banette (Mega)",
+          "type": "ghost",
+          "tier": "S",
+          "rank": 6,
+          "fast": "Shadow Claw",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "banette_mega:ghost",
+          "id": "banette_mega",
+          "name": "Banette (Mega)",
+          "type": "ghost",
+          "tier": "A",
+          "rank": 7,
+          "fast": "Shadow Claw",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "blacephalon:ghost",
+          "id": "blacephalon",
+          "name": "Blacephalon",
+          "type": "ghost",
+          "tier": "S",
+          "rank": 17,
+          "fast": "Astonish",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "blacephalon:ghost",
+          "id": "blacephalon",
+          "name": "Blacephalon",
+          "type": "ghost",
+          "tier": "A",
+          "rank": 19,
+          "fast": "Astonish",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "blaziken_shadow:fire",
+          "id": "blaziken_shadow",
+          "name": "Blaziken (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 12,
+          "fast": "Fire Spin",
+          "fastLimited": false,
+          "charged": "Blast Burn",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "blaziken_shadow:fire",
+          "id": "blaziken_shadow",
+          "name": "Blaziken (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 13,
+          "fast": "Fire Spin",
+          "fastLimited": false,
+          "charged": "Blast Burn",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "chandelure:ghost",
+          "id": "chandelure",
+          "name": "Chandelure",
+          "type": "ghost",
+          "tier": "S",
+          "rank": 19,
+          "fast": "Hex",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "chandelure:ghost",
+          "id": "chandelure",
+          "name": "Chandelure",
+          "type": "ghost",
+          "tier": "A",
+          "rank": 20,
+          "fast": "Hex",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "chandelure_shadow:fire",
+          "id": "chandelure_shadow",
+          "name": "Chandelure (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 8,
+          "fast": "Fire Spin",
+          "fastLimited": false,
+          "charged": "Overheat",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "chandelure_shadow:fire",
+          "id": "chandelure_shadow",
+          "name": "Chandelure (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 9,
+          "fast": "Fire Spin",
+          "fastLimited": false,
+          "charged": "Overheat",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "chandelure_shadow:ghost",
+          "id": "chandelure_shadow",
+          "name": "Chandelure (Shadow)",
+          "type": "ghost",
+          "tier": "S",
+          "rank": 7,
+          "fast": "Hex",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "chandelure_shadow:ghost",
+          "id": "chandelure_shadow",
+          "name": "Chandelure (Shadow)",
+          "type": "ghost",
+          "tier": "A",
+          "rank": 8,
+          "fast": "Hex",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "charizard_mega_x:fire",
+          "id": "charizard_mega_x",
+          "name": "Charizard (Mega X)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 7,
+          "fast": "Fire Spin",
+          "fastLimited": false,
+          "charged": "Blast Burn",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "charizard_mega_x:fire",
+          "id": "charizard_mega_x",
+          "name": "Charizard (Mega X)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 8,
+          "fast": "Fire Spin",
+          "fastLimited": false,
+          "charged": "Blast Burn",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "charizard_shadow:fire",
+          "id": "charizard_shadow",
+          "name": "Charizard (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 13,
+          "fast": "Fire Spin",
+          "fastLimited": false,
+          "charged": "Blast Burn",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "charizard_shadow:fire",
+          "id": "charizard_shadow",
+          "name": "Charizard (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 14,
+          "fast": "Fire Spin",
+          "fastLimited": false,
+          "charged": "Blast Burn",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "darkrai:ghost",
+          "id": "darkrai",
+          "name": "Darkrai",
+          "type": "ghost",
+          "tier": "S",
+          "rank": 12,
+          "fast": "Snarl",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "darkrai:ghost",
+          "id": "darkrai",
+          "name": "Darkrai",
+          "type": "ghost",
+          "tier": "A",
+          "rank": 13,
+          "fast": "Snarl",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "darkrai_shadow:ghost",
+          "id": "darkrai_shadow",
+          "name": "Darkrai (Shadow)",
+          "type": "ghost",
+          "tier": "SS",
+          "rank": 5,
+          "fast": "Snarl",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "darkrai_shadow:ghost",
+          "id": "darkrai_shadow",
+          "name": "Darkrai (Shadow)",
+          "type": "ghost",
+          "tier": "S",
+          "rank": 6,
+          "fast": "Snarl",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "darmanitan_standard_shadow:fire",
+          "id": "darmanitan_standard_shadow",
+          "name": "Darmanitan (Standard) (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 18,
+          "fast": "Fire Fang",
+          "fastLimited": false,
+          "charged": "Overheat",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "darmanitan_standard_shadow:fire",
+          "id": "darmanitan_standard_shadow",
+          "name": "Darmanitan (Standard) (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 19,
+          "fast": "Fire Fang",
+          "fastLimited": false,
+          "charged": "Overheat",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "delphox_shadow:fire",
+          "id": "delphox_shadow",
+          "name": "Delphox (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 11,
+          "fast": "Fire Spin",
+          "fastLimited": false,
+          "charged": "Blast Burn",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "delphox_shadow:fire",
+          "id": "delphox_shadow",
+          "name": "Delphox (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 12,
+          "fast": "Fire Spin",
+          "fastLimited": false,
+          "charged": "Blast Burn",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "diancie_mega:fairy",
+          "id": "diancie_mega",
+          "name": "Diancie (Mega)",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 20,
+          "fast": "Rock Throw",
+          "fastLimited": false,
+          "charged": "Moonblast",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "diancie_mega:fairy",
+          "id": "diancie_mega",
+          "name": "Diancie (Mega)",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 21,
+          "fast": "Rock Throw",
+          "fastLimited": false,
+          "charged": "Moonblast",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "dragapult:ghost",
+          "id": "dragapult",
+          "name": "Dragapult",
+          "type": "ghost",
+          "tier": "S",
+          "rank": 15,
+          "fast": "Astonish",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "dragapult:ghost",
+          "id": "dragapult",
+          "name": "Dragapult",
+          "type": "ghost",
+          "tier": "A",
+          "rank": 16,
+          "fast": "Astonish",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "emboar_shadow:fire",
+          "id": "emboar_shadow",
+          "name": "Emboar (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 14,
+          "fast": "Ember",
+          "fastLimited": false,
+          "charged": "Blast Burn",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "emboar_shadow:fire",
+          "id": "emboar_shadow",
+          "name": "Emboar (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 15,
+          "fast": "Ember",
+          "fastLimited": false,
+          "charged": "Blast Burn",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "empoleon_shadow:water",
+          "id": "empoleon_shadow",
+          "name": "Empoleon (Shadow)",
+          "type": "water",
+          "tier": "A",
+          "rank": 18,
+          "fast": "Waterfall",
+          "fastLimited": false,
+          "charged": "Hydro Cannon",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "empoleon_shadow:water",
+          "id": "empoleon_shadow",
+          "name": "Empoleon (Shadow)",
+          "type": "water",
+          "tier": "A",
+          "rank": 19,
+          "fast": "Waterfall",
+          "fastLimited": false,
+          "charged": "Hydro Cannon",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "enamorus_incarnate:fairy",
+          "id": "enamorus_incarnate",
+          "name": "Enamorus (Incarnate)",
+          "type": "fairy",
+          "tier": "S",
+          "rank": 4,
+          "fast": "Fairy Wind",
+          "fastLimited": false,
+          "charged": "Dazzling Gleam",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "enamorus_incarnate:fairy",
+          "id": "enamorus_incarnate",
+          "name": "Enamorus (Incarnate)",
+          "type": "fairy",
+          "tier": "S",
+          "rank": 5,
+          "fast": "Fairy Wind",
+          "fastLimited": false,
+          "charged": "Dazzling Gleam",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "enamorus_therian:fairy",
+          "id": "enamorus_therian",
+          "name": "Enamorus (Therian)",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 12,
+          "fast": "Fairy Wind",
+          "fastLimited": false,
+          "charged": "Fly",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "enamorus_therian:fairy",
+          "id": "enamorus_therian",
+          "name": "Enamorus (Therian)",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 13,
+          "fast": "Fairy Wind",
+          "fastLimited": false,
+          "charged": "Fly",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "entei_shadow:fire",
+          "id": "entei_shadow",
+          "name": "Entei (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 16,
+          "fast": "Fire Spin",
+          "fastLimited": false,
+          "charged": "Overheat",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "entei_shadow:fire",
+          "id": "entei_shadow",
+          "name": "Entei (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 17,
+          "fast": "Fire Spin",
+          "fastLimited": false,
+          "charged": "Overheat",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "gallade_mega:fairy",
+          "id": "gallade_mega",
+          "name": "Gallade (Mega)",
+          "type": "fairy",
+          "tier": "S",
+          "rank": 6,
+          "fast": "Charm",
+          "fastLimited": false,
+          "charged": "Sacred Sword",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "gallade_mega:fairy",
+          "id": "gallade_mega",
+          "name": "Gallade (Mega)",
+          "type": "fairy",
+          "tier": "S",
+          "rank": 7,
+          "fast": "Charm",
+          "fastLimited": false,
+          "charged": "Sacred Sword",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "gardevoir:fairy",
+          "id": "gardevoir",
+          "name": "Gardevoir",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 14,
+          "fast": "Charm",
+          "fastLimited": false,
+          "charged": "Dazzling Gleam",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "gardevoir:fairy",
+          "id": "gardevoir",
+          "name": "Gardevoir",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 15,
+          "fast": "Charm",
+          "fastLimited": false,
+          "charged": "Dazzling Gleam",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "gardevoir_mega:ghost",
+          "id": "gardevoir_mega",
+          "name": "Gardevoir (Mega)",
+          "type": "ghost",
+          "tier": "S",
+          "rank": 16,
+          "fast": "Charm",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "gardevoir_mega:ghost",
+          "id": "gardevoir_mega",
+          "name": "Gardevoir (Mega)",
+          "type": "ghost",
+          "tier": "A",
+          "rank": 18,
+          "fast": "Charm",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "gardevoir_shadow:fairy",
+          "id": "gardevoir_shadow",
+          "name": "Gardevoir (Shadow)",
+          "type": "fairy",
+          "tier": "S",
+          "rank": 3,
+          "fast": "Charm",
+          "fastLimited": false,
+          "charged": "Dazzling Gleam",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "gardevoir_shadow:fairy",
+          "id": "gardevoir_shadow",
+          "name": "Gardevoir (Shadow)",
+          "type": "fairy",
+          "tier": "S",
+          "rank": 4,
+          "fast": "Charm",
+          "fastLimited": false,
+          "charged": "Dazzling Gleam",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "gengar_mega:dark",
+          "id": "gengar_mega",
+          "name": "Gengar (Mega)",
+          "type": "dark",
+          "tier": "S",
+          "rank": 4,
+          "fast": "Sucker Punch",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "gengar_mega:dark",
+          "id": "gengar_mega",
+          "name": "Gengar (Mega)",
+          "type": "dark",
+          "tier": "S",
+          "rank": 5,
+          "fast": "Sucker Punch",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "gengar_mega:ghost",
+          "id": "gengar_mega",
+          "name": "Gengar (Mega)",
+          "type": "ghost",
+          "tier": "SS",
+          "rank": 3,
+          "fast": "Lick",
+          "fastLimited": true,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "gengar_mega:ghost",
+          "id": "gengar_mega",
+          "name": "Gengar (Mega)",
+          "type": "ghost",
+          "tier": "S",
+          "rank": 4,
+          "fast": "Lick",
+          "fastLimited": true,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "gholdengo:ghost",
+          "id": "gholdengo",
+          "name": "Gholdengo",
+          "type": "ghost",
+          "tier": "S",
+          "rank": 13,
+          "fast": "Hex",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "gholdengo:ghost",
+          "id": "gholdengo",
+          "name": "Gholdengo",
+          "type": "ghost",
+          "tier": "A",
+          "rank": 14,
+          "fast": "Hex",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "giratina_altered_shadow:ghost",
+          "id": "giratina_altered_shadow",
+          "name": "Giratina (Altered) (Shadow)",
+          "type": "ghost",
+          "tier": "S",
+          "rank": 14,
+          "fast": "Shadow Claw",
+          "fastLimited": false,
+          "charged": "Shadow Force",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "giratina_altered_shadow:ghost",
+          "id": "giratina_altered_shadow",
+          "name": "Giratina (Altered) (Shadow)",
+          "type": "ghost",
+          "tier": "A",
+          "rank": 15,
+          "fast": "Shadow Claw",
+          "fastLimited": false,
+          "charged": "Shadow Force",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "giratina_origin:ghost",
+          "id": "giratina_origin",
+          "name": "Giratina (Origin)",
+          "type": "ghost",
+          "tier": "S",
+          "rank": 18,
+          "fast": "Shadow Claw",
+          "fastLimited": false,
+          "charged": "Shadow Force",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "giratina_origin:ghost",
+          "id": "giratina_origin",
+          "name": "Giratina (Origin)",
+          "type": "ghost",
+          "tier": "A",
+          "rank": 17,
+          "fast": "Shadow Claw",
+          "fastLimited": false,
+          "charged": "Shadow Force",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "glimmora:rock",
+          "id": "glimmora",
+          "name": "Glimmora",
+          "type": "rock",
+          "tier": "A",
+          "rank": 11,
+          "fast": "Rock Throw",
+          "fastLimited": false,
+          "charged": "Meteor Beam",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "glimmora:rock",
+          "id": "glimmora",
+          "name": "Glimmora",
+          "type": "rock",
+          "tier": "S",
+          "rank": 11,
+          "fast": "Rock Throw",
+          "fastLimited": false,
+          "charged": "Meteor Beam",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "granbull_shadow:fairy",
+          "id": "granbull_shadow",
+          "name": "Granbull (Shadow)",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 13,
+          "fast": "Charm",
+          "fastLimited": false,
+          "charged": "Play Rough",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "granbull_shadow:fairy",
+          "id": "granbull_shadow",
+          "name": "Granbull (Shadow)",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 14,
+          "fast": "Charm",
+          "fastLimited": false,
+          "charged": "Play Rough",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "greninja_shadow:dark",
+          "id": "greninja_shadow",
+          "name": "Greninja (Shadow)",
+          "type": "dark",
+          "tier": "A",
+          "rank": 17,
+          "fast": "Feint Attack",
+          "fastLimited": false,
+          "charged": "Brutal Swing",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "greninja_shadow:dark",
+          "id": "greninja_shadow",
+          "name": "Greninja (Shadow)",
+          "type": "dark",
+          "tier": "A",
+          "rank": 18,
+          "fast": "Feint Attack",
+          "fastLimited": false,
+          "charged": "Brutal Swing",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "greninja_shadow:water",
+          "id": "greninja_shadow",
+          "name": "Greninja (Shadow)",
+          "type": "water",
+          "tier": "A",
+          "rank": 11,
+          "fast": "Water Shuriken",
+          "fastLimited": false,
+          "charged": "Hydro Cannon",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "greninja_shadow:water",
+          "id": "greninja_shadow",
+          "name": "Greninja (Shadow)",
+          "type": "water",
+          "tier": "A",
+          "rank": 10,
+          "fast": "Water Shuriken",
+          "fastLimited": false,
+          "charged": "Hydro Cannon",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "groudon_primal:fire",
+          "id": "groudon_primal",
+          "name": "Groudon (Primal)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 20,
+          "fast": "Mud Shot",
+          "fastLimited": false,
+          "charged": "Fire Blast",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "groudon_primal:fire",
+          "id": "groudon_primal",
+          "name": "Groudon (Primal)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 21,
+          "fast": "Mud Shot",
+          "fastLimited": false,
+          "charged": "Fire Blast",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "gyarados_mega:dark",
+          "id": "gyarados_mega",
+          "name": "Gyarados (Mega)",
+          "type": "dark",
+          "tier": "A",
+          "rank": 16,
+          "fast": "Bite",
+          "fastLimited": false,
+          "charged": "Crunch",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "gyarados_mega:dark",
+          "id": "gyarados_mega",
+          "name": "Gyarados (Mega)",
+          "type": "dark",
+          "tier": "A",
+          "rank": 15,
+          "fast": "Bite",
+          "fastLimited": false,
+          "charged": "Crunch",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "hatterene:fairy",
+          "id": "hatterene",
+          "name": "Hatterene",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 19,
+          "fast": "Charm",
+          "fastLimited": false,
+          "charged": "Dazzling Gleam",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "hatterene:fairy",
+          "id": "hatterene",
+          "name": "Hatterene",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 20,
+          "fast": "Charm",
+          "fastLimited": false,
+          "charged": "Dazzling Gleam",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "heatran:fire",
+          "id": "heatran",
+          "name": "Heatran",
+          "type": "fire",
+          "tier": "A",
+          "rank": 25,
+          "fast": "Fire Spin",
+          "fastLimited": false,
+          "charged": "Magma Storm",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "heatran:fire",
+          "id": "heatran",
+          "name": "Heatran",
+          "type": "fire",
+          "tier": "A",
+          "rank": 26,
+          "fast": "Fire Spin",
+          "fastLimited": false,
+          "charged": "Magma Storm",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "heatran_shadow:fire",
+          "id": "heatran_shadow",
+          "name": "Heatran (Shadow)",
+          "type": "fire",
+          "tier": "S",
+          "rank": 6,
+          "fast": "Fire Spin",
+          "fastLimited": false,
+          "charged": "Magma Storm",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "heatran_shadow:fire",
+          "id": "heatran_shadow",
+          "name": "Heatran (Shadow)",
+          "type": "fire",
+          "tier": "S",
+          "rank": 7,
+          "fast": "Fire Spin",
+          "fastLimited": false,
+          "charged": "Magma Storm",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "heracross_mega:ground",
+          "id": "heracross_mega",
+          "name": "Heracross (Mega)",
+          "type": "ground",
+          "tier": "A",
+          "rank": 16,
+          "fast": "Counter",
+          "fastLimited": false,
+          "charged": "Earthquake",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "heracross_mega:ground",
+          "id": "heracross_mega",
+          "name": "Heracross (Mega)",
+          "type": "ground",
+          "tier": "A",
+          "rank": 17,
+          "fast": "Counter",
+          "fastLimited": false,
+          "charged": "Earthquake",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "ho_oh_shadow:fire",
+          "id": "ho_oh_shadow",
+          "name": "Ho-Oh (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 23,
+          "fast": "Incinerate",
+          "fastLimited": false,
+          "charged": "Sacred Fire",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "ho_oh_shadow:fire",
+          "id": "ho_oh_shadow",
+          "name": "Ho-Oh (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 24,
+          "fast": "Incinerate",
+          "fastLimited": false,
+          "charged": "Sacred Fire",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "hoopa_unbound:ghost",
+          "id": "hoopa_unbound",
+          "name": "Hoopa (Unbound)",
+          "type": "ghost",
+          "tier": "S",
+          "rank": 20,
+          "fast": "Astonish",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "hoopa_unbound:ghost",
+          "id": "hoopa_unbound",
+          "name": "Hoopa (Unbound)",
+          "type": "ghost",
+          "tier": "A",
+          "rank": 21,
+          "fast": "Astonish",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "houndoom_mega:fire",
+          "id": "houndoom_mega",
+          "name": "Houndoom (Mega)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 26,
+          "fast": "Fire Fang",
+          "fastLimited": false,
+          "charged": "Flamethrower",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "houndoom_mega:fire",
+          "id": "houndoom_mega",
+          "name": "Houndoom (Mega)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 27,
+          "fast": "Fire Fang",
+          "fastLimited": false,
+          "charged": "Flamethrower",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "hydreigon:dark",
+          "id": "hydreigon",
+          "name": "Hydreigon",
+          "type": "dark",
+          "tier": "A",
+          "rank": 13,
+          "fast": "Bite",
+          "fastLimited": false,
+          "charged": "Brutal Swing",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "hydreigon:dark",
+          "id": "hydreigon",
+          "name": "Hydreigon",
+          "type": "dark",
+          "tier": "A",
+          "rank": 12,
+          "fast": "Bite",
+          "fastLimited": false,
+          "charged": "Brutal Swing",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "hydreigon_shadow:dark",
+          "id": "hydreigon_shadow",
+          "name": "Hydreigon (Shadow)",
+          "type": "dark",
+          "tier": "S",
+          "rank": 5,
+          "fast": "Bite",
+          "fastLimited": false,
+          "charged": "Brutal Swing",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "hydreigon_shadow:dark",
+          "id": "hydreigon_shadow",
+          "name": "Hydreigon (Shadow)",
+          "type": "dark",
+          "tier": "S",
+          "rank": 4,
+          "fast": "Bite",
+          "fastLimited": false,
+          "charged": "Brutal Swing",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "infernape_shadow:fire",
+          "id": "infernape_shadow",
+          "name": "Infernape (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 24,
+          "fast": "Fire Spin",
+          "fastLimited": false,
+          "charged": "Blast Burn",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "infernape_shadow:fire",
+          "id": "infernape_shadow",
+          "name": "Infernape (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 25,
+          "fast": "Fire Spin",
+          "fastLimited": false,
+          "charged": "Blast Burn",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "kingler_shadow:water",
+          "id": "kingler_shadow",
+          "name": "Kingler (Shadow)",
+          "type": "water",
+          "tier": "A",
+          "rank": 10,
+          "fast": "Bubble",
+          "fastLimited": false,
+          "charged": "Crabhammer",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "kingler_shadow:water",
+          "id": "kingler_shadow",
+          "name": "Kingler (Shadow)",
+          "type": "water",
+          "tier": "A",
+          "rank": 11,
+          "fast": "Bubble",
+          "fastLimited": false,
+          "charged": "Crabhammer",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "kyurem_black:electric",
+          "id": "kyurem_black",
+          "name": "Kyurem (Black)",
+          "type": "electric",
+          "tier": "A",
+          "rank": 24,
+          "fast": "Dragon Tail",
+          "fastLimited": false,
+          "charged": "Fusion Bolt",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "kyurem_black:electric",
+          "id": "kyurem_black",
+          "name": "Kyurem (Black)",
+          "type": "electric",
+          "tier": "A",
+          "rank": 25,
+          "fast": "Dragon Tail",
+          "fastLimited": false,
+          "charged": "Fusion Bolt",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "kyurem_black:ghost",
+          "id": "kyurem_black",
+          "name": "Kyurem (Black)",
+          "type": "ghost",
+          "tier": "S",
+          "rank": 11,
+          "fast": "Shadow Claw",
+          "fastLimited": false,
+          "charged": "Freeze Shock",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "kyurem_black:ghost",
+          "id": "kyurem_black",
+          "name": "Kyurem (Black)",
+          "type": "ghost",
+          "tier": "A",
+          "rank": 12,
+          "fast": "Shadow Claw",
+          "fastLimited": false,
+          "charged": "Freeze Shock",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "latias_mega:fairy",
+          "id": "latias_mega",
+          "name": "Latias (Mega)",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 11,
+          "fast": "Charm",
+          "fastLimited": false,
+          "charged": "Outrage",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "latias_mega:fairy",
+          "id": "latias_mega",
+          "name": "Latias (Mega)",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 12,
+          "fast": "Charm",
+          "fastLimited": false,
+          "charged": "Outrage",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "lunala:ghost",
+          "id": "lunala",
+          "name": "Lunala",
+          "type": "ghost",
+          "tier": "S",
+          "rank": 9,
+          "fast": "Shadow Claw",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "lunala:ghost",
+          "id": "lunala",
+          "name": "Lunala",
+          "type": "ghost",
+          "tier": "A",
+          "rank": 10,
+          "fast": "Shadow Claw",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "magnezone:electric",
+          "id": "magnezone",
+          "name": "Magnezone",
+          "type": "electric",
+          "tier": "A",
+          "rank": 25,
+          "fast": "Volt Switch",
+          "fastLimited": false,
+          "charged": "Wild Charge",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "magnezone:electric",
+          "id": "magnezone",
+          "name": "Magnezone",
+          "type": "electric",
+          "tier": "A",
+          "rank": 24,
+          "fast": "Volt Switch",
+          "fastLimited": false,
+          "charged": "Wild Charge",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "mewtwo_mega_x:fire",
+          "id": "mewtwo_mega_x",
+          "name": "Mewtwo (Mega X)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 15,
+          "fast": "Counter",
+          "fastLimited": true,
+          "charged": "Flamethrower",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "mewtwo_mega_x:fire",
+          "id": "mewtwo_mega_x",
+          "name": "Mewtwo (Mega X)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 16,
+          "fast": "Counter",
+          "fastLimited": true,
+          "charged": "Flamethrower",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "mewtwo_mega_x:ghost",
+          "id": "mewtwo_mega_x",
+          "name": "Mewtwo (Mega X)",
+          "type": "ghost",
+          "tier": "SS",
+          "rank": 4,
+          "fast": "Psycho Cut",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "mewtwo_mega_x:ghost",
+          "id": "mewtwo_mega_x",
+          "name": "Mewtwo (Mega X)",
+          "type": "ghost",
+          "tier": "S",
+          "rank": 5,
+          "fast": "Psycho Cut",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "mewtwo_mega_y:fire",
+          "id": "mewtwo_mega_y",
+          "name": "Mewtwo (Mega Y)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 17,
+          "fast": "Psycho Cut",
+          "fastLimited": false,
+          "charged": "Flamethrower",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "mewtwo_mega_y:fire",
+          "id": "mewtwo_mega_y",
+          "name": "Mewtwo (Mega Y)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 18,
+          "fast": "Psycho Cut",
+          "fastLimited": false,
+          "charged": "Flamethrower",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "mewtwo_mega_y:ghost",
+          "id": "mewtwo_mega_y",
+          "name": "Mewtwo (Mega Y)",
+          "type": "ghost",
+          "tier": "SS",
+          "rank": 2,
+          "fast": "Psycho Cut",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "mewtwo_mega_y:ghost",
+          "id": "mewtwo_mega_y",
+          "name": "Mewtwo (Mega Y)",
+          "type": "ghost",
+          "tier": "S",
+          "rank": 3,
+          "fast": "Psycho Cut",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "mewtwo_shadow:ghost",
+          "id": "mewtwo_shadow",
+          "name": "Mewtwo (Shadow)",
+          "type": "ghost",
+          "tier": "S",
+          "rank": 8,
+          "fast": "Psycho Cut",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "mewtwo_shadow:ghost",
+          "id": "mewtwo_shadow",
+          "name": "Mewtwo (Shadow)",
+          "type": "ghost",
+          "tier": "A",
+          "rank": 9,
+          "fast": "Psycho Cut",
+          "fastLimited": false,
+          "charged": "Shadow Ball",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "moltres:flying",
+          "id": "moltres",
+          "name": "Moltres",
+          "type": "flying",
+          "tier": "A",
+          "rank": 12,
+          "fast": "Wing Attack",
+          "fastLimited": false,
+          "charged": "Fly",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "moltres:flying",
+          "id": "moltres",
+          "name": "Moltres",
+          "type": "flying",
+          "tier": "A",
+          "rank": 11,
+          "fast": "Wing Attack",
+          "fastLimited": false,
+          "charged": "Fly",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "moltres_shadow:fire",
+          "id": "moltres_shadow",
+          "name": "Moltres (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 10,
+          "fast": "Fire Spin",
+          "fastLimited": false,
+          "charged": "Overheat",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "moltres_shadow:fire",
+          "id": "moltres_shadow",
+          "name": "Moltres (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 11,
+          "fast": "Fire Spin",
+          "fastLimited": false,
+          "charged": "Overheat",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "mr_rime_shadow:ice",
+          "id": "mr_rime_shadow",
+          "name": "Mr. Rime (Shadow)",
+          "type": "ice",
+          "tier": "A",
+          "rank": 17,
+          "fast": "Ice Shard",
+          "fastLimited": false,
+          "charged": "Triple Axel",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "mr_rime_shadow:ice",
+          "id": "mr_rime_shadow",
+          "name": "Mr. Rime (Shadow)",
+          "type": "ice",
+          "tier": "A",
+          "rank": 16,
+          "fast": "Ice Shard",
+          "fastLimited": false,
+          "charged": "Triple Axel",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "muk_alolan_shadow:dark",
+          "id": "muk_alolan_shadow",
+          "name": "Muk (Alolan) (Shadow)",
+          "type": "dark",
+          "tier": "A",
+          "rank": 18,
+          "fast": "Snarl",
+          "fastLimited": false,
+          "charged": "Brutal Swing",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "muk_alolan_shadow:dark",
+          "id": "muk_alolan_shadow",
+          "name": "Muk (Alolan) (Shadow)",
+          "type": "dark",
+          "tier": "A",
+          "rank": 17,
+          "fast": "Snarl",
+          "fastLimited": false,
+          "charged": "Brutal Swing",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "muk_alolan_shadow:poison",
+          "id": "muk_alolan_shadow",
+          "name": "Muk (Alolan) (Shadow)",
+          "type": "poison",
+          "tier": "A",
+          "rank": 17,
+          "fast": "Poison Jab",
+          "fastLimited": false,
+          "charged": "Gunk Shot",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "muk_alolan_shadow:poison",
+          "id": "muk_alolan_shadow",
+          "name": "Muk (Alolan) (Shadow)",
+          "type": "poison",
+          "tier": "A",
+          "rank": 16,
+          "fast": "Poison Jab",
+          "fastLimited": false,
+          "charged": "Gunk Shot",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "necrozma_dawn_wings:ghost",
+          "id": "necrozma_dawn_wings",
+          "name": "Necrozma (Dawn Wings)",
+          "type": "ghost",
+          "tier": "SS",
+          "rank": 1,
+          "fast": "Psycho Cut",
+          "fastLimited": false,
+          "charged": "Moongeist Beam",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "necrozma_dawn_wings:ghost",
+          "id": "necrozma_dawn_wings",
+          "name": "Necrozma (Dawn Wings)",
+          "type": "ghost",
+          "tier": "S",
+          "rank": 2,
+          "fast": "Psycho Cut",
+          "fastLimited": false,
+          "charged": "Moongeist Beam",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "necrozma_dusk_mane:ghost",
+          "id": "necrozma_dusk_mane",
+          "name": "Necrozma (Dusk Mane)",
+          "type": "ghost",
+          "tier": "S",
+          "rank": 21,
+          "fast": "Shadow Claw",
+          "fastLimited": false,
+          "charged": "Sunsteel Strike",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "necrozma_dusk_mane:ghost",
+          "id": "necrozma_dusk_mane",
+          "name": "Necrozma (Dusk Mane)",
+          "type": "ghost",
+          "tier": "A",
+          "rank": 22,
+          "fast": "Shadow Claw",
+          "fastLimited": false,
+          "charged": "Sunsteel Strike",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "primarina:water",
+          "id": "primarina",
+          "name": "Primarina",
+          "type": "water",
+          "tier": "A",
+          "rank": 19,
+          "fast": "Waterfall",
+          "fastLimited": false,
+          "charged": "Hydro Cannon",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "primarina:water",
+          "id": "primarina",
+          "name": "Primarina",
+          "type": "water",
+          "tier": "A",
+          "rank": 18,
+          "fast": "Waterfall",
+          "fastLimited": false,
+          "charged": "Hydro Cannon",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "raichu_mega_y:fairy",
+          "id": "raichu_mega_y",
+          "name": "Raichu (Mega Y)",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 18,
+          "fast": "Charm",
+          "fastLimited": false,
+          "charged": "Zap Cannon+",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "raichu_mega_y:fairy",
+          "id": "raichu_mega_y",
+          "name": "Raichu (Mega Y)",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 19,
+          "fast": "Charm",
+          "fastLimited": false,
+          "charged": "Zap Cannon+",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "reshiram:fire",
+          "id": "reshiram",
+          "name": "Reshiram",
+          "type": "fire",
+          "tier": "A",
+          "rank": 9,
+          "fast": "Fire Fang",
+          "fastLimited": false,
+          "charged": "Fusion Flare",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "reshiram:fire",
+          "id": "reshiram",
+          "name": "Reshiram",
+          "type": "fire",
+          "tier": "A",
+          "rank": 10,
+          "fast": "Fire Fang",
+          "fastLimited": false,
+          "charged": "Fusion Flare",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "rhydon_shadow:ground",
+          "id": "rhydon_shadow",
+          "name": "Rhydon (Shadow)",
+          "type": "ground",
+          "tier": "A",
+          "rank": 17,
+          "fast": "Mud-Slap",
+          "fastLimited": false,
+          "charged": "Earthquake",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "rhydon_shadow:ground",
+          "id": "rhydon_shadow",
+          "name": "Rhydon (Shadow)",
+          "type": "ground",
+          "tier": "A",
+          "rank": 16,
+          "fast": "Mud-Slap",
+          "fastLimited": false,
+          "charged": "Earthquake",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "salamence_mega:fire",
+          "id": "salamence_mega",
+          "name": "Salamence (Mega)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 19,
+          "fast": "Fire Fang",
+          "fastLimited": false,
+          "charged": "Fly",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "salamence_mega:fire",
+          "id": "salamence_mega",
+          "name": "Salamence (Mega)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 20,
+          "fast": "Fire Fang",
+          "fastLimited": false,
+          "charged": "Fly",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "salamence_shadow:fire",
+          "id": "salamence_shadow",
+          "name": "Salamence (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 21,
+          "fast": "Fire Fang",
+          "fastLimited": false,
+          "charged": "Fly",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "salamence_shadow:fire",
+          "id": "salamence_shadow",
+          "name": "Salamence (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 22,
+          "fast": "Fire Fang",
+          "fastLimited": false,
+          "charged": "Fly",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "staraptor_shadow:flying",
+          "id": "staraptor_shadow",
+          "name": "Staraptor (Shadow)",
+          "type": "flying",
+          "tier": "A",
+          "rank": 11,
+          "fast": "Gust",
+          "fastLimited": true,
+          "charged": "Fly",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "staraptor_shadow:flying",
+          "id": "staraptor_shadow",
+          "name": "Staraptor (Shadow)",
+          "type": "flying",
+          "tier": "A",
+          "rank": 12,
+          "fast": "Gust",
+          "fastLimited": true,
+          "charged": "Fly",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "tapu_bulu:fairy",
+          "id": "tapu_bulu",
+          "name": "Tapu Bulu",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 10,
+          "fast": "Bullet Seed",
+          "fastLimited": false,
+          "charged": "Nature's Madness",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "tapu_bulu:fairy",
+          "id": "tapu_bulu",
+          "name": "Tapu Bulu",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 11,
+          "fast": "Bullet Seed",
+          "fastLimited": false,
+          "charged": "Nature’s Madness",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "tapu_koko:fairy",
+          "id": "tapu_koko",
+          "name": "Tapu Koko",
+          "type": "fairy",
+          "tier": "S",
+          "rank": 8,
+          "fast": "Quick Attack",
+          "fastLimited": false,
+          "charged": "Nature's Madness",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "tapu_koko:fairy",
+          "id": "tapu_koko",
+          "name": "Tapu Koko",
+          "type": "fairy",
+          "tier": "S",
+          "rank": 9,
+          "fast": "Quick Attack",
+          "fastLimited": false,
+          "charged": "Nature’s Madness",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "tapu_lele:fairy",
+          "id": "tapu_lele",
+          "name": "Tapu Lele",
+          "type": "fairy",
+          "tier": "S",
+          "rank": 7,
+          "fast": "Astonish",
+          "fastLimited": false,
+          "charged": "Nature's Madness",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "tapu_lele:fairy",
+          "id": "tapu_lele",
+          "name": "Tapu Lele",
+          "type": "fairy",
+          "tier": "S",
+          "rank": 8,
+          "fast": "Astonish",
+          "fastLimited": false,
+          "charged": "Nature’s Madness",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "togekiss:fairy",
+          "id": "togekiss",
+          "name": "Togekiss",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 16,
+          "fast": "Charm",
+          "fastLimited": false,
+          "charged": "Dazzling Gleam",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "togekiss:fairy",
+          "id": "togekiss",
+          "name": "Togekiss",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 17,
+          "fast": "Charm",
+          "fastLimited": false,
+          "charged": "Dazzling Gleam",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "toxicroak_shadow:poison",
+          "id": "toxicroak_shadow",
+          "name": "Toxicroak (Shadow)",
+          "type": "poison",
+          "tier": "A",
+          "rank": 16,
+          "fast": "Poison Jab",
+          "fastLimited": false,
+          "charged": "Sludge Bomb",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "toxicroak_shadow:poison",
+          "id": "toxicroak_shadow",
+          "name": "Toxicroak (Shadow)",
+          "type": "poison",
+          "tier": "A",
+          "rank": 17,
+          "fast": "Poison Jab",
+          "fastLimited": false,
+          "charged": "Sludge Bomb",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "typhlosion_shadow:fire",
+          "id": "typhlosion_shadow",
+          "name": "Typhlosion (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 22,
+          "fast": "Incinerate",
+          "fastLimited": false,
+          "charged": "Blast Burn",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "typhlosion_shadow:fire",
+          "id": "typhlosion_shadow",
+          "name": "Typhlosion (Shadow)",
+          "type": "fire",
+          "tier": "A",
+          "rank": 23,
+          "fast": "Incinerate",
+          "fastLimited": false,
+          "charged": "Blast Burn",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "ursaluna_shadow:fairy",
+          "id": "ursaluna_shadow",
+          "name": "Ursaluna (Shadow)",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 21,
+          "fast": "Tackle",
+          "fastLimited": false,
+          "charged": "Play Rough",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "ursaluna_shadow:fairy",
+          "id": "ursaluna_shadow",
+          "name": "Ursaluna (Shadow)",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 22,
+          "fast": "Tackle",
+          "fastLimited": false,
+          "charged": "Play Rough",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "weavile_shadow:dark",
+          "id": "weavile_shadow",
+          "name": "Weavile (Shadow)",
+          "type": "dark",
+          "tier": "A",
+          "rank": 15,
+          "fast": "Snarl",
+          "fastLimited": false,
+          "charged": "Foul Play",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "weavile_shadow:dark",
+          "id": "weavile_shadow",
+          "name": "Weavile (Shadow)",
+          "type": "dark",
+          "tier": "A",
+          "rank": 16,
+          "fast": "Snarl",
+          "fastLimited": false,
+          "charged": "Foul Play",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "weavile_shadow:ice",
+          "id": "weavile_shadow",
+          "name": "Weavile (Shadow)",
+          "type": "ice",
+          "tier": "S",
+          "rank": 12,
+          "fast": "Ice Shard",
+          "fastLimited": false,
+          "charged": "Triple Axel",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "weavile_shadow:ice",
+          "id": "weavile_shadow",
+          "name": "Weavile (Shadow)",
+          "type": "ice",
+          "tier": "A",
+          "rank": 12,
+          "fast": "Ice Shard",
+          "fastLimited": false,
+          "charged": "Triple Axel",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "xerneas:fairy",
+          "id": "xerneas",
+          "name": "Xerneas",
+          "type": "fairy",
+          "tier": "S",
+          "rank": 9,
+          "fast": "Geomancy",
+          "fastLimited": true,
+          "charged": "Moonblast",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "xerneas:fairy",
+          "id": "xerneas",
+          "name": "Xerneas",
+          "type": "fairy",
+          "tier": "S",
+          "rank": 10,
+          "fast": "Geomancy",
+          "fastLimited": true,
+          "charged": "Moonblast",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "xurkitree:fairy",
+          "id": "xurkitree",
+          "name": "Xurkitree",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 15,
+          "fast": "Thunder Shock",
+          "fastLimited": false,
+          "charged": "Dazzling Gleam",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "xurkitree:fairy",
+          "id": "xurkitree",
+          "name": "Xurkitree",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 16,
+          "fast": "Thunder Shock",
+          "fastLimited": false,
+          "charged": "Dazzling Gleam",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "zacian_crowned_sword:fairy",
+          "id": "zacian_crowned_sword",
+          "name": "Zacian (Crowned Sword)",
+          "type": "fairy",
+          "tier": "SS",
+          "rank": 2,
+          "fast": "Metal Claw",
+          "fastLimited": false,
+          "charged": "Play Rough",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "zacian_crowned_sword:fairy",
+          "id": "zacian_crowned_sword",
+          "name": "Zacian (Crowned Sword)",
+          "type": "fairy",
+          "tier": "SS",
+          "rank": 3,
+          "fast": "Metal Claw",
+          "fastLimited": false,
+          "charged": "Play Rough",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "zacian_hero:fairy",
+          "id": "zacian_hero",
+          "name": "Zacian (Hero)",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 17,
+          "fast": "Snarl",
+          "fastLimited": false,
+          "charged": "Play Rough",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "zacian_hero:fairy",
+          "id": "zacian_hero",
+          "name": "Zacian (Hero)",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 18,
+          "fast": "Snarl",
+          "fastLimited": false,
+          "charged": "Play Rough",
+          "chargedLimited": false
+        }
+      }
+    ],
+    "actualMoveChanges": [],
+    "cosmeticMoveNameChanges": [
+      {
+        "before": {
+          "key": "tapu_bulu:fairy",
+          "id": "tapu_bulu",
+          "name": "Tapu Bulu",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 10,
+          "fast": "Bullet Seed",
+          "fastLimited": false,
+          "charged": "Nature's Madness",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "tapu_bulu:fairy",
+          "id": "tapu_bulu",
+          "name": "Tapu Bulu",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 11,
+          "fast": "Bullet Seed",
+          "fastLimited": false,
+          "charged": "Nature’s Madness",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "tapu_koko:fairy",
+          "id": "tapu_koko",
+          "name": "Tapu Koko",
+          "type": "fairy",
+          "tier": "S",
+          "rank": 8,
+          "fast": "Quick Attack",
+          "fastLimited": false,
+          "charged": "Nature's Madness",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "tapu_koko:fairy",
+          "id": "tapu_koko",
+          "name": "Tapu Koko",
+          "type": "fairy",
+          "tier": "S",
+          "rank": 9,
+          "fast": "Quick Attack",
+          "fastLimited": false,
+          "charged": "Nature’s Madness",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "tapu_lele:fairy",
+          "id": "tapu_lele",
+          "name": "Tapu Lele",
+          "type": "fairy",
+          "tier": "S",
+          "rank": 7,
+          "fast": "Astonish",
+          "fastLimited": false,
+          "charged": "Nature's Madness",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "tapu_lele:fairy",
+          "id": "tapu_lele",
+          "name": "Tapu Lele",
+          "type": "fairy",
+          "tier": "S",
+          "rank": 8,
+          "fast": "Astonish",
+          "fastLimited": false,
+          "charged": "Nature’s Madness",
+          "chargedLimited": true
+        }
+      }
+    ]
+  },
+  "maxAttackers": {
+    "before": {
+      "forms": 65,
+      "roles": 84
+    },
+    "after": {
+      "forms": 65,
+      "roles": 84
+    },
+    "entered": [],
+    "left": [],
+    "changed": []
+  },
+  "maxTopFive": {
+    "before": {
+      "forms": 58,
+      "roles": 72
+    },
+    "after": {
+      "forms": 58,
+      "roles": 72
+    },
+    "entered": [],
+    "left": [],
+    "changed": []
+  },
+  "maxSupport": {
+    "before": {
+      "forms": 17,
+      "roles": 17
+    },
+    "after": {
+      "forms": 20,
+      "roles": 21
+    },
+    "entered": [
+      {
+        "key": "dialga:max:dynamax:Defender",
+        "id": "dialga:max:dynamax",
+        "name": "Dynamax Dialga",
+        "role": "Defender",
+        "tier": "A",
+        "fastMoves": [
+          {
+            "name": "Dragon Breath",
+            "verified": true,
+            "limited": false,
+            "legacy": false
+          },
+          {
+            "name": "Metal Claw",
+            "verified": true,
+            "limited": false,
+            "legacy": false
+          }
+        ],
+        "resistances": [
+          "water",
+          "grass",
+          "electric",
+          "normal",
+          "flying",
+          "poison",
+          "bug",
+          "rock",
+          "psychic",
+          "steel"
+        ],
+        "notes": [
+          "General defender / charger tier. The best choice depends on the boss and its moves.",
+          "Use the recommended fast move to charge the Max Meter. Unlock and level Max Guard when using this copy to tank during the Max phase."
+        ]
+      },
+      {
+        "key": "melmetal:max:dynamax:Defender",
+        "id": "melmetal:max:dynamax",
+        "name": "Dynamax Melmetal",
+        "role": "Defender",
+        "tier": "A",
+        "fastMoves": [
+          {
+            "name": "Thunder Shock",
+            "verified": true,
+            "limited": false,
+            "legacy": false
+          }
+        ],
+        "resistances": [
+          "fairy",
+          "dragon",
+          "grass",
+          "ice",
+          "normal",
+          "flying",
+          "poison",
+          "bug",
+          "rock",
+          "psychic",
+          "steel"
+        ],
+        "notes": [
+          "General defender / charger tier. The best choice depends on the boss and its moves.",
+          "Use the recommended fast move to charge the Max Meter. Unlock and level Max Guard when using this copy to tank during the Max phase."
+        ]
+      },
+      {
+        "key": "melmetal:max:dynamax:Healer",
+        "id": "melmetal:max:dynamax",
+        "name": "Dynamax Melmetal",
+        "role": "Healer",
+        "tier": "A",
+        "fastMoves": [],
+        "resistances": [],
+        "notes": [
+          "General healer tier based on HP and long-term usefulness; not a boss-specific simulation.",
+          "Unlock and level Max Spirit. The healer tier does not require a particular Fast or Charged Attack."
+        ]
+      },
+      {
+        "key": "regidrago:max:dynamax:Healer",
+        "id": "regidrago:max:dynamax",
+        "name": "Dynamax Regidrago",
+        "role": "Healer",
+        "tier": "S",
+        "fastMoves": [],
+        "resistances": [],
+        "notes": [
+          "General healer tier based on HP and long-term usefulness; not a boss-specific simulation.",
+          "Unlock and level Max Spirit. The healer tier does not require a particular Fast or Charged Attack."
+        ]
+      }
+    ],
+    "left": [],
+    "changed": []
+  },
+  "baseStatChanges": [],
+  "sources": [
+    {
+      "id": "input-csv",
+      "date": "2026-09-27",
+      "retrieved": "2026-11-06T05:07:44.473Z",
+      "url": "Pokemon_GO_full_alphabetical_catalog_2026-09-27.csv"
+    },
+    {
+      "id": "pvpoke",
+      "commit": "e02bde78d19be9b9099b5a6629c6a8d0835a53be",
+      "date": "2026-11-03T03:23:40Z",
+      "retrieved": "2026-11-06T05:02:44.441Z",
+      "url": "https://github.com/pvpoke/pvpoke/tree/e02bde78d19be9b9099b5a6629c6a8d0835a53be"
+    },
+    {
+      "id": "go-gamemaster",
+      "commit": "8e227be44f288d34463e23bf04e9b564d3c16f79",
+      "date": "2026-08-29T12:08:01Z",
+      "retrieved": "2026-11-06T05:02:50.400Z",
+      "url": "https://github.com/PokeMiners/game_masters/tree/8e227be44f288d34463e23bf04e9b564d3c16f79"
+    },
+    {
+      "id": "gohub-raids",
+      "retrieved": "2026-11-06T05:07:44.473Z",
+      "url": "https://db.pokemongohub.net/best/attackers-per-type"
+    },
+    {
+      "id": "manual-rules",
+      "date": "2026-11-05.1",
+      "retrieved": "2026-11-06T05:07:44.473Z",
+      "url": "data/manual-rules.json"
+    },
+    {
+      "id": "gohub-moves",
+      "retrieved": "2026-11-06T05:07:44.473Z",
+      "url": "https://db.pokemongohub.net/"
+    },
+    {
+      "id": "gohub-max",
+      "retrieved": "2026-11-06T05:02:51.931Z",
+      "url": "https://db.pokemongohub.net/best/dynamax-attackers-per-type"
+    },
+    {
+      "id": "gohub-max-defender",
+      "date": "2026-10-24T16:54:17+00:00",
+      "retrieved": "2026-11-06T05:07:44.335Z",
+      "url": "https://pokemongohub.net/post/guide/max-defenders-tier-list/"
+    },
+    {
+      "id": "gohub-max-healer",
+      "date": "2026-10-24T16:58:50+00:00",
+      "retrieved": "2026-11-06T05:07:44.473Z",
+      "url": "https://pokemongohub.net/post/guide/max-healers-tier-list-june-2025/"
+    },
+    {
+      "id": "gohub-max-capability",
+      "retrieved": "2026-11-06T05:07:44.550Z",
+      "url": "https://pokemongohub.net/post/guide/max-attackers-tier-list/"
+    }
+  ],
+  "gym": {
+    "before": 25,
+    "after": 18,
+    "entered": [],
+    "left": [
+      {
+        "id": "tyranitar",
+        "name": "Tyranitar",
+        "previousTier": "A+",
+        "currentTier": "B"
+      },
+      {
+        "id": "garchomp",
+        "name": "Garchomp",
+        "previousTier": "A+",
+        "currentTier": "B"
+      },
+      {
+        "id": "relicanth",
+        "name": "Relicanth",
+        "previousTier": "A+",
+        "currentTier": "B"
+      },
+      {
+        "id": "kingambit",
+        "name": "Kingambit",
+        "previousTier": "A+",
+        "currentTier": "B"
+      },
+      {
+        "id": "hippowdon",
+        "name": "Hippowdon",
+        "previousTier": "A+",
+        "currentTier": "B"
+      },
+      {
+        "id": "florges",
+        "name": "Florges",
+        "previousTier": "A+",
+        "currentTier": "B"
+      },
+      {
+        "id": "vaporeon",
+        "name": "Vaporeon",
+        "previousTier": "A+",
+        "currentTier": "B"
+      }
+    ],
+    "tiers": [
+      {
+        "id": "blissey",
+        "name": "Blissey",
+        "before": "S",
+        "after": "SS"
+      },
+      {
+        "id": "chansey",
+        "name": "Chansey",
+        "before": "S",
+        "after": "S"
+      },
+      {
+        "id": "snorlax",
+        "name": "Snorlax",
+        "before": "A+",
+        "after": "S"
+      },
+      {
+        "id": "dondozo",
+        "name": "Dondozo",
+        "before": "A+",
+        "after": "S"
+      },
+      {
+        "id": "umbreon",
+        "name": "Umbreon",
+        "before": "A+",
+        "after": "A"
+      },
+      {
+        "id": "avalugg",
+        "name": "Avalugg",
+        "before": "A+",
+        "after": "A"
+      },
+      {
+        "id": "avalugg_hisuian",
+        "name": "Hisuian Avalugg",
+        "before": "A+",
+        "after": "A"
+      },
+      {
+        "id": "melmetal",
+        "name": "Melmetal",
+        "before": "A+",
+        "after": "A"
+      },
+      {
+        "id": "ursaluna",
+        "name": "Ursaluna",
+        "before": "A+",
+        "after": "A"
+      },
+      {
+        "id": "goodra",
+        "name": "Goodra",
+        "before": "A+",
+        "after": "A"
+      },
+      {
+        "id": "mandibuzz",
+        "name": "Mandibuzz",
+        "before": "A+",
+        "after": "A"
+      },
+      {
+        "id": "steelix",
+        "name": "Steelix",
+        "before": "A+",
+        "after": "A"
+      },
+      {
+        "id": "lapras",
+        "name": "Lapras",
+        "before": "A+",
+        "after": "A"
+      },
+      {
+        "id": "coalossal",
+        "name": "Coalossal",
+        "before": "A+",
+        "after": "A"
+      },
+      {
+        "id": "garganacl",
+        "name": "Garganacl",
+        "before": "A+",
+        "after": "A"
+      },
+      {
+        "id": "rhyperior",
+        "name": "Rhyperior",
+        "before": "A+",
+        "after": "A"
+      },
+      {
+        "id": "milotic",
+        "name": "Milotic",
+        "before": "A+",
+        "after": "A"
+      },
+      {
+        "id": "slaking",
+        "name": "Slaking",
+        "before": "A+",
+        "after": "A"
+      }
+    ]
+  },
+  "cpMultipliersChanged": false,
+  "deferredRaids": [
+    {
+      "id": "clefable_mega",
+      "name": "Mega Clefable",
+      "dex": 36,
+      "form": "Mega",
+      "availableFrom": "2026-11-28",
+      "source": "https://pokemongo.com/news/clefable-super-mega-raid-day-2026",
+      "reason": "Official debut announced for November 28, 2026. Retained as upcoming source evidence; excluded from current recommendations.",
+      "type": "fairy",
+      "tier": "SS",
+      "rank": 2,
+      "moves": [
+        {
+          "name": "Fairy Wind",
+          "limited": false,
+          "url": "https://db.pokemongohub.net/move/350"
+        },
+        {
+          "name": "Moonblast+",
+          "limited": false,
+          "url": "https://db.pokemongohub.net/move/2003600"
+        }
+      ],
+      "rankingSource": "https://db.pokemongohub.net/pokemon-list/best-per-type/fairy",
+      "retrieved": "2026-11-06T05:02:49.004Z"
+    }
+  ],
+  "securityPatch": {
+    "package": "undici",
+    "before": "7.30.0",
+    "after": "7.30.2",
+    "scope": "Transitive development/source-tooling dependency; no direct package version changes",
+    "auditVulnerabilities": 0
+  }
+}

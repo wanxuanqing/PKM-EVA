@@ -78,3 +78,9 @@ All three open leagues now qualify species ranks 1–100 inclusive. Unit checks 
 Catalog `2026-10-20-2ad2f6d1ea80` contains 1,634 forms, preserving all 1,608 CSV forms and all previous IDs. The refreshed source snapshots, moves CSV/JSON and exact before/after comparison are documented in [the data update report](data-update-2026-10-19.md). All 93 unit/data tests and 29 browser tests pass. The production build, catalog validation and gender audit pass; 1,633 forms have GO-backed gender metadata and all 11,868 gender/evolution traversals pass. New regression coverage checks shared GO Hub move references, missing/circular references, limited flags, Minior battle stats, Phony/Antique Candy costs and Bramblin's buddy requirement. Core color availability and mid-battle Minior form switching are explicitly outside the current model.
 
 The refresh files pass formatting. The repository-wide formatting check still flags 12 unchanged files that match HEAD; see the data report for the list.
+
+### Database refresh (November 5, 2026)
+
+Catalog `2026-11-06-5622bf9fd6f1` preserves all earlier IDs and adds Mega Chandelure. All 101 unit/data tests and 30 browser tests pass, along with the production build, catalog schema/checksum validation and 11,876 gender/evolution traversals. New source coverage includes an expiring exact-form exclusion for announced Mega Clefable, explicit Dynamax labels for added support roles, and retained low-tier placeholder and downgraded-move evidence. Numeric Max attacker recommendations and the IV calculator are unchanged. See [the complete before/after report](data-update-2026-11-05.md).
+
+The source tooling's transitive undici dependency was patched from 7.30.0 to 7.30.2; npm audit reports zero vulnerabilities. Changed-file formatting passes. The full formatting check passes when accepting existing checkout line endings; the default local LF-only check flags 8 unchanged CRLF files.

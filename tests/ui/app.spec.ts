@@ -1,5 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import type { Catalog } from '../../src/types';
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { resolve, extname, sep } from 'node:path';
@@ -149,7 +150,7 @@ test('expanded raid moves retain type roles and export the same catalog datashee
   await card.getByText('Details & requirements').click();
   await expect(card).toContainText('Hex');
   await expect(card).toContainText('Shadow Ball');
-  await expect(card).toContainText('ghost · S tier');
+  await expect(card).toContainText('ghost · A tier');
   await expect(card).not.toContainText('Fire Spin');
   await expect(card).not.toContainText('Overheat');
   await expect(card.getByRole('link', { name: 'Raid evidence' })).toHaveAttribute(
@@ -792,7 +793,7 @@ test('Max defender and healer roles have separate tiers, paths, move labels and 
   await page.getByRole('button', { name: 'Max Battles', exact: true }).click();
   const roles = page.getByRole('group', { name: 'Max Battle role' });
   await roles.getByRole('button', { name: 'Healer', exact: true }).click();
-  await expect(page.locator('.max-card')).toHaveCount(10);
+  await expect(page.locator('.max-card')).toHaveCount(12);
   await expect(page.getByLabel('Max attack type')).toHaveCount(0);
   const blissey = page.getByRole('article', { name: 'Dynamax Blissey', exact: true });
   await expect(blissey).toContainText('Healer · S tier');
@@ -806,7 +807,7 @@ test('Max defender and healer roles have separate tiers, paths, move labels and 
   expect(a11y.violations).toEqual([]);
   await page.screenshot({ path: 'docs/screenshots/max-healers-mobile.png' });
   await roles.getByRole('button', { name: 'Defender', exact: true }).click();
-  await expect(page.locator('.max-card')).toHaveCount(7);
+  await expect(page.locator('.max-card')).toHaveCount(9);
   const registeel = page.getByRole('article', { name: 'Dynamax Registeel', exact: true });
   await expect(registeel).toContainText('Defender · S tier');
   await expect(registeel).toContainText('Lock-On / Metal Claw');
@@ -845,22 +846,28 @@ test('Max defender and healer roles have separate tiers, paths, move labels and 
 
 test('PvP useful paths include rank 100 and exclude rank 101 in every league', async ({ page }) => {
   await page.goto('/');
-  for (const [name, form, target, league, included] of [
-    ['Oranguru', '', 'Oranguru', 'Great League', true],
-    ['Drapion', 'drapion_shadow', 'Drapion (Shadow)', 'Great League', false],
-    ['Zapdos', 'zapdos', 'Zapdos', 'Ultra League', true],
-    ['Cofagrigus', 'cofagrigus_shadow', 'Cofagrigus (Shadow)', 'Ultra League', false],
-    ['Kommo-o', '', 'Kommo-o', 'Master League', true],
-    ['Kartana', '', 'Kartana', 'Master League', false],
+  const pointer = JSON.parse(await readFile(resolve('src/data/current.json'), 'utf8'));
+  const catalog = JSON.parse(await readFile(resolve('public' + pointer.file), 'utf8')) as Catalog;
+  for (const [key, league] of [
+    ['GL', 'Great League'],
+    ['UL', 'Ultra League'],
+    ['ML', 'Master League'],
   ] as const) {
-    await search(page, name);
-    if (form) await page.getByLabel('Form', { exact: true }).selectOption(form);
-    await stable(page);
-    const card = page.getByRole('article', { name: target + ' ' + league, exact: true });
-    if (included) {
-      await expect(card).toBeVisible();
-      await expect(card).toContainText('Species #100');
-    } else await expect(card).toHaveCount(0);
+    for (const rank of [100, 101]) {
+      const target = catalog.species.find(
+        (p) => p.eligible[key] && p.rankings[key]?.rank === rank,
+      )!;
+      expect(target).toBeDefined();
+      await search(page, target.name);
+      if (await page.getByLabel('Form', { exact: true }).count())
+        await page.getByLabel('Form', { exact: true }).selectOption(target.id);
+      await stable(page);
+      const card = page.getByRole('article', { name: target.name + ' ' + league, exact: true });
+      if (rank === 100) {
+        await expect(card).toBeVisible();
+        await expect(card).toContainText('Species #100');
+      } else await expect(card).toHaveCount(0);
+    }
   }
   await page.getByRole('button', { name: 'Data', exact: true }).click();
   await expect(
@@ -877,15 +884,37 @@ test('new debut entries retain walking requirements and form-specific raid paths
   await page.getByText('Coverage & availability for Bramblin', { exact: true }).click();
   await expect(page.getByText('20 km', { exact: false }).first()).toBeVisible();
   await search(page, 'Sinistea');
+  await page.getByLabel('Form', { exact: true }).selectOption('sinistea');
+  await stable(page);
+  if (!(await page.getByText('400 Candy', { exact: false }).first().isVisible())) {
+    await page.getByText('Coverage & availability for Sinistea', { exact: true }).click();
+  }
+  await expect(page.getByText('400 Candy', { exact: false }).first()).toBeVisible();
   await page.getByLabel('Form', { exact: true }).selectOption('sinistea_antique');
   await stable(page);
-  const raid = page.getByRole('article', { name: 'Polteageist (Antique) Raids', exact: true });
-  await expect(raid).toBeVisible();
-  await raid.getByText('Details & requirements', { exact: true }).click();
-  await expect(raid).toContainText('400 Candy');
-  await expect(raid).toContainText('A tier');
+  await expect(page.getByLabel('Form', { exact: true })).toHaveValue('sinistea_antique');
   await search(page, 'Minior');
   await page.getByLabel('Form', { exact: true }).selectOption('minior_core');
   await stable(page);
   await expect(page.getByLabel('Form', { exact: true })).toHaveValue('minior_core');
+});
+
+test('new Mega and sourced Max support roles appear along useful evolution paths', async ({
+  page,
+}) => {
+  await page.goto('/');
+  await search(page, 'Litwick');
+  await stable(page);
+  const mega = page.getByRole('article', { name: 'Chandelure (Mega) Raids', exact: true });
+  await expect(mega).toBeVisible();
+  await mega.getByText('Details & requirements', { exact: true }).click();
+  await expect(mega).toContainText('Ominous Wind+');
+  await expect(mega).toContainText('October 31, 2026');
+  await search(page, 'Meltan');
+  await stable(page);
+  const max = page.getByRole('article', { name: 'Dynamax Melmetal Max Battles', exact: true });
+  await expect(max).toContainText('Defender');
+  await expect(max).toContainText('Healer');
+  await max.getByText('Details & requirements', { exact: true }).click();
+  await expect(max).toContainText('Thunder Shock');
 });
