@@ -1,7 +1,7 @@
 import { readFile, writeFile, mkdir, rename } from 'node:fs/promises';
 import { gzipSync, gunzipSync } from 'node:zlib';
 import { hash, nameKey } from './data-lib.mjs';
-import { extractMaxRankings } from './moves-lib.mjs';
+import { extractMaxRankings, reviewedMaxExclusion } from './moves-lib.mjs';
 const json = async (path) => JSON.parse(await readFile(path, 'utf8'));
 const pointer = await json('src/data/current.json'),
   catalog = await json(`public${pointer.file}`),
@@ -54,6 +54,7 @@ if (!offline)
   );
 captures.sort((a, b) => a.type.localeCompare(b.type));
 const entries = new Map();
+const excluded = [];
 const byType = [];
 for (const capture of captures) {
   const selected = capture.rows.slice(0, 5);
@@ -66,6 +67,17 @@ for (const capture of captures) {
   for (const row of capture.rows.filter(
     (r) => r.order <= 5 || ['SS', 'S+', 'S', 'A+', 'A'].includes(r.tier),
   )) {
+    const exclusion = reviewedMaxExclusion(row.attacker, rules.excludedMaxForms);
+    if (exclusion) {
+      excluded.push({
+        ...row,
+        type: capture.type,
+        source: capture.url,
+        retrieved: capture.retrieved,
+        review: exclusion,
+      });
+      continue;
+    }
     const explicit = rules.maxAliases?.[row.attacker.name];
     const ordinaryName = row.attacker.name
       .replace(/^(Dynamax|Gigantamax)\s+/, '')
@@ -171,6 +183,7 @@ bundle.maxBattleRankings = {
     .filter((e) => e.roles.length)
     .sort((a, b) => a.name.localeCompare(b.name)),
   captures,
+  excluded,
 };
 bundle.retrieved = [bundle.retrieved, retrieved].sort().at(-1);
 const output = gzipSync(JSON.stringify(bundle), { level: 9 }),

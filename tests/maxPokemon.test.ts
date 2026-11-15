@@ -5,22 +5,28 @@ import pointer from '../src/data/current.json';
 import type { Catalog } from '../src/types';
 import { maxPokemon, goodMaxTier } from '../src/lib/maxPokemon';
 // @ts-expect-error The source parser runs in Node, outside browser TypeScript.
-import { extractMaxRankings } from '../scripts/moves-lib.mjs';
+import { extractMaxRankings, reviewedMaxExclusion } from '../scripts/moves-lib.mjs';
 // @ts-expect-error The catalog validator runs in Node, outside browser TypeScript.
 import { validateCatalog } from '../scripts/data-lib.mjs';
 const data = JSON.parse(readFileSync(`public${pointer.file}`, 'utf8')) as Catalog;
 const rawPointer = JSON.parse(readFileSync('data/sources-current.json', 'utf8'));
+const rules = JSON.parse(readFileSync('data/manual-rules.json', 'utf8'));
+const included = (r: { attacker: unknown }) =>
+  !reviewedMaxExclusion(r.attacker, rules.excludedMaxForms);
 const bundle = JSON.parse(gunzipSync(readFileSync(rawPointer.file)).toString());
 it('preserves the source top five of every type, including types with fewer entries', () => {
   const max = data.maxBattles!;
   expect(max.byType).toHaveLength(18);
   expect(max.byType.some((t) => t.type === 'normal')).toBe(true);
   for (const capture of bundle.maxBattleRankings.captures) {
-    const expected = capture.rows.slice(0, 5).filter((r: { tier: string }) => goodMaxTier(r.tier));
+    const expected = capture.rows
+      .slice(0, 5)
+      .filter(included)
+      .filter((r: { tier: string }) => goodMaxTier(r.tier));
     const entries = maxPokemon(data, capture.type);
     expect(entries).toHaveLength(expected.length);
     expect(max.entries.flatMap((e) => e.roles).filter((r) => r.type === capture.type)).toHaveLength(
-      Math.min(5, capture.rows.length),
+      capture.rows.slice(0, 5).filter(included).length,
     );
     expect(entries.map((e) => e.roles[0].rank)).toEqual(
       expected.map((r: { order: number }) => r.order),
@@ -84,6 +90,7 @@ it('retains every A-or-better source role for Useful paths, even below fifth pla
     .flatMap(
       (c: { type: string; rows: { order: number; tier: string; attacker: { name: string } }[] }) =>
         c.rows
+          .filter(included)
           .filter((r) => goodMaxTier(r.tier))
           .map((r) => c.type + ':' + r.order + ':' + r.attacker.name),
     )
@@ -96,4 +103,26 @@ it('retains every A-or-better source role for Useful paths, even below fifth pla
     expect.arrayContaining([expect.objectContaining({ type: 'psychic', rank: 6, tier: 'S' })]),
   );
   expect(maxPokemon(data, 'psychic').every((e) => e.roles.every((r) => r.rank <= 5))).toBe(true);
+});
+
+it('withholds only the reviewed unreleased Max form and retains its source evidence', () => {
+  const raw = JSON.parse(readFileSync('public' + pointer.file, 'utf8'));
+  expect(raw.maxBattles.excluded).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({
+        attacker: expect.objectContaining({ name: 'Gigantamax Melmetal' }),
+        type: 'steel',
+      }),
+    ]),
+  );
+  expect(maxPokemon(data, 'All', 'Defender').some((e) => e.name === 'Dynamax Melmetal')).toBe(true);
+  expect(maxPokemon(data).some((e) => e.name === 'Gigantamax Melmetal')).toBe(false);
+  expect(
+    reviewedMaxExclusion(
+      { id: 809, name: 'Dynamax Melmetal', form: 'Dynamax' },
+      rules.excludedMaxForms,
+    ),
+  ).toBeUndefined();
+  raw.maxBattles.excluded = [];
+  expect(() => validateCatalog(raw, 1608)).toThrow('Incomplete top-five');
 });

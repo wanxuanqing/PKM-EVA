@@ -92,6 +92,8 @@ describe('catalog and branches', () => {
       expect(map.get(id)?.gender?.allowed).toEqual(['female', 'male']);
     expect(data.species.filter((p) => !p.gender?.allowed?.length).map((p) => p.id)).toEqual([
       'golisopodsh',
+      'goodra_hisuian',
+      'sliggoo_hisuian',
     ]);
     expect(map.get('golisopodsh')?.gender?.source).toBe('');
   });

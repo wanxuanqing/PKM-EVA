@@ -1,0 +1,85 @@
+{
+  "reviewed": "2026-11-15",
+  "captures": [
+    {
+      "url": "https://pokemongo.com/gowildarea/sendai/gameplay",
+      "retrieved": "2026-11-15T23:10:35.603Z",
+      "sha256": "d3d3ff6a9169867f9e9dc6b0ce4725110fb23157c5cafa8bbf8fb4f21a2a146d"
+    },
+    {
+      "url": "https://pokemongo.com/gowildarea/global",
+      "retrieved": "2026-11-15T23:10:35.747Z",
+      "sha256": "00e02a2caea95a688fce1d38511509900d71c8be4c4c88c0182f1b1c8531eab4"
+    },
+    {
+      "url": "https://pokemongo.com/news/into-the-wild-2026",
+      "retrieved": "2026-11-15T23:10:35.864Z",
+      "sha256": "77e794f52d2a925abf57672d37be84fde01430f20b6c61058923ebc6bbfbab71"
+    },
+    {
+      "url": "https://db.pokemongohub.net/pokemon/705-Hisuian",
+      "retrieved": "2026-11-15T23:10:36.446Z",
+      "sha256": "32d802a56e570dc70c37873c2dd2f4e0794286797689d3b179ce79e4123a218d"
+    },
+    {
+      "url": "https://db.pokemongohub.net/pokemon/706-Hisuian",
+      "retrieved": "2026-11-15T23:10:37.020Z",
+      "sha256": "7c7af7886c1def9d6db4b36a4dccf34351e7d78466ca0343395a448ab4b7da45"
+    }
+  ],
+  "addedRegionalForms": [
+    {
+      "id": "goodra_hisuian",
+      "stats": {
+        "atk": 211,
+        "def": 255,
+        "hp": 190
+      },
+      "rankings": {},
+      "evolutions": [],
+      "release": {
+        "status": "documented",
+        "source": "https://pokemongo.com/gowildarea/sendai/gameplay",
+        "note": "Official debut at the November 6–8, 2026 in-person GO Wild Area events. This documents the debut, not ongoing encounter availability."
+      }
+    },
+    {
+      "id": "sliggoo_hisuian",
+      "stats": {
+        "atk": 153,
+        "def": 190,
+        "hp": 151
+      },
+      "rankings": {},
+      "evolutions": [
+        {
+          "to": "goodra_hisuian",
+          "kind": "evolution",
+          "requirements": ["100 Goomy Candy", "Requires Hisuian Sliggoo"],
+          "source": "https://pokemongo.com/gowildarea/sendai/gameplay"
+        }
+      ],
+      "release": {
+        "status": "documented",
+        "source": "https://pokemongo.com/gowildarea/sendai/gameplay",
+        "note": "Official debut at the November 6–8, 2026 in-person GO Wild Area events. This documents the debut, not ongoing encounter availability."
+      }
+    }
+  ],
+  "maxDebuts": [
+    "Dynamax Dialga",
+    "Dynamax Palkia",
+    "Gigantamax Duraludon",
+    "Dynamax Regidrago",
+    "Dynamax Meltan (evolves into Dynamax Melmetal)"
+  ],
+  "costume": {
+    "name": "Machamp wearing a modern jacket",
+    "status": "Official debut documented; a separate battle record is not added because the captured GO templates do not supply this exact costume identity and restrictions."
+  },
+  "limitations": [
+    "PvPoke still marks both Hisuian forms unreleased and supplies no open-league rankings. Official evidence establishes release; no regular-form ranks are copied.",
+    "Pinned GO templates predate the event. Exact-form gender and trade metadata for both Hisuian forms remain unverified.",
+    "Gigantamax Melmetal appears in the Max source but its GO debut was not verified. Excluded from current attack/support advice; raw rows retained."
+  ]
+}

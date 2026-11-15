@@ -1,11 +1,13 @@
 {
-  "snapshot": "2026-11-06-5622bf9fd6f1",
+  "snapshot": "2026-11-15-c6124cdf73ae",
   "sourceCommit": "8e227be44f288d34463e23bf04e9b564d3c16f79",
   "scope": "Bundled GO gender templates, form mappings, Shadow/base agreement and all supported evolution paths; not a live availability audit.",
-  "total": 1635,
+  "total": 1637,
   "sourceBacked": 1634,
   "unverified": [
-    "golisopodsh"
+    "golisopodsh",
+    "goodra_hisuian",
+    "sliggoo_hisuian"
   ],
   "inheritedTemporaryForms": 63,
   "traversals": 11876,
@@ -8727,6 +8729,17 @@
       "sharedAppearance": false,
       "source": "go-gamemaster",
       "status": "source-backed"
+    },
+    {
+      "id": "goodra_hisuian",
+      "name": "Goodra (Hisuian)",
+      "dex": 706,
+      "fixed": null,
+      "allowed": [],
+      "templates": [],
+      "sharedAppearance": false,
+      "source": "",
+      "status": "unverified"
     },
     {
       "id": "goomy",
@@ -20551,6 +20564,17 @@
       "sharedAppearance": false,
       "source": "go-gamemaster",
       "status": "source-backed"
+    },
+    {
+      "id": "sliggoo_hisuian",
+      "name": "Sliggoo (Hisuian)",
+      "dex": 705,
+      "fixed": null,
+      "allowed": [],
+      "templates": [],
+      "sharedAppearance": false,
+      "source": "",
+      "status": "unverified"
     },
     {
       "id": "slowbro",

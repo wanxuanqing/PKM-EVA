@@ -1,6 +1,6 @@
 # Gym Defense
 
-Reviewed 2026-11-05 against [GO Hub's defender list](https://db.pokemongohub.net/best/gym-defenders). The exact allowlist is in `src/lib/gym.ts`; source date is shown on cards and About/Data. Refresh this list manually when reviewing gym rankings; `moves:update` does not change it.
+Reviewed 2026-11-15 against [GO Hub's defender list](https://db.pokemongohub.net/best/gym-defenders). The exact allowlist is in `src/lib/gym.ts`; source date is shown on cards and About/Data. Refresh this list manually when reviewing gym rankings; `moves:update` does not change it.
 
 SS: Blissey.
 
@@ -8,7 +8,7 @@ S: Chansey, Snorlax, Dondozo.
 
 A: Umbreon, Avalugg, Hisuian Avalugg, Melmetal, Ursaluna, Goodra, Mandibuzz, Steelix, Lapras, Coalossal, Garganacl, Rhyperior, Milotic, Slaking.
 
-The previous 25-form shortlist used older S/A+ source labels. Seven former entries are now B and no longer qualify: Tyranitar, Garchomp, Relicanth, Kingambit, Hippowdon, Florges and Vaporeon. Current rows and previous tiers are preserved in [the source audit](../data/gym-defense-2026-11-05.json).
+The previous 25-form shortlist used older S/A+ source labels. Seven former entries are now B and no longer qualify: Tyranitar, Garchomp, Relicanth, Kingambit, Hippowdon, Florges and Vaporeon. The November 15 review retained the same 18 forms. Current rows and previous tiers are preserved in [the source audit](../data/gym-defense-2026-11-15.json).
 
 Exact regular-form IDs prevent accidental inheritance by Shadows, costumes, Mega/Primal forms or other alternate forms. Melmetal is deliberately included in this gym shortlist; do not apply a blanket exclusion based on mythical classification. This is not a general eligibility validator for every species.
 
