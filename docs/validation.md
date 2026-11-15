@@ -84,3 +84,7 @@ The refresh files pass formatting. The repository-wide formatting check still fl
 Catalog `2026-11-06-5622bf9fd6f1` preserves all earlier IDs and adds Mega Chandelure. All 101 unit/data tests and 30 browser tests pass, along with the production build, catalog schema/checksum validation and 11,876 gender/evolution traversals. New source coverage includes an expiring exact-form exclusion for announced Mega Clefable, explicit Dynamax labels for added support roles, and retained low-tier placeholder and downgraded-move evidence. Numeric Max attacker recommendations and the IV calculator are unchanged. See [the complete before/after report](data-update-2026-11-05.md).
 
 The source tooling's transitive undici dependency was patched from 7.30.0 to 7.30.2; npm audit reports zero vulnerabilities. Changed-file formatting passes. The full formatting check passes when accepting existing checkout line endings; the default local LF-only check flags 8 unchanged CRLF files.
+
+### Database refresh (November 15, 2026)
+
+Catalog `2026-11-15-c6124cdf73ae` contains 1,637 forms. All 103 unit/data tests, 31 browser tests, catalog validation, production build and 11,876 gender/evolution traversals pass. New coverage verifies the Hisuian evolution, regional artwork, event Max forms, and complete source-rank accounting for a reviewed exclusion. Exact-form gender metadata remains unverified for the two new Hisuian entries because the pinned templates predate their release. See [the refresh report](data-update-2026-11-15.md).

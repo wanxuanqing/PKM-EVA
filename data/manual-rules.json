@@ -1,5 +1,5 @@
 {
-  "version": "2026-11-05.1",
+  "version": "2026-11-15",
   "genderAliases": {
     "pikachu_5th_anniversary": "pikachu_flying_5th_anniv",
     "pikachu_flying": "pikachu_flying_01",
@@ -86,7 +86,9 @@
     "polteageist_antique": "Distinct GO form with GO-verified stats and move pools matching polteageist. Its form-specific evolution cost is preserved; PvPoke supplies rankings only for the shared base battle record.",
     "sinistea": "Select Phony or Antique for form-specific raid paths and evolution costs: Phony needs 50 Candy; Antique needs 400 Candy. This shared battle record does not identify your copy’s form.",
     "polteageist": "Select Phony or Antique for the source-listed raid rating and moves. This shared battle record does not identify your copy’s form.",
-    "chandelure_mega": "Mega Chandelure debuted October 31, 2026. This rating applies while Mega Evolved; Ominous Wind+ scales with Mega Level."
+    "chandelure_mega": "Mega Chandelure debuted October 31, 2026. This rating applies while Mega Evolved; Ominous Wind+ scales with Mega Level.",
+    "sliggoo_hisuian": "Debuted November 6, 2026 at the in-person GO Wild Area events. Evolve Hisuian Sliggoo with 100 Goomy Candy. Ordinary Goomy is not a verified route to this regional form. PvPoke has not yet published open-league rankings for this form.",
+    "goodra_hisuian": "Debuted November 6, 2026 through evolution of Hisuian Sliggoo. PvPoke has not yet published open-league rankings for this form; regular Goodra rankings do not apply."
   },
   "extraEdges": [
     {
@@ -204,6 +206,13 @@
         "Mega Evolution is temporary and preserves this copy’s IVs."
       ],
       "source": "https://pokemongo.com/news/chandelure-super-mega-raid-day-2026"
+    },
+    {
+      "from": "sliggoo_hisuian",
+      "to": "goodra_hisuian",
+      "kind": "evolution",
+      "requirements": ["100 Goomy Candy", "Requires Hisuian Sliggoo"],
+      "source": "https://pokemongo.com/gowildarea/sendai/gameplay"
     }
   ],
   "eventEdges": [
@@ -268,7 +277,7 @@
       "name": "Polteageist (Antique)"
     }
   ],
-  "sourceBackedEntries": ["minior_meteor", "minior_core"],
+  "sourceBackedEntries": ["minior_meteor", "minior_core", "sliggoo_hisuian", "goodra_hisuian"],
   "deferredRaidForms": [
     {
       "id": "clefable_mega",
@@ -279,5 +288,27 @@
       "source": "https://pokemongo.com/news/clefable-super-mega-raid-day-2026",
       "reason": "Official debut announced for November 28, 2026. Retained as upcoming source evidence; excluded from current recommendations."
     }
-  ]
+  ],
+  "excludedMaxForms": [
+    {
+      "dex": 809,
+      "name": "Gigantamax Melmetal",
+      "form": "Gigantamax",
+      "reviewed": "2026-11-15",
+      "source": "https://pokemongo.com/news/into-the-wild-2026",
+      "reason": "The November event introduces Dynamax Meltan, not Gigantamax Melmetal. No GO debut for this exact Gigantamax form could be verified at review. Preserve source rankings as evidence but withhold current recommendations until release is verified."
+    }
+  ],
+  "releaseEvidence": {
+    "sliggoo_hisuian": {
+      "date": "2026-11-06",
+      "source": "https://pokemongo.com/gowildarea/sendai/gameplay",
+      "note": "Official debut at the November 6–8, 2026 in-person GO Wild Area events. This documents the debut, not ongoing encounter availability."
+    },
+    "goodra_hisuian": {
+      "date": "2026-11-06",
+      "source": "https://pokemongo.com/gowildarea/sendai/gameplay",
+      "note": "Official debut at the November 6–8, 2026 in-person GO Wild Area events. This documents the debut, not ongoing encounter availability."
+    }
+  }
 }

@@ -354,10 +354,17 @@ export function normalizeData({
       rankings: ranked.get(id) ?? {},
       evolutions: [],
       raid: [],
-      availability: {
-        status: 'unverified',
-        note: 'CSV and simulator availability flags are not independent confirmation of a GO release.',
-      },
+      availability:
+        rules.releaseEvidence?.[id] && rules.releaseEvidence[id].date <= retrieved.slice(0, 10)
+          ? {
+              status: 'documented',
+              source: rules.releaseEvidence[id].source,
+              note: rules.releaseEvidence[id].note,
+            }
+          : {
+              status: 'unverified',
+              note: 'CSV and simulator availability flags are not independent confirmation of a GO release.',
+            },
       notes,
       csv: null,
     };
@@ -773,11 +780,28 @@ export function validateCatalog(data, expectedForms) {
     }
     for (const t of max.byType) {
       const roles = max.entries.flatMap((e) => e.roles).filter((r) => r.type === t.type);
+      const excluded = (max.excluded ?? []).filter((r) => r.type === t.type && r.order <= 5);
+      for (const row of excluded) {
+        if (
+          !row.review?.reason ||
+          !row.review?.source?.startsWith('https://') ||
+          row.review.dex !== row.attacker?.id ||
+          row.review.name !== row.attacker?.name ||
+          row.review.form !== row.attacker?.form ||
+          !Number.isInteger(row.order) ||
+          row.order < 1 ||
+          [...max.entries, ...(max.usefulEntries ?? []), ...(max.supportEntries ?? [])].some(
+            (entry) => entry.name === row.attacker.name,
+          )
+        )
+          throw new Error('Invalid reviewed Max exclusion');
+      }
+      const ranks = [...roles.map((r) => r.rank), ...excluded.map((r) => r.order)];
       if (
         t.selected !== Math.min(5, t.available) ||
-        roles.length !== t.selected ||
-        new Set(roles.map((r) => r.rank)).size !== roles.length ||
-        roles.some((r) => r.rank > t.selected)
+        ranks.length !== t.selected ||
+        new Set(ranks).size !== ranks.length ||
+        ranks.some((rank) => rank > t.selected)
       )
         throw new Error(`Incomplete top-five Max Battle ranking: ${t.type}`);
     }

@@ -82,10 +82,10 @@ it('merges attack and support once per form and never mutates the catalog', () =
   const before = JSON.stringify(data.maxBattles);
   const all = maxPokemon(data, 'All', 'All');
   expect(new Set(all.map((e) => e.id)).size).toBe(all.length);
-  const crown = all.find((e) => e.name === 'Crowned Shield Zamazenta')!;
+  const crown = all.find((e) => e.name === 'Dynamax Dialga')!;
   expect(crown.roles.length).toBeGreaterThan(0);
   expect(crown.support).toEqual(
-    expect.arrayContaining([expect.objectContaining({ role: 'Defender', tier: 'S' })]),
+    expect.arrayContaining([expect.objectContaining({ role: 'Defender', tier: 'A' })]),
   );
   expect(maxPokemon(data, 'All', 'Attacker').every((e) => !e.support?.length)).toBe(true);
   expect(

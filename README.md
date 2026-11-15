@@ -2,7 +2,7 @@
 
 A phone-first Pokémon GO evaluator built with React, TypeScript and Vite. Search a Pokémon and form, enter three IVs, and compare all supported useful evolution paths. Everything runs in your browser; no account, API key, database or Python server is required.
 
-The supplied `prompt.md` and CSV remain unchanged. The original catalog contains **1,608 forms across 953 Pokédex species**. The current snapshot includes 27 supplemental source entries, for 1,635 supported forms. Forms are keyed by stable IDs, never by display name; inclusion does not confirm GO release availability.
+The supplied `prompt.md` and CSV remain unchanged. The original catalog contains **1,608 forms across 953 Pokédex species**. The current snapshot includes 29 supplemental source entries, for 1,637 supported forms. Forms are keyed by stable IDs, never by display name; inclusion does not confirm GO release availability.
 
 ## Run locally
 
@@ -61,9 +61,9 @@ Calculations run in a Web Worker. Up to 32 distributions are cached in memory an
 
 ## Data and updates
 
-Latest refresh: [November 5, 2026 database comparison](docs/data-update-2026-11-05.md), including new debut forms and changes to PvP, raid and Max recommendations.
+Latest refresh: [November 15, 2026 database comparison](docs/data-update-2026-11-15.md), including new debut forms and changes to PvP, raid and Max recommendations.
 
-Gym Defense is a separate role using GO Hub's SS/S/A bulk shortlist, reviewed 2026-11-05. The 18 exact regular forms and reachable evolution paths are recognized without a minimum IV percentage; Normal types are allowed. Conditional paths require review, and Shadow/costume/temporary forms do not inherit ratings. These are species-level Defense × Stamina tiers, not simulations or an instruction to power up every copy. See [gym-defense scope and sources](docs/gym-defense.md). The shortlist is maintained separately from raid/PvP refreshes in `src/lib/gym.ts`.
+Gym Defense is a separate role using GO Hub's SS/S/A bulk shortlist, reviewed 2026-11-15. The 18 exact regular forms and reachable evolution paths are recognized without a minimum IV percentage; Normal types are allowed. Conditional paths require review, and Shadow/costume/temporary forms do not inherit ratings. These are species-level Defense × Stamina tiers, not simulations or an instruction to power up every copy. See [gym-defense scope and sources](docs/gym-defense.md). The shortlist is maintained separately from raid/PvP refreshes in `src/lib/gym.ts`.
 
 The assessment list shows only sourced raid roles rated A or better, excluding Normal. CSV-only backup candidates and lower-rated roles are hidden from that list; their original records and datasheet evidence remain available.
 
@@ -183,15 +183,15 @@ The repeated ideal-IV field is omitted for Master League and raids, and Top 50 r
 
 ### Max Battles in Top 50
 
-The **Max Battles** category displays up to five GO Hub attackers per Max Move type, including Normal, filtered to **A tier and above** (SS, S+, S, A+, A). Dynamax, Gigantamax and special Max Battle forms remain distinct. The October 15 raw top-five capture retains 70 forms and 88 roles; the filtered Top 50 category recommends 53 forms and 66 roles. Poison has three listed options. A type filter shows source order, tiers, recommended Fast Attack, Max Attack, limited-access flags.
+The **Max Battles** category displays up to five GO Hub attackers per Max Move type, including Normal, filtered to **A tier and above** (SS, S+, S, A+, A). Dynamax, Gigantamax and special Max Battle forms remain distinct. The November 15 filtered Top 50 category recommends 60 forms and 72 roles. Reviewed unreleased forms are withheld, with their original source ranks and evidence retained. Poison has three listed options. A type filter shows source order, tiers, recommended Fast Attack, Max Attack, limited-access flags.
 
 The Attacker list measures damage under GO Hub's default level-50 settings. Defender and Healer lists use independent general tiers, described below. Species ratings do not establish a specific copy's Max capability. The Max Battle collection flag continues to preserve collection value independently of the attack-tier cutoff. Gigantamax artwork is mapped separately; ordinary Dynamax enlargement is not depicted. Toxtricity's Max variants retain distinct source identities even where the base battle catalog shares a record.
 
-Run `npm run max:update` to capture all 18 Max type lists and both support guides, then regenerate the catalog. Captures and source hashes are retained in the compressed source bundle. The browser catalog retains the unfiltered top-five capture plus all A-or-better roles from the full type lists; filtering recommendations does not delete source information. Use `node scripts/update-max.mjs --offline` followed by `npm run data:update -- --offline` to rebuild those sets from saved captures without changing their retrieval dates. Ordinary raid and PvP snapshots are preserved. Complete Max coverage is validated before the app pointer changes, and recommendations remain available offline after the updated build is cached.
+Run `npm run max:update` to capture all 18 Max type lists and both support guides, then regenerate the catalog. Captures and source hashes are retained in the compressed source bundle. The source bundle retains the complete raw capture; the browser catalog contains the reviewed top-five and A-or-better sets plus explicit exclusion evidence; filtering recommendations does not delete source information. Use `node scripts/update-max.mjs --offline` followed by `npm run data:update -- --offline` to rebuild those sets from saved captures without changing their retrieval dates. Ordinary raid and PvP snapshots are preserved. Complete Max coverage is validated before the app pointer changes, and recommendations remain available offline after the updated build is cached.
 
 ### Max Battle value in Useful paths
 
-Assessments include a separate **Max Battles** role for GO Hub A-tier-or-better targets, following the existing evolution graph and its gender, regional, event and random-outcome restrictions. All qualifying roles from the full type lists are eligible, including ranks below fifth place: the October 15 snapshot has **57 attacker forms and 73 A-or-better attack roles**. Top 50 still limits each type to its top five before applying the tier cutoff. Source tiers below A remain available for audit.
+Assessments include a separate **Max Battles** role for GO Hub A-tier-or-better targets, following the existing evolution graph and its gender, regional, event and random-outcome restrictions. All qualifying roles from the full type lists are eligible, including ranks below fifth place: the November 15 snapshot has **67 attacker forms and 87 A-or-better attack roles**. Top 50 still limits each type to its top five before applying the tier cutoff. Source tiers below A remain available for audit.
 
 Dynamax paths from earlier stages are potential roles for a copy that already has the matching Max capability. Gigantamax targets are shown only on the matching species itself; no evolution path is invented from an ordinary or Dynamax copy to Gigantamax. Shadows and Mega/Primal forms do not inherit Max ratings. Shared base-catalog forms, such as Toxtricity, still require confirmation of the exact Max variant.
 
@@ -199,7 +199,7 @@ Cards show the full path, qualifying type roles, source ranks, suggested Fast an
 
 ### Max defenders and healers
 
-Max Battles now offers **All roles / Attacker / Defender / Healer** filters in Top 50. GO Hub's [Max Defenders](https://pokemongohub.net/post/guide/max-defenders-tier-list/) and [Max Healers](https://pokemongohub.net/post/guide/max-healers-tier-list-june-2025/) guides supply independent support tiers. Only A and above qualify, with no five-entry cap on the support lists. The October 15 capture includes **seven defender species/forms and nine healer species across ten forms** (Dynamax and Gigantamax Lapras remain distinct). Combined Useful paths cover 66 distinct Max forms with 90 attack/support roles; multiple roles share one card for the same form.
+Max Battles now offers **All roles / Attacker / Defender / Healer** filters in Top 50. GO Hub's [Max Defenders](https://pokemongohub.net/post/guide/max-defenders-tier-list/) and [Max Healers](https://pokemongohub.net/post/guide/max-healers-tier-list-june-2025/) guides supply independent support tiers. Only A and above qualify, with no five-entry cap on the support lists. The November 15 capture includes **9 defender forms and 12 healer forms across 20 distinct forms**. Multiple roles share one card for the same form.
 
 Defender cards show source-listed fast move alternatives and resistances, Max Guard guidance, source dates and a boss-dependent note. Suggested fast moves are checked against the pinned PvPoke move pool; Elite/event and legacy flags are preserved. Unknown move availability is labeled instead of inferred. Healer cards show the independent tier and Max Spirit guidance; the healer guide supplies no fast/charged recommendation, so none is invented. The support list is general advice rather than a simulation of the current boss or this copy's healing output.
 

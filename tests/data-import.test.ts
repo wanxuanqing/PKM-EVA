@@ -139,3 +139,22 @@ it('includes the new Mega Chandelure with a sourced ordinary-to-temporary path',
     ]),
   );
 });
+
+it('includes Wild Area regional debuts without inventing a Goomy regional route or PvP rank', () => {
+  const data = JSON.parse(readFileSync('public' + pointer.file, 'utf8')) as Catalog;
+  const byId = new Map(data.species.map((p) => [p.id, p]));
+  expect(byId.get('sliggoo_hisuian')!.baseStats).toEqual({ atk: 153, def: 190, hp: 151 });
+  expect(byId.get('goodra_hisuian')!.baseStats).toEqual({ atk: 211, def: 255, hp: 190 });
+  expect(byId.get('sliggoo_hisuian')!.evolutions).toEqual([
+    expect.objectContaining({
+      to: 'goodra_hisuian',
+      requirements: ['100 Goomy Candy', 'Requires Hisuian Sliggoo'],
+      source: 'https://pokemongo.com/gowildarea/sendai/gameplay',
+    }),
+  ]);
+  expect(byId.get('goomy')!.evolutions.some((e) => e.to === 'sliggoo_hisuian')).toBe(false);
+  for (const id of ['sliggoo_hisuian', 'goodra_hisuian']) {
+    expect(byId.get(id)!.rankings).toEqual({});
+    expect(byId.get(id)!.types.sort()).toEqual(['dragon', 'steel']);
+  }
+});

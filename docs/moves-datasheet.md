@@ -1,6 +1,6 @@
 # App moves datasheet
 
-Latest refresh: [November 5, 2026](data-update-2026-11-05.md), with 240 current raid forms / 355 type roles. Upcoming Mega Clefable is excluded with its official debut date; downgraded supplemental forms retain their source moves in the export. Earlier capture details below are historical.
+Latest refresh: [November 15, 2026](data-update-2026-11-15.md), with 243 current raid forms / 361 type roles. Upcoming Mega Clefable is excluded with its official debut date; downgraded supplemental forms retain their source moves in the export. Earlier capture details below are historical.
 
 Updated October 1, 2026. Catalog: `2026-10-01-535cab1bf42a`.
 

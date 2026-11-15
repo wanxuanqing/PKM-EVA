@@ -1,0 +1,1941 @@
+{
+  "dateLocal": "2026-11-15",
+  "timezone": "America/Los_Angeles",
+  "before": "2026-11-06-5622bf9fd6f1",
+  "after": "2026-11-15-c6124cdf73ae",
+  "counts": {
+    "before": 1635,
+    "after": 1637,
+    "originalCsv": 1608,
+    "dexBefore": 959,
+    "dexAfter": 959
+  },
+  "added": [
+    {
+      "id": "goodra_hisuian",
+      "name": "Goodra (Hisuian)",
+      "dex": 706,
+      "stats": {
+        "atk": 211,
+        "def": 255,
+        "hp": 190
+      },
+      "rankings": {},
+      "notes": [
+        "Evolution and trade rules for this exact form are not fully mapped.",
+        "Debuted November 6, 2026 through evolution of Hisuian Sliggoo. PvPoke has not yet published open-league rankings for this form; regular Goodra rankings do not apply.",
+        "Supplemental source-backed form or evolution stage absent from the original CSV; its release status is not inferred from simulator flags."
+      ],
+      "evolutions": []
+    },
+    {
+      "id": "sliggoo_hisuian",
+      "name": "Sliggoo (Hisuian)",
+      "dex": 705,
+      "stats": {
+        "atk": 153,
+        "def": 190,
+        "hp": 151
+      },
+      "rankings": {},
+      "notes": [
+        "Evolution and trade rules for this exact form are not fully mapped.",
+        "Debuted November 6, 2026 at the in-person GO Wild Area events. Evolve Hisuian Sliggoo with 100 Goomy Candy. Ordinary Goomy is not a verified route to this regional form. PvPoke has not yet published open-league rankings for this form.",
+        "Supplemental source-backed form or evolution stage absent from the original CSV; its release status is not inferred from simulator flags."
+      ],
+      "evolutions": [
+        {
+          "to": "goodra_hisuian",
+          "kind": "evolution",
+          "requirements": ["100 Goomy Candy", "Requires Hisuian Sliggoo"],
+          "source": "https://pokemongo.com/gowildarea/sendai/gameplay"
+        }
+      ]
+    }
+  ],
+  "removed": [],
+  "pvp": {
+    "GL": {
+      "before": 100,
+      "after": 100,
+      "entered": [],
+      "left": [],
+      "rankChangesInCurrentTop100": [],
+      "moveChangesInCurrentTop100": []
+    },
+    "UL": {
+      "before": 100,
+      "after": 100,
+      "entered": [],
+      "left": [],
+      "rankChangesInCurrentTop100": [],
+      "moveChangesInCurrentTop100": []
+    },
+    "ML": {
+      "before": 100,
+      "after": 100,
+      "entered": [],
+      "left": [],
+      "rankChangesInCurrentTop100": [],
+      "moveChangesInCurrentTop100": []
+    }
+  },
+  "raids": {
+    "before": {
+      "forms": 240,
+      "roles": 355
+    },
+    "after": {
+      "forms": 243,
+      "roles": 361
+    },
+    "entered": [
+      {
+        "key": "absol:dark",
+        "id": "absol",
+        "name": "Absol",
+        "type": "dark",
+        "tier": "A",
+        "rank": 29,
+        "fast": "Snarl",
+        "fastLimited": false,
+        "charged": "Brutal Swing",
+        "chargedLimited": true
+      },
+      {
+        "key": "ampharos_mega:dark",
+        "id": "ampharos_mega",
+        "name": "Ampharos (Mega)",
+        "type": "dark",
+        "tier": "A",
+        "rank": 26,
+        "fast": "Volt Switch",
+        "fastLimited": false,
+        "charged": "Brutal Swing",
+        "chargedLimited": false
+      },
+      {
+        "key": "hoopa_unbound:dark",
+        "id": "hoopa_unbound",
+        "name": "Hoopa (Unbound)",
+        "type": "dark",
+        "tier": "A",
+        "rank": 27,
+        "fast": "Astonish",
+        "fastLimited": false,
+        "charged": "Dark Pulse",
+        "chargedLimited": false
+      },
+      {
+        "key": "sharpedo_mega:dark",
+        "id": "sharpedo_mega",
+        "name": "Sharpedo (Mega)",
+        "type": "dark",
+        "tier": "A",
+        "rank": 28,
+        "fast": "Bite",
+        "fastLimited": false,
+        "charged": "Crunch",
+        "chargedLimited": false
+      },
+      {
+        "key": "zekrom_shadow:dragon",
+        "id": "zekrom_shadow",
+        "name": "Zekrom (Shadow)",
+        "type": "dragon",
+        "tier": "A",
+        "rank": 17,
+        "fast": "Dragon Breath",
+        "fastLimited": false,
+        "charged": "Outrage",
+        "chargedLimited": false
+      },
+      {
+        "key": "zekrom_shadow:electric",
+        "id": "zekrom_shadow",
+        "name": "Zekrom (Shadow)",
+        "type": "electric",
+        "tier": "SS",
+        "rank": 4,
+        "fast": "Charge Beam",
+        "fastLimited": false,
+        "charged": "Fusion Bolt",
+        "chargedLimited": true
+      }
+    ],
+    "left": [],
+    "changed": [
+      {
+        "before": {
+          "key": "ampharos_mega:electric",
+          "id": "ampharos_mega",
+          "name": "Ampharos (Mega)",
+          "type": "electric",
+          "tier": "S",
+          "rank": 16,
+          "fast": "Volt Switch",
+          "fastLimited": false,
+          "charged": "Zap Cannon",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "ampharos_mega:electric",
+          "id": "ampharos_mega",
+          "name": "Ampharos (Mega)",
+          "type": "electric",
+          "tier": "S",
+          "rank": 17,
+          "fast": "Volt Switch",
+          "fastLimited": false,
+          "charged": "Zap Cannon",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "articuno_shadow:ice",
+          "id": "articuno_shadow",
+          "name": "Articuno (Shadow)",
+          "type": "ice",
+          "tier": "A",
+          "rank": 17,
+          "fast": "Frost Breath",
+          "fastLimited": false,
+          "charged": "Triple Axel",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "articuno_shadow:ice",
+          "id": "articuno_shadow",
+          "name": "Articuno (Shadow)",
+          "type": "ice",
+          "tier": "A",
+          "rank": 18,
+          "fast": "Frost Breath",
+          "fastLimited": false,
+          "charged": "Triple Axel",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "aurorus_shadow:ice",
+          "id": "aurorus_shadow",
+          "name": "Aurorus (Shadow)",
+          "type": "ice",
+          "tier": "A",
+          "rank": 18,
+          "fast": "Frost Breath",
+          "fastLimited": false,
+          "charged": "Weather Ball",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "aurorus_shadow:ice",
+          "id": "aurorus_shadow",
+          "name": "Aurorus (Shadow)",
+          "type": "ice",
+          "tier": "A",
+          "rank": 16,
+          "fast": "Frost Breath",
+          "fastLimited": false,
+          "charged": "Weather Ball",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "blacephalon:fire",
+          "id": "blacephalon",
+          "name": "Blacephalon",
+          "type": "fire",
+          "tier": "S",
+          "rank": 5,
+          "fast": "Incinerate",
+          "fastLimited": false,
+          "charged": "Mind Blown",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "blacephalon:fire",
+          "id": "blacephalon",
+          "name": "Blacephalon",
+          "type": "fire",
+          "tier": "S",
+          "rank": 6,
+          "fast": "Incinerate",
+          "fastLimited": false,
+          "charged": "Mind Blown",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "chandelure_mega:fire",
+          "id": "chandelure_mega",
+          "name": "Chandelure (Mega)",
+          "type": "fire",
+          "tier": "S",
+          "rank": 6,
+          "fast": "Fire Spin",
+          "fastLimited": false,
+          "charged": "Overheat",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "chandelure_mega:fire",
+          "id": "chandelure_mega",
+          "name": "Chandelure (Mega)",
+          "type": "fire",
+          "tier": "S",
+          "rank": 5,
+          "fast": "Fire Spin",
+          "fastLimited": false,
+          "charged": "Ominous Wind+",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "dragonite_shadow:dragon",
+          "id": "dragonite_shadow",
+          "name": "Dragonite (Shadow)",
+          "type": "dragon",
+          "tier": "A",
+          "rank": 17,
+          "fast": "Dragon Tail",
+          "fastLimited": false,
+          "charged": "Outrage",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "dragonite_shadow:dragon",
+          "id": "dragonite_shadow",
+          "name": "Dragonite (Shadow)",
+          "type": "dragon",
+          "tier": "A",
+          "rank": 19,
+          "fast": "Dragon Tail",
+          "fastLimited": false,
+          "charged": "Outrage",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "electivire:electric",
+          "id": "electivire",
+          "name": "Electivire",
+          "type": "electric",
+          "tier": "A",
+          "rank": 21,
+          "fast": "Thunder Shock",
+          "fastLimited": false,
+          "charged": "Wild Charge",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "electivire:electric",
+          "id": "electivire",
+          "name": "Electivire",
+          "type": "electric",
+          "tier": "A",
+          "rank": 22,
+          "fast": "Thunder Shock",
+          "fastLimited": false,
+          "charged": "Wild Charge",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "electivire_shadow:electric",
+          "id": "electivire_shadow",
+          "name": "Electivire (Shadow)",
+          "type": "electric",
+          "tier": "S",
+          "rank": 12,
+          "fast": "Thunder Shock",
+          "fastLimited": false,
+          "charged": "Wild Charge",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "electivire_shadow:electric",
+          "id": "electivire_shadow",
+          "name": "Electivire (Shadow)",
+          "type": "electric",
+          "tier": "S",
+          "rank": 13,
+          "fast": "Thunder Shock",
+          "fastLimited": false,
+          "charged": "Wild Charge",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "enamorus_therian:fairy",
+          "id": "enamorus_therian",
+          "name": "Enamorus (Therian)",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 13,
+          "fast": "Fairy Wind",
+          "fastLimited": false,
+          "charged": "Fly",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "enamorus_therian:fairy",
+          "id": "enamorus_therian",
+          "name": "Enamorus (Therian)",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 14,
+          "fast": "Fairy Wind",
+          "fastLimited": false,
+          "charged": "Fly",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "garchomp:dragon",
+          "id": "garchomp",
+          "name": "Garchomp",
+          "type": "dragon",
+          "tier": "A",
+          "rank": 23,
+          "fast": "Dragon Tail",
+          "fastLimited": false,
+          "charged": "Breaking Swipe",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "garchomp:dragon",
+          "id": "garchomp",
+          "name": "Garchomp",
+          "type": "dragon",
+          "tier": "A",
+          "rank": 24,
+          "fast": "Dragon Tail",
+          "fastLimited": false,
+          "charged": "Breaking Swipe",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "golem_alolan_shadow:electric",
+          "id": "golem_alolan_shadow",
+          "name": "Golem (Alolan) (Shadow)",
+          "type": "electric",
+          "tier": "A",
+          "rank": 20,
+          "fast": "Rollout",
+          "fastLimited": true,
+          "charged": "Wild Charge",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "golem_alolan_shadow:electric",
+          "id": "golem_alolan_shadow",
+          "name": "Golem (Alolan) (Shadow)",
+          "type": "electric",
+          "tier": "A",
+          "rank": 21,
+          "fast": "Rollout",
+          "fastLimited": true,
+          "charged": "Wild Charge",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "granbull_shadow:fairy",
+          "id": "granbull_shadow",
+          "name": "Granbull (Shadow)",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 14,
+          "fast": "Charm",
+          "fastLimited": false,
+          "charged": "Play Rough",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "granbull_shadow:fairy",
+          "id": "granbull_shadow",
+          "name": "Granbull (Shadow)",
+          "type": "fairy",
+          "tier": "A",
+          "rank": 13,
+          "fast": "Charm",
+          "fastLimited": false,
+          "charged": "Play Rough",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "kyurem_black:electric",
+          "id": "kyurem_black",
+          "name": "Kyurem (Black)",
+          "type": "electric",
+          "tier": "A",
+          "rank": 25,
+          "fast": "Dragon Tail",
+          "fastLimited": false,
+          "charged": "Fusion Bolt",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "kyurem_black:electric",
+          "id": "kyurem_black",
+          "name": "Kyurem (Black)",
+          "type": "electric",
+          "tier": "A",
+          "rank": 26,
+          "fast": "Dragon Tail",
+          "fastLimited": false,
+          "charged": "Fusion Bolt",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "latias_mega:dragon",
+          "id": "latias_mega",
+          "name": "Latias (Mega)",
+          "type": "dragon",
+          "tier": "A",
+          "rank": 22,
+          "fast": "Dragon Breath",
+          "fastLimited": false,
+          "charged": "Outrage",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "latias_mega:dragon",
+          "id": "latias_mega",
+          "name": "Latias (Mega)",
+          "type": "dragon",
+          "tier": "A",
+          "rank": 23,
+          "fast": "Dragon Breath",
+          "fastLimited": false,
+          "charged": "Outrage",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "luxray_shadow:electric",
+          "id": "luxray_shadow",
+          "name": "Luxray (Shadow)",
+          "type": "electric",
+          "tier": "A",
+          "rank": 18,
+          "fast": "Spark",
+          "fastLimited": false,
+          "charged": "Wild Charge",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "luxray_shadow:electric",
+          "id": "luxray_shadow",
+          "name": "Luxray (Shadow)",
+          "type": "electric",
+          "tier": "A",
+          "rank": 19,
+          "fast": "Spark",
+          "fastLimited": false,
+          "charged": "Wild Charge",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "magnezone:electric",
+          "id": "magnezone",
+          "name": "Magnezone",
+          "type": "electric",
+          "tier": "A",
+          "rank": 24,
+          "fast": "Volt Switch",
+          "fastLimited": false,
+          "charged": "Wild Charge",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "magnezone:electric",
+          "id": "magnezone",
+          "name": "Magnezone",
+          "type": "electric",
+          "tier": "A",
+          "rank": 25,
+          "fast": "Volt Switch",
+          "fastLimited": false,
+          "charged": "Wild Charge",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "magnezone_shadow:electric",
+          "id": "magnezone_shadow",
+          "name": "Magnezone (Shadow)",
+          "type": "electric",
+          "tier": "S",
+          "rank": 15,
+          "fast": "Volt Switch",
+          "fastLimited": false,
+          "charged": "Wild Charge",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "magnezone_shadow:electric",
+          "id": "magnezone_shadow",
+          "name": "Magnezone (Shadow)",
+          "type": "electric",
+          "tier": "S",
+          "rank": 16,
+          "fast": "Volt Switch",
+          "fastLimited": false,
+          "charged": "Wild Charge",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "mewtwo_mega_x:electric",
+          "id": "mewtwo_mega_x",
+          "name": "Mewtwo (Mega X)",
+          "type": "electric",
+          "tier": "S",
+          "rank": 8,
+          "fast": "Psycho Cut",
+          "fastLimited": false,
+          "charged": "Thunderbolt",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "mewtwo_mega_x:electric",
+          "id": "mewtwo_mega_x",
+          "name": "Mewtwo (Mega X)",
+          "type": "electric",
+          "tier": "S",
+          "rank": 9,
+          "fast": "Psycho Cut",
+          "fastLimited": false,
+          "charged": "Thunderbolt",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "mewtwo_mega_y:electric",
+          "id": "mewtwo_mega_y",
+          "name": "Mewtwo (Mega Y)",
+          "type": "electric",
+          "tier": "S",
+          "rank": 5,
+          "fast": "Psycho Cut",
+          "fastLimited": false,
+          "charged": "Thunderbolt",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "mewtwo_mega_y:electric",
+          "id": "mewtwo_mega_y",
+          "name": "Mewtwo (Mega Y)",
+          "type": "electric",
+          "tier": "S",
+          "rank": 6,
+          "fast": "Psycho Cut",
+          "fastLimited": false,
+          "charged": "Thunderbolt",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "mewtwo_shadow:electric",
+          "id": "mewtwo_shadow",
+          "name": "Mewtwo (Shadow)",
+          "type": "electric",
+          "tier": "A",
+          "rank": 19,
+          "fast": "Psycho Cut",
+          "fastLimited": false,
+          "charged": "Thunderbolt",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "mewtwo_shadow:electric",
+          "id": "mewtwo_shadow",
+          "name": "Mewtwo (Shadow)",
+          "type": "electric",
+          "tier": "A",
+          "rank": 20,
+          "fast": "Psycho Cut",
+          "fastLimited": false,
+          "charged": "Thunderbolt",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "mr_rime_shadow:ice",
+          "id": "mr_rime_shadow",
+          "name": "Mr. Rime (Shadow)",
+          "type": "ice",
+          "tier": "A",
+          "rank": 16,
+          "fast": "Ice Shard",
+          "fastLimited": false,
+          "charged": "Triple Axel",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "mr_rime_shadow:ice",
+          "id": "mr_rime_shadow",
+          "name": "Mr. Rime (Shadow)",
+          "type": "ice",
+          "tier": "A",
+          "rank": 17,
+          "fast": "Ice Shard",
+          "fastLimited": false,
+          "charged": "Triple Axel",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "raikou:electric",
+          "id": "raikou",
+          "name": "Raikou",
+          "type": "electric",
+          "tier": "A",
+          "rank": 17,
+          "fast": "Thunder Shock",
+          "fastLimited": false,
+          "charged": "Wild Charge",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "raikou:electric",
+          "id": "raikou",
+          "name": "Raikou",
+          "type": "electric",
+          "tier": "A",
+          "rank": 18,
+          "fast": "Thunder Shock",
+          "fastLimited": false,
+          "charged": "Wild Charge",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "raikou_shadow:electric",
+          "id": "raikou_shadow",
+          "name": "Raikou (Shadow)",
+          "type": "electric",
+          "tier": "S",
+          "rank": 7,
+          "fast": "Thunder Shock",
+          "fastLimited": false,
+          "charged": "Wild Charge",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "raikou_shadow:electric",
+          "id": "raikou_shadow",
+          "name": "Raikou (Shadow)",
+          "type": "electric",
+          "tier": "S",
+          "rank": 8,
+          "fast": "Thunder Shock",
+          "fastLimited": false,
+          "charged": "Wild Charge",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "rayquaza:dragon",
+          "id": "rayquaza",
+          "name": "Rayquaza",
+          "type": "dragon",
+          "tier": "A",
+          "rank": 20,
+          "fast": "Dragon Tail",
+          "fastLimited": false,
+          "charged": "Breaking Swipe",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "rayquaza:dragon",
+          "id": "rayquaza",
+          "name": "Rayquaza",
+          "type": "dragon",
+          "tier": "A",
+          "rank": 21,
+          "fast": "Dragon Tail",
+          "fastLimited": false,
+          "charged": "Breaking Swipe",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "regidrago:dragon",
+          "id": "regidrago",
+          "name": "Regidrago",
+          "type": "dragon",
+          "tier": "A",
+          "rank": 19,
+          "fast": "Dragon Breath",
+          "fastLimited": true,
+          "charged": "Dragon Energy",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "regidrago:dragon",
+          "id": "regidrago",
+          "name": "Regidrago",
+          "type": "dragon",
+          "tier": "A",
+          "rank": 20,
+          "fast": "Dragon Breath",
+          "fastLimited": true,
+          "charged": "Dragon Energy",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "regieleki:electric",
+          "id": "regieleki",
+          "name": "Regieleki",
+          "type": "electric",
+          "tier": "S",
+          "rank": 9,
+          "fast": "Lock-On",
+          "fastLimited": false,
+          "charged": "Thunder Cage",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "regieleki:electric",
+          "id": "regieleki",
+          "name": "Regieleki",
+          "type": "electric",
+          "tier": "S",
+          "rank": 10,
+          "fast": "Lock-On",
+          "fastLimited": false,
+          "charged": "Thunder Cage",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "reshiram_shadow:dragon",
+          "id": "reshiram_shadow",
+          "name": "Reshiram (Shadow)",
+          "type": "dragon",
+          "tier": "A",
+          "rank": 21,
+          "fast": "Dragon Breath",
+          "fastLimited": false,
+          "charged": "Draco Meteor",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "reshiram_shadow:dragon",
+          "id": "reshiram_shadow",
+          "name": "Reshiram (Shadow)",
+          "type": "dragon",
+          "tier": "A",
+          "rank": 22,
+          "fast": "Dragon Breath",
+          "fastLimited": false,
+          "charged": "Draco Meteor",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "thundurus_therian:electric",
+          "id": "thundurus_therian",
+          "name": "Thundurus (Therian)",
+          "type": "electric",
+          "tier": "S",
+          "rank": 14,
+          "fast": "Volt Switch",
+          "fastLimited": false,
+          "charged": "Wildbolt Storm",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "thundurus_therian:electric",
+          "id": "thundurus_therian",
+          "name": "Thundurus (Therian)",
+          "type": "electric",
+          "tier": "S",
+          "rank": 15,
+          "fast": "Volt Switch",
+          "fastLimited": false,
+          "charged": "Wildbolt Storm",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "thundurus_therian_shadow:electric",
+          "id": "thundurus_therian_shadow",
+          "name": "Thundurus (Therian) (Shadow)",
+          "type": "electric",
+          "tier": "S",
+          "rank": 4,
+          "fast": "Volt Switch",
+          "fastLimited": false,
+          "charged": "Wildbolt Storm",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "thundurus_therian_shadow:electric",
+          "id": "thundurus_therian_shadow",
+          "name": "Thundurus (Therian) (Shadow)",
+          "type": "electric",
+          "tier": "S",
+          "rank": 5,
+          "fast": "Volt Switch",
+          "fastLimited": false,
+          "charged": "Wildbolt Storm",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "vikavolt_shadow:electric",
+          "id": "vikavolt_shadow",
+          "name": "Vikavolt (Shadow)",
+          "type": "electric",
+          "tier": "A",
+          "rank": 22,
+          "fast": "Volt Switch",
+          "fastLimited": true,
+          "charged": "Discharge",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "vikavolt_shadow:electric",
+          "id": "vikavolt_shadow",
+          "name": "Vikavolt (Shadow)",
+          "type": "electric",
+          "tier": "A",
+          "rank": 23,
+          "fast": "Volt Switch",
+          "fastLimited": true,
+          "charged": "Discharge",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "xurkitree:electric",
+          "id": "xurkitree",
+          "name": "Xurkitree",
+          "type": "electric",
+          "tier": "S",
+          "rank": 10,
+          "fast": "Thunder Shock",
+          "fastLimited": false,
+          "charged": "Discharge",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "xurkitree:electric",
+          "id": "xurkitree",
+          "name": "Xurkitree",
+          "type": "electric",
+          "tier": "S",
+          "rank": 11,
+          "fast": "Thunder Shock",
+          "fastLimited": false,
+          "charged": "Discharge",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "zapdos:electric",
+          "id": "zapdos",
+          "name": "Zapdos",
+          "type": "electric",
+          "tier": "A",
+          "rank": 23,
+          "fast": "Thunder Shock",
+          "fastLimited": true,
+          "charged": "Thunderbolt",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "zapdos:electric",
+          "id": "zapdos",
+          "name": "Zapdos",
+          "type": "electric",
+          "tier": "A",
+          "rank": 24,
+          "fast": "Thunder Shock",
+          "fastLimited": true,
+          "charged": "Thunderbolt",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "zapdos_shadow:electric",
+          "id": "zapdos_shadow",
+          "name": "Zapdos (Shadow)",
+          "type": "electric",
+          "tier": "S",
+          "rank": 13,
+          "fast": "Thunder Shock",
+          "fastLimited": true,
+          "charged": "Thunderbolt",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "zapdos_shadow:electric",
+          "id": "zapdos_shadow",
+          "name": "Zapdos (Shadow)",
+          "type": "electric",
+          "tier": "S",
+          "rank": 14,
+          "fast": "Thunder Shock",
+          "fastLimited": true,
+          "charged": "Thunderbolt",
+          "chargedLimited": false
+        }
+      },
+      {
+        "before": {
+          "key": "zekrom:electric",
+          "id": "zekrom",
+          "name": "Zekrom",
+          "type": "electric",
+          "tier": "S",
+          "rank": 11,
+          "fast": "Charge Beam",
+          "fastLimited": false,
+          "charged": "Fusion Bolt",
+          "chargedLimited": true
+        },
+        "after": {
+          "key": "zekrom:electric",
+          "id": "zekrom",
+          "name": "Zekrom",
+          "type": "electric",
+          "tier": "S",
+          "rank": 12,
+          "fast": "Charge Beam",
+          "fastLimited": false,
+          "charged": "Fusion Bolt",
+          "chargedLimited": true
+        }
+      },
+      {
+        "before": {
+          "key": "zeraora:electric",
+          "id": "zeraora",
+          "name": "Zeraora",
+          "type": "electric",
+          "tier": "S",
+          "rank": 6,
+          "fast": "Volt Switch",
+          "fastLimited": false,
+          "charged": "Plasma Fists",
+          "chargedLimited": false
+        },
+        "after": {
+          "key": "zeraora:electric",
+          "id": "zeraora",
+          "name": "Zeraora",
+          "type": "electric",
+          "tier": "S",
+          "rank": 7,
+          "fast": "Volt Switch",
+          "fastLimited": false,
+          "charged": "Plasma Fists",
+          "chargedLimited": false
+        }
+      }
+    ]
+  },
+  "maxAttackers": {
+    "before": {
+      "forms": 65,
+      "roles": 84
+    },
+    "after": {
+      "forms": 67,
+      "roles": 87
+    },
+    "entered": [
+      {
+        "key": "dialga:max:dynamax:dragon",
+        "id": "dialga:max:dynamax",
+        "speciesId": "dialga",
+        "name": "Dynamax Dialga",
+        "type": "dragon",
+        "tier": "A",
+        "rank": 4,
+        "fast": "Dragon Breath",
+        "fastLimited": false,
+        "maxMove": "Max Wyrmwind",
+        "limited": false,
+        "damage": 268
+      },
+      {
+        "key": "dialga:max:dynamax:steel",
+        "id": "dialga:max:dynamax",
+        "speciesId": "dialga",
+        "name": "Dynamax Dialga",
+        "type": "steel",
+        "tier": "A",
+        "rank": 3,
+        "fast": "Metal Claw",
+        "fastLimited": false,
+        "maxMove": "Max Steelspike",
+        "limited": false,
+        "damage": 268
+      },
+      {
+        "key": "gigalith:max:dynamax:normal",
+        "id": "gigalith:max:dynamax",
+        "speciesId": "gigalith",
+        "name": "Dynamax Gigalith",
+        "type": "normal",
+        "tier": "A",
+        "rank": 7,
+        "fast": "Lock-On",
+        "fastLimited": false,
+        "maxMove": "Max Strike",
+        "limited": false,
+        "damage": 186
+      },
+      {
+        "key": "jolteon:max:dynamax:electric",
+        "id": "jolteon:max:dynamax",
+        "speciesId": "jolteon",
+        "name": "Dynamax Jolteon",
+        "type": "electric",
+        "tier": "A",
+        "rank": 5,
+        "fast": "Thunder Shock",
+        "fastLimited": false,
+        "maxMove": "Max Lightning",
+        "limited": false,
+        "damage": 228
+      },
+      {
+        "key": "palkia:max:dynamax:dragon",
+        "id": "palkia:max:dynamax",
+        "speciesId": "palkia",
+        "name": "Dynamax Palkia",
+        "type": "dragon",
+        "tier": "A",
+        "rank": 3,
+        "fast": "Dragon Breath",
+        "fastLimited": false,
+        "maxMove": "Max Wyrmwind",
+        "limited": false,
+        "damage": 272
+      },
+      {
+        "key": "toxtricity:max:dynamax_amped:electric",
+        "id": "toxtricity:max:dynamax_amped",
+        "speciesId": "toxtricity",
+        "name": "Dynamax Toxtricity (Amped Form)",
+        "type": "electric",
+        "tier": "A",
+        "rank": 6,
+        "fast": "Spark",
+        "fastLimited": false,
+        "maxMove": "Max Lightning",
+        "limited": false,
+        "damage": 221
+      },
+      {
+        "key": "toxtricity:max:dynamax_low_key:electric",
+        "id": "toxtricity:max:dynamax_low_key",
+        "speciesId": "toxtricity",
+        "name": "Dynamax Toxtricity (Low Key Form)",
+        "type": "electric",
+        "tier": "A",
+        "rank": 7,
+        "fast": "Spark",
+        "fastLimited": false,
+        "maxMove": "Max Lightning",
+        "limited": false,
+        "damage": 221
+      },
+      {
+        "key": "duraludon:max:gigantamax:dragon",
+        "id": "duraludon:max:gigantamax",
+        "speciesId": "duraludon",
+        "name": "Gigantamax Duraludon",
+        "type": "dragon",
+        "tier": "S",
+        "rank": 2,
+        "fast": "Metal Claw",
+        "fastLimited": false,
+        "maxMove": "G-Max Depletion",
+        "limited": false,
+        "damage": 302
+      }
+    ],
+    "left": [
+      {
+        "key": "zamazenta_crowned_shield:max:crowned_shield:steel",
+        "id": "zamazenta_crowned_shield:max:crowned_shield",
+        "speciesId": "zamazenta_crowned_shield",
+        "name": "Crowned Shield Zamazenta",
+        "type": "steel",
+        "tier": "S",
+        "rank": 4,
+        "fast": "Metal Claw",
+        "fastLimited": false,
+        "maxMove": "Behemoth Bash",
+        "limited": false,
+        "damage": 245
+      },
+      {
+        "key": "duraludon:max:dynamax:steel",
+        "id": "duraludon:max:dynamax",
+        "speciesId": "duraludon",
+        "name": "Dynamax Duraludon",
+        "type": "steel",
+        "tier": "A",
+        "rank": 5,
+        "fast": "Metal Claw",
+        "fastLimited": false,
+        "maxMove": "Max Steelspike",
+        "limited": false,
+        "damage": 235
+      },
+      {
+        "key": "excadrill:max:dynamax:steel",
+        "id": "excadrill:max:dynamax",
+        "speciesId": "excadrill",
+        "name": "Dynamax Excadrill",
+        "type": "steel",
+        "tier": "S",
+        "rank": 3,
+        "fast": "Metal Claw",
+        "fastLimited": false,
+        "maxMove": "Max Steelspike",
+        "limited": false,
+        "damage": 249
+      },
+      {
+        "key": "hydreigon:max:dynamax:dragon",
+        "id": "hydreigon:max:dynamax",
+        "speciesId": "hydreigon",
+        "name": "Dynamax Hydreigon",
+        "type": "dragon",
+        "tier": "A",
+        "rank": 3,
+        "fast": "Dragon Breath",
+        "fastLimited": false,
+        "maxMove": "Max Wyrmwind",
+        "limited": false,
+        "damage": 250
+      },
+      {
+        "key": "metagross:max:dynamax:steel",
+        "id": "metagross:max:dynamax",
+        "speciesId": "metagross",
+        "name": "Dynamax Metagross",
+        "type": "steel",
+        "tier": "S",
+        "rank": 2,
+        "fast": "Bullet Punch",
+        "fastLimited": false,
+        "maxMove": "Max Steelspike",
+        "limited": false,
+        "damage": 251
+      }
+    ],
+    "changed": [
+      {
+        "before": {
+          "key": "latios:max:dynamax:dragon",
+          "id": "latios:max:dynamax",
+          "speciesId": "latios",
+          "name": "Dynamax Latios",
+          "type": "dragon",
+          "tier": "S",
+          "rank": 2,
+          "fast": "Dragon Breath",
+          "fastLimited": false,
+          "maxMove": "Max Wyrmwind",
+          "limited": false,
+          "damage": 261
+        },
+        "after": {
+          "key": "latios:max:dynamax:dragon",
+          "id": "latios:max:dynamax",
+          "speciesId": "latios",
+          "name": "Dynamax Latios",
+          "type": "dragon",
+          "tier": "A",
+          "rank": 5,
+          "fast": "Dragon Breath",
+          "fastLimited": false,
+          "maxMove": "Max Wyrmwind",
+          "limited": false,
+          "damage": 261
+        }
+      },
+      {
+        "before": {
+          "key": "leafeon:max:dynamax:normal",
+          "id": "leafeon:max:dynamax",
+          "speciesId": "leafeon",
+          "name": "Dynamax Leafeon",
+          "type": "normal",
+          "tier": "A",
+          "rank": 8,
+          "fast": "Quick Attack",
+          "fastLimited": false,
+          "maxMove": "Max Strike",
+          "limited": false,
+          "damage": 178
+        },
+        "after": {
+          "key": "leafeon:max:dynamax:normal",
+          "id": "leafeon:max:dynamax",
+          "speciesId": "leafeon",
+          "name": "Dynamax Leafeon",
+          "type": "normal",
+          "tier": "A",
+          "rank": 9,
+          "fast": "Quick Attack",
+          "fastLimited": false,
+          "maxMove": "Max Strike",
+          "limited": false,
+          "damage": 178
+        }
+      },
+      {
+        "before": {
+          "key": "passimian:max:dynamax:normal",
+          "id": "passimian:max:dynamax",
+          "speciesId": "passimian",
+          "name": "Dynamax Passimian",
+          "type": "normal",
+          "tier": "A",
+          "rank": 7,
+          "fast": "Take Down",
+          "fastLimited": false,
+          "maxMove": "Max Strike",
+          "limited": false,
+          "damage": 183
+        },
+        "after": {
+          "key": "passimian:max:dynamax:normal",
+          "id": "passimian:max:dynamax",
+          "speciesId": "passimian",
+          "name": "Dynamax Passimian",
+          "type": "normal",
+          "tier": "A",
+          "rank": 8,
+          "fast": "Take Down",
+          "fastLimited": false,
+          "maxMove": "Max Strike",
+          "limited": false,
+          "damage": 183
+        }
+      },
+      {
+        "before": {
+          "key": "raikou:max:dynamax:electric",
+          "id": "raikou:max:dynamax",
+          "speciesId": "raikou",
+          "name": "Dynamax Raikou",
+          "type": "electric",
+          "tier": "A",
+          "rank": 4,
+          "fast": "Thunder Shock",
+          "fastLimited": false,
+          "maxMove": "Max Lightning",
+          "limited": false,
+          "damage": 237
+        },
+        "after": {
+          "key": "raikou:max:dynamax:electric",
+          "id": "raikou:max:dynamax",
+          "speciesId": "raikou",
+          "name": "Dynamax Raikou",
+          "type": "electric",
+          "tier": "S",
+          "rank": 4,
+          "fast": "Thunder Shock",
+          "fastLimited": false,
+          "maxMove": "Max Lightning",
+          "limited": false,
+          "damage": 237
+        }
+      },
+      {
+        "before": {
+          "key": "sylveon:max:dynamax:fairy",
+          "id": "sylveon:max:dynamax",
+          "speciesId": "sylveon",
+          "name": "Dynamax Sylveon",
+          "type": "fairy",
+          "tier": "S",
+          "rank": 3,
+          "fast": "Charm",
+          "fastLimited": false,
+          "maxMove": "Max Starfall",
+          "limited": false,
+          "damage": 201
+        },
+        "after": {
+          "key": "sylveon:max:dynamax:fairy",
+          "id": "sylveon:max:dynamax",
+          "speciesId": "sylveon",
+          "name": "Dynamax Sylveon",
+          "type": "fairy",
+          "tier": "S",
+          "rank": 3,
+          "fast": "Fairy Wind",
+          "fastLimited": false,
+          "maxMove": "Max Starfall",
+          "limited": false,
+          "damage": 201
+        }
+      }
+    ]
+  },
+  "maxTopFive": {
+    "before": {
+      "forms": 58,
+      "roles": 72
+    },
+    "after": {
+      "forms": 60,
+      "roles": 72
+    },
+    "entered": [
+      {
+        "key": "dialga:max:dynamax:dragon",
+        "id": "dialga:max:dynamax",
+        "speciesId": "dialga",
+        "name": "Dynamax Dialga",
+        "type": "dragon",
+        "tier": "A",
+        "rank": 4,
+        "fast": "Dragon Breath",
+        "fastLimited": false,
+        "maxMove": "Max Wyrmwind",
+        "limited": false,
+        "damage": 268
+      },
+      {
+        "key": "dialga:max:dynamax:steel",
+        "id": "dialga:max:dynamax",
+        "speciesId": "dialga",
+        "name": "Dynamax Dialga",
+        "type": "steel",
+        "tier": "A",
+        "rank": 3,
+        "fast": "Metal Claw",
+        "fastLimited": false,
+        "maxMove": "Max Steelspike",
+        "limited": false,
+        "damage": 268
+      },
+      {
+        "key": "jolteon:max:dynamax:electric",
+        "id": "jolteon:max:dynamax",
+        "speciesId": "jolteon",
+        "name": "Dynamax Jolteon",
+        "type": "electric",
+        "tier": "A",
+        "rank": 5,
+        "fast": "Thunder Shock",
+        "fastLimited": false,
+        "maxMove": "Max Lightning",
+        "limited": false,
+        "damage": 228
+      },
+      {
+        "key": "palkia:max:dynamax:dragon",
+        "id": "palkia:max:dynamax",
+        "speciesId": "palkia",
+        "name": "Dynamax Palkia",
+        "type": "dragon",
+        "tier": "A",
+        "rank": 3,
+        "fast": "Dragon Breath",
+        "fastLimited": false,
+        "maxMove": "Max Wyrmwind",
+        "limited": false,
+        "damage": 272
+      },
+      {
+        "key": "duraludon:max:gigantamax:dragon",
+        "id": "duraludon:max:gigantamax",
+        "speciesId": "duraludon",
+        "name": "Gigantamax Duraludon",
+        "type": "dragon",
+        "tier": "S",
+        "rank": 2,
+        "fast": "Metal Claw",
+        "fastLimited": false,
+        "maxMove": "G-Max Depletion",
+        "limited": false,
+        "damage": 302
+      }
+    ],
+    "left": [
+      {
+        "key": "zamazenta_crowned_shield:max:crowned_shield:steel",
+        "id": "zamazenta_crowned_shield:max:crowned_shield",
+        "speciesId": "zamazenta_crowned_shield",
+        "name": "Crowned Shield Zamazenta",
+        "type": "steel",
+        "tier": "S",
+        "rank": 4,
+        "fast": "Metal Claw",
+        "fastLimited": false,
+        "maxMove": "Behemoth Bash",
+        "limited": false,
+        "damage": 245
+      },
+      {
+        "key": "duraludon:max:dynamax:steel",
+        "id": "duraludon:max:dynamax",
+        "speciesId": "duraludon",
+        "name": "Dynamax Duraludon",
+        "type": "steel",
+        "tier": "A",
+        "rank": 5,
+        "fast": "Metal Claw",
+        "fastLimited": false,
+        "maxMove": "Max Steelspike",
+        "limited": false,
+        "damage": 235
+      },
+      {
+        "key": "excadrill:max:dynamax:steel",
+        "id": "excadrill:max:dynamax",
+        "speciesId": "excadrill",
+        "name": "Dynamax Excadrill",
+        "type": "steel",
+        "tier": "S",
+        "rank": 3,
+        "fast": "Metal Claw",
+        "fastLimited": false,
+        "maxMove": "Max Steelspike",
+        "limited": false,
+        "damage": 249
+      },
+      {
+        "key": "hydreigon:max:dynamax:dragon",
+        "id": "hydreigon:max:dynamax",
+        "speciesId": "hydreigon",
+        "name": "Dynamax Hydreigon",
+        "type": "dragon",
+        "tier": "A",
+        "rank": 3,
+        "fast": "Dragon Breath",
+        "fastLimited": false,
+        "maxMove": "Max Wyrmwind",
+        "limited": false,
+        "damage": 250
+      },
+      {
+        "key": "metagross:max:dynamax:steel",
+        "id": "metagross:max:dynamax",
+        "speciesId": "metagross",
+        "name": "Dynamax Metagross",
+        "type": "steel",
+        "tier": "S",
+        "rank": 2,
+        "fast": "Bullet Punch",
+        "fastLimited": false,
+        "maxMove": "Max Steelspike",
+        "limited": false,
+        "damage": 251
+      }
+    ],
+    "changed": [
+      {
+        "before": {
+          "key": "latios:max:dynamax:dragon",
+          "id": "latios:max:dynamax",
+          "speciesId": "latios",
+          "name": "Dynamax Latios",
+          "type": "dragon",
+          "tier": "S",
+          "rank": 2,
+          "fast": "Dragon Breath",
+          "fastLimited": false,
+          "maxMove": "Max Wyrmwind",
+          "limited": false,
+          "damage": 261
+        },
+        "after": {
+          "key": "latios:max:dynamax:dragon",
+          "id": "latios:max:dynamax",
+          "speciesId": "latios",
+          "name": "Dynamax Latios",
+          "type": "dragon",
+          "tier": "A",
+          "rank": 5,
+          "fast": "Dragon Breath",
+          "fastLimited": false,
+          "maxMove": "Max Wyrmwind",
+          "limited": false,
+          "damage": 261
+        }
+      },
+      {
+        "before": {
+          "key": "raikou:max:dynamax:electric",
+          "id": "raikou:max:dynamax",
+          "speciesId": "raikou",
+          "name": "Dynamax Raikou",
+          "type": "electric",
+          "tier": "A",
+          "rank": 4,
+          "fast": "Thunder Shock",
+          "fastLimited": false,
+          "maxMove": "Max Lightning",
+          "limited": false,
+          "damage": 237
+        },
+        "after": {
+          "key": "raikou:max:dynamax:electric",
+          "id": "raikou:max:dynamax",
+          "speciesId": "raikou",
+          "name": "Dynamax Raikou",
+          "type": "electric",
+          "tier": "S",
+          "rank": 4,
+          "fast": "Thunder Shock",
+          "fastLimited": false,
+          "maxMove": "Max Lightning",
+          "limited": false,
+          "damage": 237
+        }
+      },
+      {
+        "before": {
+          "key": "sylveon:max:dynamax:fairy",
+          "id": "sylveon:max:dynamax",
+          "speciesId": "sylveon",
+          "name": "Dynamax Sylveon",
+          "type": "fairy",
+          "tier": "S",
+          "rank": 3,
+          "fast": "Charm",
+          "fastLimited": false,
+          "maxMove": "Max Starfall",
+          "limited": false,
+          "damage": 201
+        },
+        "after": {
+          "key": "sylveon:max:dynamax:fairy",
+          "id": "sylveon:max:dynamax",
+          "speciesId": "sylveon",
+          "name": "Dynamax Sylveon",
+          "type": "fairy",
+          "tier": "S",
+          "rank": 3,
+          "fast": "Fairy Wind",
+          "fastLimited": false,
+          "maxMove": "Max Starfall",
+          "limited": false,
+          "damage": 201
+        }
+      }
+    ]
+  },
+  "maxSupport": {
+    "before": {
+      "forms": 20,
+      "roles": 21
+    },
+    "after": {
+      "forms": 20,
+      "roles": 21
+    },
+    "entered": [],
+    "left": [],
+    "changed": []
+  },
+  "baseStatChanges": [],
+  "sources": [
+    {
+      "id": "input-csv",
+      "date": "2026-09-27",
+      "retrieved": "2026-11-15T23:05:45.562Z",
+      "url": "Pokemon_GO_full_alphabetical_catalog_2026-09-27.csv"
+    },
+    {
+      "id": "pvpoke",
+      "commit": "426e5e9f39d3a027849698fb2f5edd9df6056cbf",
+      "date": "2026-11-12T02:20:34Z",
+      "retrieved": "2026-11-15T23:05:45.562Z",
+      "url": "https://github.com/pvpoke/pvpoke/tree/426e5e9f39d3a027849698fb2f5edd9df6056cbf"
+    },
+    {
+      "id": "go-gamemaster",
+      "commit": "8e227be44f288d34463e23bf04e9b564d3c16f79",
+      "date": "2026-08-29T12:08:01Z",
+      "retrieved": "2026-11-15T23:03:02.065Z",
+      "url": "https://github.com/PokeMiners/game_masters/tree/8e227be44f288d34463e23bf04e9b564d3c16f79"
+    },
+    {
+      "id": "gohub-raids",
+      "retrieved": "2026-11-15T23:05:45.562Z",
+      "url": "https://db.pokemongohub.net/best/attackers-per-type"
+    },
+    {
+      "id": "manual-rules",
+      "date": "2026-11-15",
+      "retrieved": "2026-11-15T23:05:45.562Z",
+      "url": "data/manual-rules.json"
+    },
+    {
+      "id": "gohub-moves",
+      "retrieved": "2026-11-15T23:05:45.562Z",
+      "url": "https://db.pokemongohub.net/"
+    },
+    {
+      "id": "gohub-max",
+      "retrieved": "2026-11-15T23:03:22.298Z",
+      "url": "https://db.pokemongohub.net/best/dynamax-attackers-per-type"
+    },
+    {
+      "id": "gohub-max-defender",
+      "date": "2026-10-24T16:54:17+00:00",
+      "retrieved": "2026-11-15T23:03:29.239Z",
+      "url": "https://pokemongohub.net/post/guide/max-defenders-tier-list/"
+    },
+    {
+      "id": "gohub-max-healer",
+      "date": "2026-10-24T16:58:50+00:00",
+      "retrieved": "2026-11-15T23:03:29.325Z",
+      "url": "https://pokemongohub.net/post/guide/max-healers-tier-list-june-2025/"
+    },
+    {
+      "id": "gohub-max-capability",
+      "retrieved": "2026-11-15T23:03:29.382Z",
+      "url": "https://pokemongohub.net/post/guide/max-attackers-tier-list/"
+    }
+  ],
+  "gym": {
+    "before": 18,
+    "after": 18,
+    "entered": [],
+    "left": [],
+    "tiers": [
+      {
+        "id": "blissey",
+        "name": "Blissey",
+        "before": "SS",
+        "after": "SS"
+      },
+      {
+        "id": "chansey",
+        "name": "Chansey",
+        "before": "S",
+        "after": "S"
+      },
+      {
+        "id": "snorlax",
+        "name": "Snorlax",
+        "before": "S",
+        "after": "S"
+      },
+      {
+        "id": "dondozo",
+        "name": "Dondozo",
+        "before": "S",
+        "after": "S"
+      },
+      {
+        "id": "umbreon",
+        "name": "Umbreon",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "avalugg",
+        "name": "Avalugg",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "avalugg_hisuian",
+        "name": "Hisuian Avalugg",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "melmetal",
+        "name": "Melmetal",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "ursaluna",
+        "name": "Ursaluna",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "goodra",
+        "name": "Goodra",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "mandibuzz",
+        "name": "Mandibuzz",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "steelix",
+        "name": "Steelix",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "lapras",
+        "name": "Lapras",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "coalossal",
+        "name": "Coalossal",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "garganacl",
+        "name": "Garganacl",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "rhyperior",
+        "name": "Rhyperior",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "milotic",
+        "name": "Milotic",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "slaking",
+        "name": "Slaking",
+        "before": "A",
+        "after": "A"
+      }
+    ]
+  },
+  "cpMultipliersChanged": false,
+  "deferredRaids": [
+    {
+      "id": "clefable_mega",
+      "name": "Mega Clefable",
+      "dex": 36,
+      "form": "Mega",
+      "availableFrom": "2026-11-28",
+      "source": "https://pokemongo.com/news/clefable-super-mega-raid-day-2026",
+      "reason": "Official debut announced for November 28, 2026. Retained as upcoming source evidence; excluded from current recommendations.",
+      "type": "fairy",
+      "tier": "SS",
+      "rank": 2,
+      "moves": [
+        {
+          "name": "Fairy Wind",
+          "limited": false,
+          "url": "https://db.pokemongohub.net/move/350"
+        },
+        {
+          "name": "Moonblast+",
+          "limited": false,
+          "url": "https://db.pokemongohub.net/move/2003600"
+        }
+      ],
+      "rankingSource": "https://db.pokemongohub.net/pokemon-list/best-per-type/fairy",
+      "retrieved": "2026-11-15T23:02:57.941Z"
+    }
+  ],
+  "excludedMaxForms": [
+    {
+      "order": 2,
+      "attacker": {
+        "id": 809,
+        "name": "Gigantamax Melmetal",
+        "form": "Gigantamax",
+        "type1": "steel",
+        "type2": null
+      },
+      "qm": {
+        "id": 205,
+        "name": "Thunder Shock",
+        "type": "electric",
+        "isLegacy": 0
+      },
+      "cm": {
+        "id": 1030,
+        "name": "G-Max Meltdown",
+        "type": "steel",
+        "isLegacy": 0
+      },
+      "score": 286,
+      "dynamax": {
+        "maxMoveDamage": 286
+      },
+      "tier": "S",
+      "tierLevel": 1,
+      "tierColor": "var(--A_PLUS_TIER)",
+      "type": "steel",
+      "source": "https://db.pokemongohub.net/pokemon-list/best-dynamax-per-type/steel",
+      "retrieved": "2026-11-15T23:03:23.565Z",
+      "review": {
+        "dex": 809,
+        "name": "Gigantamax Melmetal",
+        "form": "Gigantamax",
+        "reviewed": "2026-11-15",
+        "source": "https://pokemongo.com/news/into-the-wild-2026",
+        "reason": "The November event introduces Dynamax Meltan, not Gigantamax Melmetal. No GO debut for this exact Gigantamax form could be verified at review. Preserve source rankings as evidence but withhold current recommendations until release is verified."
+      }
+    }
+  ],
+  "eventReview": "data/event-review-2026-11-15.json",
+  "artwork": {
+    "audited": 228,
+    "available": 221,
+    "unavailable": 7
+  }
+}

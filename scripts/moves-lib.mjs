@@ -174,3 +174,11 @@ export function reviewedRaidDeferral(row, forms, retrieved) {
       retrieved.slice(0, 10) < form.availableFrom,
   );
 }
+
+// Exact-mode review exclusions never suppress the ordinary or Dynamax form.
+export function reviewedMaxExclusion(attacker, exclusions = []) {
+  return exclusions.find(
+    (entry) =>
+      entry.dex === attacker.id && entry.name === attacker.name && entry.form === attacker.form,
+  );
+}

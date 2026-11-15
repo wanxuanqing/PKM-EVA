@@ -1,3 +1,4 @@
+import { reviewedMaxExclusion } from './moves-lib.mjs';
 import { load } from 'cheerio';
 import { nameKey } from './data-lib.mjs';
 export const goodSupportTier = (tier) => ['SS', 'S+', 'S', 'A+', 'A'].includes(tier);
@@ -129,6 +130,7 @@ export function buildMaxSupport(captures, attackCaptures, catalog, gm, rules, ca
       );
       if (!forms.length) throw new Error('No sourced Max capability: ' + row.name);
       for (const attacker of forms) {
+        if (reviewedMaxExclusion(attacker, rules.excludedMaxForms)) continue;
         const base = maxBase(attacker, catalog, rules);
         const form = attacker.form ?? 'Special';
         const id = base.id + ':max:' + form.toLowerCase().replace(/[^a-z0-9]+/g, '_');

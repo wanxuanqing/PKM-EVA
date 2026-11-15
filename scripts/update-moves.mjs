@@ -70,7 +70,9 @@ const roster = [
   ...catalog.species,
   ...JSON.parse(bundle.pvpoke.files['src/data/gamemaster.json'])
     .pokemon.filter(
-      (p) => p.released && !catalog.species.some((existing) => existing.id === p.speciesId),
+      (p) =>
+        (p.released || rules.sourceBackedEntries?.includes(p.speciesId)) &&
+        !catalog.species.some((existing) => existing.id === p.speciesId),
     )
     .map((p) => ({
       id: p.speciesId,

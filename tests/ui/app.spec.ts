@@ -818,10 +818,10 @@ test('Max defender and healer roles have separate tiers, paths, move labels and 
   await noOverflow(page);
   await page.screenshot({ path: 'docs/screenshots/max-defenders-desktop.png' });
   await roles.getByRole('button', { name: 'All roles', exact: true }).click();
-  const crown = page.getByRole('article', { name: 'Crowned Shield Zamazenta', exact: true });
+  const crown = page.getByRole('article', { name: 'Dynamax Dialga', exact: true });
   await expect(crown).toHaveCount(1);
   await expect(crown).toContainText('Attacker');
-  await expect(crown).toContainText('Defender · S tier');
+  await expect(crown).toContainText('Defender · A tier');
   await page.waitForFunction(
     async () => !!(await navigator.serviceWorker.getRegistration())?.active,
   );
@@ -917,4 +917,21 @@ test('new Mega and sourced Max support roles appear along useful evolution paths
   await expect(max).toContainText('Healer');
   await max.getByText('Details & requirements', { exact: true }).click();
   await expect(max).toContainText('Thunder Shock');
+});
+
+test('Wild Area regional forms and Max debuts remain distinct in the app', async ({ page }) => {
+  await page.goto('/');
+  await search(page, 'Sliggoo');
+  await page.getByLabel('Form', { exact: true }).selectOption('sliggoo_hisuian');
+  await stable(page);
+  await page.getByText('Coverage & availability for Sliggoo (Hisuian)', { exact: true }).click();
+  await expect(page.getByText('100 Goomy Candy', { exact: false }).first()).toBeVisible();
+  await expect(page.locator('img[src$="/10241.png"]').first()).toBeVisible();
+  await page.getByRole('button', { name: 'Top 50', exact: true }).click();
+  await page.getByRole('button', { name: 'Max Battles', exact: true }).click();
+  for (const name of ['Dynamax Dialga', 'Dynamax Palkia', 'Gigantamax Duraludon'])
+    await expect(page.getByRole('article', { name, exact: true })).toBeVisible();
+  await expect(page.getByRole('article', { name: 'Gigantamax Melmetal', exact: true })).toHaveCount(
+    0,
+  );
 });

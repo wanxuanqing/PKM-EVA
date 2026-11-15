@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Refresh November 15 data: add Hisuian Sliggoo/Goodra, their verified regional evolution and artwork, update raid and event Max recommendations, and withhold unverified Gigantamax Melmetal while preserving source evidence. See [the comparison](docs/data-update-2026-11-15.md).
+
 - Refresh battle data for November 5: add Mega Chandelure, update PvP/raid and gym shortlists, expand Max support with explicit form evidence, and retain upcoming/lower-tier rows in the audit exports. See [the comparison](docs/data-update-2026-11-05.md).
 - Patch the source tooling's undici dependency to 7.30.2.
 
