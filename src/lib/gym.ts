@@ -1,7 +1,7 @@
 import type { Species } from '../types';
 
 export const gymSource = 'https://db.pokemongohub.net/best/gym-defenders';
-export const gymReviewed = '2026-11-15';
+export const gymReviewed = '2026-11-21';
 // Exact regular-form allowlist: never inherit ratings for Shadows or temporary forms.
 export const gymTiers: Record<string, 'SS' | 'S' | 'A'> = {
   blissey: 'SS',

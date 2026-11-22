@@ -1,0 +1,42 @@
+{
+  "reviewed": "2026-11-21",
+  "timezone": "America/Los_Angeles",
+  "sources": [
+    {
+      "url": "https://pokemongo.com/news",
+      "retrieved": "2026-11-22T05:56:37.041Z",
+      "sha256": "fe6c13a567e3366534830594de36e6dde105baecfb99cf7fe709cbf048f707cc",
+      "decision": "Reviewed current official news for post-November-15 additions. No additional playable catalog form was established by the reviewed current events."
+    },
+    {
+      "url": "https://pokemongo.com/news/communityday-november-2026-pawniard",
+      "retrieved": "2026-11-22T05:56:37.216Z",
+      "sha256": "ca452b91b4204c7443c012f89fd29a5c3cdfffb405ff34a2ceef0645dacf2b95",
+      "decision": "November 21 Community Day introduces Kingambit Kowtow Cleave via event evolution; PvPoke now recommends it with limited access. The temporary evolution requirement ended at 21:00 local time and is not made permanent in the catalog."
+    },
+    {
+      "url": "https://pokemongo.com/news/dynamax-trails-eternamax-eternatus-2026",
+      "retrieved": "2026-11-22T05:56:37.339Z",
+      "sha256": "139ee3031190fce29daf35fd133f9b03ee0fbab5465f4408f19e0899fd2ee421",
+      "decision": "November 16-23 event returns existing Dynamax species and Eternatus. Eternamax Eternatus cannot be caught; no playable Eternamax evolution is added."
+    },
+    {
+      "url": "https://pokemongo.com/news/clefable-super-mega-raid-day-2026",
+      "retrieved": "2026-11-22T05:56:37.505Z",
+      "sha256": "fe1874ab959df9738bf50c96aa33e51da4b997368e506b7e26902316e2bfdd7c",
+      "decision": "Mega Clefable debuts November 28. Keep its raid recommendation deferred and source evidence retained."
+    },
+    {
+      "url": "https://pokemongo.com/news/twilight-wishes-2026",
+      "retrieved": "2026-11-22T05:56:37.788Z",
+      "sha256": "5d000ded8c370ed9eab7601890638a327fae60c854fc39f9e37c72ccd545b8e7",
+      "decision": "November 24-30 event is upcoming; returning encounters do not establish a new playable form."
+    }
+  ],
+  "notes": [
+    "Catalog IDs are unchanged at 1,637; all previous forms are retained.",
+    "Hisuian Sliggoo and Goodra now have exact-form PvPoke ranks, all outside the top-100 recommendation cutoff.",
+    "The existing Gigantamax Melmetal exclusion remains in place; the refreshed source rating alone does not establish a verified GO debut.",
+    "PokeMiners templates still predate the regional debuts; exact-form gender and trade metadata remain unverified."
+  ]
+}

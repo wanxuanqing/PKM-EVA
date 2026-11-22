@@ -1,0 +1,2005 @@
+{
+  "dateLocal": "2026-11-21",
+  "timezone": "America/Los_Angeles",
+  "before": "2026-11-15-c6124cdf73ae",
+  "after": "2026-11-22-ab3f5f543851",
+  "counts": {
+    "before": 1637,
+    "after": 1637,
+    "originalCsv": 1608,
+    "dexBefore": 959,
+    "dexAfter": 959
+  },
+  "added": [],
+  "removed": [],
+  "pvp": {
+    "GL": {
+      "before": 100,
+      "after": 100,
+      "entered": [
+        {
+          "id": "dunsparce",
+          "name": "Dunsparce",
+          "before": 102,
+          "after": 20
+        },
+        {
+          "id": "ursaluna_shadow",
+          "name": "Ursaluna (Shadow)",
+          "before": 265,
+          "after": 82
+        }
+      ],
+      "left": [
+        {
+          "id": "snorlax",
+          "name": "Snorlax",
+          "before": 24,
+          "after": 105
+        },
+        {
+          "id": "wigglytuff",
+          "name": "Wigglytuff",
+          "before": 100,
+          "after": 101
+        }
+      ],
+      "rankChangesInCurrentTop100": [
+        {
+          "id": "annihilape",
+          "name": "Annihilape",
+          "before": 27,
+          "after": 23
+        },
+        {
+          "id": "annihilape_shadow",
+          "name": "Annihilape (Shadow)",
+          "before": 33,
+          "after": 31
+        },
+        {
+          "id": "araquanid_shadow",
+          "name": "Araquanid (Shadow)",
+          "before": 34,
+          "after": 41
+        },
+        {
+          "id": "azumarill",
+          "name": "Azumarill",
+          "before": 30,
+          "after": 29
+        },
+        {
+          "id": "blastoise",
+          "name": "Blastoise",
+          "before": 57,
+          "after": 55
+        },
+        {
+          "id": "carbink",
+          "name": "Carbink",
+          "before": 31,
+          "after": 32
+        },
+        {
+          "id": "charjabug",
+          "name": "Charjabug",
+          "before": 43,
+          "after": 44
+        },
+        {
+          "id": "charjabug_shadow",
+          "name": "Charjabug (Shadow)",
+          "before": 48,
+          "after": 50
+        },
+        {
+          "id": "clefable",
+          "name": "Clefable",
+          "before": 86,
+          "after": 90
+        },
+        {
+          "id": "clodsire",
+          "name": "Clodsire",
+          "before": 15,
+          "after": 16
+        },
+        {
+          "id": "cradily",
+          "name": "Cradily",
+          "before": 64,
+          "after": 62
+        },
+        {
+          "id": "deoxys_defense",
+          "name": "Deoxys (Defense)",
+          "before": 40,
+          "after": 37
+        },
+        {
+          "id": "diggersby",
+          "name": "Diggersby",
+          "before": 71,
+          "after": 72
+        },
+        {
+          "id": "dondozo",
+          "name": "Dondozo",
+          "before": 47,
+          "after": 46
+        },
+        {
+          "id": "dragonair",
+          "name": "Dragonair",
+          "before": 82,
+          "after": 81
+        },
+        {
+          "id": "dragonair_shadow",
+          "name": "Dragonair (Shadow)",
+          "before": 60,
+          "after": 59
+        },
+        {
+          "id": "drapion_shadow",
+          "name": "Drapion (Shadow)",
+          "before": 95,
+          "after": 97
+        },
+        {
+          "id": "dunsparce",
+          "name": "Dunsparce",
+          "before": 102,
+          "after": 20
+        },
+        {
+          "id": "dusclops_shadow",
+          "name": "Dusclops (Shadow)",
+          "before": 66,
+          "after": 67
+        },
+        {
+          "id": "dusknoir_shadow",
+          "name": "Dusknoir (Shadow)",
+          "before": 79,
+          "after": 83
+        },
+        {
+          "id": "electrode_hisuian",
+          "name": "Electrode (Hisuian)",
+          "before": 32,
+          "after": 30
+        },
+        {
+          "id": "empoleon",
+          "name": "Empoleon",
+          "before": 35,
+          "after": 33
+        },
+        {
+          "id": "empoleon_shadow",
+          "name": "Empoleon (Shadow)",
+          "before": 36,
+          "after": 34
+        },
+        {
+          "id": "fearow",
+          "name": "Fearow",
+          "before": 22,
+          "after": 27
+        },
+        {
+          "id": "feraligatr",
+          "name": "Feraligatr",
+          "before": 44,
+          "after": 45
+        },
+        {
+          "id": "feraligatr_shadow",
+          "name": "Feraligatr (Shadow)",
+          "before": 58,
+          "after": 56
+        },
+        {
+          "id": "forretress",
+          "name": "Forretress",
+          "before": 67,
+          "after": 65
+        },
+        {
+          "id": "forretress_shadow",
+          "name": "Forretress (Shadow)",
+          "before": 55,
+          "after": 52
+        },
+        {
+          "id": "furret",
+          "name": "Furret",
+          "before": 49,
+          "after": 47
+        },
+        {
+          "id": "gourgeist_average",
+          "name": "Gourgeist (Average)",
+          "before": 91,
+          "after": 94
+        },
+        {
+          "id": "gourgeist_large",
+          "name": "Gourgeist (Large)",
+          "before": 87,
+          "after": 86
+        },
+        {
+          "id": "gourgeist_small",
+          "name": "Gourgeist (Small)",
+          "before": 96,
+          "after": 98
+        },
+        {
+          "id": "gourgeist_super",
+          "name": "Gourgeist (Super)",
+          "before": 88,
+          "after": 91
+        },
+        {
+          "id": "guzzlord",
+          "name": "Guzzlord",
+          "before": 41,
+          "after": 42
+        },
+        {
+          "id": "hippowdon",
+          "name": "Hippowdon",
+          "before": 50,
+          "after": 48
+        },
+        {
+          "id": "hippowdon_shadow",
+          "name": "Hippowdon (Shadow)",
+          "before": 61,
+          "after": 60
+        },
+        {
+          "id": "hydreigon",
+          "name": "Hydreigon",
+          "before": 72,
+          "after": 70
+        },
+        {
+          "id": "hydreigon_shadow",
+          "name": "Hydreigon (Shadow)",
+          "before": 16,
+          "after": 15
+        },
+        {
+          "id": "jellicent",
+          "name": "Jellicent",
+          "before": 20,
+          "after": 21
+        },
+        {
+          "id": "jumpluff",
+          "name": "Jumpluff",
+          "before": 56,
+          "after": 57
+        },
+        {
+          "id": "jumpluff_shadow",
+          "name": "Jumpluff (Shadow)",
+          "before": 99,
+          "after": 100
+        },
+        {
+          "id": "kingdra",
+          "name": "Kingdra",
+          "before": 54,
+          "after": 51
+        },
+        {
+          "id": "kingdra_shadow",
+          "name": "Kingdra (Shadow)",
+          "before": 59,
+          "after": 58
+        },
+        {
+          "id": "lapras",
+          "name": "Lapras",
+          "before": 37,
+          "after": 43
+        },
+        {
+          "id": "lapras_shadow",
+          "name": "Lapras (Shadow)",
+          "before": 62,
+          "after": 63
+        },
+        {
+          "id": "malamar",
+          "name": "Malamar",
+          "before": 45,
+          "after": 38
+        },
+        {
+          "id": "malamar_shadow",
+          "name": "Malamar (Shadow)",
+          "before": 42,
+          "after": 39
+        },
+        {
+          "id": "mandibuzz",
+          "name": "Mandibuzz",
+          "before": 51,
+          "after": 53
+        },
+        {
+          "id": "mantine",
+          "name": "Mantine",
+          "before": 28,
+          "after": 35
+        },
+        {
+          "id": "marowak",
+          "name": "Marowak",
+          "before": 23,
+          "after": 24
+        },
+        {
+          "id": "marowak_shadow",
+          "name": "Marowak (Shadow)",
+          "before": 80,
+          "after": 79
+        },
+        {
+          "id": "medicham",
+          "name": "Medicham",
+          "before": 52,
+          "after": 49
+        },
+        {
+          "id": "moltres_galarian",
+          "name": "Moltres (Galarian)",
+          "before": 73,
+          "after": 71
+        },
+        {
+          "id": "morpeko_full_belly",
+          "name": "Morpeko (Full Belly)",
+          "before": 53,
+          "after": 54
+        },
+        {
+          "id": "ninetales_alolan",
+          "name": "Ninetales (Alolan)",
+          "before": 65,
+          "after": 66
+        },
+        {
+          "id": "ninetales_alolan_shadow",
+          "name": "Ninetales (Alolan) (Shadow)",
+          "before": 70,
+          "after": 73
+        },
+        {
+          "id": "oranguru",
+          "name": "Oranguru",
+          "before": 93,
+          "after": 95
+        },
+        {
+          "id": "regidrago",
+          "name": "Regidrago",
+          "before": 97,
+          "after": 92
+        },
+        {
+          "id": "registeel",
+          "name": "Registeel",
+          "before": 92,
+          "after": 96
+        },
+        {
+          "id": "rillaboom",
+          "name": "Rillaboom",
+          "before": 29,
+          "after": 28
+        },
+        {
+          "id": "sableye",
+          "name": "Sableye",
+          "before": 38,
+          "after": 40
+        },
+        {
+          "id": "seismitoad",
+          "name": "Seismitoad",
+          "before": 81,
+          "after": 80
+        },
+        {
+          "id": "shelgon_shadow",
+          "name": "Shelgon (Shadow)",
+          "before": 94,
+          "after": 87
+        },
+        {
+          "id": "snorlax_shadow",
+          "name": "Snorlax (Shadow)",
+          "before": 46,
+          "after": 61
+        },
+        {
+          "id": "spidops",
+          "name": "Spidops",
+          "before": 84,
+          "after": 93
+        },
+        {
+          "id": "steelix_shadow",
+          "name": "Steelix (Shadow)",
+          "before": 89,
+          "after": 88
+        },
+        {
+          "id": "stunfisk",
+          "name": "Stunfisk",
+          "before": 21,
+          "after": 22
+        },
+        {
+          "id": "stunfisk_galarian",
+          "name": "Stunfisk (Galarian)",
+          "before": 90,
+          "after": 89
+        },
+        {
+          "id": "talonflame",
+          "name": "Talonflame",
+          "before": 83,
+          "after": 84
+        },
+        {
+          "id": "talonflame_shadow",
+          "name": "Talonflame (Shadow)",
+          "before": 98,
+          "after": 99
+        },
+        {
+          "id": "turtonator",
+          "name": "Turtonator",
+          "before": 63,
+          "after": 64
+        },
+        {
+          "id": "ursaluna_shadow",
+          "name": "Ursaluna (Shadow)",
+          "before": 265,
+          "after": 82
+        },
+        {
+          "id": "vigoroth_shadow",
+          "name": "Vigoroth (Shadow)",
+          "before": 39,
+          "after": 36
+        }
+      ],
+      "moveChangesInCurrentTop100": [
+        {
+          "id": "dunsparce",
+          "name": "Dunsparce",
+          "before": [
+            {
+              "name": "Bite",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Drill Run",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Rock Slide",
+              "elite": false,
+              "legacy": false
+            }
+          ],
+          "after": [
+            {
+              "name": "Rollout",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Drill Run",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Rock Slide",
+              "elite": false,
+              "legacy": false
+            }
+          ]
+        }
+      ]
+    },
+    "UL": {
+      "before": 100,
+      "after": 100,
+      "entered": [
+        {
+          "id": "charizard",
+          "name": "Charizard",
+          "before": 102,
+          "after": 96
+        },
+        {
+          "id": "kingambit",
+          "name": "Kingambit",
+          "before": 185,
+          "after": 98
+        }
+      ],
+      "left": [
+        {
+          "id": "genesect_shock",
+          "name": "Genesect (Shock)",
+          "before": 97,
+          "after": 101
+        },
+        {
+          "id": "lickilicky",
+          "name": "Lickilicky",
+          "before": 100,
+          "after": 108
+        }
+      ],
+      "rankChangesInCurrentTop100": [
+        {
+          "id": "ampharos",
+          "name": "Ampharos",
+          "before": 51,
+          "after": 50
+        },
+        {
+          "id": "annihilape",
+          "name": "Annihilape",
+          "before": 57,
+          "after": 56
+        },
+        {
+          "id": "articuno",
+          "name": "Articuno",
+          "before": 80,
+          "after": 77
+        },
+        {
+          "id": "bellibolt",
+          "name": "Bellibolt",
+          "before": 58,
+          "after": 57
+        },
+        {
+          "id": "blastoise",
+          "name": "Blastoise",
+          "before": 34,
+          "after": 35
+        },
+        {
+          "id": "blastoise_shadow",
+          "name": "Blastoise (Shadow)",
+          "before": 89,
+          "after": 90
+        },
+        {
+          "id": "charizard",
+          "name": "Charizard",
+          "before": 102,
+          "after": 96
+        },
+        {
+          "id": "cofagrigus",
+          "name": "Cofagrigus",
+          "before": 83,
+          "after": 82
+        },
+        {
+          "id": "crustle",
+          "name": "Crustle",
+          "before": 84,
+          "after": 86
+        },
+        {
+          "id": "drapion",
+          "name": "Drapion",
+          "before": 90,
+          "after": 95
+        },
+        {
+          "id": "dusknoir",
+          "name": "Dusknoir",
+          "before": 25,
+          "after": 22
+        },
+        {
+          "id": "dusknoir_shadow",
+          "name": "Dusknoir (Shadow)",
+          "before": 26,
+          "after": 25
+        },
+        {
+          "id": "empoleon",
+          "name": "Empoleon",
+          "before": 9,
+          "after": 10
+        },
+        {
+          "id": "forretress_shadow",
+          "name": "Forretress (Shadow)",
+          "before": 43,
+          "after": 44
+        },
+        {
+          "id": "golisopod",
+          "name": "Golisopod",
+          "before": 68,
+          "after": 70
+        },
+        {
+          "id": "golisopod_shadow",
+          "name": "Golisopod (Shadow)",
+          "before": 55,
+          "after": 58
+        },
+        {
+          "id": "gyarados_shadow",
+          "name": "Gyarados (Shadow)",
+          "before": 69,
+          "after": 66
+        },
+        {
+          "id": "hydreigon_shadow",
+          "name": "Hydreigon (Shadow)",
+          "before": 92,
+          "after": 97
+        },
+        {
+          "id": "kingambit",
+          "name": "Kingambit",
+          "before": 185,
+          "after": 98
+        },
+        {
+          "id": "kingdra",
+          "name": "Kingdra",
+          "before": 59,
+          "after": 62
+        },
+        {
+          "id": "kingdra_shadow",
+          "name": "Kingdra (Shadow)",
+          "before": 64,
+          "after": 67
+        },
+        {
+          "id": "kommo_o",
+          "name": "Kommo-o",
+          "before": 91,
+          "after": 87
+        },
+        {
+          "id": "kyurem",
+          "name": "Kyurem",
+          "before": 86,
+          "after": 91
+        },
+        {
+          "id": "lapras_shadow",
+          "name": "Lapras (Shadow)",
+          "before": 22,
+          "after": 23
+        },
+        {
+          "id": "malamar_shadow",
+          "name": "Malamar (Shadow)",
+          "before": 52,
+          "after": 51
+        },
+        {
+          "id": "milotic",
+          "name": "Milotic",
+          "before": 77,
+          "after": 79
+        },
+        {
+          "id": "milotic_shadow",
+          "name": "Milotic (Shadow)",
+          "before": 61,
+          "after": 63
+        },
+        {
+          "id": "miltank",
+          "name": "Miltank",
+          "before": 66,
+          "after": 68
+        },
+        {
+          "id": "moltres_galarian",
+          "name": "Moltres (Galarian)",
+          "before": 10,
+          "after": 9
+        },
+        {
+          "id": "muk_alolan",
+          "name": "Muk (Alolan)",
+          "before": 35,
+          "after": 37
+        },
+        {
+          "id": "muk_alolan_shadow",
+          "name": "Muk (Alolan) (Shadow)",
+          "before": 67,
+          "after": 69
+        },
+        {
+          "id": "ninetales_alolan",
+          "name": "Ninetales (Alolan)",
+          "before": 23,
+          "after": 24
+        },
+        {
+          "id": "ninetales_alolan_shadow",
+          "name": "Ninetales (Alolan) (Shadow)",
+          "before": 31,
+          "after": 30
+        },
+        {
+          "id": "ninetales_shadow",
+          "name": "Ninetales (Shadow)",
+          "before": 72,
+          "after": 71
+        },
+        {
+          "id": "oinkologne_female",
+          "name": "Oinkologne (Female)",
+          "before": 79,
+          "after": 80
+        },
+        {
+          "id": "oranguru",
+          "name": "Oranguru",
+          "before": 70,
+          "after": 64
+        },
+        {
+          "id": "orthworm",
+          "name": "Orthworm",
+          "before": 87,
+          "after": 88
+        },
+        {
+          "id": "piloswine_shadow",
+          "name": "Piloswine (Shadow)",
+          "before": 93,
+          "after": 89
+        },
+        {
+          "id": "politoed_shadow",
+          "name": "Politoed (Shadow)",
+          "before": 95,
+          "after": 92
+        },
+        {
+          "id": "primarina",
+          "name": "Primarina",
+          "before": 48,
+          "after": 55
+        },
+        {
+          "id": "raikou_shadow",
+          "name": "Raikou (Shadow)",
+          "before": 98,
+          "after": 99
+        },
+        {
+          "id": "registeel",
+          "name": "Registeel",
+          "before": 30,
+          "after": 31
+        },
+        {
+          "id": "rillaboom",
+          "name": "Rillaboom",
+          "before": 24,
+          "after": 26
+        },
+        {
+          "id": "samurott",
+          "name": "Samurott",
+          "before": 71,
+          "after": 72
+        },
+        {
+          "id": "seaking",
+          "name": "Seaking",
+          "before": 49,
+          "after": 48
+        },
+        {
+          "id": "swampert",
+          "name": "Swampert",
+          "before": 63,
+          "after": 61
+        },
+        {
+          "id": "swampert_shadow",
+          "name": "Swampert (Shadow)",
+          "before": 94,
+          "after": 93
+        },
+        {
+          "id": "sylveon",
+          "name": "Sylveon",
+          "before": 99,
+          "after": 100
+        },
+        {
+          "id": "talonflame",
+          "name": "Talonflame",
+          "before": 37,
+          "after": 34
+        },
+        {
+          "id": "talonflame_shadow",
+          "name": "Talonflame (Shadow)",
+          "before": 56,
+          "after": 52
+        },
+        {
+          "id": "tentacruel",
+          "name": "Tentacruel",
+          "before": 82,
+          "after": 83
+        },
+        {
+          "id": "tentacruel_shadow",
+          "name": "Tentacruel (Shadow)",
+          "before": 96,
+          "after": 94
+        },
+        {
+          "id": "togekiss",
+          "name": "Togekiss",
+          "before": 62,
+          "after": 59
+        },
+        {
+          "id": "toucannon",
+          "name": "Toucannon",
+          "before": 44,
+          "after": 42
+        },
+        {
+          "id": "toucannon_shadow",
+          "name": "Toucannon (Shadow)",
+          "before": 50,
+          "after": 49
+        },
+        {
+          "id": "walrein",
+          "name": "Walrein",
+          "before": 42,
+          "after": 43
+        },
+        {
+          "id": "zapdos",
+          "name": "Zapdos",
+          "before": 88,
+          "after": 84
+        }
+      ],
+      "moveChangesInCurrentTop100": [
+        {
+          "id": "kingambit",
+          "name": "Kingambit",
+          "before": [
+            {
+              "name": "Low Kick",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Foul Play",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Iron Head",
+              "elite": false,
+              "legacy": false
+            }
+          ],
+          "after": [
+            {
+              "name": "Low Kick",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Kowtow Cleave",
+              "elite": true,
+              "legacy": false
+            },
+            {
+              "name": "Iron Head",
+              "elite": false,
+              "legacy": false
+            }
+          ]
+        }
+      ]
+    },
+    "ML": {
+      "before": 100,
+      "after": 100,
+      "entered": [
+        {
+          "id": "hippowdon",
+          "name": "Hippowdon",
+          "before": 107,
+          "after": 97
+        },
+        {
+          "id": "landorus_incarnate_shadow",
+          "name": "Landorus (Incarnate) (Shadow)",
+          "before": 102,
+          "after": 98
+        },
+        {
+          "id": "swampert",
+          "name": "Swampert",
+          "before": 108,
+          "after": 92
+        }
+      ],
+      "left": [
+        {
+          "id": "kommo_o",
+          "name": "Kommo-o",
+          "before": 100,
+          "after": 113
+        },
+        {
+          "id": "snorlax",
+          "name": "Snorlax",
+          "before": 92,
+          "after": 104
+        },
+        {
+          "id": "zamazenta_hero",
+          "name": "Zamazenta (Hero)",
+          "before": 97,
+          "after": 109
+        }
+      ],
+      "rankChangesInCurrentTop100": [
+        {
+          "id": "annihilape",
+          "name": "Annihilape",
+          "before": 93,
+          "after": 99
+        },
+        {
+          "id": "annihilape_shadow",
+          "name": "Annihilape (Shadow)",
+          "before": 95,
+          "after": 94
+        },
+        {
+          "id": "baxcalibur",
+          "name": "Baxcalibur",
+          "before": 75,
+          "after": 79
+        },
+        {
+          "id": "conkeldurr_shadow",
+          "name": "Conkeldurr (Shadow)",
+          "before": 66,
+          "after": 64
+        },
+        {
+          "id": "darkrai_shadow",
+          "name": "Darkrai (Shadow)",
+          "before": 78,
+          "after": 72
+        },
+        {
+          "id": "dialga",
+          "name": "Dialga",
+          "before": 46,
+          "after": 51
+        },
+        {
+          "id": "dialga_origin",
+          "name": "Dialga (Origin)",
+          "before": 9,
+          "after": 6
+        },
+        {
+          "id": "dialga_shadow",
+          "name": "Dialga (Shadow)",
+          "before": 43,
+          "after": 44
+        },
+        {
+          "id": "dragonite",
+          "name": "Dragonite",
+          "before": 67,
+          "after": 74
+        },
+        {
+          "id": "dragonite_shadow",
+          "name": "Dragonite (Shadow)",
+          "before": 50,
+          "after": 54
+        },
+        {
+          "id": "enamorus_therian",
+          "name": "Enamorus (Therian)",
+          "before": 63,
+          "after": 57
+        },
+        {
+          "id": "eternatus",
+          "name": "Eternatus",
+          "before": 10,
+          "after": 17
+        },
+        {
+          "id": "florges",
+          "name": "Florges",
+          "before": 40,
+          "after": 45
+        },
+        {
+          "id": "garchomp",
+          "name": "Garchomp",
+          "before": 31,
+          "after": 36
+        },
+        {
+          "id": "garchomp_shadow",
+          "name": "Garchomp (Shadow)",
+          "before": 26,
+          "after": 29
+        },
+        {
+          "id": "genesect_burn",
+          "name": "Genesect (Burn)",
+          "before": 98,
+          "after": 93
+        },
+        {
+          "id": "genesect_chill",
+          "name": "Genesect (Chill)",
+          "before": 73,
+          "after": 71
+        },
+        {
+          "id": "genesect_shock",
+          "name": "Genesect (Shock)",
+          "before": 72,
+          "after": 68
+        },
+        {
+          "id": "giratina_altered",
+          "name": "Giratina (Altered)",
+          "before": 52,
+          "after": 55
+        },
+        {
+          "id": "giratina_altered_shadow",
+          "name": "Giratina (Altered) (Shadow)",
+          "before": 39,
+          "after": 43
+        },
+        {
+          "id": "golisopod",
+          "name": "Golisopod",
+          "before": 88,
+          "after": 86
+        },
+        {
+          "id": "golisopod_shadow",
+          "name": "Golisopod (Shadow)",
+          "before": 83,
+          "after": 80
+        },
+        {
+          "id": "goodra",
+          "name": "Goodra",
+          "before": 55,
+          "after": 66
+        },
+        {
+          "id": "groudon_shadow",
+          "name": "Groudon (Shadow)",
+          "before": 53,
+          "after": 48
+        },
+        {
+          "id": "gyarados",
+          "name": "Gyarados",
+          "before": 58,
+          "after": 56
+        },
+        {
+          "id": "gyarados_shadow",
+          "name": "Gyarados (Shadow)",
+          "before": 32,
+          "after": 31
+        },
+        {
+          "id": "heatran",
+          "name": "Heatran",
+          "before": 86,
+          "after": 87
+        },
+        {
+          "id": "heatran_shadow",
+          "name": "Heatran (Shadow)",
+          "before": 71,
+          "after": 70
+        },
+        {
+          "id": "hippowdon",
+          "name": "Hippowdon",
+          "before": 107,
+          "after": 97
+        },
+        {
+          "id": "hippowdon_shadow",
+          "name": "Hippowdon (Shadow)",
+          "before": 91,
+          "after": 83
+        },
+        {
+          "id": "ho_oh",
+          "name": "Ho-Oh",
+          "before": 25,
+          "after": 19
+        },
+        {
+          "id": "ho_oh_shadow",
+          "name": "Ho-Oh (Shadow)",
+          "before": 56,
+          "after": 42
+        },
+        {
+          "id": "hydreigon",
+          "name": "Hydreigon",
+          "before": 81,
+          "after": 95
+        },
+        {
+          "id": "hydreigon_shadow",
+          "name": "Hydreigon (Shadow)",
+          "before": 54,
+          "after": 58
+        },
+        {
+          "id": "jirachi",
+          "name": "Jirachi",
+          "before": 61,
+          "after": 67
+        },
+        {
+          "id": "keldeo_ordinary",
+          "name": "Keldeo (Ordinary)",
+          "before": 36,
+          "after": 32
+        },
+        {
+          "id": "keldeo_resolute",
+          "name": "Keldeo (Resolute)",
+          "before": 30,
+          "after": 23
+        },
+        {
+          "id": "kingambit",
+          "name": "Kingambit",
+          "before": 79,
+          "after": 52
+        },
+        {
+          "id": "kyogre",
+          "name": "Kyogre",
+          "before": 8,
+          "after": 5
+        },
+        {
+          "id": "kyogre_shadow",
+          "name": "Kyogre (Shadow)",
+          "before": 33,
+          "after": 34
+        },
+        {
+          "id": "kyurem",
+          "name": "Kyurem",
+          "before": 48,
+          "after": 53
+        },
+        {
+          "id": "kyurem_black",
+          "name": "Kyurem (Black)",
+          "before": 12,
+          "after": 11
+        },
+        {
+          "id": "kyurem_white",
+          "name": "Kyurem (White)",
+          "before": 5,
+          "after": 3
+        },
+        {
+          "id": "landorus_incarnate",
+          "name": "Landorus (Incarnate)",
+          "before": 99,
+          "after": 91
+        },
+        {
+          "id": "landorus_incarnate_shadow",
+          "name": "Landorus (Incarnate) (Shadow)",
+          "before": 102,
+          "after": 98
+        },
+        {
+          "id": "landorus_therian",
+          "name": "Landorus (Therian)",
+          "before": 41,
+          "after": 37
+        },
+        {
+          "id": "latias",
+          "name": "Latias",
+          "before": 62,
+          "after": 73
+        },
+        {
+          "id": "latias_shadow",
+          "name": "Latias (Shadow)",
+          "before": 57,
+          "after": 61
+        },
+        {
+          "id": "latios",
+          "name": "Latios",
+          "before": 49,
+          "after": 46
+        },
+        {
+          "id": "latios_shadow",
+          "name": "Latios (Shadow)",
+          "before": 35,
+          "after": 33
+        },
+        {
+          "id": "lugia",
+          "name": "Lugia",
+          "before": 14,
+          "after": 10
+        },
+        {
+          "id": "lugia_shadow",
+          "name": "Lugia (Shadow)",
+          "before": 23,
+          "after": 20
+        },
+        {
+          "id": "lunala",
+          "name": "Lunala",
+          "before": 15,
+          "after": 12
+        },
+        {
+          "id": "mamoswine_shadow",
+          "name": "Mamoswine (Shadow)",
+          "before": 94,
+          "after": 96
+        },
+        {
+          "id": "marshadow",
+          "name": "Marshadow",
+          "before": 19,
+          "after": 22
+        },
+        {
+          "id": "melmetal",
+          "name": "Melmetal",
+          "before": 29,
+          "after": 30
+        },
+        {
+          "id": "meloetta_aria",
+          "name": "Meloetta (Aria)",
+          "before": 44,
+          "after": 49
+        },
+        {
+          "id": "metagross_shadow",
+          "name": "Metagross (Shadow)",
+          "before": 27,
+          "after": 26
+        },
+        {
+          "id": "mewtwo",
+          "name": "Mewtwo",
+          "before": 65,
+          "after": 69
+        },
+        {
+          "id": "mewtwo_shadow",
+          "name": "Mewtwo (Shadow)",
+          "before": 51,
+          "after": 50
+        },
+        {
+          "id": "necrozma_dawn_wings",
+          "name": "Necrozma (Dawn Wings)",
+          "before": 18,
+          "after": 14
+        },
+        {
+          "id": "necrozma_dusk_mane",
+          "name": "Necrozma (Dusk Mane)",
+          "before": 22,
+          "after": 21
+        },
+        {
+          "id": "palkia",
+          "name": "Palkia",
+          "before": 34,
+          "after": 41
+        },
+        {
+          "id": "palkia_shadow",
+          "name": "Palkia (Shadow)",
+          "before": 24,
+          "after": 27
+        },
+        {
+          "id": "primarina",
+          "name": "Primarina",
+          "before": 45,
+          "after": 38
+        },
+        {
+          "id": "raikou",
+          "name": "Raikou",
+          "before": 87,
+          "after": 88
+        },
+        {
+          "id": "raikou_shadow",
+          "name": "Raikou (Shadow)",
+          "before": 74,
+          "after": 75
+        },
+        {
+          "id": "reshiram",
+          "name": "Reshiram",
+          "before": 6,
+          "after": 8
+        },
+        {
+          "id": "reshiram_shadow",
+          "name": "Reshiram (Shadow)",
+          "before": 13,
+          "after": 9
+        },
+        {
+          "id": "rhyperior",
+          "name": "Rhyperior",
+          "before": 69,
+          "after": 59
+        },
+        {
+          "id": "rhyperior_shadow",
+          "name": "Rhyperior (Shadow)",
+          "before": 68,
+          "after": 62
+        },
+        {
+          "id": "rillaboom",
+          "name": "Rillaboom",
+          "before": 37,
+          "after": 40
+        },
+        {
+          "id": "salamence_shadow",
+          "name": "Salamence (Shadow)",
+          "before": 76,
+          "after": 81
+        },
+        {
+          "id": "snorlax_shadow",
+          "name": "Snorlax (Shadow)",
+          "before": 80,
+          "after": 90
+        },
+        {
+          "id": "solgaleo",
+          "name": "Solgaleo",
+          "before": 42,
+          "after": 35
+        },
+        {
+          "id": "swampert",
+          "name": "Swampert",
+          "before": 108,
+          "after": 92
+        },
+        {
+          "id": "sylveon",
+          "name": "Sylveon",
+          "before": 70,
+          "after": 76
+        },
+        {
+          "id": "togekiss",
+          "name": "Togekiss",
+          "before": 59,
+          "after": 65
+        },
+        {
+          "id": "tyranitar",
+          "name": "Tyranitar",
+          "before": 85,
+          "after": 89
+        },
+        {
+          "id": "tyranitar_shadow",
+          "name": "Tyranitar (Shadow)",
+          "before": 64,
+          "after": 63
+        },
+        {
+          "id": "ursaluna",
+          "name": "Ursaluna",
+          "before": 11,
+          "after": 13
+        },
+        {
+          "id": "ursaluna_shadow",
+          "name": "Ursaluna (Shadow)",
+          "before": 17,
+          "after": 15
+        },
+        {
+          "id": "urshifu_rapid_strike",
+          "name": "Urshifu (Rapid Strike)",
+          "before": 84,
+          "after": 82
+        },
+        {
+          "id": "urshifu_single_strike",
+          "name": "Urshifu (Single Strike)",
+          "before": 77,
+          "after": 78
+        },
+        {
+          "id": "volcanion",
+          "name": "Volcanion",
+          "before": 82,
+          "after": 77
+        },
+        {
+          "id": "xerneas",
+          "name": "Xerneas",
+          "before": 7,
+          "after": 16
+        },
+        {
+          "id": "yveltal",
+          "name": "Yveltal",
+          "before": 38,
+          "after": 39
+        },
+        {
+          "id": "zacian_hero",
+          "name": "Zacian (Hero)",
+          "before": 96,
+          "after": 100
+        },
+        {
+          "id": "zamazenta_crowned_shield",
+          "name": "Zamazenta (Crowned Shield)",
+          "before": 16,
+          "after": 18
+        },
+        {
+          "id": "zapdos",
+          "name": "Zapdos",
+          "before": 89,
+          "after": 84
+        },
+        {
+          "id": "zapdos_shadow",
+          "name": "Zapdos (Shadow)",
+          "before": 90,
+          "after": 85
+        },
+        {
+          "id": "zekrom",
+          "name": "Zekrom",
+          "before": 20,
+          "after": 24
+        },
+        {
+          "id": "zekrom_shadow",
+          "name": "Zekrom (Shadow)",
+          "before": 21,
+          "after": 25
+        },
+        {
+          "id": "zygarde_complete",
+          "name": "Zygarde (Complete Forme)",
+          "before": 3,
+          "after": 7
+        }
+      ],
+      "moveChangesInCurrentTop100": [
+        {
+          "id": "golisopod_shadow",
+          "name": "Golisopod (Shadow)",
+          "before": [
+            {
+              "name": "Fury Cutter",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Aqua Jet",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "X-Scissor",
+              "elite": false,
+              "legacy": false
+            }
+          ],
+          "after": [
+            {
+              "name": "Shadow Claw",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Aqua Jet",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "X-Scissor",
+              "elite": false,
+              "legacy": false
+            }
+          ]
+        },
+        {
+          "id": "kingambit",
+          "name": "Kingambit",
+          "before": [
+            {
+              "name": "Low Kick",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Foul Play",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Iron Head",
+              "elite": false,
+              "legacy": false
+            }
+          ],
+          "after": [
+            {
+              "name": "Low Kick",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Kowtow Cleave",
+              "elite": true,
+              "legacy": false
+            },
+            {
+              "name": "Iron Head",
+              "elite": false,
+              "legacy": false
+            }
+          ]
+        },
+        {
+          "id": "latios",
+          "name": "Latios",
+          "before": [
+            {
+              "name": "Dragon Breath",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Aura Sphere",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Luster Purge",
+              "elite": true,
+              "legacy": false
+            }
+          ],
+          "after": [
+            {
+              "name": "Dragon Breath",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Aura Sphere",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Dragon Claw",
+              "elite": false,
+              "legacy": false
+            }
+          ]
+        },
+        {
+          "id": "latios_shadow",
+          "name": "Latios (Shadow)",
+          "before": [
+            {
+              "name": "Dragon Breath",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Aura Sphere",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Luster Purge",
+              "elite": true,
+              "legacy": false
+            }
+          ],
+          "after": [
+            {
+              "name": "Dragon Breath",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Aura Sphere",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Dragon Claw",
+              "elite": false,
+              "legacy": false
+            }
+          ]
+        },
+        {
+          "id": "salamence_shadow",
+          "name": "Salamence (Shadow)",
+          "before": [
+            {
+              "name": "Dragon Tail",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Fly",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Brutal Swing",
+              "elite": false,
+              "legacy": false
+            }
+          ],
+          "after": [
+            {
+              "name": "Dragon Tail",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Brutal Swing",
+              "elite": false,
+              "legacy": false
+            },
+            {
+              "name": "Fly",
+              "elite": false,
+              "legacy": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "raids": {
+    "before": {
+      "forms": 243,
+      "roles": 361
+    },
+    "after": {
+      "forms": 243,
+      "roles": 361
+    },
+    "entered": [],
+    "left": [],
+    "changed": []
+  },
+  "maxAttackers": {
+    "before": {
+      "forms": 67,
+      "roles": 87
+    },
+    "after": {
+      "forms": 67,
+      "roles": 87
+    },
+    "entered": [],
+    "left": [],
+    "changed": []
+  },
+  "maxTopFive": {
+    "before": {
+      "forms": 60,
+      "roles": 72
+    },
+    "after": {
+      "forms": 60,
+      "roles": 72
+    },
+    "entered": [],
+    "left": [],
+    "changed": []
+  },
+  "maxSupport": {
+    "before": {
+      "forms": 20,
+      "roles": 21
+    },
+    "after": {
+      "forms": 20,
+      "roles": 21
+    },
+    "entered": [],
+    "left": [],
+    "changed": []
+  },
+  "baseStatChanges": [],
+  "sources": [
+    {
+      "id": "input-csv",
+      "date": "2026-09-27",
+      "retrieved": "2026-11-22T05:51:57.858Z",
+      "url": "Pokemon_GO_full_alphabetical_catalog_2026-09-27.csv"
+    },
+    {
+      "id": "pvpoke",
+      "commit": "a8c817915e2978b433a38317b93dce267b64bde7",
+      "date": "2026-11-20T16:56:34Z",
+      "retrieved": "2026-11-22T05:51:31.576Z",
+      "url": "https://github.com/pvpoke/pvpoke/tree/a8c817915e2978b433a38317b93dce267b64bde7"
+    },
+    {
+      "id": "go-gamemaster",
+      "commit": "8e227be44f288d34463e23bf04e9b564d3c16f79",
+      "date": "2026-08-29T12:08:01Z",
+      "retrieved": "2026-11-22T05:51:38.966Z",
+      "url": "https://github.com/PokeMiners/game_masters/tree/8e227be44f288d34463e23bf04e9b564d3c16f79"
+    },
+    {
+      "id": "gohub-raids",
+      "retrieved": "2026-11-22T05:51:57.858Z",
+      "url": "https://db.pokemongohub.net/best/attackers-per-type"
+    },
+    {
+      "id": "manual-rules",
+      "date": "2026-11-21",
+      "retrieved": "2026-11-22T05:51:57.858Z",
+      "url": "data/manual-rules.json"
+    },
+    {
+      "id": "gohub-moves",
+      "retrieved": "2026-11-22T05:51:57.858Z",
+      "url": "https://db.pokemongohub.net/"
+    },
+    {
+      "id": "gohub-max",
+      "retrieved": "2026-11-22T05:51:50.883Z",
+      "url": "https://db.pokemongohub.net/best/dynamax-attackers-per-type"
+    },
+    {
+      "id": "gohub-max-defender",
+      "date": "2026-10-24T16:54:17+00:00",
+      "retrieved": "2026-11-22T05:51:57.775Z",
+      "url": "https://pokemongohub.net/post/guide/max-defenders-tier-list/"
+    },
+    {
+      "id": "gohub-max-healer",
+      "date": "2026-10-24T16:58:50+00:00",
+      "retrieved": "2026-11-22T05:51:57.858Z",
+      "url": "https://pokemongohub.net/post/guide/max-healers-tier-list-june-2025/"
+    },
+    {
+      "id": "gohub-max-capability",
+      "retrieved": "2026-11-22T05:51:57.933Z",
+      "url": "https://pokemongohub.net/post/guide/max-attackers-tier-list/"
+    }
+  ],
+  "gym": {
+    "before": 18,
+    "after": 18,
+    "entered": [],
+    "left": [],
+    "tiers": [
+      {
+        "id": "blissey",
+        "name": "Blissey",
+        "before": "SS",
+        "after": "SS"
+      },
+      {
+        "id": "chansey",
+        "name": "Chansey",
+        "before": "S",
+        "after": "S"
+      },
+      {
+        "id": "snorlax",
+        "name": "Snorlax",
+        "before": "S",
+        "after": "S"
+      },
+      {
+        "id": "dondozo",
+        "name": "Dondozo",
+        "before": "S",
+        "after": "S"
+      },
+      {
+        "id": "umbreon",
+        "name": "Umbreon",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "avalugg",
+        "name": "Avalugg",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "avalugg_hisuian",
+        "name": "Hisuian Avalugg",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "melmetal",
+        "name": "Melmetal",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "ursaluna",
+        "name": "Ursaluna",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "goodra",
+        "name": "Goodra",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "mandibuzz",
+        "name": "Mandibuzz",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "steelix",
+        "name": "Steelix",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "lapras",
+        "name": "Lapras",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "coalossal",
+        "name": "Coalossal",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "garganacl",
+        "name": "Garganacl",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "rhyperior",
+        "name": "Rhyperior",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "milotic",
+        "name": "Milotic",
+        "before": "A",
+        "after": "A"
+      },
+      {
+        "id": "slaking",
+        "name": "Slaking",
+        "before": "A",
+        "after": "A"
+      }
+    ]
+  },
+  "cpMultipliersChanged": false,
+  "deferredRaids": [
+    {
+      "id": "clefable_mega",
+      "name": "Mega Clefable",
+      "dex": 36,
+      "form": "Mega",
+      "availableFrom": "2026-11-28",
+      "source": "https://pokemongo.com/news/clefable-super-mega-raid-day-2026",
+      "reason": "Official debut announced for November 28, 2026. Retained as upcoming source evidence; excluded from current recommendations.",
+      "type": "fairy",
+      "tier": "SS",
+      "rank": 2,
+      "moves": [
+        {
+          "name": "Fairy Wind",
+          "limited": false,
+          "url": "https://db.pokemongohub.net/move/350"
+        },
+        {
+          "name": "Moonblast+",
+          "limited": false,
+          "url": "https://db.pokemongohub.net/move/2003600"
+        }
+      ],
+      "rankingSource": "https://db.pokemongohub.net/pokemon-list/best-per-type/fairy",
+      "retrieved": "2026-11-22T05:51:35.798Z"
+    }
+  ]
+}
