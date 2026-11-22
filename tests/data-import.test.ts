@@ -1,6 +1,8 @@
 import { it, expect } from 'vitest';
 import { readFileSync, mkdirSync, mkdtempSync, writeFileSync, copyFileSync } from 'node:fs';
 import { resolve, join } from 'node:path';
+import { gunzipSync } from 'node:zlib';
+import sourcePointer from '../data/sources-current.json';
 import { spawnSync } from 'node:child_process';
 // @ts-expect-error The controlled Node import step is plain JavaScript, not browser code.
 import { parseCatalog, validateCatalog } from '../scripts/data-lib.mjs';
@@ -140,7 +142,7 @@ it('includes the new Mega Chandelure with a sourced ordinary-to-temporary path',
   );
 });
 
-it('includes Wild Area regional debuts without inventing a Goomy regional route or PvP rank', () => {
+it('includes Wild Area regional debuts with exact-form PvP ranks and no invented Goomy regional route', () => {
   const data = JSON.parse(readFileSync('public' + pointer.file, 'utf8')) as Catalog;
   const byId = new Map(data.species.map((p) => [p.id, p]));
   expect(byId.get('sliggoo_hisuian')!.baseStats).toEqual({ atk: 153, def: 190, hp: 151 });
@@ -153,8 +155,26 @@ it('includes Wild Area regional debuts without inventing a Goomy regional route 
     }),
   ]);
   expect(byId.get('goomy')!.evolutions.some((e) => e.to === 'sliggoo_hisuian')).toBe(false);
+  const source = JSON.parse(gunzipSync(readFileSync(sourcePointer.file)).toString('utf8'));
   for (const id of ['sliggoo_hisuian', 'goodra_hisuian']) {
-    expect(byId.get(id)!.rankings).toEqual({});
+    for (const [league, cap] of [
+      ['GL', 1500],
+      ['UL', 2500],
+      ['ML', 10000],
+    ] as const) {
+      const rows = JSON.parse(
+        source.pvpoke.files['src/data/rankings/all/overall/rankings-' + cap + '.json'],
+      ) as { speciesId: string; score: number }[];
+      const index = rows.findIndex((row) => row.speciesId === id);
+      const ranking = byId.get(id)!.rankings[league];
+      if (index < 0) expect(ranking).toBeUndefined();
+      else
+        expect(ranking).toMatchObject({
+          rank: index + 1,
+          score: rows[index].score,
+          source: 'pvpoke',
+        });
+    }
     expect(byId.get(id)!.types.sort()).toEqual(['dragon', 'steel']);
   }
 });

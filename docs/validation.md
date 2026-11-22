@@ -88,3 +88,11 @@ The source tooling's transitive undici dependency was patched from 7.30.0 to 7.3
 ### Database refresh (November 15, 2026)
 
 Catalog `2026-11-15-c6124cdf73ae` contains 1,637 forms. All 103 unit/data tests, 31 browser tests, catalog validation, production build and 11,876 gender/evolution traversals pass. New coverage verifies the Hisuian evolution, regional artwork, event Max forms, and complete source-rank accounting for a reviewed exclusion. Exact-form gender metadata remains unverified for the two new Hisuian entries because the pinned templates predate their release. See [the refresh report](data-update-2026-11-15.md).
+
+### Database refresh (November 21, 2026)
+
+Catalog `2026-11-22-ab3f5f543851` retains all 1,637 forms. All 103 unit/data tests, 31 browser tests, the production build, catalog validation and 11,876 gender/evolution traversals pass with Vite 8.3.8 and Playwright 1.65.1. The regional-form regression test verifies each exact Hisuian form against the pinned PvPoke source instead of assuming rankings will remain absent. Browser coverage includes offline reload, data updates, mobile layouts and accessibility. React and React DOM both resolve to 19.3.1. See [the before/after report](data-update-2026-11-21.md).
+
+Prettier 3.10.1 passes repository-wide formatting with existing checkout line endings accepted. npm audit reports zero vulnerabilities. Gender metadata remains unverified for the same three forms; no unexplained gender/evolution failures were found.
+
+The first GitHub browser run exposed an offline-test race: an active service worker can exist before it controls the current page. All three offline checks now share a helper that awaits worker readiness and page control before disconnecting. This preserves the offline reload assertions and avoids timing-dependent network failures.
