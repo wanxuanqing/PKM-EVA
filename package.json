@@ -37,7 +37,7 @@
     "@vitejs/plugin-react": "^6.3.0",
     "cheerio": "^1.2.0",
     "csv-parse": "^7.0.3",
-    "prettier": "^3.9.10",
+    "prettier": "^3.10.1",
     "typescript": "^7.0.2",
     "vite": "^8.3.8",
     "vitest": "^5.1.0"
