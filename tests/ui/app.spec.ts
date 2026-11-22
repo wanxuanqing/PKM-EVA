@@ -11,6 +11,13 @@ const search = async (page: Page, name: string) => {
 const stable = async (page: Page) => {
   await expect(page.getByRole('button', { name: 'Save', exact: true })).toBeEnabled();
 };
+const offlineReady = async (page: Page) => {
+  await page.evaluate(async () => {
+    await navigator.serviceWorker.ready;
+  });
+  // Activation can precede clients.claim(); wait until this page is controlled.
+  await page.waitForFunction(() => navigator.serviceWorker.controller !== null);
+};
 
 test('two valid IV digits advance focus without skipping invalid or single digits', async ({
   page,
@@ -453,13 +460,7 @@ test('production caches complete assets and calculations survive offline reload'
   await page.goto('/');
   await stable(page);
   await expect(page.getByText('Ready for offline use', { exact: true })).toBeVisible();
-  await page.evaluate(async () => {
-    await navigator.serviceWorker.ready;
-    if (!navigator.serviceWorker.controller)
-      await new Promise<void>((r) =>
-        navigator.serviceWorker.addEventListener('controllerchange', () => r(), { once: true }),
-      );
-  });
+  await offlineReady(page);
   await context.setOffline(true);
   await page.reload();
   await stable(page);
@@ -669,9 +670,7 @@ test('Max Battles shows top five per type with distinct forms, correct moves and
   await page.setViewportSize({ width: 1280, height: 900 });
   await noOverflow(page);
   await page.screenshot({ path: 'docs/screenshots/max-battles-desktop.png' });
-  await page.waitForFunction(
-    async () => !!(await navigator.serviceWorker.getRegistration())?.active,
-  );
+  await offlineReady(page);
   await context.setOffline(true);
   await page.reload();
   await page.getByRole('button', { name: 'Top 50', exact: true }).click();
@@ -822,9 +821,7 @@ test('Max defender and healer roles have separate tiers, paths, move labels and 
   await expect(crown).toHaveCount(1);
   await expect(crown).toContainText('Attacker');
   await expect(crown).toContainText('Defender · A tier');
-  await page.waitForFunction(
-    async () => !!(await navigator.serviceWorker.getRegistration())?.active,
-  );
+  await offlineReady(page);
   await context.setOffline(true);
   await page.reload();
   await page.getByRole('button', { name: 'Top 50', exact: true }).click();
