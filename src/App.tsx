@@ -1,9 +1,8 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-import type { Catalog, CollectionFlags, IVResult, IVs, Settings, Species } from './types';
-import { effectiveMax, overallIV, validLevel } from './lib/calculator';
+import { useEffect, useMemo, useState } from 'react';
+import type { Catalog, CollectionFlags, Settings, Species } from './types';
+import { overallIV, parseIVs, validLevel } from './lib/calculator';
 import { copyGender, optionsFor, reachable, recommendation } from './lib/assessment';
 import { loadLocal, saveLocal } from './lib/storage';
-import { parseIVs } from './lib/calculator';
 import { Selector } from './components/Selector';
 import { BrandMark, Icon } from './components/Icon';
 import { ResultCard } from './components/ResultCard';
@@ -11,7 +10,11 @@ import { leagueNames } from './lib/leagueNames';
 import { DataPanel } from './components/DataPanel';
 import { TopPokemon } from './components/TopPokemon';
 import { PokemonPicture } from './components/PokemonPicture';
-import type { CalculationRequest, CalculationResponse } from './worker/calculator.worker';
+import { IvInputPanel } from './components/IvInputPanel';
+import { SettingsPanels } from './components/SettingsPanels';
+import { SavedPanel, type Saved } from './components/SavedPanel';
+import { useServiceWorker } from './hooks/useServiceWorker';
+import { useCalculatorWorker } from './hooks/useCalculatorWorker';
 
 const defaults: Settings = {
   maxLevel: 50,
@@ -29,16 +32,6 @@ const noFlags: CollectionFlags = {
   maxBattle: false,
   ordinaryExtra: false,
   alreadyTraded: false,
-};
-type Saved = {
-  id: string;
-  speciesId: string;
-  ivs: IVs;
-  settings: Settings;
-  flags: CollectionFlags;
-  date: string;
-  version: string;
-  verdict: string;
 };
 function initialSettings(): Settings {
   const stored = loadLocal<Partial<Settings> & { thresholdVersion?: number }>('preferences', {});
@@ -62,10 +55,7 @@ export default function App({ data }: { data: Catalog }) {
   const [page, setPage] = useState<'assess' | 'top' | 'saved' | 'data'>('assess');
   const [selectedId, setSelectedId] = useState('duskull');
   const [fields, setFields] = useState(['1', '12', '13']);
-  const ivInputs = useRef<(HTMLInputElement | null)[]>([]);
   const [edited, setEdited] = useState(false);
-  const [paste, setPaste] = useState('');
-  const [pasteError, setPasteError] = useState('');
   const [settings, setSettings] = useState<Settings>(initialSettings);
   const [currentLevel, setCurrentLevel] = useState('');
   const [maxLevel, setMaxLevel] = useState(String(settings.maxLevel));
@@ -92,14 +82,6 @@ export default function App({ data }: { data: Catalog }) {
   });
   const [toast, setToast] = useState('');
   const [filter, setFilter] = useState('All');
-  const [calculations, setCalculations] = useState<Record<string, IVResult>>({});
-  const [busy, setBusy] = useState(true);
-  const [error, setError] = useState('');
-  const [offlineReady, setOfflineReady] = useState(false);
-  const [offlineUnavailable, setOfflineUnavailable] = useState(false);
-  const [update, setUpdate] = useState<ServiceWorker | null>(null);
-  const worker = useRef<Worker | null>(null);
-  const serial = useRef(0);
   const byId = useMemo(() => new Map(data.species.map((p) => [p.id, p])), [data]);
   const selected = byId.get(selectedId) ?? data.species[0];
   const ivs = useMemo(() => parseIVs(fields.join('/')), [fields]);
@@ -116,72 +98,27 @@ export default function App({ data }: { data: Catalog }) {
     [selected, byId, settings, ivs],
   );
   const baseOptions = useMemo(
-    () => optionsFor(targets, data.maxBattles),
-    [targets, data.maxBattles],
+    () => optionsFor(targets, data.maxBattles, data.gymDefense),
+    [targets, data.maxBattles, data.gymDefense],
   );
+  const { calculations, busy, error } = useCalculatorWorker({
+    data,
+    ivs,
+    valid,
+    baseOptions,
+    settings,
+    currentLevel,
+  });
+  const { offlineReady, offlineUnavailable, update, activateUpdate } = useServiceWorker();
   const options = useMemo(
     () => baseOptions.map((o) => ({ ...o, result: calculations[o.key] })),
     [baseOptions, calculations],
   );
   const overall = ivs ? overallIV(ivs) : 0;
   const verdict = ivs
-    ? recommendation(selected, ivs, options, flags, settings, !busy && !error)
+    ? recommendation(selected, ivs, options, flags, settings, !busy && !error, data.gymDefense)
     : null;
 
-  useEffect(() => {
-    const w = new Worker(new URL('./worker/calculator.worker.ts', import.meta.url), {
-      type: 'module',
-    });
-    worker.current = w;
-    w.onmessage = (event: MessageEvent<CalculationResponse>) => {
-      if (event.data.id !== serial.current) return;
-      setBusy(false);
-      setError(event.data.error ?? '');
-      setCalculations(event.data.results ?? {});
-    };
-    w.onerror = () => {
-      setError('The calculator could not start. Reload the app to try again.');
-      setBusy(false);
-    };
-    return () => w.terminate();
-  }, []);
-  useEffect(() => {
-    serial.current++;
-    setCalculations({});
-    setError('');
-    if (!ivs || !valid) {
-      setBusy(false);
-      return;
-    }
-    const pvp = baseOptions.filter(
-      (o) => ['GL', 'UL', 'ML'].includes(o.role) && o.species.baseStats,
-    );
-    if (!pvp.length) {
-      setBusy(false);
-      return;
-    }
-    setBusy(true);
-    const request: CalculationRequest = {
-      id: serial.current,
-      version: data.version,
-      ivs,
-      currentLevel: currentLevel === '' ? undefined : Number(currentLevel),
-      targets: pvp.map((o) => ({
-        key: o.key,
-        speciesId: o.species.id,
-        calculation: {
-          base: o.species.baseStats!,
-          league: o.role as 'GL' | 'UL' | 'ML',
-          maxLevel: effectiveMax(settings.maxLevel, settings.bestBuddy),
-          minLevel: o.species.minLevel,
-          floor: settings.floor,
-          eligible: o.species.eligible[o.role as 'GL' | 'UL' | 'ML'],
-          cpm: data.cpm,
-        },
-      })),
-    };
-    worker.current?.postMessage(request);
-  }, [ivs, valid, baseOptions, data, settings, currentLevel]);
   useEffect(() => {
     saveLocal('preferences', {
       maxLevel: settings.maxLevel,
@@ -190,33 +127,14 @@ export default function App({ data }: { data: Catalog }) {
       thresholdVersion: 2,
       floor: settings.floor,
     });
-  }, [settings]);
+  }, [settings.maxLevel, settings.bestBuddy, settings.threshold, settings.floor]);
+
   useEffect(() => {
     if (!toast) return;
     const t = setTimeout(() => setToast(''), 5500);
     return () => clearTimeout(t);
   }, [toast]);
-  useEffect(() => {
-    if (!import.meta.env.PROD) return;
-    if (!('serviceWorker' in navigator)) {
-      setOfflineUnavailable(true);
-      return;
-    }
-    navigator.serviceWorker
-      .register('/sw.js')
-      .then((reg) => {
-        if (reg.waiting) setUpdate(reg.waiting);
-        reg.addEventListener('updatefound', () => {
-          const installing = reg.installing;
-          installing?.addEventListener('statechange', () => {
-            if (installing.state === 'installed' && navigator.serviceWorker.controller)
-              setUpdate(installing);
-          });
-        });
-        navigator.serviceWorker.ready.then(() => setOfflineReady(true));
-      })
-      .catch(() => setOfflineUnavailable(true));
-  }, []);
+
   function choose(p: Species) {
     setSelectedId(p.id);
     setFlags({ ...noFlags });
@@ -227,17 +145,6 @@ export default function App({ data }: { data: Catalog }) {
     const next = [p.id, ...recent.filter((r) => r !== p.id)].slice(0, 6);
     setRecent(next);
     saveLocal('recent', next);
-  }
-  function applyPaste(value: string) {
-    const parsed = parseIVs(value);
-    if (!parsed) {
-      setPasteError('Use three integers from 0 to 15, for example 1/12/13.');
-      return;
-    }
-    setFields(parsed.map(String));
-    setEdited(true);
-    setPaste('');
-    setPasteError('');
   }
   function save() {
     if (!ivs || !verdict || busy || !valid) return;
@@ -276,6 +183,11 @@ export default function App({ data }: { data: Catalog }) {
     setFlags({ ...noFlags, ...s.flags });
     if (s.version !== data.version)
       setToast('Saved assessment opened and recalculated with the current data snapshot.');
+  }
+  function removeSaved(id: string) {
+    const next = saved.filter((x) => x.id !== id);
+    if (saveLocal('saved', next)) setSaved(next);
+    else setToast('Could not update device storage.');
   }
   const shown = options.filter((o) => filter === 'All' || o.role === filter);
   return (
@@ -319,18 +231,7 @@ export default function App({ data }: { data: Catalog }) {
       {update && (
         <div className="update-notice">
           <span>A complete app & data update is ready.</span>
-          <button
-            onClick={() => {
-              navigator.serviceWorker.addEventListener(
-                'controllerchange',
-                () => location.reload(),
-                { once: true },
-              );
-              update.postMessage({ type: 'ACTIVATE_UPDATE' });
-            }}
-          >
-            Update & reload
-          </button>
+          <button onClick={activateUpdate}>Update & reload</button>
         </div>
       )}
       <main className="main-shell">
@@ -369,332 +270,36 @@ export default function App({ data }: { data: Catalog }) {
                   </div>
                   <Selector
                     species={data.species}
+                    byId={byId}
                     selected={selected}
                     onSelect={choose}
                     recent={recent}
                   />
                   <PokemonPicture key={selected.id} species={selected} />
-                  <div className="iv-section">
-                    <div className="label-row">
-                      <h3>Individual values</h3>
-                      <span>0–15 each</span>
-                    </div>
-                    <div className="iv-fields">
-                      {(['Attack', 'Defense', 'HP'] as const).map((label, i) => (
-                        <div key={label} className={`iv-field iv-${i}`}>
-                          <label htmlFor={`iv-${i}`}>
-                            <span className="iv-dot" />
-                            {label}
-                          </label>
-                          <input
-                            id={`iv-${i}`}
-                            ref={(element) => {
-                              ivInputs.current[i] = element;
-                            }}
-                            type="text"
-                            inputMode="numeric"
-                            pattern="[0-9]*"
-                            maxLength={2}
-                            value={fields[i]}
-                            aria-invalid={!/^\d{1,2}$/.test(fields[i]) || Number(fields[i]) > 15}
-                            aria-describedby={!ivs ? 'iv-error' : undefined}
-                            onFocus={(e) => e.target.select()}
-                            onChange={(e) => {
-                              const value = e.target.value;
-                              setFields(fields.map((v, n) => (n === i ? value : v)));
-                              setEdited(true);
-                              if (/^\d{2}$/.test(value) && Number(value) <= 15) {
-                                ivInputs.current[i + 1]?.focus();
-                              }
-                            }}
-                            onPaste={(e) => {
-                              const text = e.clipboardData.getData('text');
-                              if (/[/,\s]/.test(text.trim())) {
-                                e.preventDefault();
-                                applyPaste(text);
-                              }
-                            }}
-                          />
-                          <div className="iv-mini-bar">
-                            <span
-                              style={{
-                                width: `${Math.min(100, Math.max(0, (Number(fields[i]) / 15) * 100)) || 0}%`,
-                              }}
-                            />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                    {!ivs && (
-                      <p className="field-error" id="iv-error" role="alert">
-                        Enter a whole number from 0 to 15 in each IV field.
-                      </p>
-                    )}
-                    <p className="small-note">Two valid digits move to the next IV field.</p>
-                    <form
-                      className="paste-row"
-                      onSubmit={(e) => {
-                        e.preventDefault();
-                        applyPaste(paste);
-                      }}
-                    >
-                      <label className="sr-only" htmlFor="paste-ivs">
-                        Paste all three IVs
-                      </label>
-                      <input
-                        id="paste-ivs"
-                        value={paste}
-                        placeholder="Or paste 1/12/13"
-                        onChange={(e) => {
-                          setPaste(e.target.value);
-                          setPasteError('');
-                        }}
-                      />
-                      <button type="submit">
-                        Apply <Icon name="arrow" size={15} />
-                      </button>
-                    </form>
-                    {pasteError && (
-                      <p className="field-error" role="alert">
-                        {pasteError}
-                      </p>
-                    )}
-                    <div className="overall-row">
-                      <span>
-                        Overall IVs{' '}
-                        <abbr title="(Attack + Defense + HP IVs) / 45. This is not a percentile.">
-                          ⓘ
-                        </abbr>
-                      </span>
-                      <b>{ivs ? `${overall.toFixed(1)}%` : '—'}</b>
-                    </div>
-                    {!edited && (
-                      <p className="example-note">
-                        Example IVs are loaded. Edit them for your copy.
-                      </p>
-                    )}
-                  </div>
-                  <details className="settings-details">
-                    <summary>
-                      <span>
-                        <Icon name="shield" size={17} /> Level & comparison settings
-                      </span>
-                      <Icon name="chevron" size={16} />
-                    </summary>
-                    <div className="settings-body">
-                      <div className="settings-grid">
-                        <label>
-                          Current level <span>optional</span>
-                          <input
-                            aria-label="Current level"
-                            type="number"
-                            inputMode="decimal"
-                            min="1"
-                            max="51"
-                            step="0.5"
-                            value={currentLevel}
-                            placeholder="Unknown"
-                            onChange={(e) => setCurrentLevel(e.target.value)}
-                            aria-invalid={!levelValid}
-                          />
-                        </label>
-                        <label>
-                          Maximum level
-                          <input
-                            aria-label="Maximum level"
-                            type="number"
-                            inputMode="decimal"
-                            min="1"
-                            max="50"
-                            step="0.5"
-                            value={maxLevel}
-                            onChange={(e) => {
-                              setMaxLevel(e.target.value);
-                              if (
-                                validLevel(Number(e.target.value)) &&
-                                Number(e.target.value) <= 50
-                              )
-                                setSettings((s) => ({ ...s, maxLevel: Number(e.target.value) }));
-                            }}
-                            aria-invalid={!maxValid}
-                          />
-                        </label>
-                      </div>
-                      {(!levelValid || !maxValid) && (
-                        <p className="field-error">Use half-levels: maximum 1–50; current 1–51.</p>
-                      )}
-                      <label className="check-row">
-                        <input
-                          type="checkbox"
-                          checked={settings.bestBuddy}
-                          onChange={(e) =>
-                            setSettings((s) => ({ ...s, bestBuddy: e.target.checked }))
-                          }
-                        />
-                        <span>
-                          Best Buddy boost
-                          <small>
-                            Effective maximum: level{' '}
-                            {settings.maxLevel + (settings.bestBuddy ? 1 : 0)}
-                          </small>
-                        </span>
-                      </label>
-                      <p className="small-note">
-                        If known, enter the copy’s effective current level, including any active
-                        buddy boost.
-                      </p>
-                      <label className="stack-label">
-                        GL / UL keep threshold (%)
-                        <input
-                          aria-label="PvP percentile threshold"
-                          type="number"
-                          inputMode="decimal"
-                          min="0"
-                          max="100"
-                          step="0.1"
-                          value={threshold}
-                          onChange={(e) => {
-                            setThreshold(e.target.value);
-                            const n = Number(e.target.value);
-                            if (e.target.value !== '' && Number.isFinite(n) && n >= 0 && n <= 100)
-                              setSettings((s) => ({ ...s, threshold: n }));
-                          }}
-                          aria-invalid={!thresholdValid}
-                        />
-                      </label>
-                      {!thresholdValid && (
-                        <p className="field-error">Use a threshold from 0 to 100.</p>
-                      )}
-                      <p className="small-note">
-                        IV percentile must be strictly above this value. 95% is the app default,
-                        separate from your overall-IV rule.
-                      </p>
-                      <label className="stack-label">
-                        IV comparison floor
-                        <select
-                          value={settings.floor}
-                          onChange={(e) =>
-                            setSettings((s) => ({ ...s, floor: Number(e.target.value) }))
-                          }
-                        >
-                          {[0, 1, 2, 3, 4, 5, 10, 12, 15].map((n) => (
-                            <option key={n} value={n}>
-                              {n === 0 ? 'All IVs · 0–15 (default)' : `Each IV at least ${n}`}
-                            </option>
-                          ))}
-                        </select>
-                      </label>
-                      <p className="small-note">
-                        All IVs includes theoretical spreads even when a species cannot be acquired
-                        with them. No acquisition floor is applied silently.
-                      </p>
-                      <label className="stack-label">
-                        Gender
-                        <select
-                          value={copyGender(selected, settings.gender)}
-                          disabled={!!selected.gender?.fixed}
-                          onChange={(e) =>
-                            setSettings((s) => ({
-                              ...s,
-                              gender: e.target.value as Settings['gender'],
-                            }))
-                          }
-                        >
-                          <option value="unknown">Unknown / not specified</option>
-                          <option value="male">Male</option>
-                          <option value="female">Female</option>
-                          {selected.gender?.fixed === 'genderless' && (
-                            <option value="genderless">Genderless</option>
-                          )}
-                        </select>
-                      </label>
-                      <p className="small-note">
-                        {selected.gender?.fixed
-                          ? 'Gender is fixed by the selected species or battle form. Choose a different form above to change it.'
-                          : 'Gender belongs to your copy and controls eligible evolution paths, not league eligibility.'}
-                      </p>
-                      <label className="check-row">
-                        <input
-                          type="checkbox"
-                          checked={settings.eventPaths}
-                          onChange={(e) =>
-                            setSettings((s) => ({ ...s, eventPaths: e.target.checked }))
-                          }
-                        />
-                        <span>
-                          Show event-only evolution paths
-                          <small>Event availability must be confirmed in the game.</small>
-                        </span>
-                      </label>
-                    </div>
-                  </details>
-                  <details className="settings-details collection-settings">
-                    <summary>
-                      <span>
-                        <Icon name="spark" size={17} /> Collection & copy details
-                      </span>
-                      <Icon name="chevron" size={16} />
-                    </summary>
-                    <div className="settings-body">
-                      <p className="small-note">
-                        Only you know what makes this copy special. These flags are never inferred
-                        from the species.
-                      </p>
-                      <div className="collection-grid">
-                        {(
-                          [
-                            ['shiny', 'Shiny'],
-                            ['costume', 'Costume'],
-                            ['rare', 'Rare'],
-                            ['sentimental', 'Sentimental'],
-                            ['maxBattle', 'Max Battle capable'],
-                          ] as const
-                        ).map(([key, label]) => (
-                          <label className="check-row" key={key}>
-                            <input
-                              type="checkbox"
-                              checked={flags[key]}
-                              onChange={(e) => setFlags((f) => ({ ...f, [key]: e.target.checked }))}
-                            />
-                            {label}
-                          </label>
-                        ))}
-                      </div>
-                      <label className="check-row">
-                        <input
-                          type="checkbox"
-                          checked={flags.alreadyTraded}
-                          onChange={(e) =>
-                            setFlags((f) => ({ ...f, alreadyTraded: e.target.checked }))
-                          }
-                        />
-                        <span>
-                          Already traded<small>A Pokémon cannot be traded again.</small>
-                        </span>
-                      </label>
-                      <label className="check-row">
-                        <input
-                          type="checkbox"
-                          checked={flags.ordinaryExtra}
-                          onChange={(e) =>
-                            setFlags((f) => ({ ...f, ordinaryExtra: e.target.checked }))
-                          }
-                        />
-                        <span>
-                          Ordinary extra with no collection reason
-                          <small>
-                            I have reviewed the missing battle evidence and am considering transfer.
-                          </small>
-                        </span>
-                      </label>
-                      {flags.costume && (
-                        <p className="inline-warning">
-                          Some costumes cannot evolve. Confirm the exact copy’s evolution options in
-                          the game.
-                        </p>
-                      )}
-                    </div>
-                  </details>
+                  <IvInputPanel
+                    fields={fields}
+                    ivs={ivs}
+                    overall={overall}
+                    edited={edited}
+                    onChangeFields={setFields}
+                    onEdited={() => setEdited(true)}
+                  />
+                  <SettingsPanels
+                    selected={selected}
+                    settings={settings}
+                    flags={flags}
+                    currentLevel={currentLevel}
+                    maxLevel={maxLevel}
+                    threshold={threshold}
+                    levelValid={levelValid}
+                    maxValid={maxValid}
+                    thresholdValid={thresholdValid}
+                    onChangeSettings={setSettings}
+                    onChangeFlags={setFlags}
+                    onChangeCurrentLevel={setCurrentLevel}
+                    onChangeMaxLevel={setMaxLevel}
+                    onChangeThreshold={setThreshold}
+                  />
                 </section>
                 <p className="device-note">
                   <Icon name="save" size={14} />
@@ -795,6 +400,7 @@ export default function App({ data }: { data: Catalog }) {
                           option={o}
                           settings={settings}
                           data={data}
+                          byId={byId}
                           overall={overall}
                         />
                       ))}
@@ -885,56 +491,13 @@ export default function App({ data }: { data: Catalog }) {
         ) : page === 'data' ? (
           <DataPanel data={data} />
         ) : (
-          <section className="saved-panel page-panel">
-            <span className="eyebrow">YOUR FIELD NOTES</span>
-            <h1>Worth a second look.</h1>
-            <p className="intro">
-              Saved assessments stay on this device. Open one to recalculate with the current
-              snapshot.
-            </p>
-            {!saved.length ? (
-              <div className="empty-state">
-                <Icon name="save" size={32} />
-                <h2>A home for your keepers.</h2>
-                <p>Save an assessment to find it here later.</p>
-                <button onClick={() => setPage('assess')}>
-                  Assess a Pokémon <Icon name="arrow" size={16} />
-                </button>
-              </div>
-            ) : (
-              <div className="saved-grid">
-                {saved.map((s) => (
-                  <article className="saved-card" key={s.id}>
-                    <span className="eyebrow">
-                      {s.verdict} · {s.date.slice(0, 10)}
-                    </span>
-                    <h2>{byId.get(s.speciesId)?.name ?? s.speciesId}</h2>
-                    <p>
-                      {s.ivs.join(' / ')} · Level{' '}
-                      {s.settings.maxLevel + (s.settings.bestBuddy ? 1 : 0)} max
-                    </p>
-                    <span className="small-note">Data {s.version}</span>
-                    <div>
-                      <button onClick={() => openSaved(s)}>
-                        Open assessment <Icon name="arrow" size={16} />
-                      </button>
-                      <button
-                        className="icon-button"
-                        aria-label={`Remove saved ${byId.get(s.speciesId)?.name ?? s.speciesId}`}
-                        onClick={() => {
-                          const next = saved.filter((x) => x.id !== s.id);
-                          if (saveLocal('saved', next)) setSaved(next);
-                          else setToast('Could not update device storage.');
-                        }}
-                      >
-                        <Icon name="close" size={18} />
-                      </button>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            )}
-          </section>
+          <SavedPanel
+            saved={saved}
+            byId={byId}
+            onAssess={() => setPage('assess')}
+            onOpen={openSaved}
+            onRemove={removeSaved}
+          />
         )}
         <footer>
           <span>

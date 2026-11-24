@@ -1,5 +1,5 @@
 import { raidNotes } from '../lib/raidNotes';
-import type { Catalog, Option, Settings } from '../types';
+import type { Catalog, Option, Settings, Species } from '../types';
 import { Icon } from './Icon';
 import { sourceURL } from '../lib/data';
 import { GymCard } from './GymCard';
@@ -10,16 +10,20 @@ export function ResultCard({
   option,
   settings,
   data,
+  byId,
   overall,
 }: {
   option: Option;
   settings: Settings;
   data: Catalog;
+  byId?: Map<string, Species>;
   overall: number;
 }) {
   const { species: p, role, result: r } = option;
-  if (role === 'Max') return <MaxCard option={option} data={data} overall={overall} />;
-  if (role === 'Gym') return <GymCard option={option} />;
+  if (role === 'Max') return <MaxCard option={option} data={data} byId={byId} overall={overall} />;
+  if (role === 'Gym') return <GymCard option={option} data={data} />;
+  const nameOf = (id: string) =>
+    byId?.get(id)?.name ?? data.species.find((s) => s.id === id)?.name ?? id;
   const isRaid = role === 'Raid';
   const score = isRaid || role === 'ML' ? overall : r?.percentile;
   const qualified =
@@ -68,9 +72,9 @@ export function ResultCard({
       </div>
       {isRaid && p.temporary && option.path.length > 1 && (
         <p className="small-note">
-          {option.path.map((id) => data.species.find((s) => s.id === id)?.name ?? id).join(' → ')}.{' '}
-          This raid rating applies to the temporary form. Evolve first if needed, then meet the Mega
-          or Primal requirements below. Your IVs are preserved.
+          {option.path.map(nameOf).join(' → ')}. This raid rating applies to the temporary form.
+          Evolve first if needed, then meet the Mega or Primal requirements below. Your IVs are
+          preserved.
         </p>
       )}
       {(isRaid || role === 'ML') && (
@@ -200,10 +204,7 @@ export function ResultCard({
           )}
           {option.path.length > 1 && (
             <p className="path">
-              <b>Path</b>{' '}
-              {option.path
-                .map((id) => data.species.find((s) => s.id === id)?.name ?? id)
-                .join(' → ')}
+              <b>Path</b> {option.path.map(nameOf).join(' → ')}
             </p>
           )}
           {option.requirements.length > 0 && (

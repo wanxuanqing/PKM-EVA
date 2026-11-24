@@ -1,6 +1,7 @@
 import type { Catalog } from '../types';
-import { gymSource, gymReviewed, gymTiers } from '../lib/gym';
+import { gymMeta } from '../lib/gym';
 export function DataPanel({ data }: { data: Catalog }) {
+  const gym = gymMeta(data.gymDefense);
   return (
     <section className="data-panel page-panel">
       <span className="eyebrow">ABOUT / DATA</span>
@@ -25,8 +26,8 @@ export function DataPanel({ data }: { data: Catalog }) {
       <section className="paper">
         <h2>Gym defense</h2>
         <p>
-          {Object.keys(gymTiers).length} exact regular forms from GO Hub's SS/S/A species-bulk
-          shortlist, reviewed {gymReviewed}. Reachable evolutions are included; conditional paths
+          {Object.keys(gym.tiers).length} exact regular forms from GO Hub's SS/S/A species-bulk
+          shortlist, reviewed {gym.reviewed}. Reachable evolutions are included; conditional paths
           require review. Normal types are allowed. Ratings do not extend to Shadow or temporary
           forms.
         </p>
@@ -35,7 +36,7 @@ export function DataPanel({ data }: { data: Catalog }) {
           typing, motivation decay or gym activity. Keep advice is not an instruction to power up
           every copy.
         </p>
-        <a href={gymSource} target="_blank" rel="noreferrer">
+        <a href={gym.source} target="_blank" rel="noreferrer">
           Gym-defense source
         </a>
       </section>

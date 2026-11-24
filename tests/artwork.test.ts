@@ -1,14 +1,15 @@
 import { it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import pointer from '../src/data/current.json';
-import artwork from '../src/data/artwork-forms.json';
 import type { Catalog } from '../src/types';
-import { pokemonArtwork } from '../src/lib/artwork';
+import { pokemonArtwork, setCatalogArtwork } from '../src/lib/artwork';
 const catalog = JSON.parse(readFileSync(`public${pointer.file}`, 'utf8')) as Catalog;
+setCatalogArtwork(catalog.artwork);
 it('every named catalog entry has an explicit artwork decision, including unavailable forms', () => {
+  expect(catalog.artwork?.forms).toBeDefined();
   for (const p of catalog.species) {
     const id = p.id.replace(/_shadow$/, '');
-    if (id.includes('_')) expect(artwork.forms, id).toHaveProperty(id);
+    if (id.includes('_')) expect(catalog.artwork!.forms, id).toHaveProperty(id);
   }
 });
 it('maps distinct alternate forms and preserves regional identity for Shadows', () => {

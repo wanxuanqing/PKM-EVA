@@ -121,8 +121,27 @@ export type MaxBattleData = {
   usefulEntries?: MaxBattleEntry[];
   supportEntries?: MaxBattleEntry[];
 };
+export type GymDefenseTier = 'SS' | 'S' | 'A';
+export type GymDefenseData = {
+  source: string;
+  reviewed: string;
+  tiers: Record<string, GymDefenseTier>;
+};
+export type ArtworkEntry = {
+  id?: number;
+  url: string | null;
+  kind?: string;
+  reason?: string;
+  source: string;
+};
+export type ArtworkData = {
+  reviewed: string;
+  forms: Record<string, ArtworkEntry>;
+};
 export type Catalog = {
   maxBattles?: MaxBattleData;
+  gymDefense?: GymDefenseData;
+  artwork?: ArtworkData;
   movesheet?: {
     json: string;
     csv: string;

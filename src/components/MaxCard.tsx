@@ -1,15 +1,19 @@
-import type { Catalog, Option } from '../types';
+import type { Catalog, Option, Species } from '../types';
 import { MaxRoleDetails } from './MaxRoleDetails';
 export function MaxCard({
   option,
   data,
+  byId,
   overall,
 }: {
   option: Option;
   data: Catalog;
+  byId?: Map<string, Species>;
   overall: number;
 }) {
   const entry = option.max!;
+  const nameOf = (id: string) =>
+    byId?.get(id)?.name ?? data.species.find((p) => p.id === id)?.name ?? id;
   return (
     <article className="result-card role-Max" aria-label={entry.name + ' Max Battles'}>
       <div className="result-top">
@@ -31,8 +35,7 @@ export function MaxCard({
         <span className="status-pill">Check Max capability</span>
       </div>
       <p className="path">
-        <b>Path</b>{' '}
-        {option.path.map((id) => data.species.find((p) => p.id === id)?.name ?? id).join(' → ')}
+        <b>Path</b> {option.path.map(nameOf).join(' → ')}
       </p>
       <p>
         GO Hub A tier or above. This is a potential role for a copy with the matching Max

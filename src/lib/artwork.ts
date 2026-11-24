@@ -1,9 +1,14 @@
-import artwork from '../data/artwork-forms.json';
-import type { Species } from '../types';
-type ArtworkEntry = { url: string | null; kind?: string; reason?: string; source: string };
-export function pokemonArtwork(species: Pick<Species, 'id' | 'dex'>) {
+import type { ArtworkData, ArtworkEntry, Species } from '../types';
+let activeArtwork: Record<string, ArtworkEntry> = {};
+export function setCatalogArtwork(data?: ArtworkData) {
+  activeArtwork = data?.forms ?? {};
+}
+export function pokemonArtwork(
+  species: Pick<Species, 'id' | 'dex'>,
+  forms: Record<string, ArtworkEntry> = activeArtwork,
+) {
   const id = species.id.replace(/_shadow$/, '');
-  const entry = (artwork.forms as Record<string, ArtworkEntry>)[id];
+  const entry = forms[id];
   // Never silently substitute a base image for an unaudited named form.
   if (entry) return { ...entry, mapped: true };
   if (id.includes('_')) return { url: null, mapped: true, kind: undefined };

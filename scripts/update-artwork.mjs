@@ -74,7 +74,7 @@ await Promise.all(
   }),
 );
 await writeFile(
-  'src/data/artwork-forms.json',
+  'data/artwork-forms.json',
   JSON.stringify(
     {
       reviewed: new Date().toISOString().slice(0, 10),

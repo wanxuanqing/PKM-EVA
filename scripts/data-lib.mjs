@@ -806,6 +806,29 @@ export function validateCatalog(data, expectedForms) {
         throw new Error(`Incomplete top-five Max Battle ranking: ${t.type}`);
     }
   }
+  if (data.gymDefense) {
+    if (
+      !data.gymDefense.source?.startsWith('https://') ||
+      !/^\d{4}-\d{2}-\d{2}$/.test(data.gymDefense.reviewed ?? '') ||
+      !data.gymDefense.tiers ||
+      !Object.keys(data.gymDefense.tiers).length
+    )
+      throw new Error('Invalid gym defense metadata.');
+    for (const [id, tier] of Object.entries(data.gymDefense.tiers)) {
+      const form = byId.get(id);
+      if (!form || form.shadow || form.temporary || !['SS', 'S', 'A'].includes(tier))
+        throw new Error(`Invalid gym defense form: ${id}`);
+    }
+  }
+  if (data.artwork) {
+    if (!data.artwork.forms || typeof data.artwork.forms !== 'object')
+      throw new Error('Invalid artwork mapping.');
+    for (const p of data.species) {
+      const baseId = p.id.replace(/_shadow$/, '');
+      if (baseId.includes('_') && !(baseId in data.artwork.forms))
+        throw new Error(`Missing artwork decision for form: ${baseId}`);
+    }
+  }
   if (!(data.cpm[98] > 0.84 && data.cpm[100] > data.cpm[98]))
     throw new Error('Invalid level 50/51 CP multipliers.');
   return true;

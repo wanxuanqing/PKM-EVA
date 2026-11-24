@@ -1,8 +1,8 @@
-import { readFile, writeFile, mkdir, rename, copyFile } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, rename, readdir } from 'node:fs/promises';
 import { gzipSync, gunzipSync } from 'node:zlib';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { dirname, resolve } from 'node:path';
+import { basename, dirname, resolve } from 'node:path';
 import { buildMovesheet, movesheetCSV } from './movesheet.mjs';
 import {
   hash,
@@ -199,6 +199,20 @@ if (bundle.maxCapabilityCapture)
     retrieved: bundle.maxCapabilityCapture.retrieved,
     files: [{ path: bundle.maxCapabilityCapture.url, sha256: bundle.maxCapabilityCapture.sha256 }],
   });
+const gymFiles = (await readdir('data'))
+  .filter((f) => /^gym-defense-\d{4}-\d{2}-\d{2}\.json$/.test(f))
+  .sort();
+if (!gymFiles.length) throw new Error('Missing gym-defense snapshot in data/.');
+const gymFile = gymFiles.at(-1);
+const gymRaw = await readFile(`data/${gymFile}`, 'utf8');
+const gymDoc = JSON.parse(gymRaw);
+const gymDefense = {
+  source: gymDoc.source,
+  reviewed: gymFile.slice('gym-defense-'.length, -'.json'.length),
+  tiers: Object.fromEntries(gymDoc.selected.map((r) => [r.id, r.tier])),
+};
+const artworkRaw = await readFile('data/artwork-forms.json', 'utf8');
+const artwork = JSON.parse(artworkRaw);
 const normalizerHash = hash(
   Buffer.concat([
     await readFile('scripts/data-lib.mjs'),
@@ -206,10 +220,15 @@ const normalizerHash = hash(
     await readFile('scripts/update-data.mjs'),
   ]),
 );
-const version = `${bundle.retrieved.slice(0, 10)}-${hash(JSON.stringify({ bundle, rules, csv: hash(csv), normalizerHash, schema: 1 })).slice(0, 12)}`;
+const version = `${bundle.retrieved.slice(0, 10)}-${hash(JSON.stringify({ bundle, rules, csv: hash(csv), gymDefense: hash(gymRaw), artwork: hash(artworkRaw), normalizerHash, schema: 1 })).slice(0, 12)}`;
 let previous;
 if (bundle.movesAudit?.previousCatalog) {
-  const oldBytes = await readFile(`public${bundle.movesAudit.previousCatalog.file}`);
+  let oldBytes;
+  try {
+    oldBytes = await readFile(`public${bundle.movesAudit.previousCatalog.file}`);
+  } catch {
+    oldBytes = await readFile(`data/archive/${basename(bundle.movesAudit.previousCatalog.file)}`);
+  }
   if (hash(oldBytes) !== bundle.movesAudit.previousCatalog.sha256)
     throw new Error('Previous catalog checksum mismatch');
   previous = JSON.parse(oldBytes);
@@ -233,6 +252,8 @@ if (bundle.maxBattleRankings) {
   const { captures, ...maxBattles } = bundle.maxBattleRankings;
   data.maxBattles = maxBattles;
 }
+data.gymDefense = gymDefense;
+data.artwork = artwork;
 const movesheet = buildMovesheet(data, bundle, previous);
 const sheetFile = `/data/moves-${version}`;
 data.movesheet = { json: `${sheetFile}.json`, csv: `${sheetFile}.csv`, ...movesheet.counts };
@@ -244,15 +265,17 @@ const catalogFile = `public/data/catalog-${version}.json`;
 const json = JSON.stringify(data);
 await writeFile(`${catalogFile}.tmp`, json);
 await rename(`${catalogFile}.tmp`, catalogFile);
-const compressed = gzipSync(JSON.stringify(bundle), { level: 9 });
-const rawFile = `data/raw/sources-${hash(compressed).slice(0, 12)}.json.gz`;
-await writeFile(rawFile, compressed);
-await writeFile(
-  'data/sources-current.json',
-  JSON.stringify({ file: rawFile, sha256: hash(compressed) }, null, 2) + '\n',
-);
+if (!offline) {
+  const compressed = gzipSync(JSON.stringify(bundle), { level: 9 });
+  const rawFile = `data/raw/sources-${hash(compressed).slice(0, 12)}.json.gz`;
+  await writeFile(rawFile, compressed);
+  await writeFile(
+    'data/sources-current.json.tmp',
+    JSON.stringify({ file: rawFile, sha256: hash(compressed) }, null, 2) + '\n',
+  );
+  await rename('data/sources-current.json.tmp', 'data/sources-current.json');
+}
 await writeFile('public/PVPOKE-LICENSE.txt', bundle.pvpoke.files.LICENSE);
-await copyFile(csvFile, `data/raw/${csvFile}`);
 await writeFile(`data/audit-${version}.json`, JSON.stringify(data.audit, null, 2) + '\n');
 await writeFile(
   'src/data/current.json.tmp',
@@ -260,4 +283,9 @@ await writeFile(
     '\n',
 );
 await rename('src/data/current.json.tmp', 'src/data/current.json');
+await mkdir('data/archive', { recursive: true });
+for (const file of await readdir('public/data')) {
+  if (file.includes(version)) continue;
+  await rename(`public/data/${file}`, `data/archive/${file}`);
+}
 console.log(JSON.stringify({ version, ...data.counts, audit: data.audit }, null, 2));

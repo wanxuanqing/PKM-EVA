@@ -9,8 +9,16 @@ async function files(dir) {
     )
   ).flat();
 }
-const assets = (await files('dist')).filter(
-  (f) => !f.endsWith('/sw.js') && !['/_headers', '/_redirects'].some((s) => f.endsWith(s)),
+const pointer = JSON.parse(await readFile('src/data/current.json', 'utf8'));
+const activeCatalog = `dist${pointer.file}`;
+const allFiles = await files('dist');
+if (!allFiles.includes(activeCatalog))
+  throw new Error(`Active catalog missing from dist build: ${activeCatalog}`);
+const assets = allFiles.filter(
+  (f) =>
+    !f.endsWith('/sw.js') &&
+    !['/_headers', '/_redirects'].some((s) => f.endsWith(s)) &&
+    (!f.startsWith('dist/data/') || f === activeCatalog),
 );
 const hash = createHash('sha256');
 // Cache behavior is part of the build identity, even when app assets are unchanged.
@@ -33,9 +41,15 @@ self.addEventListener('message', event => {
   if (event.data?.type === 'ACTIVATE_UPDATE') self.skipWaiting();
 });
 self.addEventListener('activate', event => {
-  event.waitUntil(self.clients.claim());
-  // Retain previous immutable caches for other open tabs. Browser eviction / clear-site-data
-  // can reclaim them. Deleting old caches here can break an older tab's lazy assets.
+  event.waitUntil((async () => {
+    await self.clients.claim();
+    const keys = (await caches.keys()).filter(k => k.startsWith('pkm-eva-') && k !== CACHE);
+    const clients = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+    // Keep at most the most recent prior cache while multiple tabs transition;
+    // prune older caches to bound browser storage growth across updates.
+    const stale = clients.length > 1 ? keys.slice(0, -1) : keys;
+    await Promise.all(stale.map(k => caches.delete(k)));
+  })());
 });
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET' || new URL(event.request.url).origin !== self.location.origin) return;
