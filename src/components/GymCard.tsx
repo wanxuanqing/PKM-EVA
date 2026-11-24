@@ -1,13 +1,14 @@
-import type { Option } from '../types';
-import { gymReviewed, gymSource, gymTier } from '../lib/gym';
+import type { Catalog, Option } from '../types';
+import { gymMeta, gymTier } from '../lib/gym';
 
-export function GymCard({ option }: { option: Option }) {
+export function GymCard({ option, data }: { option: Option; data: Catalog }) {
   const p = option.species;
+  const gym = gymMeta(data.gymDefense);
   return (
     <article className="result-card role-Gym" aria-label={`${p.name} Gym Defense`}>
       <div className="result-top">
         <span className="league-badge league-Gym">Gym Defense</span>
-        <span className="species-rank">{gymTier(p)} tier · species bulk</span>
+        <span className="species-rank">{gymTier(p, data.gymDefense)} tier · species bulk</span>
       </div>
       <div className="target-title">
         <div>
@@ -53,10 +54,10 @@ export function GymCard({ option }: { option: Option }) {
             inherit this shortlist's ratings.
           </p>
           <p className="source-line">
-            <a href={gymSource} target="_blank" rel="noreferrer">
+            <a href={gym.source} target="_blank" rel="noreferrer">
               GO Hub gym-defense tiers ↗
             </a>{' '}
-            · reviewed {gymReviewed}
+            · reviewed {gym.reviewed}
           </p>
         </div>
       </details>

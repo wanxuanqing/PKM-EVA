@@ -3,6 +3,7 @@ dist
 .work
 test-results
 public/data
+data/archive
 data/raw
 data/audit-*.json
 prompt.md

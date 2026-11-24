@@ -4,11 +4,13 @@ import { searchSpecies } from '../lib/search';
 import { Icon } from './Icon';
 export function Selector({
   species,
+  byId,
   selected,
   onSelect,
   recent,
 }: {
   species: Species[];
+  byId?: Map<string, Species>;
   selected: Species;
   onSelect: (p: Species) => void;
   recent: string[];
@@ -17,6 +19,7 @@ export function Selector({
   const [query, setQuery] = useState('');
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
+  const lookup = useMemo(() => byId ?? new Map(species.map((p) => [p.id, p])), [byId, species]);
   const results = useMemo(() => searchSpecies(species, query), [species, query]);
   const choose = (p: Species) => {
     onSelect(p);
@@ -146,7 +149,10 @@ export function Selector({
           <select
             id={`${id}-form`}
             value={selected.id}
-            onChange={(e) => choose(species.find((p) => p.id === e.target.value)!)}
+            onChange={(e) => {
+              const found = lookup.get(e.target.value);
+              if (found) choose(found);
+            }}
           >
             {forms.map((p) => (
               <option key={p.id} value={p.id}>
@@ -185,7 +191,7 @@ export function Selector({
             .filter((r) => r !== selected.id)
             .slice(0, 3)
             .map((r) => {
-              const p = species.find((s) => s.id === r);
+              const p = lookup.get(r);
               return (
                 p && (
                   <button key={r} type="button" onClick={() => choose(p)}>

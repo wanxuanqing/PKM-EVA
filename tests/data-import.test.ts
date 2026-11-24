@@ -49,6 +49,17 @@ it('rejects missing CP multipliers and dangling evolution targets', () => {
   const data = JSON.parse(readFileSync(`public${pointer.file}`, 'utf8'));
   expect(validateCatalog(data, 1608)).toBe(true);
   expect(() => validateCatalog({ ...data, cpm: [] }, 1608)).toThrow();
+  expect(() =>
+    validateCatalog(
+      { ...data, gymDefense: { ...data.gymDefense, tiers: { blissey_shadow: 'SS' } } },
+      1608,
+    ),
+  ).toThrow('Invalid gym defense form');
+  const missingArtwork = { ...data.artwork.forms };
+  delete missingArtwork.avalugg_hisuian;
+  expect(() =>
+    validateCatalog({ ...data, artwork: { ...data.artwork, forms: missingArtwork } }, 1608),
+  ).toThrow('Missing artwork decision');
   data.species[0].evolutions.push({ to: 'missing-form' });
   expect(() => validateCatalog(data, 1608)).toThrow('Dangling');
 });

@@ -1,17 +1,20 @@
 import { raidNotes } from '../lib/raidNotes';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Catalog } from '../types';
 import { topPokemon, evolutionLines, type TopCategory } from '../lib/topPokemon';
-import type { TopResponse } from '../worker/top.worker';
+import type { TopBatchResponse, TopRequest, TopResponse } from '../worker/top.worker';
 import { MaxPokemon } from './MaxPokemon';
 import { PokemonPicture } from './PokemonPicture';
 import { leagueNames } from '../lib/leagueNames';
 import { sourceURL } from '../lib/data';
+const topIdealsCache = new Map<string, Record<string, TopResponse>>();
 export function TopPokemon({ data }: { data: Catalog }) {
   const [category, setCategory] = useState<TopCategory | 'Max'>('GL');
   const [type, setType] = useState('All');
   const [results, setResults] = useState<Record<string, TopResponse>>({});
   const [error, setError] = useState('');
+  const workerRef = useRef<Worker | null>(null);
+  const serial = useRef(0);
   const entries = useMemo(
     () => (category === 'Max' ? [] : topPokemon(data, category, type)),
     [data, category, type],
@@ -32,18 +35,50 @@ export function TopPokemon({ data }: { data: Catalog }) {
     [data],
   );
   useEffect(() => {
-    setResults({});
+    return () => {
+      workerRef.current?.terminate();
+      workerRef.current = null;
+    };
+  }, []);
+  useEffect(() => {
+    const requestId = ++serial.current;
     setError('');
-    if (category === 'Raid' || category === 'ML' || category === 'Max') return;
-    const worker = new Worker(new URL('../worker/top.worker.ts', import.meta.url), {
-      type: 'module',
-    });
-    worker.onmessage = (event: MessageEvent<TopResponse>) =>
-      setResults((old) => ({ ...old, [event.data.id]: event.data }));
+    if (category === 'Raid' || category === 'ML' || category === 'Max') {
+      setResults({});
+      return;
+    }
+    const cacheKey = `${data.version}:${category}`;
+    const cached = topIdealsCache.get(cacheKey);
+    if (cached && entries.every((e) => e.species.id in cached)) {
+      setResults(cached);
+      return;
+    }
+    setResults(cached ?? {});
+    if (!workerRef.current) {
+      workerRef.current = new Worker(new URL('../worker/top.worker.ts', import.meta.url), {
+        type: 'module',
+      });
+    }
+    const worker = workerRef.current;
+    worker.onmessage = (event: MessageEvent<TopBatchResponse>) => {
+      if (event.data.id !== serial.current) return;
+      setResults((old) => {
+        const next = { ...old };
+        for (const item of event.data.batch) next[item.id] = item;
+        if (event.data.done) topIdealsCache.set(cacheKey, next);
+        return next;
+      });
+    };
     worker.onerror = () =>
       setError('Ideal IV calculations could not start. Reopen this tab to retry.');
-    worker.postMessage({ league: category, species: entries.map((e) => e.species), cpm: data.cpm });
-    return () => worker.terminate();
+    const request: TopRequest = {
+      id: requestId,
+      version: data.version,
+      league: category,
+      species: entries.map((e) => e.species),
+      cpm: data.cpm,
+    };
+    worker.postMessage(request);
   }, [entries, category, data]);
   return (
     <section className="top-pokemon" aria-labelledby="top-title">

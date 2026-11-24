@@ -6,6 +6,7 @@ import type {
   Option,
   CollectionFlags,
   MaxBattleData,
+  GymDefenseData,
 } from '../types';
 import { goodOverallIV, qualifies } from './calculator.ts';
 import { gymTier } from './gym.ts';
@@ -71,12 +72,21 @@ export function reachable(
   }
   return results;
 }
-export function optionsFor(targets: Reachable[], maxBattles?: MaxBattleData): Option[] {
+export function optionsFor(
+  targets: Reachable[],
+  maxBattles?: MaxBattleData,
+  gymDefense?: GymDefenseData,
+): Option[] {
   const result: Option[] = [];
+  const maxBySpecies = new Map<string, ReturnType<typeof usefulMaxEntries>>();
+  for (const entry of usefulMaxEntries(maxBattles)) {
+    const list = maxBySpecies.get(entry.speciesId);
+    if (list) list.push(entry);
+    else maxBySpecies.set(entry.speciesId, [entry]);
+  }
   for (const target of targets) {
     if (!target.species.shadow && !target.species.temporary) {
-      for (const entry of usefulMaxEntries(maxBattles)) {
-        if (entry.speciesId !== target.species.id) continue;
+      for (const entry of maxBySpecies.get(target.species.id) ?? []) {
         // Evolution does not turn a Dynamax copy into a Gigantamax copy.
         if (entry.mode === 'Gigantamax' && target.path.length > 1) continue;
         const roles = entry.roles.filter((r) => goodMaxTier(r.tier));
@@ -100,7 +110,7 @@ export function optionsFor(targets: Reachable[], maxBattles?: MaxBattleData): Op
         });
       }
     }
-    if (gymTier(target.species))
+    if (gymTier(target.species, gymDefense))
       result.push({ ...target, role: 'Gym', key: `${target.species.id}:Gym` });
     for (const role of ['GL', 'UL', 'ML'] as const) {
       const ranking = target.species.rankings[role];
@@ -149,6 +159,7 @@ export function recommendation(
   flags: CollectionFlags,
   settings: Settings,
   ready: boolean,
+  gymDefense?: GymDefenseData,
 ): Recommendation {
   const collectible =
     flags.shiny ||
@@ -180,7 +191,9 @@ export function recommendation(
             o.max?.support?.some((r) => goodMaxTier(r.tier))
           )
         : o.role === 'Gym'
-          ? !!gymTier(o.species)
+          ? gymDefense
+            ? !!gymTier(o.species, gymDefense)
+            : true
           : !!o.result?.stats,
   );
   const reachable = useful.filter(
@@ -189,20 +202,24 @@ export function recommendation(
   const good = reachable.filter((o) =>
     o.role === 'GL' || o.role === 'UL'
       ? (o.result?.percentile ?? -1) > settings.threshold
-      : goodOverallIV(ivs),
+      : o.role === 'ML'
+        ? o.result?.inPool !== false && goodOverallIV(ivs)
+        : o.role === 'Raid'
+          ? goodOverallIV(ivs)
+          : false,
   );
   const defenders = reachable.filter((o) => o.role === 'Gym');
+  if (good.length)
+    return {
+      verdict: 'Keep',
+      title: 'A place on your team.',
+      reason: `${good.length} useful ${good.length === 1 ? 'option meets' : 'options meet'} your IV preference.${defenders.length ? ` Also on the gym-defense shortlist (${defenders.map((o) => o.species.name).join(', ')}).` : ''} Check moves and evolution requirements before investing; IVs alone do not determine battle performance.`,
+    };
   if (defenders.length)
     return {
       verdict: 'Keep',
       title: 'Useful for gym defense.',
       reason: `${defenders.map((o) => o.species.name).join(', ')} ${defenders.length === 1 ? 'is' : 'are'} on the sourced gym-defense shortlist. No minimum IV percentage is required for this role. Consider keeping a defender; this is not a recommendation to power up every copy. Check evolution requirements and your existing defenders.`,
-    };
-  if (good.length)
-    return {
-      verdict: 'Keep',
-      title: 'A place on your team.',
-      reason: `${good.length} useful ${good.length === 1 ? 'option meets' : 'options meet'} your IV preference. Check moves and evolution requirements before investing; IVs alone do not determine battle performance.`,
     };
   if (useful.some((o) => o.role === 'Max'))
     return {

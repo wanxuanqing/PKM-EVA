@@ -5,9 +5,10 @@ import type { Catalog, CollectionFlags, IVs, Settings, Species } from '../src/ty
 import { copyGender, reachable, optionsFor, recommendation } from '../src/lib/assessment';
 import { assessIVs, distribution } from '../src/lib/calculator';
 import { searchSpecies } from '../src/lib/search';
-import { gymTier, gymTiers } from '../src/lib/gym';
+import { gymMeta, gymTier } from '../src/lib/gym';
 const data = JSON.parse(readFileSync(`public${pointer.file}`, 'utf8')) as Catalog;
 const map = new Map(data.species.map((p) => [p.id, p]));
+const gymTiers = gymMeta(data.gymDefense).tiers;
 const settings: Settings = {
   maxLevel: 50,
   bestBuddy: false,
@@ -33,25 +34,37 @@ describe('catalog and branches', () => {
     for (const [id, tier] of Object.entries(gymTiers)) {
       const p = map.get(id)!;
       expect(p, id).toBeDefined();
-      expect(gymTier(p)).toBe(tier);
-      expect(gymTier({ ...p, shadow: true })).toBeUndefined();
-      expect(gymTier({ ...p, temporary: true })).toBeUndefined();
+      expect(gymTier(p, data.gymDefense)).toBe(tier);
+      expect(gymTier({ ...p, shadow: true }, data.gymDefense)).toBeUndefined();
+      expect(gymTier({ ...p, temporary: true }, data.gymDefense)).toBeUndefined();
     }
-    expect(optionsFor(paths('regigigas')).some((o) => o.role === 'Gym')).toBe(false);
+    expect(
+      optionsFor(paths('regigigas'), data.maxBattles, data.gymDefense).some(
+        (o) => o.role === 'Gym',
+      ),
+    ).toBe(false);
   });
   it('keeps low-IV Chansey for gyms and follows Happiny and Eevee evolution paths', () => {
-    const options = optionsFor(paths('chansey'));
-    const result = recommendation(map.get('chansey')!, [1, 2, 3], options, flags, settings, true);
+    const options = optionsFor(paths('chansey'), data.maxBattles, data.gymDefense);
+    const result = recommendation(
+      map.get('chansey')!,
+      [1, 2, 3],
+      options,
+      flags,
+      settings,
+      true,
+      data.gymDefense,
+    );
     expect(result.verdict).toBe('Keep');
     expect(result.title).toBe('Useful for gym defense.');
     expect(
-      optionsFor(paths('happiny'))
+      optionsFor(paths('happiny'), data.maxBattles, data.gymDefense)
         .filter((o) => o.role === 'Gym')
         .map((o) => o.species.id)
         .sort(),
     ).toEqual(['blissey', 'chansey']);
     expect(
-      optionsFor(paths('eevee'))
+      optionsFor(paths('eevee'), data.maxBattles, data.gymDefense)
         .filter((o) => o.role === 'Gym')
         .map((o) => o.species.id)
         .sort(),
@@ -60,8 +73,62 @@ describe('catalog and branches', () => {
       .filter((o) => o.role === 'Gym')
       .map((o) => ({ ...o, conditional: true }));
     expect(
-      recommendation(map.get('chansey')!, [1, 2, 3], conditional, flags, settings, true).title,
+      recommendation(
+        map.get('chansey')!,
+        [1, 2, 3],
+        conditional,
+        flags,
+        settings,
+        true,
+        data.gymDefense,
+      ).title,
     ).toBe('Check the evolution conditions.');
+  });
+  it('prioritizes IV-meeting battle roles over gym defense while noting both', () => {
+    const p = map.get('rhyperior')!;
+    const ivs: IVs = [15, 15, 14];
+    const options = optionsFor(paths('rhyperior', {}, ivs), data.maxBattles, data.gymDefense).map(
+      (o) =>
+        o.role === 'ML'
+          ? {
+              ...o,
+              result: assessIVs(
+                { base: o.species.baseStats!, league: 'ML', maxLevel: 50, cpm: data.cpm },
+                ivs,
+                distribution({
+                  base: o.species.baseStats!,
+                  league: 'ML',
+                  maxLevel: 50,
+                  cpm: data.cpm,
+                }),
+              ),
+            }
+          : o,
+    );
+    const result = recommendation(p, ivs, options, flags, settings, true, data.gymDefense);
+    expect(result.verdict).toBe('Keep');
+    expect(result.title).toBe('A place on your team.');
+    expect(result.reason).toContain('gym-defense shortlist (Rhyperior)');
+  });
+  it('requests review when Master League IVs are outside the selected comparison floor', () => {
+    const p = map.get('mewtwo')!;
+    const ivs: IVs = [15, 15, 11];
+    const floorSettings: Settings = { ...settings, floor: 12 };
+    const c = {
+      base: p.baseStats!,
+      league: 'ML' as const,
+      maxLevel: 50,
+      floor: 12,
+      cpm: data.cpm,
+    };
+    const r = assessIVs(c, ivs, distribution(c));
+    expect(r.inPool).toBe(false);
+    const mlOnly = optionsFor(paths('mewtwo', floorSettings, ivs))
+      .filter((o) => o.role === 'ML')
+      .map((o) => ({ ...o, result: r }));
+    const result = recommendation(p, ivs, mlOnly, flags, floorSettings, true);
+    expect(result.verdict).toBe('Review');
+    expect(result.title).toBe('This copy needs a closer look.');
   });
   it('distinguishes Nidoran payload IDs and retains fixed genders through Shadow and temporary forms', () => {
     for (const gender of ['male', 'female'] as const) {

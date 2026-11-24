@@ -37,9 +37,14 @@ export function topPokemon(data: Catalog, category: TopCategory, type = 'All'): 
 }
 
 export type EvolutionLine = { species: Species[]; conditional: boolean };
-// Only evolution and temporary-evolution edges describe a lineage. Form changes
-// and fusions can be reversible and are not pre-evolutions.
-export function evolutionLines(data: Catalog, targetId: string): EvolutionLine[] {
+type LineageGraph = {
+  byId: Map<string, Species>;
+  parents: Map<string, { species: Species; conditional: boolean }[]>;
+};
+const lineageGraphs = new WeakMap<Catalog, LineageGraph>();
+function lineageGraph(data: Catalog): LineageGraph {
+  const existing = lineageGraphs.get(data);
+  if (existing) return existing;
   const byId = new Map(data.species.map((p) => [p.id, p]));
   const parents = new Map<string, { species: Species; conditional: boolean }[]>();
   for (const p of data.species)
@@ -65,6 +70,14 @@ export function evolutionLines(data: Catalog, targetId: string): EvolutionLine[]
       });
       parents.set(e.to, list);
     }
+  const graph = { byId, parents };
+  lineageGraphs.set(data, graph);
+  return graph;
+}
+// Only evolution and temporary-evolution edges describe a lineage. Form changes
+// and fusions can be reversible and are not pre-evolutions.
+export function evolutionLines(data: Catalog, targetId: string): EvolutionLine[] {
+  const { byId, parents } = lineageGraph(data);
   function walk(id: string, visited: Set<string>): EvolutionLine[] {
     const species = byId.get(id);
     if (!species || visited.has(id)) return [];
