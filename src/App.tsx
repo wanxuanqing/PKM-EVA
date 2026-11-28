@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Catalog, CollectionFlags, Settings, Species } from './types';
 import { overallIV, parseIVs, validLevel } from './lib/calculator';
 import { copyGender, optionsFor, reachable, recommendation } from './lib/assessment';
@@ -13,8 +13,16 @@ import { PokemonPicture } from './components/PokemonPicture';
 import { IvInputPanel } from './components/IvInputPanel';
 import { SettingsPanels } from './components/SettingsPanels';
 import { SavedPanel, type Saved } from './components/SavedPanel';
+import { AppraisalScanner, type ScannedApplyPayload } from './components/AppraisalScanner';
 import { useServiceWorker } from './hooks/useServiceWorker';
 import { useCalculatorWorker } from './hooks/useCalculatorWorker';
+import { useLibraryEvaluator } from './hooks/useLibraryEvaluator';
+import {
+  entryDedupeKey,
+  MAX_LIBRARY_ENTRIES,
+  sanitizeLibraryEntries,
+  type LibraryEntry,
+} from './lib/library';
 
 const defaults: Settings = {
   maxLevel: 50,
@@ -65,21 +73,11 @@ export default function App({ data }: { data: Catalog }) {
     const r = loadLocal<unknown>('recent', ['duskull']);
     return Array.isArray(r) ? r.filter((x) => typeof x === 'string').slice(0, 6) : ['duskull'];
   });
-  const [saved, setSaved] = useState<Saved[]>(() => {
-    const r = loadLocal<unknown>('saved', []);
-    return Array.isArray(r)
-      ? r.filter(
-          (s) =>
-            s &&
-            typeof s.id === 'string' &&
-            typeof s.speciesId === 'string' &&
-            Array.isArray(s.ivs) &&
-            s.ivs.length === 3 &&
-            s.settings &&
-            s.flags,
-        )
-      : [];
-  });
+  const [saved, setSaved] = useState<Saved[]>(() =>
+    sanitizeLibraryEntries(loadLocal<unknown>('saved', [])),
+  );
+  const savedRef = useRef<Saved[]>(saved);
+  savedRef.current = saved;
   const [toast, setToast] = useState('');
   const [filter, setFilter] = useState('All');
   const byId = useMemo(() => new Map(data.species.map((p) => [p.id, p])), [data]);
@@ -110,6 +108,16 @@ export default function App({ data }: { data: Catalog }) {
     currentLevel,
   });
   const { offlineReady, offlineUnavailable, update, activateUpdate } = useServiceWorker();
+  const {
+    evaluated: libraryEvaluated,
+    comparisons: libraryComparisons,
+    busy: libraryBusy,
+  } = useLibraryEvaluator({
+    entries: saved,
+    data,
+    byId,
+    active: page === 'saved',
+  });
   const options = useMemo(
     () => baseOptions.map((o) => ({ ...o, result: calculations[o.key] })),
     [baseOptions, calculations],
@@ -146,6 +154,30 @@ export default function App({ data }: { data: Catalog }) {
     setRecent(next);
     saveLocal('recent', next);
   }
+  function applyScan(payload: ScannedApplyPayload) {
+    const p = payload.species;
+    setSelectedId(p.id);
+    if (payload.ivs) {
+      setFields(payload.ivs.map(String));
+      setEdited(true);
+    }
+    setCurrentLevel(payload.currentLevel !== null ? String(payload.currentLevel) : '');
+    setSettings((s) => ({ ...s, gender: copyGender(p, payload.gender) }));
+    setFlags({
+      ...noFlags,
+      shiny: payload.flags.shiny,
+      costume: payload.flags.costume,
+      maxBattle: payload.flags.maxBattle,
+      alreadyTraded: payload.flags.alreadyTraded,
+    });
+    setFilter('All');
+    setPage('assess');
+    setRecent((prev) => {
+      const next = [p.id, ...prev.filter((r) => r !== p.id)].slice(0, 6);
+      saveLocal('recent', next);
+      return next;
+    });
+  }
   function save() {
     if (!ivs || !verdict || busy || !valid) return;
     const entry: Saved = {
@@ -161,11 +193,65 @@ export default function App({ data }: { data: Catalog }) {
       version: data.version,
       verdict: verdict.verdict,
     };
-    const next = [entry, ...saved].slice(0, 100);
+    const next = [entry, ...saved].slice(0, MAX_LIBRARY_ENTRIES);
     if (saveLocal('saved', next)) {
       setSaved(next);
       setToast('Assessment saved on this device.');
     } else setToast('Device storage is unavailable. This assessment could not be saved.');
+  }
+  function addToLibrary(
+    incoming: LibraryEntry[],
+    options?: { silent?: boolean },
+  ): { added: number; skippedDuplicates: number } {
+    const current = savedRef.current;
+    const existingKeys = new Set(current.map((e) => entryDedupeKey(e)));
+    const existingIds = new Set(current.map((e) => e.id));
+    const unique: LibraryEntry[] = [];
+    let skippedDuplicates = 0;
+    for (const entry of incoming) {
+      const key = entryDedupeKey(entry);
+      if (existingIds.has(entry.id) || existingKeys.has(key)) {
+        skippedDuplicates++;
+        continue;
+      }
+      existingIds.add(entry.id);
+      existingKeys.add(key);
+      unique.push(entry);
+    }
+    if (!unique.length) {
+      if (!options?.silent && skippedDuplicates) {
+        setToast('All scanned Pokémon are already in your library.');
+      }
+      return { added: 0, skippedDuplicates };
+    }
+    const next = [...unique, ...current].slice(0, MAX_LIBRARY_ENTRIES);
+    if (saveLocal('saved', next)) {
+      savedRef.current = next;
+      setSaved(next);
+      if (!options?.silent) {
+        setToast(
+          `Added ${unique.length} Pokémon to your library${skippedDuplicates ? ` (${skippedDuplicates} duplicate skipped)` : ''}.`,
+        );
+      }
+      return { added: unique.length, skippedDuplicates };
+    }
+    setToast('Device storage is unavailable. Could not add to library.');
+    return { added: 0, skippedDuplicates };
+  }
+  function updateSavedEntry(id: string, updater: (entry: LibraryEntry) => LibraryEntry) {
+    const next = saved.map((e) => (e.id === id ? updater(e) : e));
+    if (saveLocal('saved', next)) setSaved(next);
+    else setToast('Could not update device storage.');
+  }
+  function removeSavedBulk(ids: string[]) {
+    const drop = new Set(ids);
+    const next = saved.filter((x) => !drop.has(x.id));
+    if (saveLocal('saved', next)) {
+      setSaved(next);
+      setToast(
+        `Deleted ${ids.length} ${ids.length === 1 ? 'Pokémon' : 'Pokémon'} from your library.`,
+      );
+    } else setToast('Could not update device storage.');
   }
   function openSaved(s: Saved) {
     const p = byId.get(s.speciesId);
@@ -268,6 +354,13 @@ export default function App({ data }: { data: Catalog }) {
                     <h2>Your Pokémon</h2>
                     <span className="section-hint">Start here</span>
                   </div>
+                  <AppraisalScanner
+                    data={data}
+                    settings={settings}
+                    mode="assess"
+                    onApply={applyScan}
+                    onAddToLibrary={addToLibrary}
+                  />
                   <Selector
                     species={data.species}
                     byId={byId}
@@ -492,11 +585,20 @@ export default function App({ data }: { data: Catalog }) {
           <DataPanel data={data} />
         ) : (
           <SavedPanel
+            data={data}
+            settings={settings}
             saved={saved}
             byId={byId}
+            evaluated={libraryEvaluated}
+            comparisons={libraryComparisons}
+            evaluating={libraryBusy}
             onAssess={() => setPage('assess')}
             onOpen={openSaved}
             onRemove={removeSaved}
+            onBulkRemove={removeSavedBulk}
+            onUpdateEntry={updateSavedEntry}
+            onAddToLibrary={addToLibrary}
+            onNotify={setToast}
           />
         )}
         <footer>
