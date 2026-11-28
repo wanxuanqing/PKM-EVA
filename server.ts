@@ -21,6 +21,163 @@ const DEFAULT_MODEL_ID = 'gemini-4-hydrogen';
 const BACKUP_MODEL_ID = 'gemini-3.8-flash';
 const RETRYABLE_STATUSES = new Set([429, 500, 503, 504]);
 const MAX_RETRIES_PER_MODEL = 1;
+const DEFAULT_GEMINI_TIMEOUT_MS = 45_000;
+const DEFAULT_RATE_LIMIT_PER_MIN = 30;
+const DEFAULT_DAILY_MAX_FRAMES = 600;
+const DEFAULT_MAX_CONCURRENT = 2;
+
+export const PRODUCTION_CSP = [
+  "default-src 'self'",
+  "script-src 'self'",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob: https://raw.githubusercontent.com/PokeAPI/sprites/",
+  "media-src 'self' blob:",
+  "connect-src 'self'",
+  "worker-src 'self'",
+  "manifest-src 'self'",
+  "base-uri 'self'",
+  "frame-ancestors 'none'",
+].join('; ');
+
+function parsePositiveIntEnv(name: string, fallback: number): number {
+  const raw = process.env[name]?.trim();
+  if (!raw) return fallback;
+  const parsed = Number.parseInt(raw, 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
+
+export type ScanGuardOptions = {
+  maxPerMinute?: number;
+  dailyMaxFrames?: number;
+  maxConcurrent?: number;
+};
+
+export type ScanGuardAcquireResult =
+  | { ok: true; release: (refundDailyFrames?: boolean) => void }
+  | { ok: false; status: number; retryAfterSec: number; error: string };
+
+export class ScanGuard {
+  maxPerMinute: number;
+  dailyMaxFrames: number;
+  maxConcurrent: number;
+  inFlight: number;
+  dayKey: string;
+  dailyFramesUsed: number;
+  ipHits: Map<string, number[]>;
+
+  constructor(options?: ScanGuardOptions) {
+    this.maxPerMinute =
+      options?.maxPerMinute ??
+      parsePositiveIntEnv('SCAN_RATE_LIMIT_PER_MIN', DEFAULT_RATE_LIMIT_PER_MIN);
+    this.dailyMaxFrames =
+      options?.dailyMaxFrames ??
+      parsePositiveIntEnv('SCAN_DAILY_MAX_FRAMES', DEFAULT_DAILY_MAX_FRAMES);
+    this.maxConcurrent =
+      options?.maxConcurrent ?? parsePositiveIntEnv('SCAN_MAX_CONCURRENT', DEFAULT_MAX_CONCURRENT);
+    this.inFlight = 0;
+    this.dayKey = new Date().toISOString().slice(0, 10);
+    this.dailyFramesUsed = 0;
+    this.ipHits = new Map();
+  }
+
+  acquire(ip: string, frameCount: number, now = Date.now()): ScanGuardAcquireResult {
+    const today = new Date(now).toISOString().slice(0, 10);
+    if (today !== this.dayKey) {
+      this.dayKey = today;
+      this.dailyFramesUsed = 0;
+    }
+
+    if (this.inFlight >= this.maxConcurrent) {
+      return {
+        ok: false,
+        status: 503,
+        retryAfterSec: 5,
+        error: 'Scanner is busy processing other requests. Please retry in a few seconds.',
+      };
+    }
+
+    const windowStart = now - 60_000;
+    if (this.ipHits.size > 500) {
+      for (const [key, times] of this.ipHits) {
+        const recent = times.filter((t) => t > windowStart);
+        if (recent.length) this.ipHits.set(key, recent);
+        else this.ipHits.delete(key);
+      }
+    }
+
+    const clientKey = ip.trim() || 'unknown';
+    const hits = (this.ipHits.get(clientKey) ?? []).filter((t) => t > windowStart);
+    if (hits.length >= this.maxPerMinute) {
+      const retryAfterSec = Math.max(1, Math.ceil((hits[0] + 60_000 - now) / 1000));
+      this.ipHits.set(clientKey, hits);
+      return {
+        ok: false,
+        status: 429,
+        retryAfterSec,
+        error: `Too many scan requests from this IP (limit ${this.maxPerMinute}/min). Wait ${retryAfterSec}s and try again.`,
+      };
+    }
+
+    if (this.dailyFramesUsed + frameCount > this.dailyMaxFrames) {
+      const nextMidnight = Date.UTC(
+        new Date(now).getUTCFullYear(),
+        new Date(now).getUTCMonth(),
+        new Date(now).getUTCDate() + 1,
+      );
+      const retryAfterSec = Math.max(60, Math.ceil((nextMidnight - now) / 1000));
+      return {
+        ok: false,
+        status: 429,
+        retryAfterSec,
+        error: `Daily server scan limit (${this.dailyMaxFrames} frames/day) reached. Resets at 00:00 UTC.`,
+      };
+    }
+
+    hits.push(now);
+    this.ipHits.set(clientKey, hits);
+    this.dailyFramesUsed += frameCount;
+    this.inFlight++;
+
+    let released = false;
+    return {
+      ok: true,
+      release: (refundDailyFrames = false) => {
+        if (released) return;
+        released = true;
+        this.inFlight = Math.max(0, this.inFlight - 1);
+        if (refundDailyFrames) {
+          this.dailyFramesUsed = Math.max(0, this.dailyFramesUsed - frameCount);
+        }
+      },
+    };
+  }
+}
+
+export async function withTimeout<T>(
+  promise: Promise<T>,
+  timeoutMs: number,
+  label = 'Gemini appraisal request',
+): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  try {
+    return await Promise.race([
+      promise,
+      new Promise<never>((_, reject) => {
+        timer = setTimeout(() => {
+          const err = new Error(
+            `${label} timed out after ${Math.round(timeoutMs / 1000)}s.`,
+          ) as Error & {
+            status?: number;
+          };
+          err.status = 504;
+          reject(err);
+        }, timeoutMs);
+      }),
+    ]);
+  } finally {
+    if (timer !== undefined) clearTimeout(timer);
+  }
+}
 
 export const APPRAISAL_SYSTEM_INSTRUCTION = `You are a precision visual reader for Pokémon GO appraisal screenshots.
 Your ONLY job is to accurately read what is visible in each screenshot into structured JSON. Do NOT compute battle rankings or keep/transfer advice.
@@ -252,17 +409,22 @@ async function scanWithGemini(frames: ScanFrameInput[]): Promise<AppraisalReadin
 
   const primaryModel = process.env.GEMINI_MODEL?.trim() || DEFAULT_MODEL_ID;
   const backupModel = process.env.GEMINI_BACKUP_MODEL?.trim() || BACKUP_MODEL_ID;
+  const timeoutMs = parsePositiveIntEnv('GEMINI_TIMEOUT_MS', DEFAULT_GEMINI_TIMEOUT_MS);
   const { result: response } = await runWithModelFallback([primaryModel, backupModel], (modelId) =>
-    ai.models.generateContent({
-      model: modelId,
-      contents: [{ role: 'user', parts }],
-      config: {
-        systemInstruction: APPRAISAL_SYSTEM_INSTRUCTION,
-        thinkingConfig: { thinkingLevel: ThinkingLevel.LOW },
-        responseMimeType: 'application/json',
-        responseSchema: APPRAISAL_RESPONSE_SCHEMA,
-      },
-    }),
+    withTimeout(
+      ai.models.generateContent({
+        model: modelId,
+        contents: [{ role: 'user', parts }],
+        config: {
+          systemInstruction: APPRAISAL_SYSTEM_INSTRUCTION,
+          thinkingConfig: { thinkingLevel: ThinkingLevel.LOW },
+          responseMimeType: 'application/json',
+          responseSchema: APPRAISAL_RESPONSE_SCHEMA,
+        },
+      }),
+      timeoutMs,
+      `Gemini scan (${modelId})`,
+    ),
   );
 
   const text = response.text?.trim();
@@ -339,32 +501,86 @@ function extractApiError(error: unknown): { status: number; message: string } {
 export async function handleScanAppraisal(
   body: unknown,
   scanner: GeminiScannerFn = scanWithGemini,
-): Promise<{ status: number; body: { results: AppraisalReading[] } | { error: string } }> {
+  context?: { ip?: string; guard?: ScanGuard },
+): Promise<{
+  status: number;
+  retryAfterSec?: number;
+  body: { results: AppraisalReading[] } | { error: string };
+}> {
   const { frames, error } = validateScanFrames(body);
   if (error || !frames) {
     return { status: 400, body: { error: error ?? 'Invalid scan request.' } };
   }
+
+  let lease: { release: (refundDailyFrames?: boolean) => void } | null = null;
+  if (context?.guard) {
+    const acquired = context.guard.acquire(context.ip ?? 'unknown', frames.length);
+    if (!acquired.ok) {
+      return {
+        status: acquired.status,
+        retryAfterSec: acquired.retryAfterSec,
+        body: { error: acquired.error },
+      };
+    }
+    lease = acquired;
+  }
+
+  let refundBudget = false;
   try {
     const results = await scanner(frames);
     return { status: 200, body: { results } };
   } catch (err) {
     const { status, message } = extractApiError(err);
+    // Do not consume daily scan budget when the server key is missing or upstream fails cleanly.
+    if (status >= 500) refundBudget = true;
     return { status, body: { error: message } };
+  } finally {
+    lease?.release(refundBudget);
   }
 }
 
 export async function createServerApp(options?: {
   mode?: 'development' | 'production' | 'api-only';
   scanner?: GeminiScannerFn;
+  guard?: ScanGuard;
 }) {
   const app = express();
   app.disable('x-powered-by');
+  const trustProxyRaw = process.env.TRUST_PROXY?.trim();
+  app.set('trust proxy', trustProxyRaw === 'false' ? false : trustProxyRaw === 'true' ? true : 1);
+
+  const inferredMode =
+    options?.mode ??
+    (process.env.NODE_ENV === 'production'
+      ? 'production'
+      : process.env.NODE_ENV === 'development'
+        ? 'development'
+        : process.execArgv.some((arg) => arg.includes('tsx')) || !existsSync(DIST_INDEX)
+          ? 'development'
+          : 'production');
+
+  // Mirror public/_headers security headers in Express responses.
+  app.use((_req: Request, res: Response, next: NextFunction) => {
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+    res.setHeader('X-Frame-Options', 'DENY');
+    if (inferredMode === 'production') {
+      res.setHeader('Content-Security-Policy', PRODUCTION_CSP);
+    }
+    next();
+  });
+
   app.use(express.json({ limit: '16mb' }));
 
   const scanner = options?.scanner ?? scanWithGemini;
+  const guard = options?.guard ?? new ScanGuard();
 
   app.post('/api/scan-appraisal', async (req: Request, res: Response) => {
-    const result = await handleScanAppraisal(req.body, scanner);
+    const ip = req.ip || req.socket.remoteAddress || 'unknown';
+    const result = await handleScanAppraisal(req.body, scanner, { ip, guard });
+    if (result.retryAfterSec !== undefined) {
+      res.setHeader('Retry-After', String(result.retryAfterSec));
+    }
     res.status(result.status).json(result.body);
   });
 
@@ -385,16 +601,6 @@ export async function createServerApp(options?: {
     }
     next(err);
   });
-
-  const inferredMode =
-    options?.mode ??
-    (process.env.NODE_ENV === 'production'
-      ? 'production'
-      : process.env.NODE_ENV === 'development'
-        ? 'development'
-        : process.execArgv.some((arg) => arg.includes('tsx')) || !existsSync(DIST_INDEX)
-          ? 'development'
-          : 'production');
 
   if (inferredMode === 'development') {
     const { createServer: createViteServer } = await import('vite');

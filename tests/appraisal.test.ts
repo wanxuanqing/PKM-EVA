@@ -11,7 +11,14 @@ import {
   signatureDifference,
   type BandSignature,
 } from '../src/lib/frameExtract';
-import { handleScanAppraisal, runWithModelFallback, validateScanFrames } from '../server';
+import {
+  handleScanAppraisal,
+  PRODUCTION_CSP,
+  runWithModelFallback,
+  ScanGuard,
+  validateScanFrames,
+  withTimeout,
+} from '../server';
 
 const data = JSON.parse(readFileSync(`public${pointer.file}`, 'utf8')) as Catalog;
 const byId = new Map(data.species.map((p) => [p.id, p]));
@@ -322,5 +329,44 @@ describe('server /api/scan-appraisal endpoint', () => {
       ),
     ).rejects.toThrow('API key not valid');
     expect(authCalls).toEqual(['gemini-4-hydrogen']);
+  });
+
+  it('enforces per-IP rate limits, daily frame caps, concurrency limits, and upstream timeouts', async () => {
+    const guard = new ScanGuard({ maxPerMinute: 2, dailyMaxFrames: 5, maxConcurrent: 1 });
+    const t0 = Date.UTC(2026, 10, 27, 12, 0, 0);
+
+    // Concurrency limit: 2nd simultaneous request gets 503
+    const lease1 = guard.acquire('1.2.3.4', 2, t0);
+    expect(lease1.ok).toBe(true);
+    const blockedConcurrent = guard.acquire('5.6.7.8', 2, t0 + 100);
+    expect(blockedConcurrent).toMatchObject({ ok: false, status: 503 });
+    if (lease1.ok) lease1.release();
+
+    // Per-IP per-minute limit: 2nd passes, 3rd within 60s gets 429
+    const lease2 = guard.acquire('1.2.3.4', 2, t0 + 200);
+    expect(lease2.ok).toBe(true);
+    if (lease2.ok) lease2.release();
+    const blockedRate = guard.acquire('1.2.3.4', 1, t0 + 300);
+    expect(blockedRate).toMatchObject({ ok: false, status: 429 });
+
+    // Daily global cap: 4 frames already used, requesting 2 more from a different IP exceeds 5/day
+    const blockedDaily = guard.acquire('9.9.9.9', 2, t0 + 400);
+    expect(blockedDaily).toMatchObject({ ok: false, status: 429 });
+
+    // Resets on next UTC day
+    const nextDay = Date.UTC(2026, 10, 28, 0, 0, 5);
+    const afterReset = guard.acquire('9.9.9.9', 2, nextDay);
+    expect(afterReset.ok).toBe(true);
+    if (afterReset.ok) afterReset.release();
+
+    // Upstream timeout rejects cleanly with status 504
+    await expect(withTimeout(new Promise(() => {}), 25, 'Gemini test')).rejects.toMatchObject({
+      status: 504,
+    });
+
+    // Production CSP mirrors public/_headers while permitting local blob: media/image decoding
+    expect(PRODUCTION_CSP).toContain("frame-ancestors 'none'");
+    expect(PRODUCTION_CSP).toContain("media-src 'self' blob:");
+    expect(PRODUCTION_CSP).toContain('blob:');
   });
 });
