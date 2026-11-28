@@ -932,3 +932,233 @@ test('Wild Area regional forms and Max debuts remain distinct in the app', async
     0,
   );
 });
+
+test('appraisal scanner previews frames, verifies CP, offers 1-tap IV fixes, and preserves general settings', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  const pointer = JSON.parse(await readFile(resolve('src/data/current.json'), 'utf8'));
+  const catalog = JSON.parse(await readFile(resolve('public' + pointer.file), 'utf8')) as Catalog;
+  const mewtwo = catalog.species.find((p) => p.id === 'mewtwo')!;
+  const cpm40 = catalog.cpm[(40 - 1) * 2];
+  const atk = mewtwo.baseStats!.atk + 15;
+  const def = mewtwo.baseStats!.def + 14;
+  const hpBase = mewtwo.baseStats!.hp + 13;
+  const exactCp = Math.max(
+    10,
+    Math.floor((atk * Math.sqrt(def) * Math.sqrt(hpBase) * cpm40 * cpm40) / 10),
+  );
+  const exactHp = Math.max(10, Math.floor(hpBase * cpm40));
+
+  await page.route('**/api/scan-appraisal', async (route) => {
+    const req = route.request().postDataJSON() as { frames: { id: string }[] };
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({
+        results: req.frames.map((frame, i) =>
+          i === 0
+            ? {
+                id: frame.id,
+                readable: true,
+                reason: null,
+                speciesName: 'Mewtwo',
+                formHints: [],
+                attackIv: 15,
+                defenseIv: 13,
+                hpIv: 13,
+                cp: exactCp,
+                hp: exactHp,
+                gender: 'unknown',
+                isShadow: false,
+                isShiny: true,
+                isCostume: false,
+                isTraded: false,
+                isMaxBattle: false,
+                confidence: 'medium',
+                uncertainFields: ['defenseIv'],
+              }
+            : {
+                id: frame.id,
+                readable: false,
+                reason: 'Mid-swipe frame without appraisal bars.',
+                speciesName: null,
+                formHints: [],
+                attackIv: null,
+                defenseIv: null,
+                hpIv: null,
+                cp: null,
+                hp: null,
+                gender: 'unknown',
+                isShadow: false,
+                isShiny: false,
+                isCostume: false,
+                isTraded: false,
+                isMaxBattle: false,
+                confidence: 'low',
+                uncertainFields: [],
+              },
+        ),
+      }),
+    });
+  });
+
+  await page.goto('/');
+  await stable(page);
+  // Set a custom general setting first to ensure scanning never overwrites general settings.
+  await page.getByText('Level & comparison settings', { exact: true }).click();
+  await page.getByLabel('Maximum level', { exact: true }).fill('40');
+  await stable(page);
+
+  await page.getByText('Scan screenshot or recording', { exact: true }).click();
+  const samplePng = await readFile(resolve('public/icon-192.png'));
+  await page.locator('input[type="file"]').setInputFiles([
+    { name: 'mewtwo-appraisal.png', mimeType: 'image/png', buffer: samplePng },
+    { name: 'blurry-swipe.png', mimeType: 'image/png', buffer: samplePng },
+  ]);
+
+  await expect(page.getByText('Frame preview (2 of 2 selected)', { exact: true })).toBeVisible();
+  await expect(page.getByLabel('Crop top 4% OS status bar', { exact: false })).toBeChecked();
+  await page.getByRole('button', { name: 'Scan 2 frames with Gemini', exact: true }).click();
+
+  const review = page.getByRole('region', { name: 'Appraisal scan review', exact: true });
+  await expect(review).toBeVisible();
+  await expect(review).toContainText('CP mismatch — check IVs');
+  await expect(page.getByLabel('Maximum level', { exact: true })).toHaveValue('40');
+
+  // Tap the top CP-valid 15/14/13 suggestion chip to verify CP & auto-infer level 40.
+  await review.getByRole('button', { name: /15\/14\/13 · Lv 40/ }).click();
+  await stable(page);
+  await expect(review).toContainText(`CP ${exactCp.toLocaleString()} verified · Lv 40`);
+  await expect(page.getByLabel('Defense', { exact: true })).toHaveValue('14');
+  await expect(page.getByLabel('Current level', { exact: true })).toHaveValue('40');
+  await noOverflow(page);
+
+  const a11y = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+  expect(a11y.violations).toEqual([]);
+});
+
+test('unified library imports scanned batches, ranks duplicates, fixes CP inline, and supports select-few or select-all bulk delete', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  const pointer = JSON.parse(await readFile(resolve('src/data/current.json'), 'utf8'));
+  const catalog = JSON.parse(await readFile(resolve('public' + pointer.file), 'utf8')) as Catalog;
+  const duskull = catalog.species.find((p) => p.id === 'duskull')!;
+  const mewtwo = catalog.species.find((p) => p.id === 'mewtwo')!;
+  const calcCpHp = (
+    sp: Catalog['species'][number],
+    ivs: [number, number, number],
+    level: number,
+  ) => {
+    const m = catalog.cpm[(level - 1) * 2];
+    const cp = Math.max(
+      10,
+      Math.floor(
+        ((sp.baseStats!.atk + ivs[0]) *
+          Math.sqrt(sp.baseStats!.def + ivs[1]) *
+          Math.sqrt(sp.baseStats!.hp + ivs[2]) *
+          m *
+          m) /
+          10,
+      ),
+    );
+    const hp = Math.max(10, Math.floor((sp.baseStats!.hp + ivs[2]) * m));
+    return { cp, hp };
+  };
+  const duskGood = calcCpHp(duskull, [1, 12, 13], 25);
+  const duskWeak = calcCpHp(duskull, [14, 1, 2], 22);
+  const { cp: exactCp, hp: exactHp } = calcCpHp(mewtwo, [15, 14, 13], 40);
+
+  await page.route('**/api/scan-appraisal', async (route) => {
+    const req = route.request().postDataJSON() as { frames: { id: string }[] };
+    const readings = [
+      {
+        speciesName: 'Duskull',
+        attackIv: 1,
+        defenseIv: 12,
+        hpIv: 13,
+        cp: duskGood.cp,
+        hp: duskGood.hp,
+        uncertainFields: [],
+      },
+      {
+        speciesName: 'Duskull',
+        attackIv: 14,
+        defenseIv: 1,
+        hpIv: 2,
+        cp: duskWeak.cp,
+        hp: duskWeak.hp,
+        uncertainFields: [],
+      },
+      {
+        speciesName: 'Mewtwo',
+        attackIv: 15,
+        defenseIv: 13,
+        hpIv: 13,
+        cp: exactCp,
+        hp: exactHp,
+        uncertainFields: ['defenseIv'],
+      },
+    ];
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({
+        results: req.frames.map((frame, i) => ({
+          id: frame.id,
+          readable: true,
+          reason: null,
+          formHints: [],
+          gender: 'unknown',
+          isShadow: false,
+          isShiny: false,
+          isCostume: false,
+          isTraded: false,
+          isMaxBattle: false,
+          confidence: 'high',
+          ...readings[i % readings.length],
+        })),
+      }),
+    });
+  });
+
+  await page.goto('/');
+  await stable(page);
+  await page.getByRole('button', { name: /Saved/ }).click();
+
+  const samplePng = await readFile(resolve('public/icon-192.png'));
+  await page.locator('.library-import-box input[type="file"]').setInputFiles([
+    { name: 'duskull-good.png', mimeType: 'image/png', buffer: samplePng },
+    { name: 'duskull-weak.png', mimeType: 'image/png', buffer: samplePng },
+    { name: 'mewtwo-off1.png', mimeType: 'image/png', buffer: samplePng },
+  ]);
+
+  await expect(page.getByText('Frame preview (3 of 3 selected)', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Scan & add 3 frames to Library', exact: true }).click();
+
+  await expect(page.locator('.saved-card')).toHaveCount(3);
+  await expect(page.getByText('#1 in library for', { exact: false })).toBeVisible();
+  await expect(page.getByText('Outranked in', { exact: false })).toBeVisible();
+
+  const mewtwoCard = page.locator('.saved-card', { hasText: 'Mewtwo' });
+  await expect(mewtwoCard).toContainText('CP mismatch');
+  await mewtwoCard.getByRole('button', { name: /15\/14\/13 · Lv 40/ }).click();
+  await expect(mewtwoCard).toContainText(`CP ${exactCp.toLocaleString()} verified`);
+
+  const storedRaw = await page.evaluate(() => localStorage.getItem('pkm-eva:saved') ?? '');
+  expect(storedRaw).not.toContain('data:image/');
+
+  await page.getByLabel('Select Duskull (14/1/2)').check();
+  await page.getByRole('button', { name: 'Delete selected (1)', exact: true }).click();
+  await expect(page.locator('.saved-card')).toHaveCount(2);
+
+  await page.getByRole('button', { name: 'Select all (2)', exact: true }).click();
+  await page.getByRole('button', { name: 'Delete selected (2)', exact: true }).click();
+  await expect(page.locator('.saved-card')).toHaveCount(0);
+  await expect(page.getByText('A home for your keepers.', { exact: true })).toBeVisible();
+
+  await noOverflow(page);
+  const a11y = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+  expect(a11y.violations).toEqual([]);
+});
